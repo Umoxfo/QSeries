@@ -1173,6 +1173,50 @@
             <property>instrumentation/marker-beacon/inner</property>
          </condition>
     </animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Vbars</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>/it-autoflight/output/fd1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/it-autoflight/output/fd2</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>Vbars</object-name>
+		<property>/it-autoflight/fd/pitch-bar</property>
+		<factor>0.001</factor>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
 
+	<animation>
+		<type>rotate</type>
+		<object-name>Vbars</object-name>
+		<property>/it-autoflight/fd/roll-bar</property>
+		<axis>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.00171</y-m>
+			<z-m>0.03612</z-m>
+		</center>
+	</animation>
 
 </PropertyList>

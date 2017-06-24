@@ -147,7 +147,21 @@
             </binding>
         </action>
     </animation>
-
+	
+    <animation>
+        <type>pick</type>
+        <object-name>ias</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>it-autoflight/input/vert</property>
+                <value>4</value>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>

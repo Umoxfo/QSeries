@@ -95,22 +95,6 @@ setlistener("/instrumentation/flightrcdr/gndtest", func(n) {
   }
 });
 
-#Throttle Reverser interpolation
-setlistener("/controls/engines/engine/reverser", func(v) {
-  if(v.getValue()){
-    interpolate("/controls/engines/engine/reverser-position", 1, 0.25);
-  }else{
-    interpolate("/controls/engines/engine/reverser-position", 0, 0.25);
-  }
-});
-
-setlistener("/controls/engines/engine[1]/reverser", func(v) {
-  if(v.getValue()){
-    interpolate("/controls/engines/engine[1]/reverser-position", 1, 0.25);
-  }else{
-    interpolate("/controls/engines/engine[1]/reverser-position", 0, 0.25);
-  }
-});
 #Parking/emerg Brake interpolation
 
 
@@ -466,8 +450,6 @@ setlistener("/gear/gear[1]/wow", func(gr){
 
 
 var Startup = func{
-setprop("controls/engines/engine[0]/cutoff",0);
-setprop("controls/engines/engine[1]/cutoff",0);
 setprop("controls/electric/engine[0]/generator",1);
 setprop("controls/electric/engine[1]/generator",1);
 setprop("controls/electric/engine[0]/bus-tie",1);
@@ -523,16 +505,12 @@ setprop("controls/lighting/taxi-lights",0);
 setprop("controls/lighting/beacon/switch",0);
 setprop("controls/lighting/strobe/switch",0);
 setprop("controls/lighting/logo-lights",0);
-setprop("controls/engines/engine[0]/cutoff",1);
-setprop("controls/engines/engine[1]/cutoff",1);
 setprop("controls/engines/engine[0]/condition-input",0);
 setprop("controls/engines/engine[1]/condition-input",0);
 setprop("controls/engines/engine[0]/mixture",0);
 setprop("controls/engines/engine[1]/mixture",0);
 setprop("controls/engines/engine[0]/propeller-pitch",0);
 setprop("controls/engines/engine[1]/propeller-pitch",0);
-setprop("engines/engine[0]/running",0);
-setprop("engines/engine[1]/running",0);
 setprop("controls/electric/RH-AC-bus",0);
 setprop("controls/electric/LH-AC-bus",0);
 setprop("controls/electric/efis/bank[0]",0);
@@ -553,14 +531,6 @@ controls.gearDown = func(v) {
     } elsif (v > 0) {
       setprop("/controls/gear/gear-down", 1);
     }
-}
-
-controls.startEngine = func(v) {
-    if(getprop("systems/electrical/outputs/trip-fed-bus")==0)return;
-        if(getprop("controls/engines/engine[0]/selected"))setprop("/controls/engines/engine[0]/starter",v)
-        else setprop("/controls/engines/engine[0]/starter",0);
-         if(getprop("controls/engines/engine[1]/selected"))setprop("/controls/engines/engine[1]/starter",v)
-        else setprop("/controls/engines/engine[1]/starter",0);
 }
 
 var update_alarms = func {
@@ -586,38 +556,6 @@ var check_gear = func {
     }
     if(flp>0.5)gd=1;
     setprop("gear/alarm",gd);
-}
-
-var update_engine = func(eng){
-    N1[eng] = getprop("engines/engine["~eng~"]/n1");
-    var rn=getprop("engines/engine["~eng~"]/running");
-    var cnd =getprop("controls/engines/engine["~eng~"]/condition");
-    var cutoff =getprop("controls/engines/engine["~eng~"]/cutoff");
-    var tm=getprop("sim/time/delta-sec");
-        if(rn){
-                setprop("instrumentation/eng-gauge/fuel-pph["~eng~"]",getprop("engines/engine["~eng~"]/fuel-flow-gph")* 6.72);
-                setprop("controls/engines/engine["~eng~"]/condition-input",cnd);
-                setprop("engines/engine["~eng~"]/n1",getprop("engines/engine["~eng~"]/n2"));
-        }else{
-            var ign= getprop("controls/engines/engine["~eng~"]/ignition");
-            var strtr=getprop("controls/engines/engine["~eng~"]/starter");
-                setprop("controls/engines/engine["~eng~"]/condition-input",0);
-                if(strtr){
-                N1[eng] = N1[eng] + (tm * 3);
-                if(N1[eng]>15){
-                    if(N1[eng]>30)N1[eng]=30;
-                    if(ign==1){
-                        if(cnd>0.01){
-                            setprop("controls/engines/engine["~eng~"]/condition-input",cnd);
-                        }
-                    }
-                }
-            }else{
-                N1[eng] = N1[eng] - (tm * 2);
-                if(N1[eng]<0)N1[eng]=0;
-            }
-            setprop("engines/engine["~eng~"]/n1",N1[eng]);
-    }
 }
 
 

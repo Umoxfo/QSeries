@@ -21,7 +21,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	<vtailarm  unit="M" >   4.9 </vtailarm>
         
 	<location name="AERORP" unit="M">
-		<x> 1.62376 </x>
+		<x> 1.85376 </x>
 		<y> 0 </y>
 		<z> 2.17865 </z>
 	</location>
@@ -52,7 +52,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 
         <location name="CG" unit="M"><!--guess-->
-		<x> -0.18866 </x>
+		<x> 1.08866 </x>
 		<y> 0 </y>
 		<z> 2.46337 </z>
 	</location>
@@ -67,7 +67,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<location unit="M">
 			<x> -12.54159 </x>
 			<y> 0 </y>
-			<z> 0 </z> 
+			<z>-0.0059 </z> 
 		</location>
 		<static_friction> 0.8 </static_friction>
 		<dynamic_friction> 0.5 </dynamic_friction>
@@ -80,9 +80,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</contact>
 	<contact type="BOGEY" name="LEFT_MLG">
 		<location unit="M">
-			<x> 0.81092 </x>
-			<y> -4.36066 </y>
-			<z> 0 </z>
+			<x> 1.11067 </x>
+			<y>-4.6128 </y>
+			<z>-0.012 </z> 
 		</location>
 <!-- 		<static_friction> 0.5 </static_friction>  WHAT??? less static than dinamyc friction?-->
 		<static_friction> 0.8 </static_friction>
@@ -95,10 +95,10 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<retractable>1</retractable>
 	</contact>
 	<contact type="BOGEY" name="RIGHT_MLG">
-		<location unit="IN">
-			<x> 0.81092 </x>
-			<y> 4.36066 </y>
-			<z> 0 </z>
+		<location unit="M">
+			<x> 1.11067 </x>
+			<y> 4.6128 </y>
+			<z>-0.012 </z> 
 		</location>
 <!-- 		<static_friction> 0.5 </static_friction>  WHAT??? less static than dinamyc friction?-->
 		<static_friction> 0.8 </static_friction>
@@ -133,36 +133,6 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<x> -14.37381 </x>
 			<y> 0 </y>
 			<z> 1.1446 </z>
-		</location>
-		<static_friction> 1.0 </static_friction>
-		<dynamic_friction> 0.4 </dynamic_friction>
-		<rolling_friction> 0.4 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
-		<max_steer unit="DEG"> 0.0 </max_steer>
-		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
-	</contact>
-	<contact type="STRUCTURE" name="CENTER_1">
-		<location unit="M">
-			<x> 0.43744 </x>
-			<y> 0 </y>
-			<z> 0.86632 </z>
-		</location>
-		<static_friction> 1.0 </static_friction>
-		<dynamic_friction> 0.4 </dynamic_friction>
-		<rolling_friction> 0.4 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
-		<max_steer unit="DEG"> 0.0 </max_steer>
-		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
-	</contact>
-	<contact type="STRUCTURE" name="CENTER_2">
-		<location unit="M">
-			<x> 8.24745 </x>
-			<y> 0 </y>
-			<z> 1.11635 </z>
 		</location>
 		<static_friction> 1.0 </static_friction>
 		<dynamic_friction> 0.4 </dynamic_friction>
@@ -312,16 +282,16 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<yaw> 0.0 </yaw>
 	</orient>
 	<feed>0</feed>
-	<thruster file="R408">
+	<thruster file="direct">
 		<location unit="M">
-                    <x> -3.39427 </x>
-                    <y> -4.36282 </y>
-                    <z> 3.20629 </z>
+			<x> -3.39427 </x>
+			<y> -4.36282 </y>
+			<z> 3.20629 </z>
 		</location>
 		<orient unit="DEG">
-                    <roll> 0.0 </roll>
-                    <pitch> 0.0 </pitch>
-                    <yaw> 0.0 </yaw>
+			<roll> 0.0 </roll>
+			<pitch> 0.0 </pitch>
+			<yaw> 0.0 </yaw>
 		</orient>
 	</thruster>
 	</engine>
@@ -338,16 +308,16 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<yaw> 0.0 </yaw>
 	</orient>
 	<feed>1</feed>
-	<thruster file="R408">
+	<thruster file="direct">
 		<location unit="M">
-                    <x> -3.39427 </x>
-                    <y> 4.36282 </y>
-                    <z> 3.20629 </z>
+			<x> -3.39427 </x>
+			<y> 4.36282 </y>
+			<z> 3.20629 </z>
 		</location>
 		<orient unit="DEG">
-                    <roll> 0.0 </roll>
-                    <pitch> 0.0 </pitch>
-                    <yaw> 0.0 </yaw>
+			<roll> 0.0 </roll>
+			<pitch> 0.0 </pitch>
+			<yaw> 0.0 </yaw>
 		</orient>
 	</thruster>
 	</engine>
@@ -356,7 +326,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	<tank type="FUEL">    <!-- Left Wing Tank -->
 		<location unit="M">
 			<x> 0.72524 </x>
-			<y>-7.03119 </y>
+			<y> 0 </y>
 			<z> 3.81664 </z>
 		</location>
 		<capacity unit="LBS"> 898 </capacity><!-- 1580l -->
@@ -369,7 +339,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	<tank type="FUEL">    <!-- Right Wing Tank -->
 		<location unit="M">
 			<x> 0.72524 </x>
-			<y>-7.03119 </y>
+			<y> 0 </y>
 			<z> 3.81664 </z>
 		</location>
 		<capacity unit="LBS"> 898 </capacity><!-- 1580l -->

@@ -378,19 +378,7 @@ electrical_bus = func(bv) {
     if(getprop("/controls/engines/internal-engine-starter-selector") == 0){
     setprop("/controls/engines/internal-engine-starter", 0);
     }
-    
-    
-    if(starter==1){
-        setprop("/controls/engines/engine[0]/starter", 1);
-        setprop("/controls/engines/engine[1]/starter", 0);
-    }else if(starter==-1){
-        setprop("/controls/engines/engine[0]/starter", 0);
-        setprop("/controls/engines/engine[1]/starter", 1);
-    }else{
-        setprop("/controls/engines/engine[0]/starter", 0);
-        setprop("/controls/engines/engine[1]/starter", 0);
-    }
-    
+  
 
     var internal_starter = getprop("controls/engines/internal-engine-starter");
     var if_engine0_running = getprop("engines/engine[0]/running");
