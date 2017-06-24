@@ -265,6 +265,7 @@ update_virtual_bus = func( dt ) {
     var external_volts = 28.0;
     var power_selector = getprop("controls/electric/power-source");
     var EXT_plugged = getprop("/services/ext-pwr/enable");
+    var autostart = getprop("/controls/electric/autostart");
 
     load = 0.0;
     bus_volts = 0.0;
@@ -301,6 +302,10 @@ update_virtual_bus = func( dt ) {
     if ( EXT.getBoolValue() and ( external_volts > bus_volts) ) {
         power_source = "external";
         bus_volts = external_volts;
+        }
+    if(autostart and (bus_volts < 25 ) ){
+        power_source="temporary_autostart";
+        bus_volts = 28;
         }
 
     bus_volts *=PWR;
@@ -373,7 +378,6 @@ electrical_bus = func(bv) {
     
     
     
-    
     #a bit of nasal for the start ;)
     if(getprop("/controls/engines/internal-engine-starter-selector") == 0){
     setprop("/controls/engines/internal-engine-starter", 0);
@@ -398,11 +402,28 @@ electrical_bus = func(bv) {
     }
 
     if (internal_starter < 0) {
+        setprop("/controls/engines/engine[1]/starter", 1);
        	internal_starter = -internal_starter;
 	starter_volts1 = bus_volts * internal_starter;
     } else if (internal_starter > 0) {
+        setprop("/controls/engines/engine[0]/starter", 1);
        	starter_volts = bus_volts * internal_starter;
+    } else if (internal_starter = 0) {
+        setprop("/controls/engines/engine[0]/starter", 0);
+        setprop("/controls/engines/engine[1]/starter", 0);
     }
+    
+    if(getprop("/controls/engines/engine[0]/condition") > 0){
+        setprop("/controls/engines/engine[0]/cutoff", 0);
+    }else{
+        setprop("/controls/engines/engine[0]/cutoff", 1);
+    }
+    if(getprop("/controls/engines/engine[1]/condition") > 0){
+        setprop("/controls/engines/engine[1]/cutoff", 0);
+    }else{
+        setprop("/controls/engines/engine[1]/cutoff", 1);
+    }
+    
     
     load += internal_starter * 5;
         start_n2_0 += starter_volts * 0.7;
@@ -576,5 +597,17 @@ settimer(update_electrical, 0);
 setlistener("/controls/engines/start-select", func{
     if(getprop("/systems/electrical/volts")==28){
         setprop("/controls/engines/internal-engine-starter", getprop("/controls/engines/internal-engine-starter-selector"));
+    }
+});
+
+#Thrust reverser
+setlistener("/controls/engines/engine[0]/reverser", func{
+    if(getprop("/controls/engines/engine[0]/throttle")<0.1) {
+        setprop("/fdm/jsbsim/propulsion/engine[0]/reverser-angle-rad", getprop("/controls/engines/engine[0]/reverser")*180);
+    }
+});
+setlistener("/controls/engines/engine[1]/reverser", func{
+    if(getprop("/controls/engines/engine[1]/throttle")<0.1) {
+        setprop("/fdm/jsbsim/propulsion/engine[1]/reverser-angle-rad", getprop("/controls/engines/engine[1]/reverser")*180);
     }
 });

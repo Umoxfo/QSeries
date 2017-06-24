@@ -4,7 +4,7 @@
 
 	<channel name="Pitch">
 	<summer name="Pitch Trim Sum">
-		<input>/controls/flight/elevator</input>
+		<input>/controls/flight/elevator-int</input>
 		<input>/controls/flight/elevator-trim</input>
 		<clipto>
 			<min>-1</min>
@@ -103,7 +103,7 @@
 
 	<channel name="Yaw">
 	<pure_gain name="fcs/rudder-cmd">
-		<input>/controls/flight/rudder</input>
+		<input>/controls/flight/rudder-int</input>
 		<gain>-2</gain>
 		<output>fcs/rudder-cmd-norm</output>
 	</pure_gain>
@@ -195,7 +195,7 @@
 	<channel name="Flaps">
 
 		<kinematic name="Flaps Control">
-			<input>/controls/flight/flaps</input>
+			<input>/controls/flight/flaps-int</input>
 			<traverse>
 			<setting>
 				<position>0</position>
@@ -259,7 +259,7 @@
 	<channel name="Landing Gear">
 
 		<kinematic name="Gear Control">
-			<input>gear/gear-cmd-norm</input>
+			<input>/controls/gear/gear-down-int</input>
 			<traverse>
 			<setting>
 				<position>0</position>
@@ -267,7 +267,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>10</time>
+				<time>6</time>
 			</setting>
 			</traverse>
 			<output>gear/gear-pos-norm</output>
@@ -276,7 +276,7 @@
 
 	<channel name="Spoilers">
 		<kinematic name="Spoilers">
-			<input>/controls/flight/spoilers</input>
+			<input>/controls/flight/spoilers-int</input>
 			<traverse>
 			<setting>
 				<position>0</position>
@@ -306,7 +306,7 @@
                     <product>
                         <table>
                             <independentVar lookup="row">/controls/gear/tiller-cmd-norm</independentVar>
-                            <independentVar lookup="column">/controls/flight/rudder</independentVar>
+                            <independentVar lookup="column">/controls/gear/nose-steering-int</independentVar>
                             <tableData>
                                 -1   0   1
                                 -1 -70 -70 -70
@@ -318,7 +318,7 @@
                     </product>
                     <product>
                         <product>
-                            <property>/controls/flight/rudder</property>
+                            <property>/controls/gear/nose-steering-int</property>
                             <value>70</value>
                         </product>
                         <property>/controls/gear/tiller-disabled</property>

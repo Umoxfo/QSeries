@@ -39,7 +39,7 @@
 <!-- RUDDER -->
 
   <filter>
-    <name>Rudderr</name>
+    <name>Rudder</name>
     <type>gain</type>
     <update-interval-secs type="double">0.0</update-interval-secs>
     <input>
@@ -61,6 +61,27 @@
     </enable>
     <gain>1</gain>
     <output>controls/flight/rudder-int</output>
+  </filter>
+
+<!-- NOSE WHEEL STEERING -->
+
+  <filter>
+    <name>Nose Wheel Steering</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+      <property>/controls/flight/rudder</property>
+    </input>
+    <enable>
+        <condition>
+                <greater-than>
+                    <property>/systems/hydraulic/psi2</property>
+                    <value>2900</value>
+                </greater-than>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/gear/nose-steering-int</output>
   </filter>
 
 </PropertyList>

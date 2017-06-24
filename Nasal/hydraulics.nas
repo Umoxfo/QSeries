@@ -73,18 +73,19 @@ var master_hyd = func {
 	var leak1 = getprop("/systems/failures/hyd1");
 	var leak2 = getprop("/systems/failures/hyd2");
 	var leak3 = getprop("/systems/failures/hyd3");
+	var eng1_pump_fail = getprop("/systems/failures/pump1") or 0;
+	var eng2_pump_fail = getprop("/systems/failures/pump2") or 0;
 	var dc_pump_fail = getprop("/systems/failures/pump3") or 0;
-	var green_pump_fail = getprop("/systems/failures/pump-green") or 0;
-	var yellow_pump_eng_fail = getprop("/systems/failures/pump-yellow-eng") or 0;
-	var yellow_pump_elec_fail = getprop("/systems/failures/pump-yellow-elec") or 0;
 	var ptu_fail = getprop("/systems/failures/ptu");
 	var spu_fail = getprop("/systems/failures/spu");
-	var parkbrake = getprop("/controls/gear/brake-parking");
+	var parkbrakeInp = getprop("/controls/gear/brake-parking");
+	var brakeLInp = getprop("/controls/gear/brake-left");
+	var brakeRInp = getprop("/controls/gear/brake-right");
 	var flaps = getprop("/controls/flight/flaps");
 	var wow1 = getprop("/gear/gear[1]/wow");
 	
 	
-	if (parkbrake==0 and flaps>0 and psi1>2400 or ptu_sw) {
+	if (parkbrakeInp==0 and flaps>0 and psi1>2400 or ptu_sw) {
 		setprop("/systems/hydraulic/ptu-active", 1);
 	} else{
 		setprop("/systems/hydraulic/ptu-active", 0);
@@ -93,7 +94,7 @@ var master_hyd = func {
 	
 	var ptu_active = getprop("/systems/hydraulic/ptu-active");
 	
-	if(spu_sw or !wow1 and !runningL or flaps>0 and !parkbrake){
+	if(spu_sw or !wow1 and !runningL or flaps>0 and !parkbrakeInp){
             setprop("/controls/hydraulic/spu_act", 1);
         }else{
             setprop("/controls/hydraulic/spu_act", 0);
@@ -107,13 +108,13 @@ var master_hyd = func {
             setprop("/controls/hydraulic/isol-valve3", 0);
         }
 	
-	if((eng1_pump_sw and runningL or spu_act and !spu_fail and getprop("/systems/electrical/volts")>20) and !leak1){
+	if((eng1_pump_sw and !eng1_pump_fail and runningL or spu_act and !spu_fail and getprop("/systems/electrical/volts")>20) and !leak1){
             interpolate("/systems/hydraulic/psi1", 3000, 2);
         }else{
             interpolate("/systems/hydraulic/psi1", 0, 2);
         }
 	
-	if((eng2_pump_sw and runningR or psi1>2400 and ptu_active) and !leak2){
+	if((eng2_pump_sw and !eng2_pump_fail and runningR or psi1>2400 and ptu_active) and !leak2){
             interpolate("/systems/hydraulic/psi2", 3000, 2);
         }else{
             interpolate("/systems/hydraulic/psi2", 0, 2);
@@ -124,6 +125,21 @@ var master_hyd = func {
         }else{
             interpolate("/systems/hydraulic/psi3", 0, 2);
         }
+        
+        if(psi2>2900){
+            setprop("/controls/gear/brake-parking-int", parkbrakeInp);
+        }else{
+            setprop("/controls/gear/brake-parking-int", 0);
+        }
+        
+        if(psi1>2900){
+            setprop("/controls/gear/brake-left-int", brakeLInp);
+            setprop("/controls/gear/brake-right-int", brakeRInp);
+        }else{
+            setprop("/controls/gear/brake-left-int", 0);
+            setprop("/controls/gear/brake-right-int", 0);
+        }
+        
 }
 
 #######################
@@ -141,6 +157,14 @@ setlistener("/controls/gear/gear-down", func {
 	if (!down and (getprop("/gear/gear[0]/wow") or getprop("/gear/gear[1]/wow") or getprop("/gear/gear[2]/wow"))) {
 		setprop("/controls/gear/gear-down-int", 1);
 	}
+});
+
+setlistener("/controls/flight/flaps", func {
+        var psi1 = getprop("/systems/hydraulic/psi1") or 0;
+        var flapInp=getprop("/controls/flight/flaps");
+        if(psi1>2900){
+            setprop("/controls/flight/flaps-int", flapInp);
+        }
 });
 
 ###################

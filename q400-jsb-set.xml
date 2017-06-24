@@ -211,6 +211,34 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
     </multiplay>
     
 </sim>
+	
+<payload>
+		<weight n="0">
+			<name>Cockpit Crew</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]" />
+			<min-lb type="double">200</min-lb>
+			<max-lb type="double">440</max-lb>
+		</weight>
+		<weight n="2">
+			<name>PAX Front (43 seats)</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]" />
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">9460</max-lb>
+		</weight>
+		<weight n="3">
+			<name>PAX Rear (43 seats)</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]" />
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">9460</max-lb>
+		</weight>
+		<weight n="4">
+			<name>Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]" />
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">4710</max-lb>
+		</weight>
+	</payload>
+        
 <systems>
     <electrical>
         <lighting>
@@ -240,12 +268,17 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 <controls>
     <flight>
         <spoilers type="float">0</spoilers>
+        <spoilers-int type="float">0</spoilers-int>
+        <flaps-int type="float">0</flaps-int>
+        <elevator-int type="float">0</elevator-int>
+        <rudder-int type="float">0</rudder-int>
     </flight>
     <electric>
         <power-source>1</power-source>
+        <autostart type="bool">0</autostart>
     </electric>
     <gear>
-        <gear-down-int>1</gear-down-int>
+        <gear-down-int type="float">1</gear-down-int>
         <jacks>0</jacks>
         <brake-parking>1</brake-parking>
         <brake-parking-position>1</brake-parking-position>
@@ -288,15 +321,20 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<file>Nasal/startup.nas</file>
 			<file>Nasal/systems.nas</file>
 			<file>Nasal/doors.nas</file>
-            <!--file>Nasal/Electrical.nas</file>
-            <file>Nasal/lighting.nas</file-->
+            <!--<file>Nasal/lighting.nas</file-->
         </q400>
         <itaf>
             <file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
         </itaf>
-        <!--doors>
+        <systems>
+            <file>Nasal/hydraulics.nas</file>
+            <file>Nasal/pneumatics.nas</file>
+            <file>Nasal/APU.nas</file>
+            <file>Nasal/Electrical.nas</file>
+        </systems>
+        <doors>
             <file>Nasal/doors.nas</file>
-        </doors>
+        </doors><!--
 <walk>
 			<file>Nasal/walk.nas</file>
 		</walk-->
