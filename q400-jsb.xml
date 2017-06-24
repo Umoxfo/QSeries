@@ -52,10 +52,44 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 
         <location name="CG" unit="M"><!--guess-->
-		<x> 1.08866 </x>
+		<x> -0.5 </x>
 		<y> 0 </y>
 		<z> 2.46337 </z>
 	</location>
+        
+	<pointmass name="Cockpit Crew">
+		<weight unit="LBS">400</weight> <!-- MAX: 400lbs, two pilots-->
+		<location name="POINTMASS" unit="M">
+			<x>-11.5</x>
+			<y>0</y>
+			<z>2</z>
+		</location>
+	</pointmass>
+        <!--Cabin: MAX 86 passengers, for the moment 43 front 43 rear-->
+	<pointmass name="Cabin Front">
+		<weight unit="LBS">4000</weight> <!-- MAX: 9460lbs, up to 43 passengers-->
+		<location name="POINTMASS" unit="M">
+			<x>-5</x>
+			<y>0</y>
+			<z>2</z>
+		</location>
+	</pointmass>
+	<pointmass name="Cabin Rear">
+		<weight unit="LBS">4000</weight> <!-- MAX: 9460lbs, up to 43 passengers-->
+		<location name="POINTMASS" unit="M">
+			<x>3.5</x>
+			<y>0</y>
+			<z>2</z>
+		</location>
+	</pointmass>
+	<pointmass name="Cargo">
+		<weight unit="LBS">1000</weight> <!-- MAX: 4710lbs, according to http://commercialaircraft.bombardier.com/content/dam/Websites/bca/literature/q400/BCA_5446_03_Q400_Factsheet_Update_EN_vF.pdf-->
+		<location name="POINTMASS" unit="M">
+			<x>9</x>
+			<y>0</y>
+			<z>2.3</z>
+		</location>
+	</pointmass>
 
 
 
