@@ -10,6 +10,9 @@ var autostartupthing = func {
 	setprop("/controls/engines/engine[1]/ignition-switch", 1);
 	setprop("/controls/electric/engine[0]/generator", 1);
 	setprop("/controls/electric/engine[1]/generator", 1);
+	setprop("/sim/model/door-positions/passengerF/position-norm", 1);
+	setprop("/controls/cabin/seatbelts", 1);
+	setprop("/controls/cabin/nosmoking", 1);
 	settimer(func {
 		setprop("/controls/engines/engine[0]/condition-lever", 1);
 		setprop("/controls/engines/engine[1]/condition-lever", 1);

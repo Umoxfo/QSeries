@@ -378,7 +378,6 @@ electrical_bus = func(bv) {
     
     
     
-    
     #a bit of nasal for the start ;)
     if(getprop("/controls/engines/internal-engine-starter-selector") == 0){
     setprop("/controls/engines/internal-engine-starter", 0);
@@ -598,5 +597,17 @@ settimer(update_electrical, 0);
 setlistener("/controls/engines/start-select", func{
     if(getprop("/systems/electrical/volts")==28){
         setprop("/controls/engines/internal-engine-starter", getprop("/controls/engines/internal-engine-starter-selector"));
+    }
+});
+
+#Thrust reverser
+setlistener("/controls/engines/engine[0]/reverser", func{
+    if(getprop("/controls/engines/engine[0]/throttle")<0.1) {
+        setprop("/fdm/jsbsim/propulsion/engine[0]/reverser-angle-rad", getprop("/controls/engines/engine[0]/reverser")*180);
+    }
+});
+setlistener("/controls/engines/engine[1]/reverser", func{
+    if(getprop("/controls/engines/engine[1]/throttle")<0.1) {
+        setprop("/fdm/jsbsim/propulsion/engine[1]/reverser-angle-rad", getprop("/controls/engines/engine[1]/reverser")*180);
     }
 });
