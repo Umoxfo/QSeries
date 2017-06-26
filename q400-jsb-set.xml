@@ -245,6 +245,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
             <landing-light type="bool">0</landing-light>
             <logo-light type="bool">0</logo-light>
         </lighting>
+        <volts type="float">0</volts>
     </electrical>
 </systems>
 <input>
@@ -318,10 +319,10 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
         <q400>
             <file>Nasal/limits.nas</file>
             <file>Nasal/liveries.nas</file>
-			<file>Nasal/startup.nas</file>
-			<file>Nasal/systems.nas</file>
-			<file>Nasal/doors.nas</file>
-            <!--<file>Nasal/lighting.nas</file-->
+            <file>Nasal/startup.nas</file><!--
+            <file>Nasal/systems.nas</file>-->
+            <file>Nasal/doors.nas</file>
+            <file>Nasal/general.nas</file>
         </q400>
         <itaf>
             <file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
@@ -338,29 +339,29 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 <walk>
 			<file>Nasal/walk.nas</file>
 		</walk-->
-		<dialogs>
+        <dialogs>
             <file>Nasal/dialogs.nas</file>
         </dialogs>
-				<!--procedures>
-						<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsDB.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsWP.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTP.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTransition.nas</file>
+        <procedures>
+            <file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsDB.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsWP.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTP.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTransition.nas</file>
 
-				</procedures>
-				<displaypages>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/CduStart.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltPlan.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltList.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDeparture.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDestination.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/NavPages.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/Performance.nas</file>
-						<file>Aircraft/Q400/Models/panels/CDU/DispPages/Progress.nas</file>
-				</displaypages>
-				<cdu>
-						<file>Models/panels/CDU/CDU.nas</file>
-				</cdu-->
+        </procedures>
+        <displaypages>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/CduStart.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/FltPlan.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/FltList.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDeparture.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDestination.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/NavPages.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/Performance.nas</file>
+            <file>Aircraft/Q400/Models/panels/CDU/DispPages/Progress.nas</file>
+        </displaypages>
+        <cdu>
+                        <file>Models/panels/CDU/CDU.nas</file>
+        </cdu>
     </nasal>
 
  

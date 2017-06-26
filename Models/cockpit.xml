@@ -137,7 +137,12 @@
     <animation>
         <type>rotate</type>
         <object-name>throttleL</object-name>
-        <property>controls/engines/engine[0]/throttle</property>
+        <property>controls/engines/engine[0]/throttle-int</property>
+        <condition>
+            <not>
+                <property>/controls/engines/engine[0]/reverser</property>
+            </not>
+        </condition>
         <factor>-77.13</factor>
         <center>
             <x-m>-11.88406</x-m>
@@ -169,7 +174,10 @@
     <animation>
         <type>rotate</type>
         <object-name>throttleL</object-name>
-        <property>controls/engines/engine[0]/throttle-rvrs-norunning</property>
+        <property>controls/engines/engine[0]/throttle-int</property>
+        <condition>
+                <property>/controls/engines/engine[0]/reverser</property>
+        </condition>
         <factor>26</factor>
         <center>
             <x-m>-11.88406</x-m>
@@ -182,23 +190,7 @@
             <z>0</z>
         </axis>
     </animation>
-    <animation>
-        <type>rotate</type>
-        <object-name>throttleL</object-name>
-        <property>controls/engines/engine[0]/throttle-rvrs</property>
-        <factor>26</factor>
-        <center>
-            <x-m>-11.88406</x-m>
-            <y-m>0</y-m>
-            <z-m>1.92495</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>    
-
+    
 <animation>
         <type>slider</type>
         <object-name>throttleR</object-name>
@@ -227,7 +219,12 @@
 <animation>
         <type>rotate</type>
         <object-name>throttleR</object-name>
-        <property>controls/engines/engine[1]/throttle</property>
+        <property>controls/engines/engine[1]/throttle-int</property>
+        <condition>
+            <not>
+                <property>/controls/engines/engine[1]/reverser</property>
+            </not>
+        </condition>
         <factor>-77.13</factor>
         <center>
             <x-m>-11.88406</x-m>
@@ -259,7 +256,10 @@
     <animation>
         <type>rotate</type>
         <object-name>throttleR</object-name>
-        <property>controls/engines/engine[1]/throttle-rvrs-norunning</property>
+        <property>controls/engines/engine[1]/throttle-int</property>
+        <condition>
+                <property>/controls/engines/engine[1]/reverser</property>
+        </condition>
         <factor>26</factor>
         <center>
             <x-m>-11.88406</x-m>
@@ -272,24 +272,8 @@
             <z>0</z>
         </axis>
     </animation>
-    <animation>
-        <type>rotate</type>
-        <object-name>throttleR</object-name>
-        <property>controls/engines/engine[1]/throttle-rvrs</property>
-        <factor>26</factor>
-        <center>
-            <x-m>-11.88406</x-m>
-            <y-m>0</y-m>
-            <z-m>1.92495</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
+    
 <!--Condition Levers-->
-
     <animation>
         <type>slider</type>
         <object-name>conditionL</object-name>

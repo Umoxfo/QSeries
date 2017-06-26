@@ -412,6 +412,7 @@ DHC8 -400Q by Alex Park Jan 2010
                 <mixture>0</mixture>
                 <propeller-pitch>0</propeller-pitch>
                 <throttle-fwd type="double">0</throttle-fwd>
+                <throttle-int type="double">0</throttle-int>
                 <throttle-rvrs type="double">0</throttle-rvrs>
                 <reverser-position type="double">0</reverser-position>
                 <ignition-switch type="int">0</ignition-switch>
@@ -422,6 +423,7 @@ DHC8 -400Q by Alex Park Jan 2010
                 <mixture>0</mixture>
                 <propeller-pitch>0</propeller-pitch>
                 <throttle-fwd type="double">0</throttle-fwd>
+                <throttle-int type="double">0</throttle-int>
                 <throttle-rvrs type="double">0</throttle-rvrs>
                 <reverser-position type="double">0</reverser-position>
                 <ignition-switch type="int">0</ignition-switch>

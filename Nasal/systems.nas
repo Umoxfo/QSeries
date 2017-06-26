@@ -560,50 +560,6 @@ var check_gear = func {
 
 
 var update_systems = func {
-#Throttle Lock
-if(getprop("/controls/engines/throttle-lock") == 0 ){
-setprop("/controls/engines/engine/throttle-int", getprop("/controls/engines/engine/throttle") );
-}else if(getprop("/controls/engines/engine/throttle") <= 0.3){
-setprop("/controls/engines/engine/throttle-int", getprop("/controls/engines/engine/throttle") );
-}else{
-setprop("/controls/engines/engine/throttle-int", 0.3 );
-}
-
-if(getprop("/controls/engines/throttle-lock") == 0 ){
-setprop("/controls/engines/engine[1]/throttle-int", getprop("/controls/engines/engine[1]/throttle") );
-}else if(getprop("/controls/engines/engine[1]/throttle") <= 0.3){
-setprop("/controls/engines/engine[1]/throttle-int", getprop("/controls/engines/engine[1]/throttle") );
-}else{
-setprop("/controls/engines/engine[1]/throttle-int", 0.3 );
-}
-#landing light for lightmap
-if(getprop("/controls/lighting/landing-light") == 1 and getprop("/controls/electric/battery-switch") == 1){
-setprop("/systems/electrical/outputs/lightmap/landing-light", 1);
-}else{
-setprop("/systems/electrical/outputs/lightmap/landing-light", 0);
-}
-if(getprop("/controls/lighting/landing-light[1]") == 1 and getprop("/controls/electric/battery-switch") == 1){
-setprop("/systems/electrical/outputs/lightmap/landing-light[1]", 1);
-}else{
-setprop("/systems/electrical/outputs/lightmap/landing-light[1]", 0);
-}
-#logo light for lightmap
-if(getprop("/controls/lighting/logo-lights") == 1 and getprop("/systems/electrical/volts") >=15 ){
-setprop("/systems/electrical/outputs/lightmap/logo-light", 1);
-}else{
-setprop("/systems/electrical/outputs/lightmap/logo-light", 0);
-}
-#hide ALS landing light from the outside
-if(getprop("/sim/current-view/internal") == 1 and getprop("/systems/electrical/volts") >= 15 ){
-setprop("/sim/rendering/als-secondary-lights/use-landing-light", getprop("/controls/lighting/landing-lights"));
-}else{
-setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
-}
-
-#EPU
-if(getprop("/controls/electric/epu-switch")){
-setprop("/controls/electric/power-source", -1);
-}
 
 #Altitude conversion for ap
 setprop("/position/altitude-ft-100", getprop("/position/altitude-ft")*0.01);
