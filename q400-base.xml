@@ -71,19 +71,9 @@ DHC8 -400Q by Alex Park Jan 2010
                     </preview>
             </previews>
 
+            <!--Fallback for older FG versions-->
             <startup>
                     <splash-texture>Aircraft/Q400/Splash/splash1.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash2.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash3.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash4.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash5.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash6.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash7.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash8.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash9.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash10.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash11.png</splash-texture>
-                    <splash-texture>Aircraft/Q400/Splash/splash12.png</splash-texture>
             </startup>
         
             <tags>
