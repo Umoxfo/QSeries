@@ -14,7 +14,7 @@
 <turbine_engine name="PW150A">
   <milthrust> 11357.5 </milthrust>
   <bypassratio>     5.0  </bypassratio>
-  <tsfc>            0.55 </tsfc>
+  <tsfc>            0.238 </tsfc>
   <bleed>           0.03 </bleed>
   <idlen1>         24.6  </idlen1>
   <idlen2>         54.3  </idlen2>

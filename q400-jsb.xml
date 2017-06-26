@@ -363,8 +363,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<y> 0 </y>
 			<z> 3.81664 </z>
 		</location>
-		<capacity unit="LBS"> 898 </capacity><!-- 1580l -->
-		<contents unit="LBS"> 400 </contents>
+		<capacity unit="LBS"> 11305 </capacity><!-- 3211l -->
+		<contents unit="LBS"> 5000 </contents>
 		
 		<priority>1</priority>
 		<type>JET-A1</type>
@@ -376,8 +376,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<y> 0 </y>
 			<z> 3.81664 </z>
 		</location>
-		<capacity unit="LBS"> 898 </capacity><!-- 1580l -->
-		<contents unit="LBS"> 400 </contents>
+		<capacity unit="LBS"> 11305 </capacity><!-- 3211l -->
+		<contents unit="LBS"> 5000 </contents>
 		
 		<priority>1</priority>
 		<type>JET-A1</type>
