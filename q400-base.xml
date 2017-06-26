@@ -34,10 +34,56 @@ DHC8 -400Q by Alex Park Jan 2010
                             <splash type="bool">true</splash>
                             <path>Splash/splash5.png</path>
                     </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash6.png</path>
+                    </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash7.png</path>
+                    </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash8.png</path>
+                    </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash9.png</path>
+                    </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash10.png</path>
+                    </preview>
+                    <preview>
+                            <type>interior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash11.png</path>
+                    </preview>
+                    <preview>
+                            <type>exterior</type>
+                            <splash type="bool">true</splash>
+                            <path>Splash/splash12.png</path>
+                    </preview>
             </previews>
 
             <startup>
                     <splash-texture>Aircraft/Q400/Splash/splash1.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash2.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash3.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash4.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash5.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash6.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash7.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash8.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash9.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash10.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash11.png</splash-texture>
+                    <splash-texture>Aircraft/Q400/Splash/splash12.png</splash-texture>
             </startup>
         
             <tags>
