@@ -28,9 +28,9 @@ var fuel_rich1 = 0.0;
 #aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
 
 var navLight = aircraft.light.new("/sim/model/lights/nav-lights", [0], "/controls/lighting/nav-lights");
-var landingLightL = aircraft.light.new("/sim/model/lights/landing-light[0]", [0], "/controls/lighting/landing-light[0]");
-var landingLightR = aircraft.light.new("/sim/model/lights/landing-light[1]", [0], "/controls/lighting/landing-light[1]");
-var taxiLight = aircraft.light.new("/sim/model/lights/taxi-lights", [0], "/controls/lighting/taxi-lights");
+var landingLightFLR = aircraft.light.new("/sim/model/lights/landing-light-flr", [0], "/controls/lighting/landing-light-flr");
+var landingLightAPP = aircraft.light.new("/sim/model/lights/landing-light-flr", [0], "/controls/lighting/landing-light-app");
+var taxiLight = aircraft.light.new("/sim/model/lights/taxi-light", [0], "/controls/lighting/taxi-light");
 var strobeLight = aircraft.light.new("/sim/model/lights/strobe", [0.08, 2.5], "/controls/lighting/strobe-lights");
 var beaconLight = aircraft.light.new("/sim/model/lights/beacon", [0.08, 0.08, 0.08, 2.5], "/controls/lighting/beacon");
 
@@ -180,10 +180,10 @@ init_switches = func() {
     append(output_list,"caution-test");
     append(switch_list,"controls/anti-ice/pitot-heat");
     append(output_list,"pitot-heat");
-    append(switch_list,"controls/lighting/landing-light[0]");
-    append(output_list,"landing-light[0]");
-    append(switch_list,"controls/lighting/landing-light[1]");
-    append(output_list,"landing-light[1]");
+    append(switch_list,"controls/lighting/landing-light-flr");
+    append(output_list,"landing-light-flr");
+    append(switch_list,"controls/lighting/landing-light-app");
+    append(output_list,"landing-light-app");
     append(switch_list,"controls/lighting/beacon");
     append(output_list,"beacon");
     append(switch_list,"controls/lighting/nav-lights");
@@ -198,8 +198,8 @@ init_switches = func() {
     append(output_list,"logo-lights");
     append(switch_list,"controls/lighting/strobe-lights");
     append(output_list,"strobe-lights");
-    append(switch_list,"controls/lighting/taxi-lights");
-    append(output_list,"taxi-lights");
+    append(switch_list,"controls/lighting/taxi-light");
+    append(output_list,"taxi-light");
     append(switch_list,"controls/electric/wipers/switch");
     append(output_list,"wipers");
     append(switch_list,"controls/electric/aft-boost-pump");
@@ -506,25 +506,25 @@ electrical_bus = func(bv) {
         setprop("/systems/electrical/outputs/nav-lights-norm", 0);
     }
     
-    var taxiLV=getprop("/systems/electrical/outputs/taxi-lights");
+    var taxiLV=getprop("/systems/electrical/outputs/taxi-light");
     if(taxiLV){
-        setprop("/systems/electrical/outputs/taxi-lights-norm", 1);
+        setprop("/systems/electrical/outputs/taxi-light-norm", 1);
     }else{
-        setprop("/systems/electrical/outputs/taxi-lights-norm", 0);
+        setprop("/systems/electrical/outputs/taxi-light-norm", 0);
     }
     
-    var landingLV0=getprop("/systems/electrical/outputs/landing-light");
+    var landingLV0=getprop("/systems/electrical/outputs/landing-light-flr");
     if(landingLV0){
-        setprop("/systems/electrical/outputs/landing-light-norm", 1);
+        setprop("/systems/electrical/outputs/landing-light-flr-norm", 1);
     }else{
-        setprop("/systems/electrical/outputs/landing-light-norm", 0);
+        setprop("/systems/electrical/outputs/landing-light-flr-norm", 0);
     }
     
-    var landingLV1=getprop("/systems/electrical/outputs/landing-light[1]");
+    var landingLV1=getprop("/systems/electrical/outputs/landing-light-app");
     if(landingLV1){
-        setprop("/systems/electrical/outputs/landing-light-norm[1]", 1);
+        setprop("/systems/electrical/outputs/landing-light-app-norm", 1);
     }else{
-        setprop("/systems/electrical/outputs/landing-light-norm[1]", 0);
+        setprop("/systems/electrical/outputs/landing-light-app-norm", 0);
     }
     
     var strobeLV=getprop("/systems/electrical/outputs/strobe-lights");
