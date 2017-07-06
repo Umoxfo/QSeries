@@ -1066,7 +1066,7 @@
     <type>rotate</type>
     <object-name>WheelN</object-name>
     <object-name>gearF</object-name>
-    <property>gear/gear[0]/steering-norm</property>
+    <property>gear/gear/steering-norm</property>
     <factor>-70</factor>
     <center>
       <x-m>-12.686933</x-m>
@@ -1224,46 +1224,10 @@
     </axis>
   </animation>
   <!-- LIGHTS -->
+  <!-- Taxi Lights: 1 located on the front gear, only on if front gear is completely down-->
   <model>
     <path>lights/taxilight.xml</path>
-    <name>taxilightL</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>-5.23</y-m>
-      <z-m>3.63</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/taxilight.xml</path>
-    <name>taxilightR</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>5.23</y-m>
-      <z-m>3.63</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/taxilight.xml</path>
-    <name>taxilightL-ALS</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>-5.23</y-m>
-      <z-m>3.63</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/taxilight.xml</path>
-    <name>taxilightR-ALS</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>5.23</y-m>
-      <z-m>3.63</z-m>
-    </offsets>
-  </model>
-  <!--Nose-->
-  <model>
-    <path>lights/landinglightgear.xml</path>
-    <name>landinglightF</name>
+    <name>taxilight</name>
     <offsets>
       <x-m>-12.9926</x-m>
       <y-m>0.0</y-m>
@@ -1271,50 +1235,106 @@
     </offsets>
   </model>
   <model>
-    <path>lights/landinglight1.xml</path>
-    <name>landinglightR</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>5.4957</y-m>
-      <z-m>3.6302</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/landinglight.xml</path>
-    <name>landinglightL</name>
-    <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>-5.4957</y-m>
-      <z-m>3.6302</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/landinglight.xml</path>
-    <name>landinglightF-ALS</name>
+    <path>lights/ALS/taxilight.xml</path>
+    <name>taxilight-ALS</name>
     <offsets>
       <x-m>-12.9926</x-m>
       <y-m>0.0</y-m>
       <z-m>0.6628</z-m>
     </offsets>
   </model>
+  <!--Landing Lights-->
+  <!--Approach-->
   <model>
-    <path>lights/ALS/landinglightL.xml</path>
-    <name>landinglightL-ALS</name>
+    <path>lights/landinglightAPP.xml</path>
+    <name>landinglightLapp</name>
     <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>-5.4957</y-m>
+      <x-m>-0.62</x-m>
+      <y-m>-5.48518</y-m>
       <z-m>3.6302</z-m>
+      <heading-deg>-30</heading-deg>
+      <pitch-deg>0</pitch-deg>
     </offsets>
   </model>
   <model>
-    <path>lights/ALS/landinglightR.xml</path>
-    <name>landinglightR-ALS</name>
+    <path>lights/landinglightAPP.xml</path>
+    <name>landinglightRapp</name>
     <offsets>
-      <x-m>-0.6</x-m>
-      <y-m>5.4957</y-m>
+      <x-m>-0.62</x-m>
+      <y-m>5.48518</y-m>
       <z-m>3.6302</z-m>
+      <heading-deg>30</heading-deg>
+      <pitch-deg>0</pitch-deg>
     </offsets>
   </model>
+  <model>
+    <path>lights/ALS/landinglightAPP.xml</path>
+    <name>landinglightLapp-ALS</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>-5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>-30</heading-deg>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  <model>
+    <path>lights/ALS/landinglightAPP.xml</path>
+    <name>landinglightRapp-ALS</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>30</heading-deg>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  <!--Flare-->
+  <model>
+    <path>lights/landinglightFLR.xml</path>
+    <name>landinglightLflr</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>-5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>0</heading-deg>
+      <pitch-deg>-10</pitch-deg>
+    </offsets>
+  </model>
+  <model>
+    <path>lights/landinglightFLR.xml</path>
+    <name>landinglightRflr</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>0</heading-deg>
+      <pitch-deg>-10</pitch-deg>
+    </offsets>
+  </model>
+  <model>
+    <path>lights/ALS/landinglightFLR.xml</path>
+    <name>landinglightLflr-ALS</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>-5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>0</heading-deg>
+      <pitch-deg>-10</pitch-deg>
+    </offsets>
+  </model>
+  <model>
+    <path>lights/ALS/landinglightFLR.xml</path>
+    <name>landinglightRflr-ALS</name>
+    <offsets>
+      <x-m>-0.62</x-m>
+      <y-m>5.48518</y-m>
+      <z-m>3.6302</z-m>
+      <heading-deg>0</heading-deg>
+      <pitch-deg>-10</pitch-deg>
+    </offsets>
+  </model>
+  <!--Navigation Lights: Red (left) Green (right) and white (tail)-->
   <model>
     <path>Aircraft/Q400/Models/lights/RedLight.xml</path>
     <name>navRe</name>
@@ -1351,8 +1371,26 @@
       <z-m>4.2177</z-m>
     </offsets>
   </model>
-  <!--A/COL lights are red and white available, we use beacon for red and strobe for white-->
-  <!--Wings-->
+  <model>
+    <path>Aircraft/Q400/Models/lights/TailNavLight.xml</path>
+    <name>navT</name>
+    <offsets>
+      <x-m>0.7125</x-m>
+      <y-m>14.2759</y-m>
+      <z-m>4.2177</z-m>
+    </offsets>
+  </model>
+  <model>
+    <path>Aircraft/Q400/Models/lights/ALS/tail-navlight.xml</path>
+    <name>navT-ALS</name>
+    <offsets>
+      <x-m>18.23129</x-m>
+      <y-m>0.0</y-m>
+      <z-m>7.97909</z-m>
+    </offsets>
+  </model>
+  <!--A/COL lights white-->
+  <!--Wings--><!--
   <model>
     <path>lights/strobe.xml</path>
     <name>strobeRHW</name>
@@ -1365,24 +1403,6 @@
   <model>
     <path>lights/ALS/right-strobe.xml</path>
     <name>strobeRHW-ALS</name>
-    <offsets>
-      <x-m>0.7125</x-m>
-      <y-m>14.2759</y-m>
-      <z-m>4.2177</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/beacon.xml</path>
-    <name>beaconRHW</name>
-    <offsets>
-      <x-m>0.7125</x-m>
-      <y-m>14.2759</y-m>
-      <z-m>4.2177</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/beacon.xml</path>
-    <name>beaconRHW-ALS</name>
     <offsets>
       <x-m>0.7125</x-m>
       <y-m>14.2759</y-m>
@@ -1406,105 +1426,32 @@
       <y-m>-14.2759</y-m>
       <z-m>4.2177</z-m>
     </offsets>
-  </model>
-  <model>
-    <path>lights/beacon.xml</path>
-    <name>beaconLHW</name>
-    <offsets>
-      <x-m>0.7125</x-m>
-      <y-m>-14.2759</y-m>
-      <z-m>4.2177</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/beacon.xml</path>
-    <name>beaconLHW-ALS</name>
-    <offsets>
-      <x-m>0.7125</x-m>
-      <y-m>-14.2759</y-m>
-      <z-m>4.2177</z-m>
-    </offsets>
-  </model>
+  </model>-->
   <!--Tail top-->
   <model>
     <path>lights/strobe.xml</path>
     <name>strobeTT</name>
     <offsets>
-      <x-m>16.18368</x-m>
+      <x-m>15.5296</x-m>
       <y-m>0.000</y-m>
-      <z-m>8.3</z-m>
+      <z-m>8.26156</z-m>
     </offsets>
   </model>
   <model>
     <path>lights/ALS/tail-strobe.xml</path>
     <name>strobeTT-ALS</name>
     <offsets>
-      <x-m>16.18368</x-m>
+      <x-m>15.5296</x-m>
       <y-m>0.000</y-m>
-      <z-m>8.3</z-m>
+      <z-m>8.26156</z-m>
     </offsets>
   </model>
-  <model>
-    <path>lights/beacon.xml</path>
-    <name>beaconTT</name>
-    <offsets>
-      <x-m>16.18368</x-m>
-      <y-m>0.000</y-m>
-      <z-m>8.3</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/beacon.xml</path>
-    <name>beaconTT-ALS</name>
-    <offsets>
-      <x-m>16.18368</x-m>
-      <y-m>0.000</y-m>
-      <z-m>8.3</z-m>
-    </offsets>
-  </model>
-  <!--Fuselage top-->
-  <model>
-    <path>lights/strobe.xml</path>
-    <name>strobeFT</name>
-    <offsets>
-      <x-m>-0.44037</x-m>
-      <y-m>0.000</y-m>
-      <z-m>3.9</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/tail-strobe.xml</path>
-    <name>strobeFT-ALS</name>
-    <offsets>
-      <x-m>-0.44037</x-m>
-      <y-m>0.000</y-m>
-      <z-m>3.9</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/beacon.xml</path>
-    <name>beaconFT</name>
-    <offsets>
-      <x-m>-0.44037</x-m>
-      <y-m>0.000</y-m>
-      <z-m>3.9</z-m>
-    </offsets>
-  </model>
-  <model>
-    <path>lights/ALS/beacon.xml</path>
-    <name>beaconFT-ALS</name>
-    <offsets>
-      <x-m>-0.44037</x-m>
-      <y-m>0.000</y-m>
-      <z-m>3.9</z-m>
-    </offsets>
-  </model>
-  <!--Fuselage bottom-->
+  <!--Fuselage bottom anti-collision strobe - on the bottom of the fuselage, approx. under the beginning of the wing fairing-->
   <model>
     <path>lights/strobe.xml</path>
     <name>strobeFB</name>
     <offsets>
-      <x-m>-0.27464</x-m>
+      <x-m>-1.26386</x-m>
       <y-m>0.000</y-m>
       <z-m>0.865</z-m>
     </offsets>
@@ -1513,27 +1460,28 @@
     <path>lights/ALS/tail-strobe.xml</path>
     <name>strobeFB-ALS</name>
     <offsets>
-      <x-m>-0.27464</x-m>
+      <x-m>-1.26386</x-m>
       <y-m>0.000</y-m>
       <z-m>0.865</z-m>
     </offsets>
   </model>
+  <!--Recognition light - on the top of the fuselage, in front of the wing fairing-->
   <model>
     <path>lights/beacon.xml</path>
-    <name>beaconFB</name>
+    <name>beacon1</name>
     <offsets>
-      <x-m>-0.27464</x-m>
+      <x-m>-2.85253</x-m>
       <y-m>0.000</y-m>
-      <z-m>0.865</z-m>
+      <z-m>3.48661</z-m>
     </offsets>
   </model>
   <model>
     <path>lights/ALS/beacon.xml</path>
-    <name>beaconFB-ALS</name>
+    <name>beacon1-ALS</name>
     <offsets>
-      <x-m>-0.27464</x-m>
+      <x-m>-2.85253</x-m>
       <y-m>0.000</y-m>
-      <z-m>0.865</z-m>
+      <z-m>3.48661</z-m>
     </offsets>
   </model>
   <animation>
@@ -1545,21 +1493,17 @@
     </condition>
     <object-name>navRe</object-name>
     <object-name>navGr</object-name>
+    <object-name>navT</object-name>
     <object-name>strobeLHW</object-name>
     <object-name>strobeRHW</object-name>
     <object-name>strobeTT</object-name>
-    <object-name>strobeFT</object-name>
     <object-name>strobeFB</object-name>
-    <object-name>beaconLHW</object-name>
-    <object-name>beaconRHW</object-name>
-    <object-name>beaconTT</object-name>
-    <object-name>beaconFT</object-name>
-    <object-name>beaconFB</object-name>
-    <object-name>taxilightL</object-name>
-    <object-name>taxilightR</object-name>
-    <object-name>landinglightF</object-name>
-    <object-name>landinglightL</object-name>
-    <object-name>landinglightR</object-name>
+    <object-name>beacon1</object-name>
+    <object-name>taxilight</object-name>
+    <object-name>landinglightLflr</object-name>
+    <object-name>landinglightRflr</object-name>
+    <object-name>landinglightLapp</object-name>
+    <object-name>landinglightRapp</object-name>
   </animation>
   <animation>
     <type>select</type>
@@ -1568,20 +1512,16 @@
     </condition>
     <object-name>navRe-ALS</object-name>
     <object-name>navGr-ALS</object-name>
+    <object-name>navT-ALS</object-name>
     <object-name>strobeLHW-ALS</object-name>
     <object-name>strobeRHW-ALS</object-name>
     <object-name>strobeTT-ALS</object-name>
-    <object-name>strobeFT-ALS</object-name>
     <object-name>strobeFB-ALS</object-name>
-    <object-name>beaconLHW-ALS</object-name>
-    <object-name>beaconRHW-ALS</object-name>
-    <object-name>beaconTT-ALS</object-name>
-    <object-name>beaconFT-ALS</object-name>
-    <object-name>beaconFB-ALS</object-name>
-    <object-name>taxilightL-ALS</object-name>
-    <object-name>taxilightR-ALS</object-name>
-    <object-name>landinglightF-ALS</object-name>
-    <object-name>landinglightL-ALS</object-name>
-    <object-name>landinglightR-ALS</object-name>
+    <object-name>beacon1-ALS</object-name>
+    <object-name>taxilight-ALS</object-name>
+    <object-name>landinglightLflr-ALS</object-name>
+    <object-name>landinglightRflr-ALS</object-name>
+    <object-name>landinglightLapp-ALS</object-name>
+    <object-name>landinglightRapp-ALS</object-name>
   </animation>
 </PropertyList>

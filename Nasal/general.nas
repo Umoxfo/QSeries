@@ -93,6 +93,24 @@ if(getprop("/controls/electric/epu-switch")){
 setprop("/controls/electric/power-source", -1);
 }
 
+var gear_selector = getprop("/controls/gear/gear-down");
+var no_smoking_sw = getprop("/controls/cabin/no-smoking-sw");
+
+if(no_smoking_sw or gear_selector)  {
+    setprop("/controls/cabin/no-smoking", 1);
+}else{
+    setprop("/controls/cabin/no-smoking", 0);
+}
+
+var gear_pos_front = getprop("/gear/gear[0]/position-norm");
+var taxi_light_sw = getprop("/controls/lighting/taxi-light-sw");
+
+if(taxi_light_sw and gear_pos_front==1){
+    setprop("/controls/lighting/taxi-light", 1);
+ }else{
+    setprop("/controls/lighting/taxi-light", 0);
+ }
+
 
 settimer(update_loop, 0);
 }
