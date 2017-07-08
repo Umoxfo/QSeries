@@ -289,7 +289,7 @@
           </binding>
           <binding>
             <command>property-adjust</command>
-        <property>controls/engines/engine[0]/condition-lever</property>
+        <property>controls/engines/engine[0]/condition</property>
             <factor>0.1</factor>
             <min>0</min>
             <max>1</max>
@@ -303,14 +303,14 @@
             <measure-text>LH Condition: 100%</measure-text>
             <tooltip-id>lh-condition</tooltip-id>
             <mapping>percent</mapping>
-        <property>controls/engines/engine[0]/condition-lever</property>
+        <property>controls/engines/engine[0]/condition</property>
           </binding>
         </hovered>
     </animation>
     <animation>
         <type>rotate</type>
         <object-name>conditionL</object-name>
-        <property>controls/engines/engine[0]/condition-lever</property>
+        <property>controls/engines/engine[0]/condition</property>
         <factor>-125</factor>
         <center>
             <x-m>-11.88406</x-m>
@@ -338,7 +338,7 @@
           </binding>
           <binding>
             <command>property-adjust</command>
-        <property>controls/engines/engine[1]/condition-lever</property>
+        <property>controls/engines/engine[1]/condition</property>
             <factor>0.1</factor>
             <min>0</min>
             <max>1</max>
@@ -352,14 +352,14 @@
             <measure-text>RH Condition: 100%</measure-text>
             <tooltip-id>rh-condition</tooltip-id>
             <mapping>percent</mapping>
-        <property>controls/engines/engine[1]/condition-lever</property>
+        <property>controls/engines/engine[1]/condition</property>
           </binding>
         </hovered>
     </animation>
     <animation>
         <type>rotate</type>
         <object-name>conditionR</object-name>
-        <property>controls/engines/engine[1]/condition-lever</property>
+        <property>controls/engines/engine[1]/condition</property>
         <factor>-125</factor>
         <center>
             <x-m>-11.88406</x-m>

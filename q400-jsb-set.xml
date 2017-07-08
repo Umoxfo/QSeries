@@ -332,6 +332,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
             <file>Nasal/pneumatics.nas</file>
             <file>Nasal/APU.nas</file>
             <file>Nasal/Electrical.nas</file>
+            <file>Nasal/FADEC.nas</file>
         </systems>
         <doors>
             <file>Nasal/doors.nas</file>
