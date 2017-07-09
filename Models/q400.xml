@@ -563,8 +563,8 @@
     <object-name>propL</object-name>
     <condition>
       <less-than>
-        <property>engines/engine[0]/n2</property>
-        <value>50.001</value>
+        <property>engines/engine[0]/rpm</property>
+        <value>300.001</value>
       </less-than>
     </condition>
   </animation>
@@ -573,8 +573,8 @@
     <object-name>propdiscL</object-name>
     <condition>
       <greater-than>
-        <property>engines/engine[0]/n2</property>
-        <value>50.000</value>
+        <property>engines/engine[0]/rpm</property>
+        <value>300.000</value>
       </greater-than>
     </condition>
   </animation>
@@ -582,8 +582,7 @@
     <type>spin</type>
     <object-name>propdiscL</object-name>
     <object-name>propL</object-name>
-    <property>engines/engine[0]/n2</property>
-    <factor>80.0</factor>
+    <property>engines/engine[0]/rpm</property>
     <center>
       <x-m>-3.341908</x-m>
       <y-m>-4.37881</y-m>
@@ -600,8 +599,8 @@
     <object-name>propR</object-name>
     <condition>
       <less-than>
-        <property>engines/engine[1]/n2</property>
-        <value>50.001</value>
+        <property>engines/engine[1]/rpm</property>
+        <value>300.001</value>
       </less-than>
     </condition>
   </animation>
@@ -610,8 +609,8 @@
     <object-name>propdiscR</object-name>
     <condition>
       <greater-than>
-        <property>engines/engine[1]/n2</property>
-        <value>50.000</value>
+        <property>engines/engine[1]/rpm</property>
+        <value>300.000</value>
       </greater-than>
     </condition>
   </animation>
@@ -619,8 +618,7 @@
     <type>spin</type>
     <object-name>propR</object-name>
     <object-name>propdiscR</object-name>
-    <property>engines/engine[1]/n2</property>
-    <factor>80.0</factor>
+    <property>engines/engine[1]/rpm</property>
     <center>
       <x-m>-3.341908</x-m>
       <y-m>4.37881</y-m>

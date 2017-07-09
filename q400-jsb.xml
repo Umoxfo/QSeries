@@ -304,7 +304,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 <propulsion>
 
-	<engine file="PW150AL">
+	<engine file="PW150A">
 	<location unit="M">
 		<x> -1.13603 </x>
 		<y>-4.3686 </y>
@@ -315,7 +315,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pitch> 0.0 </pitch>
 		<yaw> 0.0 </yaw>
 	</orient>
-    <feed>0</feed>
+        <feed>0</feed>
+        <feed>1</feed>
 	<thruster file="R408">
 		<location unit="M">
 			<x> -3.39427 </x>
@@ -341,8 +342,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pitch> 0.0 </pitch>
 		<yaw> 0.0 </yaw>
 	</orient>
-    <feed>0</feed>
-	<thruster file="direct">
+        <feed>0</feed>
+        <feed>1</feed>
+	<thruster file="R408">
 		<location unit="M">
 			<x> -3.39427 </x>
 			<y> 4.36282 </y>
@@ -386,6 +388,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 <system file="pushback" />
 <system file="fcs" />
+<system file="fadec" />
 
 <flight_control name="none"/>
 

@@ -1,0 +1,20 @@
+<system name="Q400: FADEC">
+
+    <channel name="PROPRPM">
+        <fcs-function>
+            <function>
+                <description>Set desired propeller RPM</description>
+                <table>
+                    <independentVar>/controls/engines/engine[0]/condition</independentVar>
+                    <tableData>
+                    0.2     500
+                    0.4     850
+                    1       1020  
+                    </tableData>
+                </table>
+            </function>
+            <output>fadec/prop-rpm[0]</output>
+        </fcs-function>
+    </channel>
+
+</system>

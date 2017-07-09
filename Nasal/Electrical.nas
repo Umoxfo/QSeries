@@ -367,12 +367,14 @@ electrical_bus = func(bv) {
         setprop("/controls/engines/start-select-btn", 0);
     }
     
+    var LN2=getprop("/engines/engine[0]/n2");
+    var RN2=getprop("/engines/engine[1]/n2");
     
-    if(getprop("/engines/engine/n2")>=50 and starter==1){
+    if(LN2>=50 and starter==1){
         setprop("/controls/engines/internal-engine-starter-selector", 0);
     }
     
-    if(getprop("/engines/engine[1]/n2")>=50 and starter==-1){
+    if(RN2>=50 and starter==-1){
         setprop("/controls/engines/internal-engine-starter-selector", 0);
     }
     
@@ -430,35 +432,35 @@ electrical_bus = func(bv) {
     }
     
     
-    load += internal_starter * 5;
-        start_n2_0 += starter_volts * 0.7;
+  #  load += internal_starter * 5;
+   #     start_n2_0 += starter_volts * 0.7;
     
-    var increasing0 = func {
-        if (getprop("engines/engine[0]/n2") < start_n2_0) {
-            increasing_counter0 = increasing_counter0 + 0.0005;
-       	    setprop("engines/engine[0]/n2", increasing_counter0);
-	    settimer(increasing0, 0);
-        }
-    }
+ #   var increasing0 = func {
+ #       if (LN2 < start_n2_0) {
+  #          increasing_counter0 = increasing_counter0 + 0.0005;
+ #     	    setprop("engines/engine[0]/n2", increasing_counter0);
+#	    settimer(increasing0, 0);
+ #       }
+ #   }
+#
+  #  if (LN2 < start_n2_0) {
+  #      increasing0();
+  #  }
+    
+  #  load += internal_starter * 5;
+  #  start_n2_1 += starter_volts1 * 0.7;
+    
+   # var increasing1 = func {
+    #    if (RN2 < start_n2_1) {
+    #        increasing_counter1 = increasing_counter1 + 0.0005;
+    #   	    setprop("engines/engine[1]/n2", increasing_counter1);
+#	    settimer(increasing1, 0);
+ #       }
+  #  }
 
-    if (getprop("engines/engine[0]/n2") < start_n2_0) {
-        increasing0();
-    }
-    
-    load += internal_starter * 5;
-    start_n2_1 += starter_volts1 * 0.7;
-    
-    var increasing1 = func {
-        if (getprop("engines/engine[1]/n2") < start_n2_1) {
-            increasing_counter1 = increasing_counter1 + 0.0005;
-       	    setprop("engines/engine[1]/n2", increasing_counter1);
-	    settimer(increasing1, 0);
-        }
-    }
-
-    if (getprop("engines/engine[1]/n2") < start_n2_1) {
-        increasing1();
-    }
+   # if (RN2 < start_n2_1) {
+    #    increasing1();
+    #}
     
     var starter_total_volts = starter_volts + starter_volts1;
     

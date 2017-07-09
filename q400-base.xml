@@ -409,7 +409,7 @@ DHC8 -400Q by Alex Park Jan 2010
       <internal-engine-starter>0</internal-engine-starter>
       <fire-test type="bool">0</fire-test>
       <engine n="0">
-        <condition>0</condition>
+        <condition type="float">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>
         <throttle-fwd type="double">0</throttle-fwd>
@@ -419,7 +419,7 @@ DHC8 -400Q by Alex Park Jan 2010
         <ignition-switch type="int">0</ignition-switch>
       </engine>
       <engine n="1">
-        <condition>0</condition>
+        <condition type="float">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>
         <throttle-fwd type="double">0</throttle-fwd>
@@ -492,11 +492,13 @@ DHC8 -400Q by Alex Park Jan 2010
       <running>0</running>
       <rpm>0</rpm>
       <fuel-flow_pph type="float">0</fuel-flow_pph>
+        <n2 type="double">0</n2>
     </engine>
     <engine n="1">
       <running>0</running>
       <rpm>0</rpm>
       <fuel-flow_pph type="float">0</fuel-flow_pph>
+        <n2 type="double">0</n2>
     </engine>
   </engines>
   <environment>

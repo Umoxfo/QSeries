@@ -63,31 +63,6 @@ var update_loop = func{
         setprop("/controls/engines/engine[1]/throttle-int", 0.3 );
     }
 
-    #Engine System
-    var conditionL=getprop("/controls/engines/engine[0]/condition");
-    var conditionR=getprop("/controls/engines/engine[1]/condition");
-    var n2L=getprop("/engines/engine[0]/n2");
-    var n2R=getprop("/engines/engine[1]/n2");
-    var runningL=getprop("/engines/engine[0]/running");
-    var runningR=getprop("/engines/engine[1]/running");
-    var starterL=getprop("/controls/engines/engine[0]/starter");
-    var starterR=getprop("/controls/engines/engine[1]/starter");
-    var ignitionL=getprop("/controls/engines/fadec/ignitionL");
-    var ignitionR=getprop("/controls/engines/fadec/ignitionR");
-
-    if(conditionL>=0.2 and runningL or conditionL>=0.2 and starterL and n2L>=15 and ignitionL) {
-        setprop("/controls/engines/engine[0]/cutoff", 0);
-    }else{
-        setprop("/controls/engines/engine[0]/cutoff", 1);
-    }
-
-
-    if(conditionR>=0.2 and runningR or conditionR>=0.2 and starterR and n2R>=15 and ignitionR) {
-        setprop("/controls/engines/engine[1]/cutoff", 0);
-    }else{
-        setprop("/controls/engines/engine[1]/cutoff", 1);
-    }
-
 
     #landing light for lightmap
     if(getprop("/controls/lighting/landing-light") == 1 and getprop("/controls/electric/battery-switch") == 1){
