@@ -304,7 +304,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 <propulsion>
 
-	<engine file="PW150A">
+	<engine file="PW150AL">
 	<location unit="M">
 		<x> -1.13603 </x>
 		<y>-4.3686 </y>
@@ -316,7 +316,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<yaw> 0.0 </yaw>
 	</orient>
     <feed>0</feed>
-	<thruster file="direct">
+	<thruster file="R408">
 		<location unit="M">
 			<x> -3.39427 </x>
 			<y> -4.36282 </y>
