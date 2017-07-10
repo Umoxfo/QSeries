@@ -2,32 +2,33 @@
 
 <PropertyList>
 
-        <pi-simple-controller>
-                <name>FADEC: Advance</name>
-                <debug>false</debug>
-                <enable>
-                        <condition>
-                            <not-equals>
-                                <property>/disable-PID</property>
-                                <value>1</value>
-                            </not-equals>
-                        </condition>
-                </enable>
-                <input>
-                        <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
-                </input>
-                <reference>
-                    <property>/fdm/jsbsim/fadec/prop-rpm</property>
-                </reference>
-                <output>
-                        <property>/fdm/jsbsim/propulsion/engine/blade-angle</property>
-                </output>
-                <config>
-                        <Kp>-0.1</Kp>
-                        <Ki>-0.001</Ki>
-                        <min>1</min>
-                        <max>77</max>
-                </config>
-        </pi-simple-controller>
+	<pid-controller>
+		<name>FADEC: Advance</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<not-equals>
+					<property>/disable-fadec-pid</property>
+					<value>1</value>
+				</not-equals>
+			</condition>
+		</enable>
+		<input>
+			<property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+		</input>
+		<reference>
+			<property>/fdm/jsbsim/fadec/prop-rpm-fucked</property>
+		</reference>
+		<output>
+			<property>/fdm/jsbsim/propulsion/engine/blade-angle</property>
+		</output>
+		<config>
+			<Kp>-1.05</Kp>
+			<Ti>5</Ti>
+			<Td>0.001</Td>
+			<u_min>1</u_min>
+			<u_max>77</u_max>
+		</config>
+	</pid-controller>
 
 </PropertyList>
