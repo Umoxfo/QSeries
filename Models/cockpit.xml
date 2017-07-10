@@ -461,7 +461,8 @@
         <type>rotate</type>
         <object-name>emergbrake</object-name>
         <property>controls/gear/brake-parking-position</property>
-        <factor>85</factor>
+        <factor>85</factor><!--
+        <offset-deg>85</offset-deg>-->
         <center>
             <x-m>-11.88406</x-m>
             <y-m>0</y-m>

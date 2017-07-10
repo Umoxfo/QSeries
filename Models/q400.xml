@@ -20,15 +20,15 @@
     <parameters>
       <lightmap-multi>1</lightmap-multi>
       <lightmap-factor n="0">
-        <use>systems/electrical/outputs/lightmap/landing-light</use>
+        <use>systems/electrical/outputs/landing-light-flr-norm</use>
       </lightmap-factor>
       <!-- <lightmap-color type="vec3d" n="0"> 1.0 0.95 0.6 </lightmap-color> -->
-      <lightmap-factor n="1">
+      <!--<lightmap-factor n="1">
         <use>systems/electrical/outputs/lightmap/landing-light[1]</use>
-      </lightmap-factor>
+      </lightmap-factor>-->
       <!-- <lightmap-color type="vec3d" n="1"> 1.0 0.95 0.6 </lightmap-color> -->
       <lightmap-factor n="2">
-        <use>systems/electrical/outputs/lightmap/logo-light</use>
+        <use>systems/electrical/outputs/logo-lights-norm</use>
       </lightmap-factor>
       <!-- <lightmap-color type="vec3d" n="2"> 1.0 1.0 1.0 </lightmap-color> -->
       <lightmap-factor n="3">0</lightmap-factor>

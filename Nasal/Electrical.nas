@@ -543,6 +543,36 @@ electrical_bus = func(bv) {
         setprop("/systems/electrical/outputs/beacon-lights-norm", 0);
     }
     
+    var logoLV=getprop("/systems/electrical/outputs/logo-lights");
+    if(logoLV){
+        setprop("/systems/electrical/outputs/logo-lights-norm", 1);
+    }else{
+        setprop("/systems/electrical/outputs/logo-lights-norm", 0);
+    }
+    
+        
+    #Control ALS landing lights
+    var landingLN1=getprop("/systems/electrical/outputs/landing-light-app-norm");
+    var landingLN2=getprop("/systems/electrical/outputs/landing-light-flr-norm");
+    #var taxiLN=getprop("/systems/electrical/outputs/taxi-light-norm");
+    var viewint=getprop("/sim/current-view/internal");
+    if(viewint and landingLN1 ){
+    setprop("/sim/rendering/als-secondary-lights/use-landing-light", 1);
+    }else{
+    setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
+    }
+    if(viewint and landingLN2 ){
+    setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
+    }else{
+    setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+    }
+    #if(viewint and taxiLN ){
+    #setprop("/sim/rendering/als-secondary-lights/use-searchlight", 1);
+    #}else{
+    #setprop("/sim/rendering/als-secondary-lights/use-searchlight", 0);
+    #}
+
+
     return load;
 }
 

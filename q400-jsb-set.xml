@@ -61,10 +61,26 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
         <open-cabin-doors type="bool">1</open-cabin-doors>
         <pushback>
             <position-norm type="float">0</position-norm>
-            <kp type="float">0</kp>
+            <kp type="float">700</kp>
             <ki type="float">0</ki>
             <kd type="float">0</kd>
         </pushback>
+        <start-idling type="bool">0</start-idling>
+        <variant type="int">1</variant>
+        <interior>
+            <seats type="double">74</seats>
+        </interior>
+        <rendering>
+            <reflection-enabled type="int">1</reflection-enabled>
+            <reflection-type type="int">2</reflection-type>
+            <reflection-dynamic type="int">1</reflection-dynamic>
+            <reflection-correction type="float">-0.1</reflection-correction>
+            <reflection-fresnel type="float">0.5</reflection-fresnel>
+            <reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
+            <reflection-rainbow type="float">0.1</reflection-rainbow>
+            <reflection-noise type="float">0.05</reflection-noise>
+            <ambient-correction type="float">0.1</ambient-correction>
+        </rendering>
     </model>
 
     <menubar>

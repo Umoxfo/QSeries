@@ -151,6 +151,8 @@ update_left_essential_bus = func (dt) {
         STBY_BATT.apply_load( -STBY_BATT.charge_amps, dt );
     }
     
+    
+    
     return load;
 }
 
@@ -246,8 +248,19 @@ update_left_main_feeder = func (dt) {
         alternator1.apply_load( load, dt );
     }
     
+    var scnd = getprop("sim/time/delta-sec");
+    update_left_main(scnd);
     
 }
+
+update_left_main = func (dt) {
+    load=0.0;
+    bus_volts=left_main_feeder_volts;
+    power_source=left_main_feeder;
+    
+    
+    
+    
     
     
 update_right_main_feeder = func (dt) {
