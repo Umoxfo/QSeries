@@ -14,8 +14,8 @@ var autostartupthing = func {
 	setprop("/controls/cabin/seatbelts", 1);
 	setprop("/controls/cabin/nosmoking", 1);
 	settimer(func {
-		setprop("/controls/engines/engine[0]/condition-lever", 1);
-		setprop("/controls/engines/engine[1]/condition-lever", 1);
+		setprop("/controls/engines/engine[0]/condition", 1);
+		setprop("/controls/engines/engine[1]/condition", 1);
 	}, 2);
 }
 

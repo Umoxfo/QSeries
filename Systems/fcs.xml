@@ -2,111 +2,150 @@
 
 <system name="Q400: FCS">
 
-	<channel name="Pitch">
-	<summer name="Pitch Trim Sum">
-		<input>/controls/flight/elevator-int</input>
-		<input>/controls/flight/elevator-trim</input>
-		<clipto>
-			<min>-1</min>
-			<max>1</max>
-		</clipto>
-	</summer>
+	
+<!--
+    <fcs_function name="propulsion/engine[0]/trq-percent">
+            <function>
+            <description>Indicated TRQ in percent</description>
+            <product>
+                    <property>propulsion/engine/EIP/state</property> 
+                    <max>
+                            <value>0</value>	
+                            <product>
+                                    <property>propulsion/engine/power-hp</property>
+                                    <value>60</value>
+                                    <pow>
+                                            <max>			
+                                                    <property>propulsion/engine/propeller-rpm</property>
+                                                    <value>10</value>
+                                            </max>
+                                            <value>-1</value>
+                                    </pow>
+                            </product>
+                    </max>
+            </product>
+            </function>
+    </fcs_function>
+    
+    <fcs_function name="propulsion/engine[1]/trq-percent">
+            <function>
+            <description>Indicated TRQ in percent</description>
+            <product>
+                    <property>propulsion/engine/EIP/state</property> 
+                    <max>
+                            <value>0</value>	
+                            <product>
+                                    <property>propulsion/engine[1]/power-hp</property>
+                                    <value>60</value>
+                                    <pow>
+                                            <max>			
+                                                    <property>propulsion/engine[1]/propeller-rpm</property>
+                                                    <value>10</value>
+                                            </max>
+                                            <value>-1</value>
+                                    </pow>
+                            </product>
+                    </max>
+            </product>
+            </function>
+    </fcs_function>-->
+            <!--
+    <channel name="Propeller Advance">
+        <fcs_function name="fcs/advance-cmd-norm">
+            <function>
+                <description>Set Propeller Angle to maintain set propeller RPM</description>-->
+                
+    <channel name="Pitch">
+    <summer name="Pitch Trim Sum">
+            <input>/controls/flight/elevator-int</input>
+            <input>/controls/flight/elevator-trim</input>
+            <clipto>
+                    <min>-1</min>
+                    <max>1</max>
+            </clipto>
+    </summer>
 
-	<aerosurface_scale name="Elevator Control">
-		<input>fcs/pitch-trim-sum</input>
-		<gain>0.05</gain>
-		<range>
-			<min>-20</min>
-			<max>20</max>
-		</range>
-		<output>fcs/elevator-pos-rad</output>
-	</aerosurface_scale>
-	<aerosurface_scale name="Elevator Position Normalizer">
-		<input>fcs/pitch-trim-sum</input>
-		<range>
-			<min>-1</min>
-			<max>1</max>
-		</range>
-		<output>fcs/elevator-pos-norm</output>
-	</aerosurface_scale>
-	</channel>
-	<channel name="Roll">
-	<summer name="Roll Trim Sum">
-		<input>/controls/flight/aileron</input>
-		<input>/controls/flight/aileron-trim</input>
-		<clipto>
-		<min>-1</min>
-		<max>1</max>
-		</clipto>
-	</summer>
+    <aerosurface_scale name="Elevator Control">
+            <input>fcs/pitch-trim-sum</input>
+            <gain>0.05</gain>
+            <range>
+                    <min>-20</min>
+                    <max>20</max>
+            </range>
+            <output>fcs/elevator-pos-rad</output>
+    </aerosurface_scale>
+    <aerosurface_scale name="Elevator Position Normalizer">
+            <input>fcs/pitch-trim-sum</input>
+            <range>
+                    <min>-1</min>
+                    <max>1</max>
+            </range>
+            <output>fcs/elevator-pos-norm</output>
+    </aerosurface_scale>
+    </channel>
+    <channel name="Roll">
+    <summer name="Roll Trim Sum">
+            <input>/controls/flight/aileron</input>
+            <input>/controls/flight/aileron-trim</input>
+            <clipto>
+            <min>-1</min>
+            <max>1</max>
+            </clipto>
+    </summer>
 
-	<aerosurface_scale name="Left Aileron Control">
-		<input>fcs/roll-trim-sum</input>
-		<gain>0.02</gain>
-		<range>
-		<min>-15</min>
-		<max>15</max>
-		</range>
-		<output>fcs/left-aileron-pos-rad</output>
-	</aerosurface_scale>
+    <aerosurface_scale name="Left Aileron Control">
+            <input>fcs/roll-trim-sum</input>
+            <gain>0.02</gain>
+            <range>
+            <min>-15</min>
+            <max>15</max>
+            </range>
+            <output>fcs/left-aileron-pos-rad</output>
+    </aerosurface_scale>
 
-	<aerosurface_scale name="Right Aileron Control">
-		<input>-fcs/roll-trim-sum</input>
-		<gain>0.02</gain>
-		<range>
-		<min>-15</min>
-		<max>15</max>
-		</range>
-		<output>fcs/right-aileron-pos-rad</output>
-	</aerosurface_scale>
+    <aerosurface_scale name="Right Aileron Control">
+            <input>-fcs/roll-trim-sum</input>
+            <gain>0.02</gain>
+            <range>
+            <min>-15</min>
+            <max>15</max>
+            </range>
+            <output>fcs/right-aileron-pos-rad</output>
+    </aerosurface_scale>
 
-	<aerosurface_scale name="Left Aileron position normalized">
-		<input>fcs/left-aileron-pos-deg</input>
-		<domain>
-		<min>-15</min>
-		<max>15</max>
-		</domain>
-		<range>
-		<min>-1</min>
-		<max>1</max>
-		</range>
-		<output>fcs/left-aileron-pos-norm</output>
-	</aerosurface_scale>
+    <aerosurface_scale name="Left Aileron position normalized">
+            <input>fcs/left-aileron-pos-deg</input>
+            <domain>
+            <min>-15</min>
+            <max>15</max>
+            </domain>
+            <range>
+            <min>-1</min>
+            <max>1</max>
+            </range>
+            <output>fcs/left-aileron-pos-norm</output>
+    </aerosurface_scale>
 
-	<aerosurface_scale name="Right Aileron position normalized">
-		<input>fcs/right-aileron-pos-deg</input>
-		<domain>
-		<min>-15</min>
-		<max>15</max>
-		</domain>
-		<range>
-		<min>-1</min>
-		<max>1</max>
-		</range>
-		<output>fcs/right-aileron-pos-norm</output>
-	</aerosurface_scale>
-	</channel>
-	<channel name="Throttle">
-	<pure_gain name="fcs/throttle1">
-		<input>/controls/engines/engine[0]/throttle-int</input>
-		<gain>1</gain>
-		<output>fcs/throttle-cmd-norm</output>
-		<output>fcs/throttle-pos-norm</output>
-	</pure_gain>
-	<pure_gain name="fcs/throttle2">
-		<input>/controls/engines/engine[1]/throttle-int</input>
-		<gain>1</gain>
-		<output>fcs/throttle-cmd-norm[1]</output>
-		<output>fcs/throttle-pos-norm[1]</output>
-	</pure_gain>
-	</channel>
+    <aerosurface_scale name="Right Aileron position normalized">
+            <input>fcs/right-aileron-pos-deg</input>
+            <domain>
+            <min>-15</min>
+            <max>15</max>
+            </domain>
+            <range>
+            <min>-1</min>
+            <max>1</max>
+            </range>
+            <output>fcs/right-aileron-pos-norm</output>
+    </aerosurface_scale>
+    </channel>
 
-	<channel name="Yaw">
-	<pure_gain name="fcs/rudder-cmd">
-		<input>/controls/flight/rudder-int</input>
-		<gain>-2</gain>
-		<output>fcs/rudder-cmd-norm</output>
-	</pure_gain>
+    <channel name="Yaw">
+    <pure_gain name="fcs/rudder-cmd">
+            <input>/controls/flight/rudder-int</input>
+            <gain>-2</gain>
+            <output>fcs/rudder-cmd-norm</output>
+    </pure_gain>
 	
    <summer name="Rudder Command Sum">
       <input>fcs/rudder-cmd-norm</input>

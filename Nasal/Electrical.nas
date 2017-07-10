@@ -367,12 +367,16 @@ electrical_bus = func(bv) {
         setprop("/controls/engines/start-select-btn", 0);
     }
     
+    var LN2=getprop("/engines/engine[0]/n2");
+    var RN2=getprop("/engines/engine[1]/n2");
+    var runningL=getprop("/engines/engine[0]/running");
+    var runningR=getprop("/engines/engine[1]/running");
     
-    if(getprop("/engines/engine/n2")>=50 and starter==1){
+    if(runningL and starter==1){
         setprop("/controls/engines/internal-engine-starter-selector", 0);
     }
     
-    if(getprop("/engines/engine[1]/n2")>=50 and starter==-1){
+    if(runningR and starter==-1){
         setprop("/controls/engines/internal-engine-starter-selector", 0);
     }
     
@@ -400,6 +404,22 @@ electrical_bus = func(bv) {
         increasing_counter0 = 0.0;
         increasing_counter1 = 0.0;
     }
+    
+    #Ignition only works with electrical power
+    var ignition_switch0=getprop("/controls/engines/engine[0]/ignition-switch");
+    var ignition_switch1=getprop("/controls/engines/engine[1]/ignition-switch");
+    
+    if(ignition_switch0 and bus_volts>=20){
+        setprop("/controls/engines/engine[0]/ignition", 1);
+    }else{
+        setprop("/controls/engines/engine[0]/ignition", 0);
+    }
+    if(ignition_switch1 and bus_volts>=20){
+        setprop("/controls/engines/engine[1]/ignition", 1);
+    }else{
+        setprop("/controls/engines/engine[1]/ignition", 0);
+    }
+    
 
     if (internal_starter < 0) {
         setprop("/controls/engines/engine[1]/starter", 1);
@@ -413,78 +433,36 @@ electrical_bus = func(bv) {
         setprop("/controls/engines/engine[1]/starter", 0);
     }
     
-    if(getprop("/controls/engines/engine[0]/condition") > 0){
-        setprop("/controls/engines/engine[0]/cutoff", 0);
-    }else{
-        setprop("/controls/engines/engine[0]/cutoff", 1);
-    }
-    if(getprop("/controls/engines/engine[1]/condition") > 0){
-        setprop("/controls/engines/engine[1]/cutoff", 0);
-    }else{
-        setprop("/controls/engines/engine[1]/cutoff", 1);
-    }
     
+  #  load += internal_starter * 5;
+   #     start_n2_0 += starter_volts * 0.7;
     
-    load += internal_starter * 5;
-        start_n2_0 += starter_volts * 0.7;
+ #   var increasing0 = func {
+ #       if (LN2 < start_n2_0) {
+  #          increasing_counter0 = increasing_counter0 + 0.0005;
+ #     	    setprop("engines/engine[0]/n2", increasing_counter0);
+#	    settimer(increasing0, 0);
+ #       }
+ #   }
+#
+  #  if (LN2 < start_n2_0) {
+  #      increasing0();
+  #  }
     
-    var increasing0 = func {
-        if (getprop("engines/engine[0]/n2") < start_n2_0) {
-            increasing_counter0 = increasing_counter0 + 0.0005;
-       	    setprop("engines/engine[0]/n2", increasing_counter0);
-	    settimer(increasing0, 0);
-        }
-    }
+  #  load += internal_starter * 5;
+  #  start_n2_1 += starter_volts1 * 0.7;
+    
+   # var increasing1 = func {
+    #    if (RN2 < start_n2_1) {
+    #        increasing_counter1 = increasing_counter1 + 0.0005;
+    #   	    setprop("engines/engine[1]/n2", increasing_counter1);
+#	    settimer(increasing1, 0);
+ #       }
+  #  }
 
-    if (getprop("engines/engine[0]/n2") < start_n2_0) {
-        increasing0();
-    }
-    
-    load += internal_starter * 5;
-    start_n2_1 += starter_volts1 * 0.7;
-    
-    var increasing1 = func {
-        if (getprop("engines/engine[1]/n2") < start_n2_1) {
-            increasing_counter1 = increasing_counter1 + 0.0005;
-       	    setprop("engines/engine[1]/n2", increasing_counter1);
-	    settimer(increasing1, 0);
-        }
-    }
-
-    if (getprop("engines/engine[1]/n2") < start_n2_1) {
-        increasing1();
-    }
-    var ignition0_switch = getprop("/controls/engines/engine[0]/ignition-switch");
-    var ignition1_switch = getprop("/controls/engines/engine[1]/ignition-switch");
-    
-    if(ignition0_switch == 1 and bus_volts >= 25){
-    setprop("controls/engines/engine/ignition", 1);
-    } else {
-    setprop("controls/engines/engine/ignition", 0);
-    }
-    if(ignition1_switch == 1 and bus_volts >= 25){
-    setprop("controls/engines/engine[1]/ignition", 1);
-    }else{
-    setprop("controls/engines/engine[1]/ignition", 0);
-    }
-
-    #VERY simplified ignition system
-    
-    var engine0_ignition = getprop("/controls/engines/engine[0]/ignition");
-    var engine1_ignition = getprop("/controls/engines/engine[1]/ignition");
-    var engine0_n2 = getprop("/engines/engine[0]/n2");
-    var engine1_n2 = getprop("/engines/engine[1]/n2");
-
-    if(engine0_ignition == 1 and engine0_n2 >= 15){
-        setprop("controls/engines/engine/condition", getprop("/controls/engines/engine/condition-lever"));
-    }else{
-        interpolate("controls/engines/engine/condition", 0, 1); #Slowly shut engine down
-    }
-    if(engine1_ignition == 1 and engine1_n2 >= 15){
-        setprop("controls/engines/engine[1]/condition", getprop("/controls/engines/engine[1]/condition-lever"));
-    }else{
-        interpolate("controls/engines/engine[1]/condition", 0, 1); #Slowly shut engine down
-    }
+   # if (RN2 < start_n2_1) {
+    #    increasing1();
+    #}
     
     var starter_total_volts = starter_volts + starter_volts1;
     

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+        <pi-simple-controller>
+                <name>FADEC: Advance</name>
+                <debug>false</debug>
+                <enable>
+                        <condition>
+                            <not-equals>
+                                <property>/disable-PID</property>
+                                <value>1</value>
+                            </not-equals>
+                        </condition>
+                </enable>
+                <input>
+                        <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+                </input>
+                <reference>
+                    <property>/fdm/jsbsim/fadec/prop-rpm</property>
+                </reference>
+                <output>
+                        <property>/fdm/jsbsim/propulsion/engine/blade-angle</property>
+                </output>
+                <config>
+                        <Kp>-0.1</Kp>
+                        <Ki>-0.001</Ki>
+                        <min>1</min>
+                        <max>77</max>
+                </config>
+        </pi-simple-controller>
+
+</PropertyList>

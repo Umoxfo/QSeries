@@ -1,6 +1,39 @@
 <?xml version="1.0"?>
+<!--
+MILTHRUST   [LBS]
+MAXTHRUST   [LBS]
+idlen1      [%]
+maxn1       [%]
+idlen2      [%]
+maxn2       [%]
+betarangeend[%]
+    if ThrottleCmd < betarangeend/100.0 then engine power=idle, propeller pitch
+    is controled by ThrottleCmd (between MINPITCH and  REVERSEPITCH).
+    if ThrottleCmd > betarangeend/100.0 then engine power increases up to max reverse power
+reversemaxpower [%]
+    max engine power in reverse mode
+maxpower    [HP]
+psfc power specific fuel consumption [pph/HP] for N1=100%
+n1idle_max_delay [-] time constant for N1 change
+maxstartenginetime [sec]
+    after this time the automatic starting cycle is interrupted when the engine
+    doesn't start  (0=automatic starting not present)
+startern1   [%]
+    when starting starter spin up engine to this spin
+ielumaxtorque [lb.ft]
+    if torque>ielumaxtorque limiters decrease the throttle
+    (ielu = Integrated Electronic Limiter Unit)
+itt_delay [-] time constant for ITT change
+    (ITT = Inter Turbine Temperature)
+    
+    
+    based on PW119BL from do328
+-->
 
-<turboprop_engine name="PT6A-67D">
+<turbine_engine name="PW150A"><!--
+  <bypassratio>     5.0  </bypassratio>--><!--
+  <bleed>           0.03 </bleed>--><!--
+  <ielumaxtorque> 100 </ielumaxtorque>-->
   
   <milthrust unit="LBS">       11357.5   </milthrust>
   <idlen1>                       24.6   </idlen1>
@@ -9,13 +42,16 @@
   <maxn2>                       101.1   </maxn2>
   <maxpower unit="HP">          5070   </maxpower>
   <psfc unit="LBS/HR/HP">0.01</psfc>
-  <n1idle_max_delay>2</n1idle_max_delay>
-  <maxstartingtime>1</maxstartingtime>
-  <startern1>30</startern1>
+  <!--<idlefuelflow>                 50.0   </idlefuelflow>-->
+  <n1idle_max_delay>              1     </n1idle_max_delay>
+  <maxstartingtime>              80     </maxstartingtime>
+  <startern1>                    20     </startern1>
+
+  <itt_delay>                     0.05  </itt_delay>
+  <betarangeend>                 50     </betarangeend>
+  <reversemaxpower>              55     </reversemaxpower>
   <ielumaxtorque unit="FT*LB">3950</ielumaxtorque>
-  <itt_delay>0.15</itt_delay>
-  <betarangeend>64</betarangeend>
-  <reversemaxpower>60</reversemaxpower>
+
 
   <table name="EnginePowerVC">
     <description> Engine power, function of airspeed and pressure </description>
@@ -35,7 +71,7 @@
     </tableData>
   </table>
 
-  <table name="EnginePowerRPM_N1" type="internal">
+  <table name="EnginePowerRPM_N1">
     <description> Engine Power, function of RPM and N1 </description>
     <tableData>
 	0	5	65	70	80	90	104
@@ -59,13 +95,5 @@
       104   300   800
     </tableData>
   </table>
-
-<!--
-  <table name="CombustionEfficiency_N1" type="internal">
-    <tableData>
-
-     </tableData>
-  </table>
--->
-
-</turboprop_engine>
+  
+</turbine_engine> 

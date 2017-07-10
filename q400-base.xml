@@ -88,6 +88,24 @@ DHC8 -400Q by Alex Park Jan 2010
       <tag>turboprop</tag>
       <tag>2-engine</tag>
     </tags>
+    <model>
+      <start-idling type="bool">0</start-idling>
+      <variant type="int">1</variant>
+      <interior>
+        <seats type="double">74</seats>
+      </interior>
+      <rendering>
+        <reflection-enabled type="int">1</reflection-enabled>
+        <reflection-type type="int">2</reflection-type>
+        <reflection-dynamic type="int">1</reflection-dynamic>
+        <reflection-correction type="float">-0.1</reflection-correction>
+        <reflection-fresnel type="float">0.5</reflection-fresnel>
+        <reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
+        <reflection-rainbow type="float">0.1</reflection-rainbow>
+        <reflection-noise type="float">0.05</reflection-noise>
+        <ambient-correction type="float">0.1</ambient-correction>
+      </rendering>
+    </model>
     <view n="0">
       <name>Cockpit</name>
       <type>lookfrom</type>
@@ -288,6 +306,9 @@ DHC8 -400Q by Alex Park Jan 2010
       <property-rule n="101">
         <path>Aircraft/Q400/Systems/flight-controls.xml</path>
       </property-rule>
+      <property-rule n="102">
+        <path>Aircraft/Q400/Systems/propcontroller.xml</path>
+      </property-rule>
     </systems>
     <chase-distance-m>-60</chase-distance-m>
   </sim>
@@ -391,8 +412,7 @@ DHC8 -400Q by Alex Park Jan 2010
       <internal-engine-starter>0</internal-engine-starter>
       <fire-test type="bool">0</fire-test>
       <engine n="0">
-        <condition-lever>0</condition-lever>
-        <condition>0</condition>
+        <condition type="float">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>
         <throttle-fwd type="double">0</throttle-fwd>
@@ -402,8 +422,7 @@ DHC8 -400Q by Alex Park Jan 2010
         <ignition-switch type="int">0</ignition-switch>
       </engine>
       <engine n="1">
-        <condition-lever>0</condition-lever>
-        <condition>0</condition>
+        <condition type="float">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>
         <throttle-fwd type="double">0</throttle-fwd>
@@ -476,11 +495,13 @@ DHC8 -400Q by Alex Park Jan 2010
       <running>0</running>
       <rpm>0</rpm>
       <fuel-flow_pph type="float">0</fuel-flow_pph>
+        <n2 type="double">0</n2>
     </engine>
     <engine n="1">
       <running>0</running>
       <rpm>0</rpm>
       <fuel-flow_pph type="float">0</fuel-flow_pph>
+        <n2 type="double">0</n2>
     </engine>
   </engines>
   <environment>
@@ -490,17 +511,18 @@ DHC8 -400Q by Alex Park Jan 2010
   </environment>
   <input>
     <keyboard>
-      <key n="119">
-        <name>w</name>
-        <desc>Walk forward toward view</desc>
-        <repeatable type="bool">true</repeatable>
-        <binding>
-          <command>nasal</command>
-          <script>
+      <!--
+            <key n="119">
+                <name>w</name>
+                <desc>Walk forward toward view</desc>
+                <repeatable type="bool">true</repeatable>
+                <binding>
+                        <command>nasal</command>
+                        <script>
                             walk.walk_about(0.1);
                         </script>
-        </binding>
-      </key>
+                </binding>
+            </key>-->
       <key n="113">
         <name>q</name>
         <desc>Disengage Autopilot</desc>
@@ -554,11 +576,11 @@ DHC8 -400Q by Alex Park Jan 2010
       </key>
       <key n="77">
         <name>M</name>
-        <desc>condition lever leaner.</desc>
+        <desc>condition lever leaner</desc>
         <repeatable type="bool">true</repeatable>
         <binding>
           <command>property-adjust</command>
-          <property>controls/engines/engine[0]/condition-lever</property>
+          <property>controls/engines/engine[0]/condition</property>
           <step>-0.01</step>
           <min>0</min>
           <max>1.0</max>
@@ -566,7 +588,7 @@ DHC8 -400Q by Alex Park Jan 2010
         </binding>
         <binding>
           <command>property-adjust</command>
-          <property>controls/engines/engine[1]/condition-lever</property>
+          <property>controls/engines/engine[1]/condition</property>
           <step>-0.01</step>
           <min>0</min>
           <max>1.0</max>
@@ -579,7 +601,7 @@ DHC8 -400Q by Alex Park Jan 2010
         <repeatable type="bool">true</repeatable>
         <binding>
           <command>property-adjust</command>
-          <property>controls/engines/engine[0]/condition-lever</property>
+          <property>controls/engines/engine[0]/condition</property>
           <step>0.01</step>
           <min>0</min>
           <max>1.0</max>
@@ -587,7 +609,7 @@ DHC8 -400Q by Alex Park Jan 2010
         </binding>
         <binding>
           <command>property-adjust</command>
-          <property>controls/engines/engine[1]/condition-lever</property>
+          <property>controls/engines/engine[1]/condition</property>
           <step>0.01</step>
           <min>0</min>
           <max>1.0</max>

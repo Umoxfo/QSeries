@@ -61,7 +61,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
         <open-cabin-doors type="bool">1</open-cabin-doors>
         <pushback>
             <position-norm type="float">0</position-norm>
-            <kp type="float">700</kp>
+            <kp type="float">250</kp>
             <ki type="float">0</ki>
             <kd type="float">0</kd>
         </pushback>
@@ -348,6 +348,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
             <file>Nasal/pneumatics.nas</file>
             <file>Nasal/APU.nas</file>
             <file>Nasal/Electrical.nas</file>
+            <file>Nasal/FADEC.nas</file>
         </systems>
         <doors>
             <file>Nasal/doors.nas</file>
