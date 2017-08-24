@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-	<pid-controller>
+	<!--pid-controller>
 		<name>FADEC: Advance</name>
 		<debug>false</debug>
 		<enable>
@@ -17,7 +17,7 @@
 			<property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
 		</input>
 		<reference>
-			<property>/fdm/jsbsim/fadec/prop-rpm-fucked</property>
+			<property>/fdm/jsbsim/fadec/prop-rpm</property>
 		</reference>
 		<output>
 			<property>/fdm/jsbsim/propulsion/engine/blade-angle</property>
@@ -29,6 +29,6 @@
 			<u_min>1</u_min>
 			<u_max>77</u_max>
 		</config>
-	</pid-controller>
+	</pid-controller-->
 
 </PropertyList>
