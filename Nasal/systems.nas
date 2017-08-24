@@ -485,8 +485,8 @@ setprop("consumables/fuel/tank[0]/selected",1);
 setprop("consumables/fuel/tank[1]/selected",1);
 setprop("controls/fuel/Raux-switch","auto");
 setprop("controls/fuel/gauge-switch","auxilary");
-interpolate("/engines/engine[0]/n2, 20, 1);
-interpolate("/engines/engine[1]/n2, 20, 1);
+interpolate("/engines/engine[0]/n2", 20, 1);
+interpolate("/engines/engine[1]/n2", 20, 1);
 print("Engines Started. Please shut off APU manually");
 }
 
