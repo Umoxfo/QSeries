@@ -83,5 +83,219 @@
     <gain>1</gain>
     <output>controls/gear/nose-steering-int</output>
   </filter>
+  
+  <!--THRUST DETENT MODES-->
+  
+  <!--EMERGENCY POWER-->
+  <!--Condition: Thrust lever in Overtravel-->
+  <!--Throttle command: 1.0 (1.25*MTOP)-->
+  <!--sets propeller speed to 1020 RPM-->
+  <filter>
+    <name>EMERGENCY POWER</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	<expression>
+			<table>
+				<property>/controls/engines/engine[0]/throttle-int</property>
+				<entry><ind> 0.8</ind><dep> 0.8</dep></entry>
+				<entry><ind> 1</ind><dep> 1</dep></entry>
+			</table>
+	</expression>
+    </input>
+    <enable>
+        <condition>
+		<greater-than>
+			<property>/controls/engines/engine[0]/throttle</property>
+			<value>0.8</value>
+		</greater-than>
+        </condition>
+    </enable>
+    <gain>1.0</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  
+  <!--from FLIGHT IDLE to THRUST DETENT POSITION (0.8)-->
+  
+  <!--MTOP: Maximum Takeoff Power-->
+  <!--Condition: condition lever in START&FEATHER or MAX 1020 position and MTOP discrete activated (button)-->
+  <!--Throttle command: 0.8 (emergency power is at 1.25*MTOP)-->
+  <filter>
+    <name>MTOP Thrust detent</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	<expression>
+			<table>
+				<property>/controls/engines/engine[0]/throttle-int</property>
+				<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+				<entry><ind> 0.7</ind><dep> 1</dep></entry>
+				<entry><ind> 0.8</ind><dep> 1</dep></entry>
+			</table>
+	</expression>
+    </input>
+    <enable>
+        <condition>
+		<and>
+			<or>
+				<equals>
+					<property>/controls/engines/engine[0]/condition-lever-state</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/engines/engine[0]/condition-lever-state</property>
+					<value>4</value>
+				</equals>
+			</or>
+			<property>/controls/engines/engine[0]/mtop-discrete</property>
+			<less-than-equals>
+				<property>/controls/engines/engine[0]/throttle</property>
+				<value>0.8</value>
+			</less-than-equals>
+		</and>
+        </condition>
+    </enable>
+    <gain>0.8</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  <!--NTOP: Normal Takeoff Power-->
+  <!--Condition: condition lever in START&FEATHER or MAX 1020 position-->
+  <!--Throttle command: 0.72 (pure guess based on figure 12.23-4 in http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf-->
+  <filter>
+    <name>NTOP Thrust detent</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	<expression>
+			<table>
+				<property>/controls/engines/engine[0]/throttle-int</property>
+				<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+				<entry><ind> 0.7</ind><dep> 1</dep></entry>
+				<entry><ind> 0.8</ind><dep> 1</dep></entry>
+			</table>
+	</expression>
+    </input>
+    <enable>
+        <condition>
+		<and>
+			<or>
+				<equals>
+					<property>/controls/engines/engine[0]/condition-lever-state</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/engines/engine[0]/condition-lever-state</property>
+					<value>4</value>
+				</equals>
+			</or>
+			<less-than-equals>
+				<property>/controls/engines/engine[0]/throttle</property>
+				<value>0.8</value>
+			</less-than-equals>
+		</and>
+        </condition>
+    </enable>
+    <gain>0.72</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  <!--MCL: Maximum Climb Power-->
+  <!--Condition: Condition Lever in 900 RPM position-->
+  <!--Throttle command: 0.65 (pure guess based on figure 12.23-4 in http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf-->
+  <filter>
+    <name>MCL Thrust detent</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	<expression>
+			<table>
+				<property>/controls/engines/engine[0]/throttle-int</property>
+				<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+				<entry><ind> 0.7</ind><dep> 1</dep></entry>
+				<entry><ind> 0.8</ind><dep> 1</dep></entry>
+			</table>
+	</expression>
+    </input>
+    <enable>
+        <condition>
+		<and>
+			<equals>
+				<property>/controls/engines/engine[0]/condition-lever-state</property>
+				<value>3</value>
+			</equals>
+			<less-than-equals>
+				<property>/controls/engines/engine[0]/throttle</property>
+				<value>0.8</value>
+			</less-than-equals>
+		</and>
+        </condition>
+    </enable>
+    <gain>0.65</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  <!--MCR: Maximum Cruise Power-->
+  <!--Condition: Condition Lever in MIN 850 RPM position-->
+  <!--Throttle command: 0.62 (pure guess based on figure 12.23-4 in http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf-->
+  <filter>
+    <name>MCL Thrust detent</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	<expression>
+			<table>
+				<property>/controls/engines/engine[0]/throttle-int</property>
+				<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+				<entry><ind> 0.7</ind><dep> 1</dep></entry>
+				<entry><ind> 0.8</ind><dep> 1</dep></entry>
+			</table>
+	</expression>
+    </input>
+    <enable>
+        <condition>
+		<and>
+			<equals>
+				<property>/controls/engines/engine[0]/condition-lever-state</property>
+				<value>2</value>
+			</equals>
+			<less-than-equals>
+				<property>/controls/engines/engine[0]/throttle</property>
+				<value>0.8</value>
+			</less-than-equals>
+		</and>
+        </condition>
+    </enable>
+    <gain>0.62</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  <!--FUEL CUTOFF: no power at all-->
+  
+  <filter>
+    <name>MTOP Thrust detent</name>
+    <type>gain</type>
+    <update-interval-secs type="double">0.0</update-interval-secs>
+    <input>
+	    <value>0</value>
+    </input>
+    <enable>
+        <condition>
+		<equals>
+			<property>/controls/engines/engine[0]/condition-lever-state</property>
+			<value>0</value>
+		</equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
 
 </PropertyList>

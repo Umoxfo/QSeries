@@ -1,6 +1,6 @@
 <system name="Q400: FADEC">
 
-    <channel name="PROPRPM">
+    <!--<channel name="PROPRPM">
         <fcs_function name="/controls/engines/engine[0]/propeller-pitch">
             <function>
                 <description>Set desired propeller RPM</description>
@@ -27,12 +27,12 @@
                 </table>
             </function>
         </fcs_function>
-    </channel>
+    </channel>-->
     
     
     
     
-    
+    <!--
     <channel name="Throttle">
     <pure_gain name="fcs/throttle1">
             <input>/controls/engines/engine[0]/throttle-int</input>
@@ -46,5 +46,5 @@
             <output>fcs/throttle-cmd-norm[1]</output>
             <output>fcs/throttle-pos-norm[1]</output>
     </pure_gain>
-    </channel>
+    </channel>-->
 </system>

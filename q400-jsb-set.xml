@@ -349,7 +349,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 		</itaf>
 		<systems>
 			<file>Nasal/APU.nas</file>
-			<file>Nasal/electrical.nas</file>
+			<file>Nasal/Electrical.nas</file>
 			<file>Nasal/FADEC.nas</file>
 			<file>Nasal/hydraulics.nas</file>
 			<file>Nasal/pneumatics.nas</file><!--
