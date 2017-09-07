@@ -4,7 +4,7 @@
 var progPage_0 = func(dest_airport,marker) {
 	var Dsp = {page:"",line1l:"",line2l:"",line3l:"",line4l:"",line5l:"",line6l:"",line7l:"",line8l:"",
 		line1r:"",line2r:"",line3r:"",line4r:"",line5r:"",line6r:"",line7r:"",line8r:""};
-		var FuelEstWp = int((getprop("/autopilot/internal/nav-distance")/getprop("/velocities/groundspeed-kt"))*(getprop("/engines/engine[0]/fuel-flow_pph")+getprop("/engines/engine[1]/fuel-flow_pph")));
+		var FuelEstWp = int((getprop("/autopilot/route-manager/distance-remaining-nm")/getprop("/velocities/groundspeed-kt"))*(getprop("/engines/engine[0]/fuel-flow_pph")+getprop("/engines/engine[1]/fuel-flow_pph")));
 		var FuelEstDest = int((getprop("/autopilot/route-manager/distance-remaining-nm")/getprop("/velocities/groundspeed-kt"))*(getprop("/engines/engine[0]/fuel-flow_pph")+getprop("/engines/engine[1]/fuel-flow_pph")));
 		var ETA = getprop("autopilot/route-manager/wp/eta");
 			if (ETA == nil) {ETA = "0:00"}

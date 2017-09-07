@@ -295,6 +295,12 @@ DHC8 -400Q by Alex Park Jan 2010
 			<max-lb>4000</max-lb>
 			<min-lb>0</min-lb>
 		</weight>
+		<weight n="2">
+			<name>Cargo</name>
+			<weight-lb>1000</weight-lb>
+			<max-lb>4710</max-lb>
+			<min-lb>0</min-lb>
+		</weight>
 		
 		<yokes-visible type="bool">1</yokes-visible>
 		
