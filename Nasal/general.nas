@@ -128,12 +128,6 @@ if(taxi_light_sw and gear_pos_front==1){
     }else{
     setprop("/systems/electrical/outputs/lightmap/logo-light", 0);
     }
-    #hide ALS landing light from the outside
-    if(getprop("/sim/current-view/internal") == 1 and getprop("/systems/electrical/volts") >= 15 ){
-    setprop("/sim/rendering/als-secondary-lights/use-landing-light", getprop("/controls/lighting/landing-lights"));
-    }else{
-    setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
-    }
 
     #EPU
     if(getprop("/controls/electric/epu-switch")){

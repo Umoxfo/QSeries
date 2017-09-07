@@ -96,6 +96,10 @@
                     <property>/gear/gear[1]/position-norm</property>
                     <value>0.95</value>
                 </less-than>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>
@@ -117,6 +121,10 @@
                     <property>/gear/gear[0]/position-norm</property>
                     <value>0.95</value>
                 </less-than>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>
@@ -138,6 +146,10 @@
                     <property>/gear/gear[2]/position-norm</property>
                     <value>0.95</value>
                 </less-than>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>
@@ -155,6 +167,10 @@
                     <property>/gear/gear[1]/position-norm</property>
                     <value>1</value>
                 </equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
         </condition>
         <emission>
             <red>0.4</red>
@@ -170,6 +186,10 @@
                     <property>/gear/gear[0]/position-norm</property>
                     <value>1</value>
                 </equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
         </condition>
         <emission>
             <red>0.4</red>
@@ -185,6 +205,10 @@
                     <property>/gear/gear[2]/position-norm</property>
                     <value>1</value>
                 </equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
         </condition>
         <emission>
             <red>0.4</red>
@@ -206,6 +230,10 @@
                     <property>/gear/gear[1]/position-norm</property>
                     <value>0</value>
                 </not-equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>
@@ -226,6 +254,10 @@
                     <property>/gear/gear[0]/position-norm</property>
                     <value>0</value>
                 </not-equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>
@@ -246,6 +278,10 @@
                     <property>/gear/gear[2]/position-norm</property>
                     <value>0</value>
                 </not-equals>
+		<greater-than>
+			<property>/systems/electrical/volts</property>
+			<value>15</value>
+		</greater-than>
             </and>
         </condition>
         <emission>

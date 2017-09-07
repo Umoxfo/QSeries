@@ -3,6 +3,70 @@ setlistener("/sim/signals/fdm-initialized", func {
     print("FADEC (Full Authority Digital Engine Control) loaded.");
 });
 
+setlistener("/controls/engines/engine[0]/condition-lever-state", func {
+	var i=getprop("/controls/engines/engine[0]/condition-lever-state");
+	if(i==0){ #CUTOFF
+		setprop("/controls/engines/engine[0]/cutoff-cmd", 1);
+		setprop("/controls/engines/engine[0]/condition", 0);
+		setprop("/controls/engines/engine[0]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[0]/propeller-feather", 0);
+	}else if(i==1){ #START&FEATHER
+		setprop("/controls/engines/engine[0]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[0]/condition", 0.5);
+		setprop("/controls/engines/engine[0]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[0]/propeller-feather", 1);
+	}else if(i==2){ #MIN 850
+		setprop("/controls/engines/engine[0]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[0]/condition", 1);
+		setprop("/controls/engines/engine[0]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[0]/propeller-feather", 0);
+	}else if(i==3){ #900
+		setprop("/controls/engines/engine[0]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[0]/condition", 1);
+		setprop("/controls/engines/engine[0]/propeller-pitch", 0.294);
+		setprop("/controls/engines/engine[0]/propeller-feather", 0);
+	}else if(i==4){ #MAX 1020
+		setprop("/controls/engines/engine[0]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[0]/condition", 1);
+		setprop("/controls/engines/engine[0]/propeller-pitch", 1);
+		setprop("/controls/engines/engine[0]/propeller-feather", 0);
+	}
+	
+	interpolate("/controls/engines/engine[0]/condition-lever-pos", i, 0.1);
+});
+
+setlistener("/controls/engines/engine[1]/condition-lever-state", func {
+	var i=getprop("/controls/engines/engine[1]/condition-lever-state");
+	if(i==0){ #CUTOFF
+		setprop("/controls/engines/engine[1]/cutoff-cmd", 1);
+		setprop("/controls/engines/engine[1]/condition", 0);
+		setprop("/controls/engines/engine[1]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[1]/propeller-feather", 0);
+	}else if(i==1){ #START&FEATHER
+		setprop("/controls/engines/engine[1]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[1]/condition", 0.5);
+		setprop("/controls/engines/engine[1]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[1]/propeller-feather", 1);
+	}else if(i==2){ #MIN 850
+		setprop("/controls/engines/engine[1]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[1]/condition", 1);
+		setprop("/controls/engines/engine[1]/propeller-pitch", 0);
+		setprop("/controls/engines/engine[1]/propeller-feather", 0);
+	}else if(i==3){ #900
+		setprop("/controls/engines/engine[1]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[1]/condition", 1);
+		setprop("/controls/engines/engine[1]/propeller-pitch", 0.294);
+		setprop("/controls/engines/engine[1]/propeller-feather", 0);
+	}else if(i==4){ #MAX 1020
+		setprop("/controls/engines/engine[1]/cutoff-cmd", 0);
+		setprop("/controls/engines/engine[1]/condition", 1);
+		setprop("/controls/engines/engine[1]/propeller-pitch", 1);
+		setprop("/controls/engines/engine[1]/propeller-feather", 0);
+	}
+	
+	interpolate("/controls/engines/engine[1]/condition-lever-pos", i, 0.1);
+});
+
 #FADEC loop
 var update_FADEC = func{
     #Automatical ignition setting
@@ -28,8 +92,8 @@ var update_FADEC = func{
     
 
     #Engine System
-    var conditionL=getprop("/controls/engines/engine[0]/condition");
-    var conditionR=getprop("/controls/engines/engine[1]/condition");
+    var cutoffcmdL=getprop("/controls/engines/engine[0]/cutoff-cmd") or 0;
+    var cutoffcmdR=getprop("/controls/engines/engine[1]/cutoff-cmd") or 0;
     var n2L=getprop("/engines/engine[0]/n2");
     var n2R=getprop("/engines/engine[1]/n2");
     var runningL=getprop("/engines/engine[0]/running");
@@ -39,38 +103,17 @@ var update_FADEC = func{
     var ignitionL=getprop("/controls/engines/fadec/ignitionL");
     var ignitionR=getprop("/controls/engines/fadec/ignitionR");
 
-    if(conditionL>=0.2 and runningL or conditionL>=0.2 and starterL and n2L>=15 and ignitionL) {
+    if(!cutoffcmdL and runningL or !cutoffcmdL and starterL and n2L>=15 and ignitionL) {
         setprop("/controls/engines/engine[0]/cutoff", 0);
     }else{
         setprop("/controls/engines/engine[0]/cutoff", 1);
     }
 
 
-    if(conditionR>=0.2 and runningR or conditionR>=0.2 and starterR and n2R>=15 and ignitionR) {
+    if(!cutoffcmdL and runningR or !cutoffcmdR and starterR and n2R>=15 and ignitionR) {
         setprop("/controls/engines/engine[1]/cutoff", 0);
     }else{
         setprop("/controls/engines/engine[1]/cutoff", 1);
-    }
-    
-    #Condition Lever Mode 1 START&FEATHER
-    if(conditionL==0.2){
-        setprop("/controls/engines/engine/fadec/feather", 1);
-        setprop("/controls/engines/engine/fadec/propeller-rpm", 500);
-    }else{
-        setprop("/controls/engines/engine/fadec/feather", 0);
-    }
-    if(conditionR==0.2){
-        setprop("/controls/engines/engine[1]/fadec/feather", 1);
-        setprop("/controls/engines/engine[1]/fadec/propeller-rpm", 500);
-    }else{
-        setprop("/controls/engines/engine[1]/fadec/feather", 0);
-    }
-    #Condition Lever Mode 2 MIN850-MAX1020
-    if(conditionL>=0.4){
-        setprop("/controls/engines/engine/fadec/propeller-rpm", conditionL*1020);
-    }
-    if(conditionR>=0.4){
-        setprop("/controls/engines/engine[1]/fadec/propeller-rpm", conditionR*1020);
     }
     
     

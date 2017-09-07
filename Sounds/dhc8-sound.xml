@@ -4,7 +4,7 @@
 
     <fx>
 <!--Battery Switch, Cabincall, no smoking sign, seatbelt sign; code from 777, audio produced with audactiy-->
-	<chime>
+	<!--<chime>
 		<name>battery</name>
 		<mode>once</mode>
 		<type>avionics</type>
@@ -17,7 +17,7 @@
                 <y>0</y>
                 <z>-0.5</z>
             </position>
-	</chime>
+	</chime>-->
 	<chime>
 		<name>nosmoking</name>
 		<mode>once</mode>

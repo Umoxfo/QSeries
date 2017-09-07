@@ -329,6 +329,9 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 
 
     <nasal>  
+	<canvas_mfd>
+		<file>Models/Instruments/MFD/MFD.nas</file>
+	</canvas_mfd>
         <ND>
             <file>Models/panels/ND/ND.nas</file>
         </ND>
@@ -348,7 +351,8 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
             <file>Nasal/pneumatics.nas</file>
             <file>Nasal/APU.nas</file>
             <file>Nasal/Electrical.nas</file>
-            <file>Nasal/FADEC.nas</file>
+            <file>Nasal/FADEC.nas</file><!--
+            <file>Nasal/engines.nas</file>-->
         </systems>
         <doors>
             <file>Nasal/doors.nas</file>

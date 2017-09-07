@@ -302,12 +302,15 @@ DHC8 -400Q by Alex Park Jan 2010
       </autopilot>
       <autopilot n="2">
         <path>Aircraft/Q400/Systems/flight-controls.xml</path>
-      </autopilot>
+      </autopilot><!--
       <autopilot n="2">
         <path>Aircraft/Q400/Systems/propcontroller.xml</path>
-      </autopilot>
+      </autopilot>-->
       <property-rule n="100">
         <path>Aircraft/Q400/Systems/pfd.xml</path>
+      </property-rule>
+      <property-rule n="100">
+        <path>Aircraft/Q400/Systems/MFD.xml</path>
       </property-rule>
     </systems>
     <chase-distance-m>-60</chase-distance-m>
@@ -415,6 +418,9 @@ DHC8 -400Q by Alex Park Jan 2010
       <internal-engine-starter>0</internal-engine-starter>
       <fire-test type="bool">0</fire-test>
       <engine n="0">
+	<condition-lever-state type="int">0</condition-lever-state>
+	<condition-lever-pos type="float">0</condition-lever-pos>
+	<cutoff-cmd type="bool">0</cutoff-cmd>
         <condition type="double">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>
@@ -425,6 +431,9 @@ DHC8 -400Q by Alex Park Jan 2010
         <ignition-switch type="int">0</ignition-switch>
       </engine>
       <engine n="1">
+	<condition-lever-state type="int">0</condition-lever-state>
+	<condition-lever-pos type="float">0</condition-lever-pos>
+	<cutoff-cmd type="bool">0</cutoff-cmd>
         <condition type="double">0</condition>
         <mixture>0</mixture>
         <propeller-pitch>0</propeller-pitch>

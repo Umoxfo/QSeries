@@ -54,9 +54,12 @@
   <path>panels/ap/ap.xml</path>
 </model>-->
 
-<!--Engine Instrument-->
+<!--Engine Instrument--><!--
 <model>
   <path>panels/ESID/ESID.xml</path>
+</model>-->
+<model>
+  <path>Instruments/MFD/MFD.xml</path>
 </model>
 
 <model>

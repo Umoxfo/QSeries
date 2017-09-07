@@ -52,7 +52,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 
         <location name="CG" unit="M"><!--guess-->
-		<x> -0.5 </x>
+		<x> -0.0 </x>
 		<y> 0 </y>
 		<z> 2.46337 </z>
 	</location>

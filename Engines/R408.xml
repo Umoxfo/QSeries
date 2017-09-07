@@ -20,16 +20,16 @@ prop-pitch - -14.5 reversed - +79 feathered
 -->
 <!--Reference: https://www.easa.europa.eu/system/files/dfu/EASA-TCDS-P.002_Dowty_R_408_series_propellers-03-05032008.pdf-->
 <propeller name="prop">
- <ixx> 150.25 </ixx>
+ <ixx> 4 </ixx>
   <diameter unit="M"> 4.115 </diameter>
-  <numblades> 6 </numblades>
-  <gearratio> 30.54 </gearratio>
+  <numblades> 6 </numblades><!--
+  <gearratio> 30.54 </gearratio>-->
   <reversepitch> -15.1 </reversepitch>
-  <minpitch> 1 </minpitch>
-  <maxpitch> 77 </maxpitch><!--
+  <minpitch> 16 </minpitch>
+  <maxpitch> 87.45 </maxpitch>
   <minrpm> 850 </minrpm>
-  <maxrpm> 1204 </maxrpm>-->
-  <constspeed> 0 </constspeed> <!--controlled by FADEC-->
+  <maxrpm> 1020 </maxrpm>
+  <constspeed> 1 </constspeed> <!--controlled by FADEC-->
   <p_factor> 0.01 </p_factor>
  <ct_factor> 1.5 </ct_factor>
   <cp_factor>1.0</cp_factor>

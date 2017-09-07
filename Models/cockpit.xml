@@ -275,43 +275,72 @@
     
 <!--Condition Levers-->
     <animation>
-        <type>slider</type>
+        <type>pick</type>
         <object-name>conditionL</object-name>
-        <drag-direction>vertical</drag-direction>
         <action>
+		<button>0</button>
           <binding>
-            <command>property-adjust</command>
-        <property>controls/engines/engine[0]/propeller-pitch</property>
-            <factor>0.1</factor>
-            <min>0</min>
-            <max>1</max>
-            <wrap>0</wrap>
+            <command>property-cycle</command>
+		<property>controls/engines/engine[0]/condition-lever-state</property>
+		<value>1</value><!--START&FEATHER-->
+		<value>2</value><!--MIN 850-->
+		<value>3</value><!--900-->
+		<value>4</value><!--MAX 1020-->
+		<value>0</value><!--FUEL OFF-->
           </binding>
+        </action>
+        <action>
+		<button>1</button>
           <binding>
-            <command>property-adjust</command>
-        <property>controls/engines/engine[0]/condition</property>
-            <factor>0.1</factor>
-            <min>0</min>
-            <max>1</max>
-            <wrap>0</wrap>
+            <command>property-cycle</command>
+		<property>controls/engines/engine[0]/condition-lever-state</property>
+		<value>0</value><!--FUEL OFF-->
+		<value>4</value><!--MAX 1020-->
+		<value>3</value><!--900-->
+		<value>2</value><!--MIN 850-->
+		<value>1</value><!--START&FEATHER-->
           </binding>
         </action>
         <hovered>
           <binding>
             <command>set-tooltip</command>
-            <label>LH Condition: %3d%%</label>
-            <measure-text>LH Condition: 100%</measure-text>
+            <label>LH Condition Lever: %s</label>
             <tooltip-id>lh-condition</tooltip-id>
-            <mapping>percent</mapping>
-        <property>controls/engines/engine[0]/condition</property>
+		<property>controls/engines/engine[0]/condition-lever-state</property>
+		<mapping>nasal</mapping>
+		<script>
+			var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
+			return modes[arg[0]];
+		</script>
           </binding>
         </hovered>
     </animation>
     <animation>
         <type>rotate</type>
         <object-name>conditionL</object-name>
-        <property>controls/engines/engine[0]/condition</property>
-        <factor>-125</factor>
+        <property>controls/engines/engine[0]/condition-lever-pos</property>
+	<interpolation>
+		<entry>
+			<ind> 0 </ind>
+			<dep>  0 </dep>
+		</entry>
+		<entry>
+			<ind> 1 </ind>
+			<dep>  -25 </dep>
+		</entry>
+		<entry>
+			<ind> 2 </ind>
+			<dep> -50 </dep>
+		</entry>
+		<entry>
+			<ind> 3 </ind>
+			<dep> -95 </dep>
+		</entry>
+		<entry>
+			<ind> 4 </ind>
+			<dep> -125 </dep>
+		</entry>
+	</interpolation>
         <center>
             <x-m>-11.88406</x-m>
             <y-m>0</y-m>
@@ -324,43 +353,72 @@
         </axis>
     </animation>
     <animation>
-        <type>slider</type>
+        <type>pick</type>
         <object-name>conditionR</object-name>
-        <drag-direction>vertical</drag-direction>
         <action>
+		<button>0</button>
           <binding>
-            <command>property-adjust</command>
-        <property>controls/engines/engine[1]/propeller-pitch</property>
-            <factor>0.1</factor>
-            <min>0</min>
-            <max>1</max>
-            <wrap>0</wrap>
+            <command>property-cycle</command>
+		<property>controls/engines/engine[1]/condition-lever-state</property>
+		<value>1</value><!--START&FEATHER-->
+		<value>2</value><!--MIN 850-->
+		<value>3</value><!--900-->
+		<value>4</value><!--MAX 1020-->
+		<value>0</value><!--FUEL OFF-->
           </binding>
+        </action>
+        <action>
+		<button>1</button>
           <binding>
-            <command>property-adjust</command>
-        <property>controls/engines/engine[1]/condition</property>
-            <factor>0.1</factor>
-            <min>0</min>
-            <max>1</max>
-            <wrap>0</wrap>
+            <command>property-cycle</command>
+		<property>controls/engines/engine[1]/condition-lever-state</property>
+		<value>0</value><!--FUEL OFF-->
+		<value>4</value><!--MAX 1020-->
+		<value>3</value><!--900-->
+		<value>2</value><!--MIN 850-->
+		<value>1</value><!--START&FEATHER-->
           </binding>
         </action>
         <hovered>
           <binding>
             <command>set-tooltip</command>
-            <label>RH Condition: %3d%%</label>
-            <measure-text>RH Condition: 100%</measure-text>
+            <label>RH Condition Lever: %s</label>
             <tooltip-id>rh-condition</tooltip-id>
-            <mapping>percent</mapping>
-        <property>controls/engines/engine[1]/condition</property>
+		<property>controls/engines/engine[1]/condition-lever-state</property>
+		<mapping>nasal</mapping>
+		<script>
+			var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
+			return modes[arg[0]];
+		</script>
           </binding>
         </hovered>
     </animation>
     <animation>
         <type>rotate</type>
         <object-name>conditionR</object-name>
-        <property>controls/engines/engine[1]/condition</property>
-        <factor>-125</factor>
+        <property>controls/engines/engine[1]/condition-lever-pos</property>
+	<interpolation>
+		<entry>
+			<ind> 0 </ind>
+			<dep>  0 </dep>
+		</entry>
+		<entry>
+			<ind> 1 </ind>
+			<dep>  -25 </dep>
+		</entry>
+		<entry>
+			<ind> 2 </ind>
+			<dep> -50 </dep>
+		</entry>
+		<entry>
+			<ind> 3 </ind>
+			<dep> -95 </dep>
+		</entry>
+		<entry>
+			<ind> 4 </ind>
+			<dep> -125 </dep>
+		</entry>
+	</interpolation>
         <center>
             <x-m>-11.88406</x-m>
             <y-m>0</y-m>

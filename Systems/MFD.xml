@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<PropertyList>
+	
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<div>
+					<prod>
+						<dif>
+							<property>/engines/engine[0]/itt_degf</property>
+							<value>32</value>
+						</dif>
+						<value>5</value>
+					</prod>
+					<value>9</value>
+				</div>
+			</expression>
+		</input>
+		<output>/engines/engine[0]/itt_degc</output>
+	</filter>
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<div>
+					<prod>
+						<dif>
+							<property>/engines/engine[1]/itt_degf</property>
+							<value>32</value>
+						</dif>
+						<value>5</value>
+					</prod>
+					<value>9</value>
+				</div>
+			</expression>
+		</input>
+		<output>/engines/engine[1]/itt_degc</output>
+	</filter>
+	
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<div>
+					<prod>
+						<dif>
+							<property>/engines/engine[0]/oil-temperature-degf</property>
+							<value>32</value>
+						</dif>
+						<value>5</value>
+					</prod>
+					<value>9</value>
+				</div>
+			</expression>
+		</input>
+		<output>/engines/engine[0]/oil-temperature-degc</output>
+	</filter>
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<div>
+					<prod>
+						<dif>
+							<property>/engines/engine[1]/oil-temperature-degf</property>
+							<value>32</value>
+						</dif>
+						<value>5</value>
+					</prod>
+					<value>9</value>
+				</div>
+			</expression>
+		</input>
+		<output>/engines/engine[1]/oil-temperature-degc</output>
+	</filter>
+	
+	
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/oil-temperature-degc</property>
+					<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+					<entry><ind> 55</ind><dep> 11.64</dep></entry>
+					<entry><ind> 65</ind><dep> 21.25</dep></entry>
+					<entry><ind> 125</ind><dep> 123.61</dep></entry>
+					<entry><ind> 199</ind><dep> 151.04</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/MFD/oil-temperature-needle[0]</output>
+	</filter>
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/oil-temperature-degc</property>
+					<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+					<entry><ind> 55</ind><dep> 11.64</dep></entry>
+					<entry><ind> 65</ind><dep> 21.25</dep></entry>
+					<entry><ind> 125</ind><dep> 123.61</dep></entry>
+					<entry><ind> 199</ind><dep> 151</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/MFD/oil-temperature-needle[1]</output>
+	</filter>
+	
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/oil-pressure-psi</property>
+					<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+					<entry><ind> 44</ind><dep> 28</dep></entry>
+					<entry><ind> 61</ind><dep> 79.2</dep></entry>
+					<entry><ind> 72</ind><dep> 113.65</dep></entry>
+					<entry><ind> 100</ind><dep> 151</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/MFD/oil-pressure-needle[0]</output>
+	</filter>
+	<filter>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/oil-pressure-psi</property>
+					<entry><ind> 0 </ind><dep> 0.0</dep></entry>
+					<entry><ind> 44</ind><dep> 28</dep></entry>
+					<entry><ind> 61</ind><dep> 79.2</dep></entry>
+					<entry><ind> 72</ind><dep> 113.65</dep></entry>
+					<entry><ind> 100</ind><dep> 151</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/MFD/oil-pressure-needle[1]</output>
+	</filter>
+	
+	
+</PropertyList>
