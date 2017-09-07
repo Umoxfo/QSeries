@@ -10,122 +10,119 @@
 -->
 <PropertyList>
 
- <sim>
-
-  <description>DHC8-400Q(multiplayer passenger)</description>
-  <author>Alex Park (original by Anders Gidenstam)</author>
-  <status>alpha</status>
-  <aircraft-version>$Id: dhc8-400-passenger-set.xml,v 1.1 2009/12/21 05:26:54 sydadams Exp $</aircraft-version>
+	<sim>
+		<description>DHC8-400Q(multiplayer passenger)</description>
+		<author>Alex Park (original by Anders Gidenstam)</author>
+		<status>alpha</status>
+		<aircraft-version>$Id: dhc8-400-passenger-set.xml,v 1.1 2009/12/21 05:26:54 sydadams Exp $</aircraft-version>
   
-  <flight-model>null</flight-model>
+		<flight-model>null</flight-model>
 
-  <presets>
-   <onground type="bool">false</onground>
-   <altitude-agl-ft type="double">30.0</altitude-agl-ft>
-  </presets>
+		<presets>
+			<onground type="bool">false</onground>
+			<altitude-agl-ft type="double">30.0</altitude-agl-ft>
+		</presets>
 
-  <!-- 3d model -->
-  <model>
-   <path>Models/Geometry/null.ac</path>
-  </model>
+		<!-- 3d model -->
+		<model>
+			<path>Models/Geometry/null.ac</path>
+		</model>
 
-  <!-- Views -->
-  <view n="0">
-   <!-- Passenger's position. -->
-   <name>Copilot View</name>
-   <type>lookfrom</type>
-   <config>
-    <internal type="bool">true</internal>
-    <from-model type="bool">false</from-model>
-    <from-model-idx type="int">0</from-model-idx>
-    <eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
-    <eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
-    <eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
-    <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
-    <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
-    <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+		<!-- Views -->
+		<view n="0">
+			<!-- Passenger's position. -->
+			<name>Copilot View</name>
+			<type>lookfrom</type>
+			<config>
+				<internal type="bool">true</internal>
+				<from-model type="bool">false</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
+				<eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
+				<eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
+				<eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+				<eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+				<eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+				<!-- x/y/z == right/up/back -->
+				<x-offset-m type="double" archive="y">0.50</x-offset-m>
+				<y-offset-m type="double" archive="y">2.8</y-offset-m>
+				<z-offset-m type="double" archive="y">-10.40</z-offset-m>
+				<pitch-offset-deg>-15</pitch-offset-deg>
+				<default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+			</config>
+		</view>
+		
+		<view n="100">
+			<!-- Passenger Position. -->
+			<name>Pilot View</name>
+			<type>lookfrom</type>
+			<config>
+				<internal type="bool">true</internal>
+				<from-model type="bool">false</from-model>
+				<eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
+				<eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
+				<eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
+				<eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+				<eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+				<eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+				<!-- x/y/z == right/up/back -->
+				<x-offset-m type="double" archive="y">-0.50</x-offset-m>
+				<y-offset-m type="double" archive="y">2.8</y-offset-m>
+				<z-offset-m type="double" archive="y">3.6</z-offset-m>
+				<pitch-offset-deg>-15</pitch-offset-deg>
+				<default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+			</config>
+		</view>
 
-    <!-- x/y/z == right/up/back -->
-    <x-offset-m type="double" archive="y">0.50</x-offset-m>
-    <y-offset-m type="double" archive="y">2.8</y-offset-m>
-    <z-offset-m type="double" archive="y">-10.40</z-offset-m>
-    <pitch-offset-deg>-15</pitch-offset-deg>
-    <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
-   </config>
-  </view>
-  <!-- Views -->
-  <view n="100">
-   <!-- Passenger Position. -->
-   <name>Pilot View</name>
-   <type>lookfrom</type>
-   <config>
-    <internal type="bool">true</internal>
-    <from-model type="bool">false</from-model>
-    <eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
-    <eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
-    <eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
-    <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
-    <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
-    <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+		<chase-distance-m type="double">-18.0</chase-distance-m>
 
-    <!-- x/y/z == right/up/back -->
-    <x-offset-m type="double" archive="y">-0.50</x-offset-m>
-    <y-offset-m type="double" archive="y">2.8</y-offset-m>
-    <z-offset-m type="double" archive="y">3.6</z-offset-m>
-    <pitch-offset-deg>-15</pitch-offset-deg>
-    <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
-   </config>
-  </view>
+		<sound>
+			<audible>false</audible>
+			<path/>
+		</sound>
 
-  <chase-distance-m type="double">-18.0</chase-distance-m>
+		<!-- Aircraft specific help. -->
+		<!-- help include="help.xml"/ -->
 
-  <sound>
-   <audible>false</audible>
-   <path/>
-  </sound>
+		<!-- systems>
+			<electrical>
+				<path/>
+			</electrical>
+		</systems>
+		
+		<instrumentation>
+			<path/>
+		</instrumentation -->
 
-  <!-- Aircraft specific help. -->
-  <!-- help include="help.xml"/ -->
+		<menubar>
+			<default>
+				<menu n="100">
+					<label>Dhc8-400</label>
+						<item>
+						<label>Select MP-pilot</label>
+							<binding>
+								<command>nasal</command>
+								<script>
+									dual_control_tools.
+									copilot_dialog.show(aircraft_dual_control.pilot_type);
+								</script>
+							</binding>
+						</item>
+				</menu>
+			</default>
+		</menubar>
 
-  <!-- systems>
-   <electrical>
-    <path/>
-   </electrical>
-  </systems>
-  <instrumentation>
-   <path/>
-  </instrumentation -->
+	</sim>
 
-  <menubar>
-   <default>
-    <menu n="100">
-     <label>Dhc8-400</label>
-     <item>
-      <label>Select MP-pilot</label>
-      <binding>
-       <command>nasal</command>
-       <script>
-        dual_control_tools.
-          copilot_dialog.show(aircraft_dual_control.pilot_type);
-       </script>
-      </binding>
-     </item>
-    </menu>
-   </default>
-  </menubar>
-
- </sim>
-
- <nasal>
-  <dual_control_tools>
-   <file>Aircraft/dhc8-400/Nasal/dual-control-tools.nas</file>
-  </dual_control_tools>
-  <aircraft_dual_control>
-   <file>Aircraft/dhc8-400/Nasal/dhc8-400-dual-control.nas</file>
-  </aircraft_dual_control>
-  <dual_control>
-   <file>Aircraft/dhc8-400/Nasal/copilot-dual-control.nas</file>
-  </dual_control>
- </nasal>
-
+	<nasal>
+		<dual_control_tools>
+			<file>Aircraft/dhc8-400/Nasal/dual-control-tools.nas</file>
+		</dual_control_tools>
+		<aircraft_dual_control>
+			<file>Aircraft/dhc8-400/Nasal/dhc8-400-dual-control.nas</file>
+		</aircraft_dual_control>
+		<dual_control>
+			<file>Aircraft/dhc8-400/Nasal/copilot-dual-control.nas</file>
+		</dual_control>
+	</nasal>
 </PropertyList>
