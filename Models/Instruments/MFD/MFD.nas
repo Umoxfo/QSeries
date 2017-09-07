@@ -24,10 +24,12 @@ setprop("/engines/engine[1]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[1]", 0);
 setprop("/engines/engine[0]/fuel-flow-pph", 0);
 setprop("/engines/engine[1]/fuel-flow-pph", 0);
-setprop("/consumables/fuel/tank[0]/quantity-lbs", 0);
-setprop("/consumables/fuel/tank[1]/quantity-lbs", 0);
 setprop("/consumables/fuel/tank[0]/temperature-degc", 0);
 setprop("/consumables/fuel/tank[1]/temperature-degc", 0);
+setprop("/controls/engines/engine[0]/condition-lever-state", 0);
+setprop("/controls/engines/engine[1]/condition-lever-state", 0);
+setprop("/controls/engines/engine[0]/throttle-int", 0);
+setprop("/controls/engines/engine[1]/throttle-int", 0);
 
 var canvas_MFD_base = {
 	init: func(canvas_group, file) {
@@ -68,22 +70,34 @@ var canvas_MFD_only = {
 		return m;
 	},
 	getKeys: func() {
-		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR"];
+		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp"];
 	},
 	update: func() {
 	
 		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-15000))*100;
 		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-15000))*100;
-		var throttleL=getprop("/controls/engines/engine[0]/throttle");
-		var throttleR=getprop("/controls/engines/engine[1]/throttle");
+		var throttleL=getprop("/controls/engines/engine[0]/throttle-int") or 0;
+		var throttleR=getprop("/controls/engines/engine[1]/throttle-int") or 0;
 	
 		me["TRQL.needle"].setRotation(TRQLpercent*0.034);
 		me["TRQL.target"].setRotation(throttleL*3.4);
 		me["TRQL.percent"].setText(sprintf("%s", math.round(TRQLpercent)));
+		var condition_leverl=getprop("/controls/engines/engine[0]/condition-lever-state");
+		if(condition_leverl<=1){
+			me["TRQL.target"].hide();
+		}else{
+			me["TRQL.target"].show();		
+		}
 		
 		me["TRQR.needle"].setRotation(TRQRpercent*0.034);
 		me["TRQR.target"].setRotation(throttleR*3.4);
 		me["TRQR.percent"].setText(sprintf("%s", math.round(TRQRpercent)));
+		var condition_leverr=getprop("/controls/engines/engine[1]/condition-lever-state");
+		if(condition_leverr<=1){
+			me["TRQR.target"].hide();
+		}else{
+			me["TRQR.target"].show();		
+		}
 		
 		var rpmleft=getprop("/engines/engine[0]/thruster/rpm");
 		var rpmright=getprop("/engines/engine[1]/thruster/rpm");
@@ -116,13 +130,23 @@ var canvas_MFD_only = {
 		
 		if(oilPSIL<44){
 			me["OilPressL"].setColor(1,0,0);
+			me["oilpressL.needle"].setColor(1,0,0);
+		}else if(oilPSIL<61 or oilPSIL>72){
+			me["OilPressL"].setColor(1,1,0);
+			me["oilpressL.needle"].setColor(1,1,0);
 		}else{
 			me["OilPressL"].setColor(1,1,1);
+			me["oilpressL.needle"].setColor(1,1,1)
 		}
 		if(oilPSIR<44){
 			me["OilPressR"].setColor(1,0,0);
+			me["oilpressR.needle"].setColor(1,0,0);
+		}else if(oilPSIR<61 or oilPSIR>72){
+			me["OilPressR"].setColor(1,1,0);
+			me["oilpressR.needle"].setColor(1,1,0);
 		}else{
 			me["OilPressR"].setColor(1,1,1);
+			me["oilpressR.needle"].setColor(1,1,1)
 		}
 		
 		var oilCL=getprop("/engines/engine[0]/oil-temperature-degc");
@@ -130,11 +154,32 @@ var canvas_MFD_only = {
 		var oilNL=getprop("/MFD/oil-temperature-needle[0]");
 		var oilNR=getprop("/MFD/oil-temperature-needle[1]");
 		
-		me["oiltempL.needle"].setRotation(oilNL*0.01);
+		me["oiltempL.needle"].setRotation(oilNL*0.017);
 		me["OilTempL"].setText(sprintf("%s", math.round(oilCL)));
 		
-		me["oiltempR.needle"].setRotation(oilNR*1.8);
+		me["oiltempR.needle"].setRotation(oilNR*0.017);
 		me["OilTempR"].setText(sprintf("%s", math.round(oilCR)));
+		
+		if(oilCL<55 or oilCL>125){
+			me["oiltempL.needle"].setColor(1,0,0);
+			me["OilTempL"].setColor(1,0,0);
+		}else if(oilCL<65 or oilCL>115){
+			me["oiltempL.needle"].setColor(1,1,0);
+			me["OilTempL"].setColor(1,1,1);
+		}else{
+			me["oiltempL.needle"].setColor(1,1,1);
+			me["OilTempL"].setColor(1,1,1);
+		}
+		if(oilCR<55 or oilCR>125){
+			me["oiltempR.needle"].setColor(1,0,0);
+			me["OilTempR"].setColor(1,0,0);
+		}else if(oilCR<65 or oilCR>115){
+			me["oiltempR.needle"].setColor(1,1,0);
+			me["OilTempR"].setColor(1,1,1);
+		}else{
+			me["oiltempR.needle"].setColor(1,1,1);
+			me["OilTempR"].setColor(1,1,1);
+		}
 		
 		var fuelflowL=getprop("/engines/engine[0]/fuel-flow-pph");
 		var fuelflowR=getprop("/engines/engine[1]/fuel-flow-pph");
@@ -142,8 +187,8 @@ var canvas_MFD_only = {
 		me["FFL"].setText(sprintf("%s", math.round(fuelflowL)));
 		me["FFR"].setText(sprintf("%s", math.round(fuelflowR)));
 		
-		var quantityL=getprop("/consumables/fuel/tank[0]/quantity-lbs");
-		var quantityR=getprop("/consumables/fuel/tank[1]/quantity-lbs");
+		var quantityL=getprop("/consumables/fuel/tank[0]/level-lbs") or 0;
+		var quantityR=getprop("/consumables/fuel/tank[1]/level-lbs") or 0;
 		me["LeftQuantity"].setText(sprintf("%s", math.round(quantityL)));
 		me["RightQuantity"].setText(sprintf("%s", math.round(quantityR)));
 		
@@ -165,6 +210,15 @@ var canvas_MFD_only = {
 		}else{
 			me["FuelTempR"].setColor(1,1,1);
 		}
+		
+		var static_air_temp=getprop("/environment/temperature-degc");
+		me["SAT"].setText(sprintf("%s", math.round(static_air_temp)));
+		if(static_air_temp>=0){
+			me["SATp"].show();
+		}else{
+			me["SATp"].hide();
+		}
+			
 		
 		settimer(func me.update(), 0.02);
 	},
