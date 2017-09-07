@@ -752,7 +752,7 @@ var key = func(v) {
 			}
 			if (v == "B4R"){
 				v = "";
-					if (getprop("yasim/gross-weight-lbs") > 36100) {
+					if (getprop("fdm/jsbsim/inertia/weight-lbs") > 36100) {
 						cduInput = "*GROSS WT MAX = 36100*";
 					}
 					else {
