@@ -33,12 +33,41 @@ setlistener("/controls/engines/engine[1]/reverser", func(v) {
 });
 
 setlistener("/sim/signals/fdm-initialized", func {
+	var ttw = "";
+    var min_et = 0;
+    var hr_et = 0;
     settimer(update_loop, 5);
     print("General Systems loaded.");
 });
 
 #General loop
 var update_loop = func{
+    ttw = "--:--";
+    min_et = 0;
+    hr_et = 0;
+    if (getprop("autopilot/route-manager/active") != 0) {
+		min_et = getprop("autopilot/route-manager/ete");
+		setprop("autopilot/internal/nav-type","FMS");
+		setprop("autopilot/internal/nav-distance",getprop("instrumentation/gps/wp/wp[1]/distance-nm"));
+		setprop("autopilot/internal/nav-id",getprop("instrumentation/gps/wp/wp[1]/ID"));
+	} else {
+		min_et = int(getprop("instrumentation/dme/indicated-time-min"));
+		setprop("autopilot/internal/nav-type","VOR/LOC");
+		setprop("autopilot/internal/nav-distance",getprop("instrumentation/dme/indicated-distance-nm"));
+		if (getprop("instrumentation/nav[0]/nav-id") != nil) {
+			setprop("autopilot/internal/nav-id",getprop("instrumentation/nav[0]/nav-id"));		
+		} else {
+			setprop("autopilot/internal/nav-id","NONE");
+		}
+	}
+    if(min_et > 60){
+		tmphr = (min_et*0.016666);
+		hr_et = int(tmphr);
+		tmpmin = (tmphr-hr_et)*100;
+		min_et = int(tmpmin);
+	}
+	ttw=sprintf("ETE %i:%02i",hr_et,min_et);
+	setprop("autopilot/internal/nav-ttw",ttw);
 
 #Throttle Lock
 var reverseL=getprop("/controls/engines/engine[0]/reverser");
