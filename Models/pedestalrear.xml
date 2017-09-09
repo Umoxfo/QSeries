@@ -264,6 +264,7 @@
                 <property>/instrumentation/mfd/inputs/main-page</property>
 		<value>pfd</value>
 		<value>sys</value>
+		<value>ed</value>
             </binding>
         </action>
     </animation>

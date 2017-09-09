@@ -70,9 +70,47 @@ var canvas_ED_only = {
 		return m;
 	},
 	getKeys: func() {
-		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp"];
+		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp","thrustdtL","thrustdtR","powerpctL","powerpctR"];
 	},
 	update: func() {
+		var thrustmode0=getprop("/FADEC/thrust-mode[0]") or "";
+		var thrustmode1=getprop("/FADEC/thrust-mode[1]") or "";
+		me["thrustdtL"].setText(thrustmode0 or "");
+		me["thrustdtR"].setText(thrustmode1 or "");
+		
+		var powercmd0=getprop("/fcs/throttle-cmd-norm[0]") or 0;
+		var powercmd1=getprop("/fcs/throttle-cmd-norm[1]") or 0;
+		if(thrustmode0=="NTOP"){
+			var pwrpct0=powercmd0/0.72*100;
+		}else if(thrustmode0=="MTOP"){
+			var pwrpct0=powercmd0/0.8*100;
+		}else if(thrustmode0=="MCL"){
+			var pwrpct0=powercmd0/0.65*100;
+		}else if(thrustmode0=="MCR"){
+			var pwrpct0=powercmd0/0.62*100;
+		}else if(thrustmode0=="EMERG"){
+			var pwrpct0=powercmd0*100;
+		}else{
+			var pwrpct0=0;
+		}
+		
+		if(thrustmode1=="NTOP"){
+			var pwrpct1=powercmd1/0.72*100;
+		}else if(thrustmode1=="MTOP"){
+			var pwrpct1=powercmd1/0.8*100;
+		}else if(thrustmode1=="MCL"){
+			var pwrpct1=powercmd1/0.65*100;
+		}else if(thrustmode1=="MCR"){
+			var pwrpct1=powercmd1/0.62*100;
+		}else if(thrustmode1=="EMERG"){
+			var pwrpct1=powercmd1*100;
+		}else{
+			var pwrpct1=0;
+		}
+		
+		me["powerpctL"].setText(sprintf("%s", math.round(pwrpct0)));
+		me["powerpctR"].setText(sprintf("%s", math.round(pwrpct1)));
+		
 	
 		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-15000))*100;
 		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-15000))*100;

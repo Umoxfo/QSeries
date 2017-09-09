@@ -162,10 +162,10 @@
       <property>velocities/airspeed-kt</property>
       <offset>90</offset> 
     </reference>
-    <gain>-0.002667</gain>
+    <gain>0.002667</gain>
     <output>instrumentation/pfd/speed-trend-up</output>
-    <max>0.24</max>
     <min>0</min>
+    <max>1</max>
   </filter>
 
   <filter>
@@ -182,7 +182,7 @@
     </reference>
     <gain>-0.002667</gain>
     <output>instrumentation/pfd/speed-trend-down</output>
-    <min>-0.24</min>
+    <min>-1</min>
     <max>0</max>
   </filter>
 
@@ -480,5 +480,88 @@
       <output>instrumentation/PFD/alt-1</output>
   </filter>
   
+  <filter>
+      <name>VSneedle</name>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <expression>
+              <table>
+		      <prod>
+			<property>/velocities/vertical-speed-fps</property> 
+			<value>60</value>
+			</prod>
+                  <entry><ind>-4000</ind><dep>-56.36</dep></entry>
+                  <entry><ind>-2000</ind><dep>-49.31</dep></entry>
+                  <entry><ind>-1000</ind><dep>-40.09</dep></entry>
+                  <entry><ind>0</ind><dep>0</dep></entry>
+                  <entry><ind>1000</ind><dep>40.09</dep></entry>
+                  <entry><ind>2000</ind><dep>49.31</dep></entry>
+                  <entry><ind>4000</ind><dep>56.36</dep></entry>
+              </table>
+          </expression>
+      </input>
+      <output>instrumentation/pfd/vs-needle</output>
+</filter>
   
+  <filter>
+      <name>HDGBUGDiff</name>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <expression>
+		<dif>
+			<property>/orientation/heading-deg</property> 
+			<property>/it-autoflight/input/hdg</property> 
+		</dif>
+          </expression>
+      </input>
+      <output>instrumentation/pfd/hdg-bug-diff</output>
+</filter>
+  <filter>
+      <name>ALTBUGDiff</name>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <expression>
+		<dif>
+			<property>/it-autoflight/input/alt</property> 
+			<property>/instrumentation/altimeter/indicated-altitude-ft</property> 
+		</dif>
+          </expression>
+      </input>
+      <output>instrumentation/pfd/alt-bug-diff</output>
+</filter>
+  <filter>
+      <name>SPEEDBUGDiff1</name>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <expression>
+		<dif>
+			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property> 
+			<property>/instrumentation/PFD/ias-bugs/bug1</property> 
+		</dif>
+          </expression>
+      </input>
+	<min>-42</min>
+	<max>42</max>
+      <output>instrumentation/pfd/ias-bug1-diff</output>
+</filter>
+  <filter>
+      <name>SPEEDBUGDiff2</name>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <expression>
+		<dif>
+			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property> 
+			<property>/instrumentation/PFD/ias-bugs/bug2</property> 
+		</dif>
+          </expression>
+      </input>
+	<min>-42</min>
+	<max>42</max>
+      <output>instrumentation/pfd/ias-bug2-diff</output>
+</filter>
 </PropertyList>

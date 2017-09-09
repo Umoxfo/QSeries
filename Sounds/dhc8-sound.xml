@@ -1184,6 +1184,64 @@
             </position>
         </minimums>
 -->
+	
+	<!--Detent sound from A320Family thanks!-->
+		<detenta>
+			<mode>once</mode>
+			<name>detenda</name>
+			<path>detent.wav</path>
+			<condition>
+				<greater-than>
+					<property>/controls/engines/engine[0]/throttle-int</property>
+					<value>0.8</value>
+				</greater-than>
+			</condition>
+			<volume>
+				<property>/sim/sound/effects/volume</property>
+			</volume>
+		</detenta>>
+		<detentb>
+			<mode>once</mode>
+			<name>detendb</name>
+			<path>detent.wav</path>
+			<condition>
+				<less-than>
+					<property>/controls/engines/engine[0]/throttle-int</property>
+					<value>0.8</value>
+				</less-than>
+			</condition>
+			<volume>
+				<property>/sim/sound/effects/volume</property>
+			</volume>
+		</detentb>
+		<detenta>
+			<mode>once</mode>
+			<name>detendc</name>
+			<path>detent.wav</path>
+			<condition>
+				<greater-than>
+					<property>/controls/engines/engine[1]/throttle-int</property>
+					<value>0.8</value>
+				</greater-than>
+			</condition>
+			<volume>
+				<property>/sim/sound/effects/volume</property>
+			</volume>
+		</detenta>>
+		<detentb>
+			<mode>once</mode>
+			<name>detendd</name>
+			<path>detent.wav</path>
+			<condition>
+				<less-than>
+					<property>/controls/engines/engine[1]/throttle-int</property>
+					<value>0.8</value>
+				</less-than>
+			</condition>
+			<volume>
+				<property>/sim/sound/effects/volume</property>
+			</volume>
+		</detentb>
     </fx>
 
 </PropertyList>

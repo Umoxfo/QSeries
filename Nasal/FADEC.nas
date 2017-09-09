@@ -69,6 +69,48 @@ setlistener("/controls/engines/engine[1]/condition-lever-state", func {
 
 #FADEC loop
 var update_FADEC = func{
+	if(getprop("/controls/engines/engine[0]/throttle-int")<=0.8){
+		var state=getprop("/controls/engines/engine[0]/condition-lever-state");
+		if(state==1 or state==4){
+			if(getprop("/controls/engines/engine[0]/mtop-discrete")==1){
+				setprop("/FADEC/thrust-mode[0]", "MTOP");
+			}else{
+				setprop("/FADEC/thrust-mode[0]", "NTOP");
+			}
+		}else if(state==2){
+			setprop("/FADEC/thrust-mode[0]", "MCR");
+		}else if(state==3){
+			setprop("/FADEC/thrust-mode[0]", "MCL");
+		}else{
+			setprop("/FADEC/thrust-mode[0]", "");
+		}
+	}else{
+		setprop("/FADEC/thrust-mode[0]", "EMERG");
+		setprop("/controls/engines/engine[0]/propeller-pitch", 1);
+		setprop("/controls/engines/engine[0]/propeller-feather", 0);
+	}
+	
+	if(getprop("/controls/engines/engine[1]/throttle-int")<=0.8){
+		var state2=getprop("/controls/engines/engine[1]/condition-lever-state");
+		if(state2==1 or state2==4){
+			if(getprop("/controls/engines/engine[1]/mtop-discrete")==1){
+				setprop("/FADEC/thrust-mode[1]", "MTOP");
+			}else{
+				setprop("/FADEC/thrust-mode[1]", "NTOP");
+			}
+		}else if(state2==2){
+			setprop("/FADEC/thrust-mode[1]", "MCR");
+		}else if(state2==3){
+			setprop("/FADEC/thrust-mode[1]", "MCL");
+		}else{
+			setprop("/FADEC/thrust-mode[1]", "");
+		}
+	}else{
+		setprop("/FADEC/thrust-mode[1]", "EMERG");
+		setprop("/controls/engines/engine[1]/propeller-pitch", 1);
+		setprop("/controls/engines/engine[1]/propeller-feather", 0);
+	}
+
     #Automatical ignition setting
     var ignitionL=getprop("/controls/engines/engine[0]/ignition"); # 1=NORM (AUTO) 0=FORCE OFF
     var ignitionR=getprop("/controls/engines/engine[1]/ignition"); # 1=NORM (AUTO) 0=FORCE OFF

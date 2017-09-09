@@ -229,6 +229,11 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
     
 	</sim>
 	
+	<FADEC>
+		<thrust-mode n="0" type="string"></thrust-mode>
+		<thrust-mode n="1" type="string"></thrust-mode>
+	</FADEC>
+	
 	<autopilot>
 		<settings>
 			<nav-source type="string">NAV1</nav-source>
@@ -333,6 +338,11 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 				<model>Q400</model>
 			</ident>
 		</cdu>
+		<PFD>
+			<ias-bugs>
+				<active-bug type="int">0</active-bug>
+			</ias-bugs>
+		</PFD>
 	</instrumentation>
 
 	<nasal>  
@@ -364,6 +374,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<file>Nasal/Electrical.nas</file>
 			<file>Nasal/FADEC.nas</file>
 			<file>Nasal/hydraulics.nas</file>
+			<file>Nasal/fuel.nas</file>
 			<file>Nasal/pneumatics.nas</file><!--
 			<file>Nasal/engines.nas</file>-->
 		</systems>
