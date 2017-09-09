@@ -144,6 +144,7 @@ Alternator = {
 var battery = Battery.new("/controls/electric/battery-switch",24,30,34,1.0,7.0);
 var alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/n2",30.0,28.0,60.0);
 var alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/n2",30.0,28.0,60.0);
+var alternator3 = Alternator.new(2,"controls/APU/generator","/engines/APU/rpm",50.0,28.0,60.0);
 
 #####################################
 setlistener("/sim/signals/fdm-initialized", func {
@@ -260,11 +261,12 @@ update_virtual_bus = func( dt ) {
     BattVolts.setValue(battery_volts);
     var alternator1_volts = alternator1.get_output_volts();
     var alternator2_volts = alternator2.get_output_volts();
-    var apu_volts = 28.0;
-    var APU_plugged = getprop("/engines/APU/plugged");
-    var external_volts = 28.0;
+    var alternator3_volts = alternator3.get_output_volts();
+    #var apu_volts = 28.0;
+    #var APU_plugged = getprop("/engines/APU/plugged");
+    var EXT_plugged = getprop("/services/ext-pwr/enable") or 0;
+    var external_volts = 28.0*EXT_plugged;
     var power_selector = getprop("controls/electric/power-source");
-    var EXT_plugged = getprop("/services/ext-pwr/enable");
     var autostart = getprop("/controls/electric/autostart");
 
     load = 0.0;
@@ -285,19 +287,14 @@ update_virtual_bus = func( dt ) {
         bus_volts = alternator2_volts;
         power_source = "alternator2";
         }
-        if (EXT_plugged == 1 and power_selector == -1){
+    if (EXT_plugged == 1 and power_selector == -1){
         setprop("/controls/electric/external-power", 1);
-        } else {
+    } else {
         setprop("/controls/electric/external-power", 0);
         }
-        if (APU_plugged == 1 and power_selector == -2){
-        setprop("/controls/electric/APU", 1);
-        } else {
-        setprop("/controls/electric/APU", 0);
-        }
-    if ( APU.getBoolValue() and ( apu_volts > bus_volts) ) {
-        power_source = "apu";
-        bus_volts = apu_volts;
+    if (alternator3_volts > bus_volts) {
+        power_source = "alternator3_volts";
+        bus_volts = alternator3_volts;
         }
     if ( EXT.getBoolValue() and ( external_volts > bus_volts) ) {
         power_source = "external";
@@ -328,12 +325,15 @@ update_virtual_bus = func( dt ) {
         battery.apply_load( -battery.charge_amps, dt );
         }
 
+        setprop("/systems/electrical/power-source", power_source);
+        
     ammeter_ave = 0.8 * ammeter_ave + 0.2 * ammeter;
 
    Amps.setValue(ammeter_ave);
    Volts.setValue(bus_volts);
     alternator1.apply_load(load);
     alternator2.apply_load(load);
+    alternator3.apply_load(load);
 
 return load;
 }

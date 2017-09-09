@@ -10,14 +10,14 @@
   <path>panels/hud/hud.xml</path>
 </model>
 <model>
-  <path>panels/PFD/PFD3d.xml</path>
+  <path>Instruments/PFD/PFD.xml</path>
     <offsets>
 <x-m>-12.31</x-m>
 <y-m>-0.48</y-m>
 <z-m>2.125</z-m>
 <pitch-deg>-16.2</pitch-deg>
     </offsets>
-</model>
+</model><!--
 <model>
   <path>panels/PFD/PFD3d.xml</path>
     <offsets>
@@ -26,11 +26,11 @@
 <z-m>2.125</z-m>
 <pitch-deg>-16.2</pitch-deg>
     </offsets>
-</model>
-<!--NDs-->
+</model>-->
+<!--NDs--><!--
 <model>
   <path>panels/ND/ND.xml</path>
-</model>
+</model>-->
 <!--CDUs-->
 <model>
   <path>panels/CDU/CDU.xml</path>
@@ -59,7 +59,10 @@
   <path>panels/ESID/ESID.xml</path>
 </model>-->
 <model>
-  <path>Instruments/MFD/MFD.xml</path>
+  <path>Instruments/ED/ED.xml</path>
+</model>
+<model>
+  <path>Instruments/MFD/MFD.pilot.xml</path>
 </model>
 
 <model>

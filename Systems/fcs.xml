@@ -151,8 +151,8 @@
       <input>fcs/rudder-cmd-norm</input>
       <input>fcs/yaw-trim-cmd-norm</input>
       <clipto>
-        <min> -0.35 </min>
-        <max>  0.35 </max>
+        <min> -1 </min>
+        <max>  1 </max>
       </clipto>
    </summer>
 

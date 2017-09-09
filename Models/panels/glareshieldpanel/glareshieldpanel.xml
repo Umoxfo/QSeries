@@ -347,6 +347,7 @@
                 <property>/autopilot/settings/nav-source</property>
 		<value>NAV1</value>
 		<value>NAV2</value>
+		<value>FMS</value>
             </binding>
         </action>
     </animation>

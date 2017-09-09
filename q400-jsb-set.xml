@@ -229,6 +229,12 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
     
 	</sim>
 	
+	<autopilot>
+		<settings>
+			<nav-source type="string">NAV1</nav-source>
+		</settings>
+	</autopilot>
+	
 	<payload>
 		<weight n="0">
 			<name>Cockpit Crew</name>
@@ -330,12 +336,18 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 	</instrumentation>
 
 	<nasal>  
+		<canvas_ed>
+			<file>Models/Instruments/ED/ED.nas</file>
+		</canvas_ed>
 		<canvas_mfd>
-			<file>Models/Instruments/MFD/MFD.nas</file>
+			<file>Models/Instruments/MFD/MFD.pilot.nas</file>
 		</canvas_mfd>
+		<canvas_pfd>
+			<file>Models/Instruments/PFD/PFD.nas</file>
+		</canvas_pfd><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
-		</ND>
+		</ND>-->
 		<q400>
 			<file>Nasal/limits.nas</file>
 			<file>Nasal/liveries.nas</file>
