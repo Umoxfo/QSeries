@@ -63,8 +63,29 @@ var canvas_MFDpilot_base = {
 		canvas.parsesvg(canvas_group, file, {'font-mapper': font_mapper});
 
 		var svg_keys = me.getKeys();
+		
 		foreach(var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
+			var svg_keys = me.getKeys();
+			foreach (var key; svg_keys) {
+			me[key] = canvas_group.getElementById(key);
+			var clip_el = canvas_group.getElementById(key ~ "_clip");
+			if (clip_el != nil) {
+				clip_el.setVisible(0);
+				var tran_rect = clip_el.getTransformedBounds();
+				var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
+				tran_rect[1], # 0 ys
+				tran_rect[2], # 1 xe
+				tran_rect[3], # 2 ye
+				tran_rect[0]); #3 xs
+				#   coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
+				me[key].set("clip", clip_rect);
+				me[key].set("clip-frame", canvas.Element.PARENT);
+			}
+			if(key=="horizon"){
+				var center=me[key].getCenter();
+			}
+			}
 		}
 
 		me.page = canvas_group;
@@ -544,11 +565,10 @@ var canvas_MFDpilot_pfd = {
 		return m;
 	},
 	getKeys: func() {
-		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer1","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits"];
+		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits"];
 	},
 	update: func() {
-	
-		#AUTOPILOT INDICATIONS
+	#AUTOPILOT INDICATIONS
 		#AP ON
 		if((getprop("/it-autoflight/input/ap1") or 0)==1){
 			me["AP"].show();
@@ -583,22 +603,30 @@ var canvas_MFDpilot_pfd = {
 		var ap_mode_vert=getprop("it-autoflight/mode/vert");
 		if(ap_mode_vert=="ALT CAP"){
 			me["ap.vert.eng"].setText("ALT*");
+			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="FPA"){
 			me["ap.vert.eng"].setText("VNAV PATH");
+			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="ALT HLD"){
 			me["ap.vert.eng"].setText("ALT");
+			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="G/S"){
 			me["ap.vert.eng"].setText("GS");
+			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="V/S"){
 			me["ap.vert.eng"].setText("VS");
+			me["ap.vert.value"].show();
 			me["ap.vert.value"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/vs"))));
 		}else if(ap_mode_vert=="G/A CLB"){
 			me["ap.vert.eng"].setText("GA");
+			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="SPD CLB" or ap_mode_vert=="SPD DSC"){
 			me["ap.vert.eng"].setText("IAS");
+			me["ap.vert.value"].show();
 			me["ap.vert.value"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/spd-kts"))));
 		}else{
 			me["ap.vert.eng"].setText("");
+			me["ap.vert.value"].hide();
 		}
 		
 		me["ap.vert.arm"].hide();
@@ -606,6 +634,22 @@ var canvas_MFDpilot_pfd = {
 		
 		
 		me["ap-alt"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/alt"))));
+		
+		var altbugdiff=getprop("/instrumentation/pfd/alt-bug-diff") or 0;
+		if(altbugdiff<-500){
+			me["alt.bug"].hide();
+			me["alt.bug.btm"].show();
+			me["alt.bug.top"].hide();
+		}else if(altbugdiff>500){
+			me["alt.bug"].hide();
+			me["alt.bug.btm"].hide();
+			me["alt.bug.top"].show();
+		}else{
+			me["alt.bug"].show();
+			me["alt.bug.btm"].hide();
+			me["alt.bug.top"].hide();
+			me["alt.bug"].setTranslation(0,altbugdiff*(-0.5));
+		}
 		
 		var ias_bug1=getprop("/instrumentation/PFD/ias-bugs/bug1");
 		var ias_bug2=getprop("/instrumentation/PFD/ias-bugs/bug2");
@@ -617,6 +661,7 @@ var canvas_MFDpilot_pfd = {
 			me["IASbug1symbol"].show();
 			me["IASbug1digit"].show();
 			me["IASbug1"].show();
+			me["IASbug1"].setTranslation(0,getprop("/instrumentation/pfd/ias-bug1-diff")*6.34);
 			me["IASbug1digit"].setText(sprintf("%s", math.round(ias_bug1)));
 		}
 		if(ias_bug2<50){
@@ -627,12 +672,27 @@ var canvas_MFDpilot_pfd = {
 			me["IASbug2symbol"].show();
 			me["IASbug2digit"].show();
 			me["IASbug2"].show();
+			me["IASbug2"].setTranslation(0,getprop("/instrumentation/pfd/ias-bug2-diff")*6.34);
 			me["IASbug2digit"].setText(sprintf("%s", math.round(ias_bug2)));
 		}
-		var airspeed=getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
-		me["asitape"].setTranslation(0,(airspeed or 0)*6.33);
-		me["asitapevmo"].setTranslation(0,(airspeed or 0)*6.33);
-		me["IAS"].setText(sprintf("%s", math.round(airspeed or 0)));
+		var airspeed=getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") or 0;
+		me["asitape"].setTranslation(0,airspeed*6.33);
+		me["asitapevmo"].setTranslation(0,airspeed*6.33);
+		var asi10=getprop("/instrumentation/pfd/asi-10") or 0;
+		if(asi10!=0){
+			me["IAS.10"].show();
+			me["IAS.10"].setText(sprintf("%s", math.round((10*math.mod(asi10/10,1)))));
+		}else{
+			me["IAS.10"].hide();
+		}
+		var asi100=getprop("/instrumentation/pfd/asi-100") or 0;
+		if(asi100!=0){
+			me["IAS.100"].show();
+			me["IAS.100"].setText(sprintf("%s", math.round(asi100)));
+		}else{
+			me["IAS.100"].hide();
+		}
+		me["asi.rollingdigits"].setTranslation(0,math.round((10*math.mod(airspeed/10,1))*42.86, 0.1));
 		#me["asi.trend.up"].setTranslation(0,((getprop("/instrumentation/pfd/speed-trend-up")or 0)*(-230)));
 		#me["asi.trend.down"].setTranslation(0,((getprop("/instrumentation/pfd/speed-trend-down")or 0)*(-230)));
 		
@@ -696,18 +756,23 @@ var canvas_MFDpilot_pfd = {
 		me["QNH"].setText(sprintf("%s", math.round(getprop("/instrumentation/altimeter/setting-hpa"))));
 		
 		var alt=getprop("/instrumentation/altimeter/indicated-altitude-ft") or 0;
-#		#me["alt.tape"].setTranslation(0,(altitude or 0)*0.4933);
 
 		me["alt.tape"].setTranslation(0,(alt - roundToNearest(alt, 1000))*0.4933);
 		if (roundToNearest(alt, 1000) == 0) {
+			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
+			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
 			var altNumLow = "-5";
 			var altNumHigh = "5";
 			var altNumCenter = altNumHigh-5;
 		} elsif (roundToNearest(alt, 1000) > 0) {
+			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
+			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
 			var altNumLow = (roundToNearest(alt, 1000)/1000 - 1)*10+5;
 			var altNumHigh = (roundToNearest(alt, 1000)/1000)*10+5;
 			var altNumCenter = altNumHigh-5;
 		} elsif (roundToNearest(alt, 1000) < 0) {
+			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
+			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
 			var altNumLow = roundToNearest(alt, 1000)/100+5;
 			var altNumHigh = (roundToNearest(alt, 1000)/1000 + 1)*10+5 ;
 			var altNumCenter = altNumLow-5;
@@ -723,10 +788,6 @@ var canvas_MFDpilot_pfd = {
 		
 		me["alt.low.digits"].setTranslation(0,math.round((10*math.mod(alt100,1))*15, 0.1));
 		
-		#altNumLow=10*altNumLow+5;
-		#altNumCenter=10*altNumCenter;
-		#altNumHigh=10*altNumHigh+5;
-		
 		me["altTextLow1"].setText(sprintf("%s", altNumLow));
 		me["altTextHigh1"].setText(sprintf("%s", altNumCenter));
 		me["altTextHigh2"].setText(sprintf("%s", altNumHigh));
@@ -739,26 +800,16 @@ var canvas_MFDpilot_pfd = {
 		me["VS"].setText(sprintf("%.1f", (fpm or 0)/1000));
 		me["VS.needle"].setRotation((getprop("/instrumentation/pfd/vs-needle") or 0)*DC);
 		
-		
-		#var pitch = (getprop("orientation/pitch-rate-degps") or 0)*0.0325;
-		#var path = getprop("orientation/path-deg");
+		var pitch = (getprop("orientation/pitch-deg") or 0);
 		var roll =  getprop("orientation/roll-deg") or 0;
-		#var rollrate =  getprop("orientation/roll-rate-degps") or 0;
+		var x=math.sin(-3.14/180*roll)*pitch*10.6;
+		var y=math.cos(-3.14/180*roll)*pitch*10.6;
 		
-		#me.h_trans = me["horizon"].createTransform();
-		#me.h_rot = me["horizon"].createTransform();
+		me["horizon"].setTranslation(x,y);
+		me["horizon"].setRotation(roll*(-DC),me["horizon"].getCenter());
 		
-		#var c4 = me["horizon"].getCenter();
-		#me["horizon"].set("clip", "rect(220.816, 693.673, 750.887, 192.606)");
-		#debug.dump(me["horizon"].getCenter());
-		#me.h_rot.setRotation(-rollrate*DC*0.1,me["horizon"].getCenter());
-		#me.h_trans.setTranslation(0,pitch*11.4625);
-		
-		me["rollpointer1"].setRotation(-roll*(-DC));
-		
-		#me["ladder"].set("clip", clip_rect);
-		
-		#me["horizon"].setTranslation(0, pitch);
+		me["rollpointer"].setRotation(-roll*(-DC));
+		me["rollpointer2"].setTranslation(math.round(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid") or 0)*5, 0);
 		
 		settimer(func me.update(), 0.02);
 	},

@@ -480,6 +480,41 @@
       <output>instrumentation/PFD/alt-1</output>
   </filter>
   
+  
+  <filter>
+      <name>Airspeed 10</name> 
+      <type>gain</type>
+			<gain>1.0</gain> 
+     <input>
+	     <expression>
+		     <floor>
+			     <div>
+				<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<value>10</value>
+			     </div>
+		</floor>
+	</expression>
+      </input>
+      <output>instrumentation/pfd/asi-10</output>
+  </filter>
+  
+  <filter>
+      <name>Airspeed 100</name> 
+      <type>gain</type>
+			<gain>1.0</gain> 
+     <input>
+	     <expression>
+		     <floor>
+			     <div>
+				<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<value>100</value>
+			     </div>
+		</floor>
+	</expression>
+      </input>
+      <output>instrumentation/pfd/asi-100</output>
+  </filter>
+  
   <filter>
       <name>VSneedle</name>
       <type>gain</type>

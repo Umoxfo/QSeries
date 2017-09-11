@@ -319,6 +319,9 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 	</controls>
 
 	<instrumentation>
+		<comm n="0">
+			<selected type="bool">0</selected>
+		</comm>
 		<elt>
 			<on type="bool">0</on>
 			<armed type="bool">1</armed>
@@ -354,7 +357,10 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 		</canvas_mfd>
 		<canvas_pfd>
 			<file>Models/Instruments/PFD/PFD.nas</file>
-		</canvas_pfd><!--
+		</canvas_pfd>
+		<canvas_team>
+			<file>Models/Instruments/TEAM/TEAM.nas</file>
+		</canvas_team><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
 		</ND>-->
