@@ -360,13 +360,13 @@ var canvas_PFD_main = {
 		me["horizon"].setTranslation(x,y);
 		me["horizon"].setRotation(roll*(-DC),me["horizon"].getCenter());
 		
-		me["rollpointer"].setRotation(-roll*(-DC));
+		me["rollpointer"].setRotation(roll*(-DC));
 		me["rollpointer2"].setTranslation(math.round(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid") or 0)*5, 0);
 		
 		
 		
 		
-		settimer(func me.update(), 0.1);
+		settimer(func me.update(), 0.02);
 	},
 };
 
@@ -382,7 +382,7 @@ var canvas_PFD_avail = {
 	},
 	update: func() {
 		
-		settimer(func me.update(), 0.1);
+		settimer(func me.update(), 0.02);
 	},
 };
 

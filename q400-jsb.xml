@@ -20,7 +20,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<vtailarm  unit="FT" >   16.07 </vtailarm>
 
 	   <location name="AERORP" unit="M">
-			<x> 0.18077 </x>
+			<x> 0.39127 </x>
 			<y> 0 </y>
 			<z> 1.71115 </z>
 		</location>
@@ -51,7 +51,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<emptywt unit="LBS">39284</emptywt>
 
 		<location name="CG" unit="M">
-			<x> 0.18077 </x>
+			<x> 0.37127 </x>
 			<y> 0 </y>
 			<z> 1.71115 </z>
 		</location>
@@ -59,88 +59,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Cockpit Crew">
 			<weight unit="LBS">400</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Engine 1">
-			<weight unit="LBS">5200.7</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Engine 2">
-			<weight unit="LBS">5200.7</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="PAX 0A (60 seats)">
-			<weight unit="LBS">6600</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="PAX 0B (60 seats)">
-			<weight unit="LBS">6600</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="PAX 0C (54 seats)">
-			<weight unit="LBS">5940</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Cargo Hold 1">
-			<weight unit="LBS">2000</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Cargo Hold 3">
-			<weight unit="LBS">2000</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Cargo Hold 4">
-			<weight unit="LBS">1500</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
-				<y> 0 </y>
-				<z> 1.71115 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Cargo Hold 5">
-			<weight unit="LBS">2000</weight>
-			<location name="POINTMASS" unit="M">
-				<x> 0.18077 </x>
+				<x> 0.37127 </x>
 				<y> 0 </y>
 				<z> 1.71115 </z>
 			</location>
@@ -418,7 +337,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 		<tank type="FUEL"> <!-- Left Wing Tank -->
 			<location unit="M">
-				<x> 0.18077 </x>
+				<x> 0.37127 </x>
 				<y> 0 </y>
 				<z> 1.71115 </z>
 			</location>
@@ -431,7 +350,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 		<tank type="FUEL"> <!-- Right Wing Tank -->
 			<location unit="M">
-				<x> 0.18077 </x>
+				<x> 0.37127 </x>
 				<y> 0 </y>
 				<z> 1.71115 </z>
 			</location>

@@ -335,17 +335,17 @@ DHC8 -400Q by Alex Park Jan 2010
 			<roll>
 				<umin>-0.50</umin>
 				<umax>0.50</umax>
-				<kp>0.02</kp>
-				<kp-vloc>0.04</kp-vloc>
-				<ti>10.0</ti>
-				<td>0.000001</td>
+				<kp>0.05</kp>
+				<kp-vloc>0.06</kp-vloc>
+				<ti>5.0</ti>
+				<td>0.0001</td>
 			</roll>
 			<pitch>
 				<umin>-0.30</umin>
 				<umax>0.30</umax>
-				<kp>-0.03</kp>
-				<ti>10.0</ti>
-				<td>0.000001</td>
+				<kp>-0.06</kp>
+				<ti>5.0</ti>
+				<td>0.0001</td>
 			</pitch>
 			<cmd>
 				<roll-kp>-1.5</roll-kp>
