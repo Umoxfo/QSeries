@@ -263,10 +263,6 @@ DHC8 -400Q by Alex Park Jan 2010
 		
 		<help>
 			<key>
-				<name>q</name>
-				<desc>Disengage Autopilot</desc>
-			</key>
-			<key>
 				<name>w</name>
 				<desc>Walk forward towards view</desc>
 			</key>
@@ -373,13 +369,13 @@ DHC8 -400Q by Alex Park Jan 2010
 			<!-- Enable Thrust Retard -->
 			<retard-enable>0</retard-enable>
 			<!-- AGL to Thrust Retard -->
-			<togaspd>170</togaspd>
+			<togaspd>121</togaspd>
 			<!-- V2 + 10kts -->
 			<lat-agl-ft>200</lat-agl-ft>
 			<!-- Set to 999999 if you do not want T/O to change automatically to HDG, or LNAV -->
 			<reduc-agl-ft>1500</reduc-agl-ft>
 			<!-- Set to 999999 if you do not want TOGA to change automatically to FLCH -->
-			<autoland-without-ap>1</autoland-without-ap>
+			<autoland-without-ap>0</autoland-without-ap>
 			<!-- Engage LAND and FLARE Modes even if the AP is off -->
 		</settings>
 	</it-autoflight>
