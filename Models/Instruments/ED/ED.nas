@@ -4,8 +4,8 @@
 
 #sources: http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf https://quizlet.com/2663067/q400-limitations-flash-cards/ http://www.smartcockpit.com/docs/Q400-Indicating_and_Recording_Systems.pdf
 
-var MFD_only = nil;
-var MFD_display = nil;
+var ED_only = nil;
+var ED_display = nil;
 var page = "only";
 
 setprop("/engines/engine[0]/thruster/torque", 0);
@@ -31,7 +31,7 @@ setprop("/controls/engines/engine[1]/condition-lever-state", 0);
 setprop("/controls/engines/engine[0]/throttle-int", 0);
 setprop("/controls/engines/engine[1]/throttle-int", 0);
 
-var canvas_MFD_base = {
+var canvas_ED_base = {
 	init: func(canvas_group, file) {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
@@ -53,26 +53,64 @@ var canvas_MFD_base = {
 	},
 	update: func() {
 		if (getprop("/systems/electrical/volts") >= 10) {
-				MFD_only.page.show();
+				ED_only.page.show();
 		} else {
-			MFD_only.page.hide();
+			ED_only.page.hide();
 		}
 		
 		settimer(func me.update(), 0.02);
 	},
 };
 
-var canvas_MFD_only = {
+var canvas_ED_only = {
 	new: func(canvas_group, file) {
-		var m = { parents: [canvas_MFD_only,canvas_MFD_base] };
+		var m = { parents: [canvas_ED_only,canvas_ED_base] };
 		m.init(canvas_group, file);
 
 		return m;
 	},
 	getKeys: func() {
-		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp"];
+		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp","thrustdtL","thrustdtR","powerpctL","powerpctR"];
 	},
 	update: func() {
+		var thrustmode0=getprop("/FADEC/thrust-mode[0]") or "";
+		var thrustmode1=getprop("/FADEC/thrust-mode[1]") or "";
+		me["thrustdtL"].setText(thrustmode0 or "");
+		me["thrustdtR"].setText(thrustmode1 or "");
+		
+		var powercmd0=getprop("/fcs/throttle-cmd-norm[0]") or 0;
+		var powercmd1=getprop("/fcs/throttle-cmd-norm[1]") or 0;
+		if(thrustmode0=="NTOP"){
+			var pwrpct0=powercmd0/0.72*100;
+		}else if(thrustmode0=="MTOP"){
+			var pwrpct0=powercmd0/0.8*100;
+		}else if(thrustmode0=="MCL"){
+			var pwrpct0=powercmd0/0.65*100;
+		}else if(thrustmode0=="MCR"){
+			var pwrpct0=powercmd0/0.62*100;
+		}else if(thrustmode0=="EMERG"){
+			var pwrpct0=powercmd0*100;
+		}else{
+			var pwrpct0=0;
+		}
+		
+		if(thrustmode1=="NTOP"){
+			var pwrpct1=powercmd1/0.72*100;
+		}else if(thrustmode1=="MTOP"){
+			var pwrpct1=powercmd1/0.8*100;
+		}else if(thrustmode1=="MCL"){
+			var pwrpct1=powercmd1/0.65*100;
+		}else if(thrustmode1=="MCR"){
+			var pwrpct1=powercmd1/0.62*100;
+		}else if(thrustmode1=="EMERG"){
+			var pwrpct1=powercmd1*100;
+		}else{
+			var pwrpct1=0;
+		}
+		
+		me["powerpctL"].setText(sprintf("%s", math.round(pwrpct0)));
+		me["powerpctR"].setText(sprintf("%s", math.round(pwrpct1)));
+		
 	
 		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-15000))*100;
 		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-15000))*100;
@@ -225,22 +263,22 @@ var canvas_MFD_only = {
 };
 
 setlistener("sim/signals/fdm-initialized", func {
-	MFD_display = canvas.new({
+	ED_display = canvas.new({
 		"name": "MFD",
 		"size": [1024, 1536],
 		"view": [1024, 1536],
 		"mipmapping": 1
 	});
-	MFD_display.addPlacement({"node": "MFD.screen"});
-	var groupMFD = MFD_display.createGroup();
+	ED_display.addPlacement({"node": "ED.screen"});
+	var groupED = ED_display.createGroup();
 
-	MFD_only = canvas_MFD_only.new(groupMFD, "Aircraft/Q400/Models/Instruments/MFD/MFD.svg");
+	ED_only = canvas_ED_only.new(groupED, "Aircraft/Q400/Models/Instruments/ED/ED.svg");
 
-	MFD_only.update();
-	canvas_MFD_base.update();
+	ED_only.update();
+	canvas_ED_base.update();
 });
 
-var showMFD = func {
+var showED = func {
 	var dlg = canvas.Window.new([512, 768], "dialog").set("resize", 1);
-	dlg.setCanvas(MFD_display);
+	dlg.setCanvas(ED_display);
 }

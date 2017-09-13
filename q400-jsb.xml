@@ -9,6 +9,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</fileheader>
 
 	<metrics>
+	
 		<wingarea  unit="FT2">  689.00 </wingarea>
 		<wingspan  unit="FT" >   93.25 </wingspan>
 		<wing_incidence>          1.03 </wing_incidence>
@@ -35,9 +36,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<y> 0 </y>
 			<z> 0 </z>
 		</location>
+		
 	</metrics>
 
 	<mass_balance>
+	
 		<ixx unit="SLUG*FT2"> 611903</ixx>
 		<iyy unit="SLUG*FT2">1735389</iyy>
 		<izz unit="SLUG*FT2">2301293</izz>
@@ -146,6 +149,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</mass_balance>
 
 	<ground_reactions>
+	
 		<contact type="BOGEY" name="NOSE_LG">
 			<location unit="M">
 				<x> -12.54159 </x>
@@ -257,7 +261,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-
+		
 		<contact type="STRUCTURE" name="TAIL_1">
 			<location unit="M">
 				<x> 16.44197 </x>
@@ -321,7 +325,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
+
 		<contact type="STRUCTURE" name="WING_TIP_1">
 			<location unit="M">
 				<x> 0.51977 </x>
@@ -353,6 +357,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
+		
 	</ground_reactions>
 
 	<propulsion>
@@ -436,6 +441,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
+		
 	</propulsion>
 
 	<system file="pushback" />

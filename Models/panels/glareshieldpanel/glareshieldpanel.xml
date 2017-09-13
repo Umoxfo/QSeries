@@ -160,6 +160,11 @@
                 <property>it-autoflight/input/vert</property>
                 <value>4</value>
             </binding>
+	    <binding>
+		    <command>property-assign</command>
+		    <property>it-autoflight/input/spd-kts</property>
+		    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+	    </binding>
         </action>
     </animation>
 
@@ -347,6 +352,7 @@
                 <property>/autopilot/settings/nav-source</property>
 		<value>NAV1</value>
 		<value>NAV2</value>
+		<value>FMS</value>
             </binding>
         </action>
     </animation>
@@ -384,11 +390,31 @@
         <drag-direction>vertical</drag-direction>
         <action>
             <binding>
+		    <condition>
+			    <equals>
+				    <property>it-autoflight/input/vert/</property>
+				    <value>1</value>
+			    </equals>
+		    </condition>
                 <command>property-adjust</command>
                 <property>it-autoflight/input/vs</property>
                 <factor>100</factor>
                 <min>-5000</min>
                 <max>5000</max>                
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+		    <condition>
+			    <equals>
+				    <property>it-autoflight/input/vert/</property>
+				    <value>4</value>
+			    </equals>
+		    </condition>
+                <command>property-adjust</command>
+                <property>it-autoflight/input/spd-kts</property>
+                <factor>-5</factor>
+                <min>120</min>
+                <max>300</max>                
                 <wrap>false</wrap>
             </binding>
         </action>

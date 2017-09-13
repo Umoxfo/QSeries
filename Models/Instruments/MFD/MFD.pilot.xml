@@ -2,17 +2,17 @@
 
 <PropertyList>
 
-	<path>MFD.ac</path>
+	<path>MFD.pilot.ac</path>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>MFD.screen</object-name>
+		<object-name>MFDpilot.screen</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_mfd.showMFD();</script>
+				<script>canvas_mfd.showMFDpilot();</script>
 			</binding>
 		</action>
 	</animation>

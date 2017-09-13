@@ -322,7 +322,7 @@ DHC8 -400Q by Alex Park Jan 2010
 			<property-rule n="100">
 				<path>Aircraft/Q400/Systems/pfd.xml</path>
 			</property-rule>
-			<property-rule n="100">
+			<property-rule n="101">
 				<path>Aircraft/Q400/Systems/MFD.xml</path>
 			</property-rule>
 		</systems>
@@ -515,6 +515,9 @@ DHC8 -400Q by Alex Park Jan 2010
 			<running type="int">0</running>
 			<test type="double">0</test>
 		</team>
+		<radar-altimeter>
+			<serviceable type="bool">1</serviceable>
+		</radar-altimeter>
 	</instrumentation>
 	<engines>
 		<APU>

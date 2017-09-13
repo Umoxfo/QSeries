@@ -1,0 +1,17 @@
+<PropertyList>
+
+<path>PFD.ac</path>
+<animation>
+	<type>pick</type>
+	<object-name>PFD.screen</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<command>nasal</command>
+			<script>canvas_pfd.showPFD();</script>
+		</binding>
+	</action>
+</animation>
+    
+</PropertyList>

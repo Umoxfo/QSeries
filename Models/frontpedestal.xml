@@ -406,5 +406,44 @@
       </binding>
     </action>
   </animation>
+  
+  
+  <animation>
+        <type>pick</type>
+        <object-name>fueltransfer</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/fuel/transfer</property>
+		<step>1</step>
+		<min>-1</min>
+		<max>1</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/fuel/transfer</property>
+		<step>-1</step>
+		<min>-1</min>
+		<max>1</max>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+	    <type>rotate</type>
+		<object-name>fueltransfer</object-name>
+                <property>/controls/fuel/transfer</property>
+		<factor>-30</factor>
+		<axis><x>1</x></axis>
+    <center>
+      <y-m> -0.00235</y-m>
+      <z-m>  1.98766</z-m>
+    </center>
+</animation>
 
 </PropertyList>

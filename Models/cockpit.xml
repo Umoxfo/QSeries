@@ -561,4 +561,14 @@
             <z>0</z>
         </axis>
     </animation>
+    
+    
+	
+	<effect>
+		<inherits-from>Effects/interior/interior-shadow</inherits-from>
+		<object-name>panel.003</object-name>
+		<object-name>seatP1</object-name>
+		<object-name>seatCP1</object-name>
+		<object-name>throttlepanel</object-name>
+	</effect>
 </PropertyList>

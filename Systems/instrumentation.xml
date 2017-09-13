@@ -12,6 +12,11 @@ This file selects the instrumentation modules that should be available.
         <name>adf</name>
         <number>0</number>
     </adf>
+    
+    <adf>
+        <name>adf</name>
+        <number>1</number>
+    </adf>
 
     <airspeed-indicator>
         <name>airspeed-indicator</name>
@@ -113,6 +118,11 @@ This file selects the instrumentation modules that should be available.
         <name>radar</name>
         <number>0</number>
     </radar>
+    
+    <radar-altimeter>
+	    <name>radar-altimeter</name>
+	    <number>0</number>
+    </radar-altimeter>
 
     <tcas>
         <name>tcas</name>
