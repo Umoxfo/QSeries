@@ -49,7 +49,7 @@ setprop("/controls/engines/engine[1]/throttle-int", 0);
 setprop("/test-value", 1);
 
 var canvas_PFD_base = {
-	init: func(canvas_group, file) {
+	init: func(canvas_group, file, screen) {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
 		};
@@ -76,12 +76,14 @@ var canvas_PFD_base = {
 				me[key].set("clip", clip_rect);
 				me[key].set("clip-frame", canvas.Element.PARENT);
 			}
-			if(key=="horizon"){
-				var center=me[key].getCenter();
-			}
 			}
 		}
-
+		
+		if(screen=="main"){
+			me.h_trans = me["horizon"].createTransform();
+			me.h_rot = me["horizon"].createTransform();
+		}
+			
 		me.page = canvas_group;
 
 		return me;
@@ -111,7 +113,7 @@ var canvas_PFD_base = {
 var canvas_PFD_main = {
 	new: func(canvas_group, file) {
 		var m = { parents: [canvas_PFD_main,canvas_PFD_base] };
-		m.init(canvas_group, file);
+		m.init(canvas_group, file, "main");
 
 		return m;
 	},
@@ -357,8 +359,11 @@ var canvas_PFD_main = {
 		var x=math.sin(-3.14/180*roll)*pitch*10.6;
 		var y=math.cos(-3.14/180*roll)*pitch*10.6;
 		
-		me["horizon"].setTranslation(x,y);
-		me["horizon"].setRotation(roll*(-DC),me["horizon"].getCenter());
+		#me["horizon"].setTranslation(x,y);
+		#me["horizon"].setRotation(roll*(-DC),me["horizon"].getCenter());
+		
+		me.h_trans.setTranslation(0,pitch*10.63);
+		me.h_rot.setRotation(-roll*DC,me["horizon"].getCenter());
 		
 		me["rollpointer"].setRotation(roll*(-DC));
 		me["rollpointer2"].setTranslation(math.round(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid") or 0)*5, 0);
@@ -373,7 +378,7 @@ var canvas_PFD_main = {
 var canvas_PFD_avail = {
 	new: func(canvas_group, file) {
 		var m = { parents: [canvas_PFD_avail,canvas_PFD_base] };
-		m.init(canvas_group, file);
+		m.init(canvas_group, file, "avail");
 
 		return m;
 	},
