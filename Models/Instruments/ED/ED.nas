@@ -80,29 +80,31 @@ var canvas_ED_only = {
 		
 		var powercmd0=getprop("/fcs/throttle-cmd-norm[0]") or 0;
 		var powercmd1=getprop("/fcs/throttle-cmd-norm[1]") or 0;
-		if(thrustmode0=="NTOP"){
+		var rvs0=getprop("/engines/engine[0]/reversed");
+		var rvs1=getprop("/engines/engine[0]/reversed");
+		if(thrustmode0=="NTOP" and !rvs0){
 			var pwrpct0=powercmd0/0.72*100;
-		}else if(thrustmode0=="MTOP"){
+		}else if(thrustmode0=="MTOP" and !rvs0){
 			var pwrpct0=powercmd0/0.8*100;
-		}else if(thrustmode0=="MCL"){
+		}else if(thrustmode0=="MCL" and !rvs0){
 			var pwrpct0=powercmd0/0.65*100;
-		}else if(thrustmode0=="MCR"){
+		}else if(thrustmode0=="MCR" and !rvs0){
 			var pwrpct0=powercmd0/0.62*100;
-		}else if(thrustmode0=="EMERG"){
+		}else if(thrustmode0=="EMERG" and !rvs0){
 			var pwrpct0=powercmd0*100;
 		}else{
 			var pwrpct0=0;
 		}
 		
-		if(thrustmode1=="NTOP"){
+		if(thrustmode1=="NTOP" and !rvs1){
 			var pwrpct1=powercmd1/0.72*100;
-		}else if(thrustmode1=="MTOP"){
+		}else if(thrustmode1=="MTOP" and !rvs1){
 			var pwrpct1=powercmd1/0.8*100;
-		}else if(thrustmode1=="MCL"){
+		}else if(thrustmode1=="MCL" and !rvs1){
 			var pwrpct1=powercmd1/0.65*100;
-		}else if(thrustmode1=="MCR"){
+		}else if(thrustmode1=="MCR" and !rvs1){
 			var pwrpct1=powercmd1/0.62*100;
-		}else if(thrustmode1=="EMERG"){
+		}else if(thrustmode1=="EMERG" and !rvs1){
 			var pwrpct1=powercmd1*100;
 		}else{
 			var pwrpct1=0;
@@ -112,10 +114,10 @@ var canvas_ED_only = {
 		me["powerpctR"].setText(sprintf("%s", math.round(pwrpct1)));
 		
 	
-		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-15000))*100;
-		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-15000))*100;
-		var throttleL=getprop("/controls/engines/engine[0]/throttle-int") or 0;
-		var throttleR=getprop("/controls/engines/engine[1]/throttle-int") or 0;
+		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-13550.7))*100;
+		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-13550.7))*100;
+		var throttleL=getprop("/fcs/throttle-cmd-norm") or 0;
+		var throttleR=getprop("/fcs/throttle-cmd-norm[1]") or 0;
 	
 		me["TRQL.needle"].setRotation(TRQLpercent*0.034);
 		me["TRQL.target"].setRotation(throttleL*3.4);
