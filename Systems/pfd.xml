@@ -599,4 +599,49 @@
 	<max>42</max>
       <output>instrumentation/pfd/ias-bug2-diff</output>
 </filter>
+
+
+<!--AP Lights-->
+
+	<filter>
+    	<name>AP Lights</name> 
+      <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
+      <gain>1.0</gain>
+      <input>
+	      <expression>
+		      <dif>
+			      <prod>
+					<property>/systems/electrical/volts</property>
+					<property>/it-autoflight/output/ap1</property>
+				</prod>
+				<value>25</value>
+			</dif>
+		</expression>
+      </input>
+      <output>/it-autoflight/output/ap1-lights</output>
+      <min>0</min>
+      <max>1</max>
+  </filter>
+
+	<filter>
+    	<name>YD Lights</name> 
+      <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
+      <gain>1.0</gain>
+      <input>
+	      <expression>
+		      <dif>
+			      <prod>
+					<property>/systems/electrical/volts</property>
+					<property>/it-autoflight/input/yd</property>
+				</prod>
+				<value>25</value>
+			</dif>
+		</expression>
+      </input>
+      <output>/it-autoflight/output/yd-lights</output>
+      <min>0</min>
+      <max>1</max>
+  </filter>
 </PropertyList>

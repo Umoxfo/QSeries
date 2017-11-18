@@ -1752,5 +1752,108 @@
 		<max>30</max>
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
+	
+	<!--YAW DAMPER (copied and modified from it-fbw.xml (IDG-A32X))-->
+	
+	<pid-controller>
+		<name>YAW DAMPER/TURN COORDINATOR</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/input/yd</property>
+						<value>1</value>
+					</equals>
+					<greater-than-equals>
+						<property>/position/gear-agl-ft</property>
+						<value>50</value>
+					</greater-than-equals>
+					<not-equals>
+						<property>/it-autoflight/output/lat</property>
+						<value>4</value>
+					</not-equals>
+					<less-than>
+						<property>/controls/flight/rudder</property>
+						<value>0.1</value>
+					</less-than>
+					<greater-than>
+						<property>/controls/flight/rudder</property>
+						<value>-0.1</value>
+					</greater-than>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+		</input>
+		<reference>
+			<value>0</value>
+		</reference>
+		<output>
+			<property>/controls/flight/rudder-cmd</property>
+		</output>
+		<config>
+			<Kp>0.25</Kp>
+			<beta>1</beta>
+			<alpha>0.1</alpha>
+			<gamma>0</gamma>
+			<Ti>3.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>-0.2</u_min>
+			<u_max>0.2</u_max>
+		</config>
+	</pid-controller>
+	<filter>
+		<name>RUDDER WITH YD OFF</name>
+		<enable>
+			<condition>
+				<or>
+					<not-equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</not-equals>
+					<not-equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</not-equals>
+					<not-equals>
+						<property>/it-autoflight/input/yd</property>
+						<value>1</value>
+					</not-equals>
+					<less-than>
+						<property>/position/gear-agl-ft</property>
+						<value>50</value>
+					</less-than>
+					<equals>
+						<property>/it-autoflight/output/lat</property>
+						<value>4</value>
+					</equals>
+					<greater-than>
+						<property>/controls/flight/rudder</property>
+						<value>0.1</value>
+					</greater-than>
+					<less-than>
+						<property>/controls/flight/rudder</property>
+						<value>-0.1</value>
+					</less-than>
+				</or>
+			</condition>
+		</enable>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>/controls/flight/rudder</input>
+		<output>/controls/flight/rudder-cmd</output>
+		<min>-1</min>
+		<max>1</max>
+	</filter>
 
 </PropertyList>

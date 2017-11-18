@@ -43,7 +43,7 @@
     <type>gain</type>
     <update-interval-secs type="double">0.0</update-interval-secs>
     <input>
-      <property>/controls/flight/rudder</property>
+      <property>/controls/flight/rudder-cmd</property>
     </input>
     <enable>
         <condition>
