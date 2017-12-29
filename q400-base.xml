@@ -331,6 +331,9 @@ DHC8 -400Q by Alex Park Jan 2010
 	</sim>
 
 	<it-autoflight>
+		<input>
+			<yd type="double">0</yd>
+		</input>
 		<config>
 			<roll>
 				<umin>-0.50</umin>

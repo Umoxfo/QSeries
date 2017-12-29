@@ -293,6 +293,22 @@
             </binding>
         </action>
     </animation>
+    <animation>
+      <type>material</type>
+	<object-name>ap.lights</object-name>
+        <ambient>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>/it-autoflight/output/ap1-lights</factor-prop>
+        </ambient>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>/it-autoflight/output/ap1-lights</factor-prop>
+        </emission>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -302,10 +318,28 @@
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>nasal</command>
-                <script>q400.FD_set_mode("yd");</script>
+                <command>property-cycle</command>
+                <property>it-autoflight/input/yd</property>
+		<value>1</value>
+		<value>0</value>
             </binding>
         </action>
+    </animation>
+    <animation>
+      <type>material</type>
+	<object-name>yd.lights</object-name>
+        <ambient>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>/it-autoflight/output/yd-lights</factor-prop>
+        </ambient>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>/it-autoflight/output/yd-lights</factor-prop>
+        </emission>
     </animation>
 
   <animation>

@@ -43,7 +43,7 @@
     <type>gain</type>
     <update-interval-secs type="double">0.0</update-interval-secs>
     <input>
-      <property>/controls/flight/rudder</property>
+      <property>/controls/flight/rudder-cmd</property>
     </input>
     <enable>
         <condition>
@@ -109,6 +109,9 @@
 			<property>/controls/engines/engine[0]/throttle</property>
 			<value>0.8</value>
 		</greater-than>
+		<not>
+			<property>/engines/engine[0]/reversed</property>
+		</not>
         </condition>
     </enable>
     <gain>1.0</gain>
@@ -323,6 +326,9 @@
 			<property>/controls/engines/engine[1]/throttle</property>
 			<value>0.8</value>
 		</greater-than>
+		<not>
+			<property>/engines/engine[0]/reversed</property>
+		</not>
         </condition>
     </enable>
     <gain>1.0</gain>

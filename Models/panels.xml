@@ -17,16 +17,16 @@
 <z-m>2.125</z-m>
 <pitch-deg>-16.2</pitch-deg>
     </offsets>
-</model><!--
+</model>
 <model>
-  <path>panels/PFD/PFD3d.xml</path>
+  <path>Instruments/PFD/PFD.xml</path>
     <offsets>
 <x-m>-12.31</x-m>
 <y-m>0.48</y-m>
 <z-m>2.125</z-m>
 <pitch-deg>-16.2</pitch-deg>
     </offsets>
-</model>-->
+</model>
 <!--NDs--><!--
 <model>
   <path>panels/ND/ND.xml</path>
