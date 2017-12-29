@@ -521,6 +521,11 @@ DHC8 -400Q by Alex Park Jan 2010
 		<radar-altimeter>
 			<serviceable type="bool">1</serviceable>
 		</radar-altimeter>
+		<transponder>
+			<inputs>
+				<knob-mode type="int">5</knob-mode>
+			</inputs>
+		</transponder>
 	</instrumentation>
 	<engines>
 		<APU>
