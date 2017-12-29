@@ -74,10 +74,15 @@
     </input>
     <enable>
         <condition>
-                <greater-than>
-                    <property>/systems/hydraulic/psi2</property>
-                    <value>2900</value>
-                </greater-than>
+		<or>
+			<greater-than>
+				<property>/systems/hydraulic/psi2</property>
+				<value>2900</value>
+			</greater-than>
+			<equals>
+				<property>/sim/model/pushback/position-norm</property>
+				<value>1</value>
+			</equals>
         </condition>
     </enable>
     <gain>1</gain>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+    
+    <path>baropanel.ac</path>
+        
+        
+    <!--Panel illumination-->
+    <effect>
+        <inherits-from>Aircraft/Q400/Models/Effects/panel-lighting</inherits-from>
+        <parameters>
+            <implicit-lightmap-intensity><use>/systems/electrical/outputs/glareshield-lights</use></implicit-lightmap-intensity>
+        </parameters>
+	<object-name>Circle</object-name>
+	<object-name>Circle.001</object-name>
+    </effect>
+        
+
+    <!--PFD Speed bugs-->
+  <animation>
+        <type>knob</type>
+        <object-name>speedbug</object-name>
+	<value>0</value>
+    <center>
+      <y-m> -0.63869 </y-m>
+    </center>
+    <axis>
+            <x1-m>-12.3027</x1-m>
+            <z1-m>2.1334</z1-m>
+            <x2-m>-12.2916</x2-m>
+            <z2-m>2.1366</z2-m>
+        </axis>
+        <action>
+            <binding>
+		    <condition>
+			    <equals>
+				    <property>instrumentation/PFD/ias-bugs/active-bug</property>
+				    <value>0</value>
+			    </equals>
+		    </condition>
+				<command>property-adjust</command>
+				    <property>instrumentation/PFD/ias-bugs/bug1</property>
+                                <factor>1</factor>
+				<min>0</min>
+				<max>400</max>
+				<wrap>false</wrap>
+            </binding>
+            <binding>
+		    <condition>
+			    <equals>
+				    <property>instrumentation/PFD/ias-bugs/active-bug</property>
+				    <value>1</value>
+			    </equals>
+		    </condition>
+				<command>property-adjust</command>
+				    <property>instrumentation/PFD/ias-bugs/bug2</property>
+                                <factor>1</factor>
+				<min>0</min>
+				<max>400</max>
+				<wrap>false</wrap>
+            </binding>
+        </action><!--
+       <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>inhg</tooltip-id>
+                <label>Set Speedbug: %s kts</label>
+                <mapping>QNH</mapping>
+				    <property>instrumentation/PFD/ias-bugs/bug2</property>
+            </binding>
+        </hovered>-->
+    </animation>
+    
+ <!-- <animation>
+        <type>knob</type>
+        <object-name>speedbug</object-name>
+        <action>
+            <binding>
+		    <condition>
+			    <or>
+				<less-than>
+					<property>instrumentation/PFD/ias-bugs/bug1</property>
+					<value>50</value>
+				</less-than>
+				<greater-than-equals>
+					<property>instrumentation/PFD/ias-bugs/bug2</property>
+					<value>50</value>
+				</greater-than-equals>
+			</or>
+		    </condition>
+				<command>property-adjust</command>
+				    <property>instrumentation/PFD/ias-bugs/bug1</property>
+                                <factor>1</factor>
+				<min>0</min>
+				<max>400</max>
+				<wrap>false</wrap>
+            </binding>
+            <binding>
+		    <condition>
+			    <and>
+				<less-than>
+					<property>instrumentation/PFD/ias-bugs/bug2</property>
+					<value>50</value>
+				</less-than>
+				<greater-than-equals>
+					<property>instrumentation/PFD/ias-bugs/bug1</property>
+					<value>50</value>
+				</greater-than-equals>
+			</and>
+		    </condition>
+				<command>property-adjust</command>
+				    <property>instrumentation/PFD/ias-bugs/bug2</property>
+                                <factor>1</factor>
+				<min>0</min>
+				<max>400</max>
+				<wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>-->
+  
+     <animation>
+        <type>pick</type>
+        <object-name>speedbugselect</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            	<command>property-cycle</command>
+				<property>instrumentation/PFD/ias-bugs/active-bug</property>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+    </action>
+    </animation>
+    
+  <!--Set Altimeter-->
+  <animation>
+        <type>knob</type>
+        <object-name>baroknob</object-name>
+				<property>instrumentation/altimeter/setting-hpa</property>
+                                <factor>1</factor>
+    <center>
+      <y-m> -0.63869 </y-m>
+    </center>
+    <axis>
+            <x1-m>-12.3027</x1-m>
+            <z1-m>2.1334</z1-m>
+            <x2-m>-12.2916</x2-m>
+            <z2-m>2.1366</z2-m>
+        </axis>
+        <action>
+            <binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter/setting-hpa</property>
+                                <factor>0.05</factor>
+				<min>940</min>
+				<max>1050</max>
+				<wrap>false</wrap>
+            </binding>
+        </action>
+       <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>inhg</tooltip-id>
+                <label>QNH (hPa): %s</label>
+                <mapping>QNH</mapping>
+				<property>instrumentation/altimeter/setting-hpa</property>
+            </binding>
+        </hovered>
+    </animation>
+
+  
+     <animation>
+        <type>pick</type>
+        <object-name>barobase</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            	<command>property-assign</command>
+				<property>instrumentation/altimeter/setting-hpa</property>
+                <value>1013</value>
+            </binding>
+    </action>
+    </animation>
+ 
+    
+  
+</PropertyList>

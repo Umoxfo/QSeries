@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	
+	
+	<!--Overhead Panel-->
+	<model>
+	<path>Overhead/overhead.xml</path>
+	</model>
+	
+	
+	<!--Glareshield Panel-->
+	<model>
+	<path>Glareshield/glareshieldpanel.xml</path>
+	</model>
+
+
+	<model>
+		<path>HUD/hud.xml</path>
+	</model>
+	<model>
+		<path>Instruments/PFD/PFD.xml</path>
+		<offsets>
+			<x-m>-12.31</x-m>
+			<y-m>-0.48</y-m>
+			<z-m>2.125</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>Instruments/PFD/PFD.xml</path>
+		<offsets>
+			<x-m>-12.31</x-m>
+			<y-m>0.48</y-m>
+			<z-m>2.125</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	<!--NDs--><!--
+	<model>
+	<path>panels/ND/ND.xml</path>
+	</model>-->
+	<!--CDUs-->
+	<model>
+		<path>Pedestal/Front/CDU/CDU.xml</path>
+		<offsets>
+			<x-m>-12.2019</x-m>
+			<y-m>-0.17</y-m>
+			<z-m>1.95</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Front/CDU/CDU1.xml</path>
+		<offsets>
+			<x-m>-12.2019</x-m>
+			<y-m>0.17</y-m>
+			<z-m>1.95</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+	</model>
+
+	<!--Engine Instrument-->
+	<model>
+		<path>Instruments/ED/ED.xml</path>
+	</model>
+	<model>
+		<path>Instruments/MFD/MFD.pilot.xml</path>
+	</model>
+
+	<model>
+		<path>MainPanel/lg/lg.xml</path>
+	</model>
+
+	<model>
+		<path>MainPanel/baropanel/baropanel.xml</path>
+	</model>
+	<model>
+		<path>MainPanel/baropanel/baropanel.xml</path>
+		<offsets>
+			<y-m>1.27788</y-m>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Yoke/yoke.xml</path>
+		<name>yoke</name>
+	</model>
+
+	<!--PEDESTAL-->
+	<model>
+		<path>Pedestal/Rear/pedestalrear.xml</path>
+	</model>
+	<model>
+		<path>Pedestal/Front/frontpedestal.xml</path>
+	</model>
+	
+	
+	<animation>
+	<type>range</type>
+	<min-m>0</min-m>
+	<max-m>30</max-m>
+	<max-property>sim/rendering/static-lod/bare</max-property>
+	</animation>
+  
+
+</PropertyList>

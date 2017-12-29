@@ -350,16 +350,16 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 
 	<nasal>  
 		<canvas_ed>
-			<file>Models/Instruments/ED/ED.nas</file>
+			<file>Models/Cockpit/Instruments/ED/ED.nas</file>
 		</canvas_ed>
 		<canvas_mfd>
-			<file>Models/Instruments/MFD/MFD.pilot.nas</file>
+			<file>Models/Cockpit/Instruments/MFD/MFD.pilot.nas</file>
 		</canvas_mfd>
 		<canvas_pfd>
-			<file>Models/Instruments/PFD/PFD.nas</file>
+			<file>Models/Cockpit/Instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_team>
-			<file>Models/Instruments/TEAM/TEAM.nas</file>
+			<file>Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
 		</canvas_team><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
@@ -394,23 +394,23 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<file>Nasal/dialogs.nas</file>
 		</dialogs>
 		<procedures>
-			<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsDB.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsWP.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTP.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/Procedures/fmsTransition.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsDB.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsWP.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTP.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTransition.nas</file>
 		</procedures>
 		<displaypages>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/CduStart.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltPlan.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltList.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDeparture.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/FltDestination.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/NavPages.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/Performance.nas</file>
-			<file>Aircraft/Q400/Models/panels/CDU/DispPages/Progress.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/CduStart.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltPlan.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltList.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDeparture.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDestination.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/NavPages.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/Performance.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/Progress.nas</file>
 		</displaypages>
 		<cdu>
-			<file>Models/panels/CDU/CDU.nas</file>
+			<file>Models/Cockpit/Pedestal/Front/CDU/CDU.nas</file>
 		</cdu>
 	</nasal>
 </PropertyList>
