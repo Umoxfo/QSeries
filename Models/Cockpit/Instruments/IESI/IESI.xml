@@ -1,0 +1,212 @@
+<PropertyList>
+
+	<path>IESI.ac</path>
+	
+	<!--Shadow effect-->
+	<effect>
+		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>IESI.base</object-name>
+		<object-name>IESI.screen</object-name>
+		<object-name>IESI.plus</object-name>
+		<object-name>IESI.minus</object-name>
+		<object-name>IESI.std</object-name>
+		<object-name>IESI.baro</object-name>
+		<object-name>IESI.baroknob</object-name>
+	</effect>
+	
+	<!--Open Canvas Window-->
+	<animation>
+		<type>pick</type>
+		<object-name>IESI.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_iesi.showIESI();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<!--Screen Brightness-->
+	<animation>
+		<type>material</type>
+		<object-name>IESI.screen</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/IESI/brightness-norm</factor-prop>
+		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/IESI/brightness-norm</factor-prop>
+		</ambient>
+	</animation>
+	
+	
+	<!--Buttons-->
+	<!--STD: sets QNH to STD (1013 hPa)-->
+	<animation>
+		<type>pick</type>
+		<object-name>IESI.std</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-assign</command>
+				<property>/instrumentation/altimeter/setting-hpa</property>
+				<value>1013</value>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/IESI/std-pressed</property>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/IESI/std-pressed</property>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IESI.std</object-name>
+		<property>/instrumentation/IESI/std-pressed</property>
+		<axis>
+			<x1-m>-12.3455</x1-m>
+			<z1-m>2.26029</z1-m>
+			<x2-m>-12.35092</x2-m>
+			<z2-m>2.25882</z2-m>
+		</axis>
+		<factor>0.0006</factor>
+	</animation>
+	<!-- Plus: increases lighting/intensity-->
+	<animation>
+		<type>pick</type>
+		<object-name>IESI.plus</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/IESI/brightness-norm</property>
+				<min>0.4</min>
+				<max>1</max>
+				<step>0.05</step>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/IESI/plus-pressed</property>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/IESI/plus-pressed</property>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IESI.plus</object-name>
+		<property>/instrumentation/IESI/plus-pressed</property>
+		<axis>
+			<x1-m>-12.3455</x1-m>
+			<z1-m>2.26029</z1-m>
+			<x2-m>-12.35092</x2-m>
+			<z2-m>2.25882</z2-m>
+		</axis>
+		<factor>0.0006</factor>
+	</animation>
+	<!-- Minus: decreases lighting/intensity-->
+	<animation>
+		<type>pick</type>
+		<object-name>IESI.minus</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/IESI/brightness-norm</property>
+				<min>0.4</min>
+				<max>1</max>
+				<step>-0.05</step>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/IESI/minus-pressed</property>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/IESI/minus-pressed</property>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IESI.minus</object-name>
+		<property>/instrumentation/IESI/minus-pressed</property>
+		<axis>
+			<x1-m>-12.3455</x1-m>
+			<z1-m>2.26029</z1-m>
+			<x2-m>-12.35092</x2-m>
+			<z2-m>2.25882</z2-m>
+		</axis>
+		<factor>0.0006</factor>
+	</animation>
+	<!-- Cage: resets horizon to zero (currently not implemented)-->
+	<animation>
+		<type>pick</type>
+		<object-name>IESI.cage</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/IESI/cage-pressed</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>gui.popupTip("Cage not implemented (yet)")</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/IESI/cage-pressed</property>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IESI.cage</object-name>
+		<property>/instrumentation/IESI/cage-pressed</property>
+		<axis>
+			<x1-m>-12.3455</x1-m>
+			<z1-m>2.26029</z1-m>
+			<x2-m>-12.35092</x2-m>
+			<z2-m>2.25882</z2-m>
+		</axis>
+		<factor>0.0006</factor>
+	</animation>
+	<!-- Baro Knob: adjusts barometric correction from 740 to 1100 hPa-->
+	<animation>
+		<type>knob</type>
+		<object-name>IESI.baroknob</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/altimeter/setting-hpa</property>
+				<min>740</min>
+				<max>1100</max>
+				<factor>1</factor>
+			</binding>
+		</action>
+	</animation>
+		
+		
+    
+</PropertyList>

@@ -7,6 +7,14 @@
 
     <path>CDU.ac</path>
 
+	<!--Interior effect-->
+	<effect>
+		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>CDU-knob</object-name>
+		<object-name>CDU</object-name>
+		<object-name>CDU-screen</object-name>
+		<object-name>vis</object-name>
+	</effect>
 <!-- CDU Knob -->
     <animation>
         <type>rotate</type>

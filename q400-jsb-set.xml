@@ -69,17 +69,6 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<interior>
 				<seats type="double">74</seats>
 			</interior>
-			<rendering>
-				<reflection-enabled type="int">1</reflection-enabled>
-				<reflection-type type="int">2</reflection-type>
-				<reflection-dynamic type="int">1</reflection-dynamic>
-				<reflection-correction type="float">-0.1</reflection-correction>
-				<reflection-fresnel type="float">0.5</reflection-fresnel>
-				<reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
-				<reflection-rainbow type="float">0.1</reflection-rainbow>
-				<reflection-noise type="float">0.05</reflection-noise>
-				<ambient-correction type="float">0.1</ambient-correction>
-			</rendering>
 		</model>
 
 		<menubar>
@@ -360,7 +349,10 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 		</canvas_pfd>
 		<canvas_team>
 			<file>Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
-		</canvas_team><!--
+		</canvas_team>
+		<canvas_iesi>
+			<file>Models/Cockpit/Instruments/IESI/IESI.nas</file>
+		</canvas_iesi><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
 		</ND>-->

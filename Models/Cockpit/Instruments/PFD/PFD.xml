@@ -1,17 +1,24 @@
 <PropertyList>
 
-<path>PFD.ac</path>
-<animation>
-	<type>pick</type>
-	<object-name>PFD.screen</object-name>
-	<action>
-		<button>0</button>
-		<repeatable>false</repeatable>
-		<binding>
-			<command>nasal</command>
-			<script>canvas_pfd.showPFD();</script>
-		</binding>
-	</action>
-</animation>
+	<path>PFD.ac</path>
+	
+	<!--Interior effect-->
+	<effect>
+		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>PFD.screen</object-name>
+	</effect>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>PFD.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_pfd.showPFD();</script>
+			</binding>
+		</action>
+	</animation>
     
 </PropertyList>

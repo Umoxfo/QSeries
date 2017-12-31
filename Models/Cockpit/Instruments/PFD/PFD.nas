@@ -100,6 +100,7 @@ var canvas_PFD_base = {
 			}else{
 				PFD_main.page.show();
 				PFD_avail.page.hide();
+				PFD_main.update();
 			}
 		} else {
 			PFD_main.page.hide();
@@ -371,7 +372,6 @@ var canvas_PFD_main = {
 		
 		
 		
-		settimer(func me.update(), 0.02);
 	},
 };
 

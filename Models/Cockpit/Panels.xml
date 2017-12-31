@@ -71,6 +71,11 @@
 		<path>MainPanel/lg/lg.xml</path>
 	</model>
 
+
+	<model>
+		<path>Instruments/IESI/IESI.xml</path>
+	</model>
+	
 	<model>
 		<path>MainPanel/baropanel/baropanel.xml</path>
 	</model>
@@ -88,10 +93,13 @@
 
 	<!--PEDESTAL-->
 	<model>
-		<path>Pedestal/Rear/pedestalrear.xml</path>
+		<path>Pedestal/Front/frontpedestal.xml</path>
 	</model>
 	<model>
-		<path>Pedestal/Front/frontpedestal.xml</path>
+		<path>Pedestal/Center/enginecontrols.xml</path>
+	</model>
+	<model>
+		<path>Pedestal/Rear/pedestalrear.xml</path>
 	</model>
 	
 	

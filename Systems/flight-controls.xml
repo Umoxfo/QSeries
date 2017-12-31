@@ -83,6 +83,7 @@
 				<property>/sim/model/pushback/position-norm</property>
 				<value>1</value>
 			</equals>
+		</or>
         </condition>
     </enable>
     <gain>1</gain>
