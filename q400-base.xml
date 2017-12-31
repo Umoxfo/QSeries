@@ -348,7 +348,7 @@ DHC8 -400Q by Alex Park Jan 2010
 				<umin>-0.30</umin>
 				<umax>0.30</umax>
 				<kp>-0.06</kp>
-				<ti>5.0</ti>
+				<ti>10.0</ti>
 				<td>0.0001</td>
 			</pitch>
 			<cmd>

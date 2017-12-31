@@ -386,7 +386,28 @@
 		<type>rotate</type>
 		<object-name>flapslever</object-name>
 		<property>/controls/flight/flaps</property>
-		<factor>55.3</factor>
+		<interpolation>
+			<entry>
+				<ind> 0 </ind>
+				<dep>  0 </dep>
+			</entry>
+			<entry>
+				<ind> 0.142 </ind>
+				<dep>  10 </dep>
+			</entry>
+			<entry>
+				<ind> 0.284 </ind>
+				<dep> 22 </dep>
+			</entry>
+			<entry>
+				<ind> 0.426 </ind>
+				<dep> 36 </dep>
+			</entry>
+			<entry>
+				<ind> 1 </ind>
+				<dep> 55.3 </dep>
+			</entry>
+		</interpolation>		
 		<center>
 			<x-m>-11.90089</x-m>
 			<y-m>0</y-m>
@@ -456,7 +477,26 @@
 			<z>0</z>
 		</axis>
 	</animation>
-    
+	
+	
+	<!--Elevator trim-->
+	<animation>
+		<type>rotate</type>
+		<object-name>trimind</object-name>
+		<property>/controls/flight/elevator-trim</property>
+		<factor>-18.85</factor>
+		<center>
+			<x-m>-11.88546</x-m>
+			<y-m>0</y-m>
+			<z-m>1.88981</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+  
     
 	
 	<effect>

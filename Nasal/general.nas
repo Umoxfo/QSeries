@@ -69,29 +69,6 @@ var update_loop = func{
 	ttw=sprintf("ETE %i:%02i",hr_et,min_et);
 	setprop("autopilot/internal/nav-ttw",ttw);
 
-#Throttle Lock
-var reverseL=getprop("/controls/engines/engine[0]/reverser");
-var reverseR=getprop("/controls/engines/engine[1]/reverser");
-var thrLock=getprop("/controls/engines/throttle-lock");
-var throttleL=getprop("/controls/engines/engine[0]/throttle");
-var throttleR=getprop("/controls/engines/engine[1]/throttle");
-
-if(thrLock == 0 or reverseL) {
-    setprop("/controls/engines/engine/throttle-int", throttleL );
-}else if(throttleL <= 0.3){
-    setprop("/controls/engines/engine/throttle-int", throttleL );
-}else{
-    setprop("/controls/engines/engine/throttle-int", 0.3 );
-}
-
-if(thrLock == 0 or reverseR) {
-    setprop("/controls/engines/engine[1]/throttle-int", throttleR );
-}else if(throttleR <= 0.3){
-    setprop("/controls/engines/engine[1]/throttle-int", throttleR );
-}else{
-    setprop("/controls/engines/engine[1]/throttle-int", 0.3 );
-}
-
 
 #EPU
 if(getprop("/controls/electric/epu-switch")){
@@ -115,29 +92,6 @@ if(taxi_light_sw and gear_pos_front==1){
  }else{
     setprop("/controls/lighting/taxi-light", 0);
  }
- 
-    #Throttle Lock
-    var reverseL=getprop("/controls/engines/engine[0]/reverser");
-    var reverseR=getprop("/controls/engines/engine[1]/reverser");
-    var thrLock=getprop("/controls/engines/throttle-lock");
-    var throttleL=getprop("/controls/engines/engine[0]/throttle");
-    var throttleR=getprop("/controls/engines/engine[1]/throttle");
-
-    if(thrLock == 0 or reverseL) {
-        setprop("/controls/engines/engine/throttle-int", throttleL );
-    }else if(throttleL <= 0.3){
-        setprop("/controls/engines/engine/throttle-int", throttleL );
-    }else{
-        setprop("/controls/engines/engine/throttle-int", 0.3 );
-    }
-
-    if(thrLock == 0 or reverseR) {
-        setprop("/controls/engines/engine[1]/throttle-int", throttleR );
-    }else if(throttleR <= 0.3){
-        setprop("/controls/engines/engine[1]/throttle-int", throttleR );
-    }else{
-        setprop("/controls/engines/engine[1]/throttle-int", 0.3 );
-    }
 
 
     #landing light for lightmap

@@ -90,6 +90,69 @@
     <output>controls/gear/nose-steering-int</output>
   </filter>
   
+	<!--Power Lever Control Lock-->
+	<filter>
+		<name>Power Lever Control Left</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.0</update-interval-secs>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<table>
+						<property>/controls/engines/throttle-lock-position</property>
+						<entry><ind> 0.0</ind><dep> 1</dep></entry>
+						<entry><ind> 1.0</ind><dep> 0.15</dep></entry>
+					</table>
+				</prod>
+			</expression>
+			<condition>
+				<not>
+					<property>/engines/engine[0]/reversed</property>				
+				</not>
+			</condition>
+		</input>
+		<input>
+			<property>/controls/engines/engine[0]/throttle</property>
+			<condition>
+				<property>/engines/engine[0]/reversed</property>
+			</condition>
+		</input>
+		<gain>1.0</gain>
+		<output>controls/engines/engine[0]/throttle-int</output>
+	</filter>
+	<filter>
+		<name>Power Lever Control Right</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.0</update-interval-secs>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<table>
+						<property>/controls/engines/throttle-lock-position</property>
+						<entry><ind> 0.0</ind><dep> 1</dep></entry>
+						<entry><ind> 1.0</ind><dep> 0.15</dep></entry>
+					</table>
+				</prod>
+			</expression>
+			<condition>
+				<not>
+					<property>/engines/engine[1]/reversed</property>				
+				</not>
+			</condition>
+		</input>
+		<input>
+			<property>/controls/engines/engine[1]/throttle</property>
+			<condition>
+				<property>/engines/engine[1]/reversed</property>
+			</condition>
+		</input>
+		<gain>1.0</gain>
+		<output>controls/engines/engine[1]/throttle-int</output>
+	</filter>
+  
+  
   <!--THRUST DETENT MODES-->
   
   <!--EMERGENCY POWER-->
@@ -112,7 +175,7 @@
     <enable>
         <condition>
 		<greater-than>
-			<property>/controls/engines/engine[0]/throttle</property>
+			<property>/controls/engines/engine[0]/throttle-int</property>
 			<value>0.8</value>
 		</greater-than>
 		<not>
@@ -160,7 +223,7 @@
 			</or>
 			<property>/controls/engines/engine[0]/mtop-discrete</property>
 			<less-than-equals>
-				<property>/controls/engines/engine[0]/throttle</property>
+				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -202,7 +265,7 @@
 				</equals>
 			</or>
 			<less-than-equals>
-				<property>/controls/engines/engine[0]/throttle</property>
+				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -238,7 +301,7 @@
 				<value>3</value>
 			</equals>
 			<less-than-equals>
-				<property>/controls/engines/engine[0]/throttle</property>
+				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -274,7 +337,7 @@
 				<value>2</value>
 			</equals>
 			<less-than-equals>
-				<property>/controls/engines/engine[0]/throttle</property>
+				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -329,7 +392,7 @@
     <enable>
         <condition>
 		<greater-than>
-			<property>/controls/engines/engine[1]/throttle</property>
+			<property>/controls/engines/engine[1]/throttle-int</property>
 			<value>0.8</value>
 		</greater-than>
 		<not>
@@ -377,7 +440,7 @@
 			</or>
 			<property>/controls/engines/engine[1]/mtop-discrete</property>
 			<less-than-equals>
-				<property>/controls/engines/engine[1]/throttle</property>
+				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -419,7 +482,7 @@
 				</equals>
 			</or>
 			<less-than-equals>
-				<property>/controls/engines/engine[1]/throttle</property>
+				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -455,7 +518,7 @@
 				<value>3</value>
 			</equals>
 			<less-than-equals>
-				<property>/controls/engines/engine[1]/throttle</property>
+				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>
@@ -491,7 +554,7 @@
 				<value>2</value>
 			</equals>
 			<less-than-equals>
-				<property>/controls/engines/engine[1]/throttle</property>
+				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>
 			</less-than-equals>
 		</and>

@@ -1195,6 +1195,9 @@
 					<property>/controls/engines/engine[0]/throttle-int</property>
 					<value>0.8</value>
 				</greater-than>
+				<not>
+					<property>/engines/engine[0]/reversed</property>
+				</not>
 			</condition>
 			<volume>
 				<property>/sim/sound/effects/volume</property>
@@ -1209,6 +1212,9 @@
 					<property>/controls/engines/engine[0]/throttle-int</property>
 					<value>0.8</value>
 				</less-than>
+				<not>
+					<property>/engines/engine[0]/reversed</property>
+				</not>
 			</condition>
 			<volume>
 				<property>/sim/sound/effects/volume</property>
@@ -1223,6 +1229,9 @@
 					<property>/controls/engines/engine[1]/throttle-int</property>
 					<value>0.8</value>
 				</greater-than>
+				<not>
+					<property>/engines/engine[0]/reversed</property>
+				</not>
 			</condition>
 			<volume>
 				<property>/sim/sound/effects/volume</property>
@@ -1237,6 +1246,9 @@
 					<property>/controls/engines/engine[1]/throttle-int</property>
 					<value>0.8</value>
 				</less-than>
+				<not>
+					<property>/engines/engine[0]/reversed</property>
+				</not>
 			</condition>
 			<volume>
 				<property>/sim/sound/effects/volume</property>
