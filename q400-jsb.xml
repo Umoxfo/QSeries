@@ -116,6 +116,52 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> RIGHT </brake_group>
 			<retractable>1</retractable>
 		</contact>
+		
+		<!--Maintenance jacks, e.g. to check gear-->		
+		<!--<contact type="BOGEY" name="FRONT_JACK">
+			<location unit="M">
+				<x> -11.79307 </x>
+				<y> 0.0 </y>
+				<z>-0.36896 </z> 
+			</location>
+			<static_friction> 0.8 </static_friction>
+			<dynamic_friction> 0.5 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<retractable>1</retractable>
+		</contact>
+		
+		<contact type="BOGEY" name="LEFT_JACK">
+			<location unit="M">
+				<x> 0.3938 </x>
+				<y> -2.96077 </y>
+				<z>-0.36999 </z> 
+			</location>
+			<static_friction> 0.8 </static_friction>
+			<dynamic_friction> 0.5 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<retractable>1</retractable>
+		</contact>
+		
+		<contact type="BOGEY" name="RIGHT_JACK">
+			<location unit="M">
+				<x> 0.3938 </x>
+				<y> 2.96077 </y>
+				<z>-0.36999 </z> 
+			</location>
+			<static_friction> 0.8 </static_friction>
+			<dynamic_friction> 0.5 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<retractable>1</retractable>
+		</contact>-->
 
 		<contact type="STRUCTURE" name="NOSE_1">
 			<location unit="M">

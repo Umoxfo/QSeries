@@ -123,6 +123,10 @@
 			<z-m>-0.1</z-m>
 		</offsets>
 	</model>
+	<!--Ground Services-->
+	<model>
+		<path>Models/Services/services.xml</path>
+	</model>
 	<model>
 		<path>Aircraft/Q400/Models/Interior/Interior.xml</path>
 		<offsets>

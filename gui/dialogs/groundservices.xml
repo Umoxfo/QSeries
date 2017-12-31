@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Q400 Ground Services-->
+<PropertyList>
+
+	<name>groundservices</name>
+	<layout>vbox</layout>
+
+    <group>
+        <layout>hbox</layout>
+
+        <text><label> Ground Services  </label></text>
+
+        <button>
+            <halign>right</halign>
+            <pref-width>30</pref-width>
+            <legend>X</legend>
+            <default>true</default>
+            <key>Esc</key>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+	<hrule />
+	<text>
+            <label>Airport Services</label>
+	</text>
+
+			<checkbox>
+				<label>External Power</label>
+				<halign>left</halign>
+				<property>services/ext-pwr/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			<checkbox>
+				<label>Fuel Truck</label>
+				<halign>left</halign>
+				<property>services/fuel-truck/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			<checkbox>
+				<label>Baggage Cart</label>
+				<halign>left</halign>
+				<property>services/baggage-cart/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			<checkbox>
+				<label>Bus</label>
+				<halign>left</halign>
+				<property>services/bus/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			<checkbox>
+				<label>Safety Cones</label>
+				<halign>left</halign>
+				<property>services/safety-cone/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+    
+		
+	<hrule />
+	<!--<hrule />
+	<text>
+            <label>Maintenance</label>
+	</text>
+
+			<checkbox>
+				<label>Aircraft on jacks</label>
+				<halign>left</halign>
+				<property>controls/gear/jacks</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+    
+		
+	<hrule />-->
+
+</PropertyList>

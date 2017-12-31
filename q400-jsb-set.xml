@@ -99,13 +99,6 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 						</binding>
 					</item>
 					<item>
-						<label>Enable External Power Box</label>
-						<binding>
-							<command>property-toggle</command>
-							<property>services/ext-pwr/enable</property>
-						</binding>
-					</item>
-					<item>
 						<label>Checklists</label>
 						<binding>
 							<command>dialog-show</command>
@@ -113,18 +106,10 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 						</binding>
 					</item>
 					<item>
-						<label>Put aircraft on jacks</label>
+						<label>Ground Services</label>
 						<binding>
-							<command>property-toggle</command>
-							<property>controls/gear/jacks</property>
-						</binding>
-					</item>
-					<item>
-						<label>LNAV mode</label>
-						<binding>
-							<command>property-assign</command>
-							<property>autopilot/locks/heading</property>
-							<value>LNAV</value>
+							<command>dialog-show</command>
+							<dialog-name>groundservices</dialog-name>
 						</binding>
 					</item>
 				</menu>
