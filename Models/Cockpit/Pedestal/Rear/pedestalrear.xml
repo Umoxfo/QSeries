@@ -179,6 +179,23 @@
     </animation>
     
     <!--LEFT TEAM-->
+	<!--Screen Brightness-->
+	<animation>
+		<type>material</type>
+		<object-name>team.display</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/TEAM/brightness-norm</factor-prop>
+		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/TEAM/brightness-norm</factor-prop>
+		</ambient>
+	</animation>
 	<!--Side Buttons: select which field is active (1-8)-->
 	<animation>
 		<type>pick</type>
@@ -318,6 +335,97 @@
 	</animation>
 	<animation>
 		<type>pick</type>
+		<object-name>leftteam.button5</object-name>
+		<action>
+		<button>0</button>
+		<repeatable>0</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>instrumentation/TEAM/lh-selected</property>
+					<value>5</value>
+				</equals>
+			</condition>
+			<command>property-swap</command>
+			<property>instrumentation/adf[0]/frequencies/selected-khz</property>
+			<property>instrumentation/adf[0]/frequencies/standby-khz</property>
+		</binding>
+		<binding>
+			<condition>
+				<not-equals>
+					<property>instrumentation/TEAM/lh-selected</property>
+					<value>5</value>
+				</not-equals>
+			</condition>
+			<command>property-assign</command>
+			<property>instrumentation/TEAM/lh-selected</property>
+			<value>5</value>
+		</binding>
+		<binding>
+			<command>property-toggle</command>
+			<property>/instrumentation/adf[0]/activity</property>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>leftteam.button6</object-name>
+		<action>
+		<button>0</button>
+		<repeatable>0</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>instrumentation/TEAM/lh-selected</property>
+					<value>6</value>
+				</equals>
+			</condition>
+			<command>property-swap</command>
+			<property>instrumentation/adf[1]/frequencies/selected-khz</property>
+			<property>instrumentation/adf[1]/frequencies/standby-khz</property>
+		</binding>
+		<binding>
+			<condition>
+				<not-equals>
+					<property>instrumentation/TEAM/lh-selected</property>
+					<value>6</value>
+				</not-equals>
+			</condition>
+			<command>property-assign</command>
+			<property>instrumentation/TEAM/lh-selected</property>
+			<value>6</value>
+		</binding>
+		<binding>
+			<command>property-toggle</command>
+			<property>/instrumentation/adf[1]/activity</property>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>leftteam.button7</object-name>
+		<action>
+		<button>0</button>
+		<repeatable>0</repeatable>
+		<binding>
+			<condition>
+				<not-equals>
+					<property>instrumentation/TEAM/lh-selected</property>
+					<value>7</value>
+				</not-equals>
+			</condition>
+			<command>property-assign</command>
+			<property>instrumentation/TEAM/lh-selected</property>
+			<value>7</value>
+		</binding>
+		<binding>
+			<command>property-toggle</command>
+			<property>/instrumentation/TEAM/int-activity</property>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
 		<object-name>leftteam.button8</object-name>
 		<action>
 			<button>0</button>
@@ -445,6 +553,68 @@
 				<wrap>true</wrap>
 				<mask>decimal</mask>
 			</binding>
+			<!--5:ADF1-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/adf[0]/frequencies/standby-1khz</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>9</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/adf[0]/frequencies/standby-khz", getprop("/instrumentation/adf[0]/frequencies/standby-1khz") + 10*getprop("/instrumentation/adf[0]/frequencies/standby-10khz"));</script>
+			</binding>
+			<!--6:ADF2-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/adf[1]/frequencies/standby-1khz</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>9</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/adf[1]/frequencies/standby-khz", getprop("/instrumentation/adf[1]/frequencies/standby-1khz") + 10*getprop("/instrumentation/adf[1]/frequencies/standby-10khz"));</script>
+			</binding>
+			<!--7:INT (DIM/BRT)-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>7</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/TEAM/brightness-norm</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+			</binding>
 			<!--8:ATC1/2-->
 			<binding>
 				<condition>
@@ -523,7 +693,7 @@
 				<max>128.0</max>
 				<wrap>true</wrap>
 			</binding>
-			<!--3:VHF3-->
+			<!--3:VOR/ILS1-->
 			<binding>
 				<condition>
 					<equals>
@@ -538,7 +708,7 @@
 				<max>117.0</max>
 				<wrap>true</wrap>
 			</binding>
-			<!--4:VHF4-->
+			<!--4:VOR/ILS2-->
 			<binding>
 				<condition>
 					<equals>
@@ -552,6 +722,70 @@
 				<min>108.0</min>
 				<max>117.0</max>
 				<wrap>true</wrap>
+			</binding>
+			<!--5:ADF1-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/adf[0]/frequencies/standby-10khz</property>
+				<factor>1</factor>
+				<min>19</min>
+				<max>175</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/adf[0]/frequencies/standby-khz", getprop("/instrumentation/adf[0]/frequencies/standby-1khz") + 10*getprop("/instrumentation/adf[0]/frequencies/standby-10khz"));</script>
+			</binding>
+			<!--6:ADF2-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/adf[1]/frequencies/standby-10khz</property>
+				<factor>1</factor>
+				<min>19</min>
+				<max>175</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/adf[1]/frequencies/standby-khz", getprop("/instrumentation/adf[1]/frequencies/standby-1khz") + 10*getprop("/instrumentation/adf[1]/frequencies/standby-10khz"));</script>
+			</binding>
+			<!--7:INT (DIM/BRT)-->
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/TEAM/lh-selected</property>
+						<value>7</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/TEAM/brightness-norm</property>
+				<factor>0.1</factor>
+				<min>0</min>
+				<max>1</max>
 			</binding>
 			<!--8:ATC1/2-->
 			<binding>

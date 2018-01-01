@@ -26,9 +26,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="266.78672"
-     inkscape:cy="274.78028"
+     inkscape:zoom="1"
+     inkscape:cx="502.99678"
+     inkscape:cy="504.30713"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -511,6 +511,14 @@
          x="155.76807"
          y="630.03833"
          style="font-size:53.13553619px;line-height:1.25">000</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="adf1.box"
+       width="280"
+       height="47"
+       x="159"
+       y="721.79736"
+       inkscape:label="#rect4475" />
     <text
        transform="scale(1.0273806,0.97334912)"
        id="adf1.prst"
@@ -600,6 +608,14 @@
          id="tspan4326"
          sodipodi:role="line"
          style="font-size:53.13553619px;line-height:1.25">000</tspan></text>
+    <rect
+       inkscape:label="#rect4475"
+       y="721.79736"
+       x="623.53125"
+       height="47"
+       width="280"
+       id="adf2.box"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

@@ -5,6 +5,7 @@
 #sources: http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf https://quizlet.com/2663067/q400-limitations-flash-cards/ http://www.smartcockpit.com/docs/Q400-Indicating_and_Recording_Systems.pdf
 
 var TEAM_first = nil;
+var TEAM_selftest = nil;
 var TEAM_display = nil;
 var page = "first";
 
@@ -71,11 +72,32 @@ var canvas_TEAM_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
-				TEAM_first.page.show();
+		if (getprop("/systems/electrical/volts") >= 10 and getprop("/instrumentation/TEAM/selftest")==0) {
+			TEAM_first.page.show();
+			TEAM_selftest.page.hide();
+		}else if(getprop("/systems/electrical/volts") >=10 and getprop("/instrumentation/TEAM/selftest")==1){
+			TEAM_selftest.page.show();
+			TEAM_first.page.hide();
 		} else {
 			TEAM_first.page.hide();
+			TEAM_selftest.page.hide();
 		}
+		
+		settimer(func me.update(), 0.02);
+	},
+};
+var canvas_TEAM_selftest = {
+	new: func(canvas_group, file) {
+		var m = { parents: [canvas_TEAM_selftest,canvas_TEAM_base] };
+		m.init(canvas_group, file);
+
+		return m;
+	},
+	getKeys: func() {
+		return [];
+	},
+	update: func() {		
+		
 		
 		settimer(func me.update(), 0.02);
 	},
@@ -89,7 +111,7 @@ var canvas_TEAM_first = {
 		return m;
 	},
 	getKeys: func() {
-		return ["vhf1.act","vhf1.prst","vhf1.box","vhf1.vol.bar","vhf2.vol.bar","atc1.act","atc1.text","atc1.box","atc1.prst","vhf2.vol.bar","vor1.flag","vor1.act","vor1.prst","vor1.box","vor2.flag","vor2.act","vor2.prst","vor1.vol.bar","vor2.vol.bar","vhf2.prst","vhf2.act","vhf2.box","vor2.box","ils1.flag","ils2.flag","adf1.act","adf1.prst","adf2.act","adf2.prst","adf1.vol.bar","adf2.vol.bar"];
+		return ["vhf1.act","vhf1.prst","vhf1.box","vhf1.vol.bar","vhf2.vol.bar","atc1.act","atc1.text","atc1.box","atc1.prst","vhf2.vol.bar","vor1.flag","vor1.act","vor1.prst","vor1.box","vor2.flag","vor2.act","vor2.prst","vor1.vol.bar","vor2.vol.bar","vhf2.prst","vhf2.act","vhf2.box","vor2.box","ils1.flag","ils2.flag","adf1.act","adf1.prst","adf2.act","adf2.prst","adf1.vol.bar","adf2.vol.bar","adf1.box","adf2.box","dimbrt"];
 	},
 	update: func() {		
 		var selected_field=getprop("/instrumentation/TEAM/lh-selected") or 0;
@@ -102,6 +124,11 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,1,0);
 			me["vor2.box"].hide();
 			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
 			me["atc1.box"].hide();
 			me["atc1.prst"].setColor(0,1,1);
 		}else if(selected_field==2){
@@ -113,6 +140,11 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,1,0);
 			me["vor2.box"].hide();
 			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
 			me["atc1.box"].hide();
 			me["atc1.prst"].setColor(0,1,1);
 		}else if(selected_field==3){
@@ -124,6 +156,11 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,0,0);
 			me["vor2.box"].hide();
 			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
 			me["atc1.box"].hide();
 			me["atc1.prst"].setColor(0,1,1);
 		}else if(selected_field==4){
@@ -135,6 +172,59 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,1,0);
 			me["vor2.box"].show();
 			me["vor2.prst"].setColor(0,0,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
+			me["atc1.box"].hide();
+			me["atc1.prst"].setColor(0,1,1);
+		}else if(selected_field==5){
+			me["vhf1.box"].hide();
+			me["vhf1.prst"].setColor(0,1,0);
+			me["vhf2.box"].hide();
+			me["vhf2.prst"].setColor(0,1,0);
+			me["vor1.box"].hide();
+			me["vor1.prst"].setColor(0,1,0);
+			me["vor2.box"].hide();
+			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].show();
+			me["adf1.prst"].setColor(0,0,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
+			me["atc1.box"].hide();
+			me["atc1.prst"].setColor(0,1,1);
+		}else if(selected_field==6){
+			me["vhf1.box"].hide();
+			me["vhf1.prst"].setColor(0,1,0);
+			me["vhf2.box"].hide();
+			me["vhf2.prst"].setColor(0,1,0);
+			me["vor1.box"].hide();
+			me["vor1.prst"].setColor(0,1,0);
+			me["vor2.box"].hide();
+			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].show();
+			me["adf2.prst"].setColor(0,0,0);
+			me["dimbrt"].hide();
+			me["atc1.box"].hide();
+			me["atc1.prst"].setColor(0,1,1);
+		}else if(selected_field==7){
+			me["vhf1.box"].hide();
+			me["vhf1.prst"].setColor(0,1,0);
+			me["vhf2.box"].hide();
+			me["vhf2.prst"].setColor(0,1,0);
+			me["vor1.box"].hide();
+			me["vor1.prst"].setColor(0,1,0);
+			me["vor2.box"].hide();
+			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].show();
 			me["atc1.box"].hide();
 			me["atc1.prst"].setColor(0,1,1);
 		}else if(selected_field==8){
@@ -146,6 +236,11 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,1,0);
 			me["vor2.box"].hide();
 			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
 			me["atc1.box"].show();
 			me["atc1.prst"].setColor(0,0,0);
 		}else{
@@ -157,6 +252,11 @@ var canvas_TEAM_first = {
 			me["vor1.prst"].setColor(0,1,0);
 			me["vor2.box"].hide();
 			me["vor2.prst"].setColor(0,1,0);
+			me["adf1.box"].hide();
+			me["adf1.prst"].setColor(0,1,0);
+			me["adf2.box"].hide();
+			me["adf2.prst"].setColor(0,1,0);
+			me["dimbrt"].hide();
 			me["atc1.box"].hide();
 			me["atc1.prst"].setColor(0,1,1);
 		}
@@ -259,10 +359,13 @@ setlistener("sim/signals/fdm-initialized", func {
 	});
 	TEAM_display.addPlacement({"node": "team.display"});
 	var groupTEAMfirst = TEAM_display.createGroup();
+	var groupTEAMselftest = TEAM_display.createGroup();
 
 	TEAM_first = canvas_TEAM_first.new(groupTEAMfirst, "Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.first.svg");
+	TEAM_selftest = canvas_TEAM_selftest.new(groupTEAMselftest, "Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.selftest.svg");
 
 	TEAM_first.update();
+	TEAM_selftest.update();
 	canvas_TEAM_base.update();
 });
 
@@ -271,4 +374,17 @@ var showTEAM = func {
 	dlg.setCanvas(TEAM_display);
 }
 
+setlistener("/systems/electrical/volts", func{
+	var volts=getprop("/systems/electrical/volts");
+	if(volts==0 and getprop("/instrumentation/TEAM/was_0")!=1){
+		setprop("/instrumentation/TEAM/was_0", 1);
+	}
+	if(volts!=0 and getprop("/instrumentation/TEAM/was_0")==1){
+		setprop("/instrumentation/TEAM/was_0", 0);
+		setprop("/instrumentation/TEAM/selftest", 1);
+		settimer(func(){
+			setprop("/instrumentation/TEAM/selftest", 0);
+			}, 5);
+	}
+});
 	

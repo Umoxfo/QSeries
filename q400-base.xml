@@ -486,9 +486,26 @@ DHC8 -400Q by Alex Park Jan 2010
 			<minus-pressed type="bool">0</minus-pressed>
 			<cage-pressed type="bool">0</cage-pressed>
 		</IESI>
+		<TEAM>
+			<brightness-norm type="float">0.8</brightness-norm>
+			<selftest type="bool">0</selftest>
+			<was_0 type="bool">0</was_0>
+		</TEAM>
 		<altimeter>
 			<millibars type="double">0</millibars>
 		</altimeter>
+		<adf n="0">
+			<frequencies>
+				<standby-1khz type="float">0</standby-1khz>
+				<standby-10khz type="float">0</standby-10khz>
+			</frequencies>
+		</adf>
+		<adf n="1">
+			<frequencies>
+				<standby-1khz type="float">0</standby-1khz>
+				<standby-10khz type="float">0</standby-10khz>
+			</frequencies>
+		</adf>
 		<transponder>
 			<inputs>
 				<serviceable type="bool">true</serviceable>
