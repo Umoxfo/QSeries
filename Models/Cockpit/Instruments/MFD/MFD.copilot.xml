@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>MFD.copilot.ac</path>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MFDcopilot.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_mfd.showMFDpilot();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>navdisplayR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_nd.showNd(fo);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>navdisplayR</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>nd</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>MFDcopilot.screen</object-name>
+		<condition>
+			<not-equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>nd</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	
+	<animation>
+		<type>material</type>
+		<object-name>navdisplayR</object-name>
+		<object-name>MFDcopilot.screen</object-name>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/instrumentation/mfd[1]/brt</factor-prop>
+		</ambient>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/instrumentation/mfd[1]/brt</factor-prop>
+		</diffuse>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/instrumentation/mfd[1]/brt</factor-prop>
+		</emission>
+	</animation>
+
+</PropertyList>

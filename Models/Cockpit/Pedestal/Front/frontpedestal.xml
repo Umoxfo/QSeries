@@ -26,114 +26,167 @@
         <object-name>NDwxterrR</object-name>
         <object-name>NDdataR</object-name>
     </effect>
-
-  <animation>
-        <type>pick</type>
-        <object-name>NDtcasL</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/tfc</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDcenteredL</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/nd-centered</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDwxterrL</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/wxr</property>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/terr</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDdataL</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/data</property>
-            </binding>
-        </action>
-    </animation>
-
-  <animation>
-        <type>pick</type>
-        <object-name>NDtcasR</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis[1]/inputs/tfc</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDcenteredR</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis[1]/inputs/nd-centered</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDwxterrR</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis/inputs/wxr</property>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis[1]/inputs/terr</property>
-            </binding>
-        </action>
-    </animation>
-  <animation>
-        <type>pick</type>
-        <object-name>NDdataR</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>0</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/efis[1]/inputs/data</property>
-            </binding>
-        </action>
-    </animation>
+	<!--Left EFIS Control Panel-->
+	<animation>
+		<type>pick</type>
+		<object-name>NDtcasL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/tfc</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDcenteredL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/nd-centered</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDwxterrL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/wxr</property>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/terr</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDdataL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/data</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>PFD0.brt</object-name>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/pfd[0]/brt</property>
+				<factor>0.05</factor>
+				<min>0.0</min>
+				<max>1.0</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>MFD0.brt</object-name>
+		<action>
+		<binding>
+			<command>property-adjust</command>
+			<property>/instrumentation/mfd[0]/brt</property>
+			<factor>0.05</factor>
+			<min>0.0</min>
+			<max>1.0</max>
+		</binding>
+		</action>
+	</animation>
+	
+	<!--Right EFIS Control Panel-->
+	<animation>
+		<type>pick</type>
+		<object-name>NDtcasR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis[1]/inputs/tfc</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDcenteredR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis[1]/inputs/nd-centered</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDwxterrR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis/inputs/wxr</property>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis[1]/inputs/terr</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>NDdataR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>0</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/efis[1]/inputs/data</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>PFD1.brt</object-name>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/pfd[1]/brt</property>
+				<factor>0.05</factor>
+				<min>0.0</min>
+				<max>1.0</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>MFD1.brt</object-name>
+		<action>
+		<binding>
+			<command>property-adjust</command>
+			<property>/instrumentation/mfd[1]/brt</property>
+			<factor>0.05</factor>
+			<min>0.0</min>
+			<max>1.0</max>
+		</binding>
+		</action>
+	</animation>
     
-    <!--COM1-->
+    <!--COM1--><!--
   <animation>
         <type>select</type>
         <object-name>COM1.off</object-name>
@@ -145,8 +198,8 @@
                 </less-than>
                 </or>
         </condition>
-    </animation>
-    <!--Active frequency - if COMM mode-->
+    </animation>-->
+    <!--Active frequency - if COMM mode--><!--
   <animation>
   <type>textranslate</type>
   <object-name>comm.act.100</object-name>
@@ -229,8 +282,8 @@
       <y>0</y>
       <z>0</z>
     </axis>
-  </animation>
-    <!--Standby frequency-->
+  </animation>-->
+    <!--Standby frequency--><!--
   <animation>
   <type>textranslate</type>
   <object-name>comm.stby.100</object-name>
@@ -313,8 +366,8 @@
       <y>0</y>
       <z>0</z>
     </axis>
-  </animation>
-  <!--Power btn-->
+  </animation>-->
+  <!--Power btn--><!--
   
   <animation>
     <type>pick</type>
@@ -328,16 +381,16 @@
 <property>/instrumentation/comm/power-btn</property>
         </binding>
     </action>
-  </animation>
-  <!--SWAP button-->
+  </animation>-->
+  <!--SWAP button--><!--
   <animation>
     <type>pick</type>
     <object-name>com.swap</object-name>
     <visible>true</visible>
     <action>
       <button>0</button>
-      <repeatable>false</repeatable>
-<!--if COMM mode-->
+      <repeatable>false</repeatable>-->
+<!--if COMM mode--><!--
       <binding>
         <command>property-assign</command>
         <property alias="instrumentation/comm/comm-frq-swp"/>
@@ -368,8 +421,8 @@
       <z>0</z>
     </axis>
   </animation>
-  
-  <!--Tune knobs-->
+  -->
+  <!--Tune knobs--><!--
   <animation>
     <type>knob</type>
     <object-name>com.khz</object-name>
@@ -405,7 +458,73 @@
         <wrap>true</wrap>
       </binding>
     </action>
-  </animation>
+  </animation>-->
+  
+  <!--ENGINE CONTROL PANEL-->
+  <animation>
+        <type>pick</type>
+	<object-name>MTOPDiscrete</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/engines/mtop-discrete</property>
+            </binding>
+        </action>
+    </animation>
+  <animation>
+        <type>textranslate</type>
+	<object-name>MTOPDiscrete</object-name>
+	<property>/controls/engines/mtop-discrete</property>
+	<axis>
+		<x>1</x>
+	</axis>
+	<factor>0.25</factor>
+    </animation>
+  <animation>
+        <type>pick</type>
+	<object-name>Tank1AuxPump</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/fuel/tank1-aux-pump</property>
+            </binding>
+        </action>
+    </animation>
+  <animation>
+        <type>textranslate</type>
+	<object-name>Tank1AuxPump</object-name>
+                <property>/controls/fuel/tank1-aux-pump</property>
+	<axis>
+		<x>1</x>
+	</axis>
+	<factor>0.25</factor>
+    </animation>
+  <animation>
+        <type>pick</type>
+	<object-name>Tank2AuxPump</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/fuel/tank2-aux-pump</property>
+            </binding>
+        </action>
+    </animation>
+  <animation>
+        <type>textranslate</type>
+	<object-name>Tank2AuxPump</object-name>
+                <property>/controls/fuel/tank2-aux-pump</property>
+	<axis>
+		<x>1</x>
+	</axis>
+	<factor>0.25</factor>
+    </animation>
+  
   
   
   <animation>
@@ -441,8 +560,8 @@
 		<factor>-30</factor>
 		<axis><x>1</x></axis>
     <center>
-      <y-m> -0.00235</y-m>
-      <z-m>  1.98766</z-m>
+      <y-m> -0.00297</y-m>
+      <z-m>  1.98525</z-m>
     </center>
 </animation>
 

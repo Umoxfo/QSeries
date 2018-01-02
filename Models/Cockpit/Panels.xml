@@ -18,7 +18,7 @@
 		<path>HUD/hud.xml</path>
 	</model>
 	<model>
-		<path>Instruments/PFD/PFD.xml</path>
+		<path>Instruments/PFD/PFD.pilot.xml</path>
 		<offsets>
 			<x-m>-12.31</x-m>
 			<y-m>-0.48</y-m>
@@ -27,7 +27,7 @@
 		</offsets>
 	</model>
 	<model>
-		<path>Instruments/PFD/PFD.xml</path>
+		<path>Instruments/PFD/PFD.copilot.xml</path>
 		<offsets>
 			<x-m>-12.31</x-m>
 			<y-m>0.48</y-m>

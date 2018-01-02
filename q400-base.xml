@@ -363,6 +363,7 @@ DHC8 -400Q by Alex Park Jan 2010
 			</autoland>
 		</config>
 		<settings>
+			<nav-source type="string">NAV1</nav-source>
 			<auto-bank-max-deg>25</auto-bank-max-deg> 
 			<!-- Maximum Auto Bank Limit -->
 			<land-enable>0</land-enable>

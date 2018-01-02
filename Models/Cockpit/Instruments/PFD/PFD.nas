@@ -119,7 +119,7 @@ var canvas_PFD_main = {
 		return m;
 	},
 	getKeys: func() {
-		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits"];
+		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq"];
 	},
 	update: func() {
 	
@@ -260,9 +260,11 @@ var canvas_PFD_main = {
 		
 		me["ap-hdg"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/hdg") or 0)));
 	
-		var nav_source = getprop("/autopilot/settings/nav-source");
+		var nav_source = getprop("/it-autoflight/settings/nav-source");
 		me["FMSNAVtext"].setText(nav_source or "---");
 		if(nav_source == "NAV1"){
+			me["NavFreq"].show();
+			me["NavFreq"].setText(sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz")));
 			if((getprop("/instrumentation/nav[0]/in-range") or 0)==1){
 				me["FMSNAVpointer"].show();
 				me["FMSNAVdeviation"].show();			
@@ -280,6 +282,8 @@ var canvas_PFD_main = {
 				me["FMSNAVdeviation"].hide();			
 			}
 		}else if(nav_source == "NAV2"){
+			me["NavFreq"].show();
+			me["NavFreq"].setText(sprintf("%3.2f", getprop("/instrumentation/nav[1]/frequencies/selected-mhz")));
 			if((getprop("/instrumentation/nav[1]/in-range") or 0)==1){
 				me["FMSNAVpointer"].show();
 				me["FMSNAVdeviation"].show();			
@@ -297,6 +301,7 @@ var canvas_PFD_main = {
 				me["FMSNAVdeviation"].hide();			
 			}
 		}else if(nav_source == "FMS"){
+			me["NavFreq"].hide();
 		}
 		
 		var radaralti=getprop("/position/gear-agl-ft") or 0;

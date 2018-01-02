@@ -4,7 +4,7 @@
 de Havilland DHC8-400Q/Bombardier Q400
 Jan 2009 Alex Park
 FDM based on Alex Park Dash 8 300Q adapted for the Dash8 - 400Q
-new version with up-to-date systems, a complete new ex- and interior model 2016 by Florian K and D-ECHO
+new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior model 2016 by Florian K, D-ECHO, Joshua Davidson and more
 ************************************************************************
 -->
 
@@ -69,6 +69,17 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<interior>
 				<seats type="double">74</seats>
 			</interior>
+			<rendering>
+				<reflection-enabled type="int">1</reflection-enabled>
+				<reflection-type type="int">2</reflection-type>
+				<reflection-dynamic type="int">1</reflection-dynamic>
+				<reflection-correction type="float">-0.1</reflection-correction>
+				<reflection-fresnel type="float">0.5</reflection-fresnel>
+				<reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
+				<reflection-rainbow type="float">0.1</reflection-rainbow>
+				<reflection-noise type="float">0.05</reflection-noise>
+				<ambient-correction type="float">0.1</ambient-correction>
+			</rendering>
 		</model>
 
 		<menubar>
@@ -99,6 +110,13 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 						</binding>
 					</item>
 					<item>
+						<label>Enable External Power Box</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>services/ext-pwr/enable</property>
+						</binding>
+					</item>
+					<item>
 						<label>Checklists</label>
 						<binding>
 							<command>dialog-show</command>
@@ -106,10 +124,18 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 						</binding>
 					</item>
 					<item>
-						<label>Ground Services</label>
+						<label>Put aircraft on jacks</label>
 						<binding>
-							<command>dialog-show</command>
-							<dialog-name>groundservices</dialog-name>
+							<command>property-toggle</command>
+							<property>controls/gear/jacks</property>
+						</binding>
+					</item>
+					<item>
+						<label>LNAV mode</label>
+						<binding>
+							<command>property-assign</command>
+							<property>autopilot/locks/heading</property>
+							<value>LNAV</value>
 						</binding>
 					</item>
 				</menu>
@@ -208,12 +234,6 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 		<thrust-mode n="1" type="string"></thrust-mode>
 	</FADEC>
 	
-	<autopilot>
-		<settings>
-			<nav-source type="string">NAV1</nav-source>
-		</settings>
-	</autopilot>
-	
 	<payload>
 		<weight n="0">
 			<name>Cockpit Crew</name>
@@ -301,6 +321,21 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<armed type="bool">1</armed>
 			<test type="bool">0</test>
 		</elt>
+		<ed>
+			<brt type="float">0.8</brt>
+		</ed>
+		<mfd n="0">
+			<brt type="float">0.8</brt>
+		</mfd>
+		<mfd n="1">
+			<brt type="float">0.8</brt>
+		</mfd>
+		<pfd n="0">
+			<brt type="float">0.8</brt>
+		</pfd>
+		<pfd n="1">
+			<brt type="float">0.8</brt>
+		</pfd>
 		<flightrcdr>
 			<gndtest type="bool">0</gndtest>
 		</flightrcdr>
@@ -323,20 +358,24 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 	</instrumentation>
 
 	<nasal>  
+		<canvas_nd>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/ND.nas</file>
+		</canvas_nd>
 		<canvas_ed>
-			<file>Models/Cockpit/Instruments/ED/ED.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/ED/ED.nas</file>
 		</canvas_ed>
 		<canvas_mfd>
-			<file>Models/Cockpit/Instruments/MFD/MFD.pilot.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.pilot.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.copilot.nas</file>
 		</canvas_mfd>
 		<canvas_pfd>
-			<file>Models/Cockpit/Instruments/PFD/PFD.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_team>
-			<file>Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
 		</canvas_team>
 		<canvas_iesi>
-			<file>Models/Cockpit/Instruments/IESI/IESI.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/IESI/IESI.nas</file>
 		</canvas_iesi><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
@@ -387,7 +426,7 @@ new version with up-to-date systems, a complete new ex- and interior model 2016 
 			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/Progress.nas</file>
 		</displaypages>
 		<cdu>
-			<file>Models/Cockpit/Pedestal/Front/CDU/CDU.nas</file>
+			<file>Models/Cockpit/Pedestal/Front//CDU/CDU.nas</file>
 		</cdu>
 	</nasal>
 </PropertyList>

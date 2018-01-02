@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="buttons.svg"
+   inkscape:export-filename="/home/delta/Aircraft/Q400/Models/Cockpit/Pedestal/Front/buttons.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="162.79602"
+     inkscape:cy="100.10304"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1680"
+     inkscape:window-height="991"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36216)">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4136"
+       width="256.89444"
+       height="259.5145"
+       x="-0.43822482"
+       y="795.87811" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:24.77925682px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="78.116028"
+       y="759.32349"
+       id="text4142"
+       sodipodi:linespacing="125%"
+       transform="scale(0.90514924,1.1047902)"><tspan
+         sodipodi:role="line"
+         id="tspan4144"
+         x="78.116028"
+         y="759.32349">MCR</tspan></text>
+    <text
+       transform="scale(0.90514924,1.1047902)"
+       sodipodi:linespacing="125%"
+       id="text4150"
+       y="759.32349"
+       x="218.18764"
+       style="font-style:normal;font-weight:normal;font-size:24.77925682px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="759.32349"
+         x="218.18764"
+         id="tspan4152"
+         sodipodi:role="line">MCL</tspan></text>
+    <text
+       transform="scale(0.90514924,1.1047902)"
+       sodipodi:linespacing="125%"
+       id="text4158"
+       y="814.83936"
+       x="77.456703"
+       style="font-style:normal;font-weight:normal;font-size:19.43637276px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="814.83936"
+         x="77.456703"
+         id="tspan4160"
+         sodipodi:role="line">MTOP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15.17144966px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="245.9039"
+       y="804.31482"
+       id="text4166"
+       sodipodi:linespacing="125%"
+       transform="scale(0.90514924,1.1047902)"><tspan
+         sodipodi:role="line"
+         id="tspan4168"
+         x="245.9039"
+         y="804.31482">RDC Np</tspan><tspan
+         sodipodi:role="line"
+         x="245.9039"
+         y="823.27911"
+         id="tspan4170">LDG</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16.01712418px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="76.103821"
+       y="870.65143"
+       id="text4195"
+       sodipodi:linespacing="125%"
+       transform="scale(0.90514924,1.1047902)"><tspan
+         sodipodi:role="line"
+         id="tspan4197"
+         x="76.103821"
+         y="870.65143">SELECT</tspan></text>
+    <g
+       id="g4159"
+       style="stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none">
+      <rect
+         y="797.56537"
+         x="1.1965297"
+         height="63.428505"
+         width="63.428505"
+         id="rect4138"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4140"
+         width="63.428505"
+         height="63.428505"
+         x="64.788376"
+         y="797.56537" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4146"
+         width="63.428505"
+         height="63.428505"
+         x="127.98225"
+         y="797.56537" />
+      <rect
+         y="797.56537"
+         x="191.5741"
+         height="63.428505"
+         width="63.428505"
+         id="rect4148"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4154"
+         width="63.428505"
+         height="63.428505"
+         x="1.1965297"
+         y="861.13678" />
+      <rect
+         y="861.13678"
+         x="64.788376"
+         height="63.428505"
+         width="63.428505"
+         id="rect4156"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="860.77966"
+         x="127.98225"
+         height="63.428505"
+         width="63.428505"
+         id="rect4162"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4164"
+         width="63.428505"
+         height="63.428505"
+         x="191.5741"
+         y="860.77966" />
+      <rect
+         y="924.35107"
+         x="1.1965297"
+         height="63.428505"
+         width="63.428505"
+         id="rect4191"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4193"
+         width="63.428505"
+         height="63.428505"
+         x="64.788376"
+         y="924.35107" />
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4199"
+         width="63.428505"
+         height="63.428505"
+         x="127.98225"
+         y="923.99396" />
+      <rect
+         y="923.99396"
+         x="191.5741"
+         height="63.428505"
+         width="63.428505"
+         id="rect4201"
+         style="opacity:1;fill:none;fill-opacity:0;stroke:#ffffff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <text
+       transform="scale(1.036267,0.96500226)"
+       sodipodi:linespacing="125%"
+       id="text4203"
+       y="998.58545"
+       x="215.09213"
+       style="font-style:normal;font-weight:normal;font-size:27.64484978px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         id="tspan4207"
+         y="998.58545"
+         x="215.09213"
+         sodipodi:role="line">ON</tspan></text>
+  </g>
+</svg>

@@ -151,7 +151,7 @@
             <binding>
 				<command>property-adjust</command>
 				<property>instrumentation/altimeter/setting-hpa</property>
-                                <factor>0.05</factor>
+                                <factor>0.5</factor>
 				<min>940</min>
 				<max>1050</max>
 				<wrap>false</wrap>
@@ -161,7 +161,7 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>inhg</tooltip-id>
-                <label>QNH (hPa): %s</label>
+                <label>QNH (hPa): %4d</label>
                 <mapping>QNH</mapping>
 				<property>instrumentation/altimeter/setting-hpa</property>
             </binding>

@@ -176,9 +176,32 @@
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+		    <condition>
+			    <equals>
+				    <property>/it-autoflight/settings/nav-source</property>
+				    <value>FMS</value>
+			    </equals>
+		    </condition>
                 <command>property-assign</command>
                 <property>it-autoflight/input/lat</property>
                 <value>1</value>
+            </binding>
+            <binding>
+		    <condition>
+			    <or>
+				<equals>
+					<property>/it-autoflight/settings/nav-source</property>
+					<value>NAV1</value>
+				</equals>
+				<equals>
+					<property>/it-autoflight/settings/nav-source</property>
+					<value>NAV2</value>
+				</equals>
+			</or>
+		    </condition>
+                <command>property-assign</command>
+                <property>it-autoflight/input/lat</property>
+                <value>2</value>
             </binding>
             <binding>
                 <command>property-assign</command>
@@ -350,7 +373,7 @@
                 <binding>
                     <command>property-adjust</command>
 <condition><equals>
-                <property>/autopilot/settings/nav-source</property>
+                <property>/it-autoflight/settings/nav-source</property>
 <value>NAV1</value>
 </equals></condition>
                     <property>instrumentation/nav/radials/selected-deg</property>
@@ -362,7 +385,7 @@
                 <binding>
                     <command>property-adjust</command>
 <condition><equals>
-                <property>/autopilot/settings/nav-source</property>
+                <property>/it-autoflight/settings/nav-source</property>
 <value>NAV2</value>
 </equals></condition>
                     <property>instrumentation/nav[1]/radials/selected-deg</property>
@@ -383,7 +406,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-cycle</command>
-                <property>/autopilot/settings/nav-source</property>
+                <property>/it-autoflight/settings/nav-source</property>
 		<value>NAV1</value>
 		<value>NAV2</value>
 		<value>FMS</value>

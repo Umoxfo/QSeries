@@ -1,44 +1,48 @@
-<?xml version="1.0"?>
-
 <PropertyList>
 
-	<path>MFD.pilot.ac</path>
+	<path>PFD.ac</path>
+	
+	<!--Interior effect-->
+	<effect>
+		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>PFD.screen</object-name>
+	</effect>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>MFDpilot.screen</object-name>
+		<object-name>PFD.screen</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_mfd.showMFDpilot();</script>
+				<script>canvas_pfd.showPFD();</script>
 			</binding>
 		</action>
 	</animation>
-
+	
+	
 	<animation>
 		<type>material</type>
-		<object-name>navdisplayL</object-name>
-		<object-name>MFDpilot.screen</object-name>
+		<object-name>PFD.screen</object-name>
 		<ambient>
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-			<factor-prop>/instrumentation/mfd[0]/brt</factor-prop>
+			<factor-prop>/instrumentation/pfd[0]/brt</factor-prop>
 		</ambient>
 		<diffuse>
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-			<factor-prop>/instrumentation/mfd[0]/brt</factor-prop>
+			<factor-prop>/instrumentation/pfd[0]/brt</factor-prop>
 		</diffuse>
 		<emission>
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-			<factor-prop>/instrumentation/mfd[0]/brt</factor-prop>
+			<factor-prop>/instrumentation/pfd[0]/brt</factor-prop>
 		</emission>
 	</animation>
-
+    
 </PropertyList>
