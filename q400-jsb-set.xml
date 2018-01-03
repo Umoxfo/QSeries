@@ -387,6 +387,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/systems.nas</file>-->
 			<file>Nasal/doors.nas</file>
 			<file>Nasal/general.nas</file>
+			<file>Nasal/autoflight-helpers.nas</file>
 		</q400>
 		<itaf>
 			<file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
