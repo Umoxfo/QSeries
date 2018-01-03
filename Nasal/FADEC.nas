@@ -72,7 +72,7 @@ var update_FADEC = func{
 	if(getprop("/controls/engines/engine[0]/throttle-int")<=0.8 or getprop("/engines/engine[0]/reversed")){
 		var state=getprop("/controls/engines/engine[0]/condition-lever-state");
 		if(state==1 or state==4){
-			if(getprop("/controls/engines/engine[0]/mtop-discrete")==1){
+			if(getprop("/controls/engines/mtop-discrete")==1){
 				setprop("/FADEC/thrust-mode[0]", "MTOP");
 			}else{
 				setprop("/FADEC/thrust-mode[0]", "NTOP");
@@ -93,7 +93,7 @@ var update_FADEC = func{
 	if(getprop("/controls/engines/engine[1]/throttle-int")<=0.8 or getprop("/engines/engine[1]/reversed")){
 		var state2=getprop("/controls/engines/engine[1]/condition-lever-state");
 		if(state2==1 or state2==4){
-			if(getprop("/controls/engines/engine[1]/mtop-discrete")==1){
+			if(getprop("/controls/engines/mtop-discrete")==1){
 				setprop("/FADEC/thrust-mode[1]", "MTOP");
 			}else{
 				setprop("/FADEC/thrust-mode[1]", "NTOP");
