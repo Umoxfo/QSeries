@@ -222,25 +222,25 @@
 			</entry>
 			<entry>
 				<ind> 1 </ind>
-				<dep>  -25 </dep>
+				<dep>  -33 </dep>
 			</entry>
 			<entry>
 				<ind> 2 </ind>
-				<dep> -50 </dep>
+				<dep> -44.7 </dep>
 			</entry>
 			<entry>
 				<ind> 3 </ind>
-				<dep> -95 </dep>
+				<dep> -59.6 </dep>
 			</entry>
 			<entry>
 				<ind> 4 </ind>
-				<dep> -125 </dep>
+				<dep> -70 </dep>
 			</entry>
 		</interpolation>
 		<center>
-		<x-m>-11.88406</x-m>
-		<y-m>0</y-m>
-		<z-m>1.92495</z-m>
+			<x-m>-11.90227</x-m>
+			<y-m>0</y-m>
+			<z-m>1.84295</z-m>
 		</center>
 		<axis>
 		<x>0</x>
@@ -300,25 +300,25 @@
 			</entry>
 			<entry>
 				<ind> 1 </ind>
-				<dep>  -25 </dep>
+				<dep>  -33 </dep>
 			</entry>
 			<entry>
 				<ind> 2 </ind>
-				<dep> -50 </dep>
+				<dep> -44.7 </dep>
 			</entry>
 			<entry>
 				<ind> 3 </ind>
-				<dep> -95 </dep>
+				<dep> -59.6 </dep>
 			</entry>
 			<entry>
 				<ind> 4 </ind>
-				<dep> -125 </dep>
+				<dep> -70 </dep>
 			</entry>
 		</interpolation>
 		<center>
-		<x-m>-11.88406</x-m>
-		<y-m>0</y-m>
-		<z-m>1.92495</z-m>
+			<x-m>-11.90227</x-m>
+			<y-m>0</y-m>
+			<z-m>1.84295</z-m>
 		</center>
 		<axis>
 		<x>0</x>

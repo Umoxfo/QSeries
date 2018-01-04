@@ -1,24 +1,21 @@
 <?xml version="1.0"?>
 
 <!--
-#######################################
-# Copyright (c) A3XX Development Team #
-#######################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 -->
 
 <PropertyList>
 
 	<path>res/ND_R.ac</path>
 	
-    <!--animation>
-        <type>select</type>
-        <object-name>ND_R.screen</object-name>
-        <condition>
-            <and>
-                <property>systems/unused/something</property>
-            </and>
-        </condition>
-    </animation-->
+	<animation>
+		<type>scale</type>
+		<x-offset>1.05</x-offset>
+		<y-offset>1.05</y-offset>
+		<z-offset>1.05</z-offset>
+	</animation>
     
     <animation>
         <type>pick</type>
@@ -33,17 +30,15 @@
         </action>
     </animation> 
 
-	<!-- ND right dimmer -->
 	<animation>
 		<type>material</type>
 		<object-name>ND_R.screen</object-name>
 		<emission>
-			<red>1.0</red>
-			<green>1.0</green>
-			<blue>1.0</blue>
-			<factor-prop>/controls/lighting/ndr-norm</factor-prop>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/DU/du5</factor-prop>
 		</emission>
 	</animation>
-	
    
 </PropertyList>

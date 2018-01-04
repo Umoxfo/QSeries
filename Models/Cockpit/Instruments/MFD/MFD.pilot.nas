@@ -21,11 +21,10 @@ var MFDpilot_pfd = nil;
 var MFDpilot_ed = nil;
 var MFDpilot_display = nil;
 var syspage = "elec";
-var mainpage = "sys";
+var mainpage = "nd";
 var DC=0.01744;
 
 setprop("/instrumentation/mfd[0]/inputs/sys-page", "elec");
-setprop("/instrumentation/mfd[0]/inputs/main-page", "sys");
 
 setprop("/it-autoflight/input/alt", 100000);
 setprop("/instrumentation/PFD/ias-bugs/bug1", 0);
@@ -104,21 +103,25 @@ var canvas_MFDpilot_base = {
 				var syspage=getprop("/instrumentation/mfd[0]/inputs/sys-page");
 				if(syspage=="elec"){
 					MFDpilot_elec.page.show();
+					MFDpilot_elec.update();
 					MFDpilot_eng.page.hide();
 					MFDpilot_fuel.page.hide();
 					MFDpilot_doors.page.hide();
 				}else if(syspage=="eng"){
 					MFDpilot_eng.page.show();
+					MFDpilot_eng.update();
 					MFDpilot_elec.page.hide();
 					MFDpilot_fuel.page.hide();
 					MFDpilot_doors.page.hide();
 				}else if(syspage=="fuel"){
 					MFDpilot_fuel.page.show();
+					MFDpilot_fuel.update();
 					MFDpilot_elec.page.hide();
 					MFDpilot_eng.page.hide();
 					MFDpilot_doors.page.hide();
 				}else if(syspage=="doors"){
 					MFDpilot_doors.page.show();
+					MFDpilot_doors.update();
 					MFDpilot_elec.page.hide();
 					MFDpilot_eng.page.hide();
 					MFDpilot_fuel.page.hide();
@@ -207,7 +210,6 @@ var canvas_MFDpilot_elec = {
 			
 		
 		me.updateBottomStatus();
-		settimer(func me.update(), 0.02);
 	},
 };
 
@@ -282,7 +284,6 @@ var canvas_MFDpilot_eng = {
 		me["NHR.decimal"].setText(sprintf("%s", int(10*math.mod((n2R or 0),1))));
 		
 		me.updateBottomStatus();
-		settimer(func me.update(), 0.02);
 	},
 };
 
@@ -345,7 +346,6 @@ var canvas_MFDpilot_fuel = {
 		}	
 		
 		me.updateBottomStatus();
-		settimer(func me.update(), 0.02);
 	},
 };
 
@@ -391,7 +391,6 @@ var canvas_MFDpilot_doors = {
 			
 		
 		me.updateBottomStatus();
-		settimer(func me.update(), 0.02);
 	},
 };
 

@@ -15,8 +15,19 @@
 
 
 	<model>
+		<name>HUD</name>
 		<path>HUD/hud.xml</path>
 	</model>
+	<animation>
+		<type>select</type>
+		<object-name>HUD</object-name>
+		<condition>
+			<or>
+				<property>/sim/model/livery/enable-hud</property>
+				<property>/sim/model/always-show-hud</property>
+			</or>
+		</condition>
+	</animation>
 	<model>
 		<path>Instruments/PFD/PFD.pilot.xml</path>
 		<offsets>

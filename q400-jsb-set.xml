@@ -56,6 +56,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<path>Aircraft/Q400/Models/q400.xml</path>
 			<livery> 
 				<file type="string"/>
+				<enable-hud type="bool">0</enable-hud>
 			</livery> 
 			<open-cabin-doors type="bool">1</open-cabin-doors>
 			<pushback>
@@ -80,6 +81,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 				<reflection-noise type="float">0.05</reflection-noise>
 				<ambient-correction type="float">0.1</ambient-correction>
 			</rendering>
+			<always-show-hud type="bool">0</always-show-hud>
 		</model>
 
 		<menubar>
@@ -326,9 +328,15 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</ed>
 		<mfd n="0">
 			<brt type="float">0.8</brt>
+			<inputs>
+				<main-page type="string">nd</main-page>
+			</inputs>
 		</mfd>
 		<mfd n="1">
 			<brt type="float">0.8</brt>
+			<inputs>
+				<main-page type="string">nd</main-page>
+			</inputs>
 		</mfd>
 		<pfd n="0">
 			<brt type="float">0.8</brt>
@@ -359,7 +367,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 
 	<nasal>  
 		<canvas_nd>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/ND.nas</file>
+			<file>Aircraft/Q400/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
 		</canvas_nd>
 		<canvas_ed>
 			<file>Aircraft/Q400/Models/Cockpit/Instruments/ED/ED.nas</file>

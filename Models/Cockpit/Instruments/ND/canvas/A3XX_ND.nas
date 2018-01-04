@@ -1,13 +1,19 @@
-# A3XX ND Implementation
+# A3XX ND Canvas
+# Joshua Davidson (it0uchpods)
+# Based on work by artix
+
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 var get_local_path = func(file){
-    var aircraft_dir = split('/', getprop("/sim/aircraft-dir"))[-1];
-    return "Aircraft/" ~ aircraft_dir ~ "/Models/Instruments/ND/canvas/"~ file;
+    var aircraft_dir = split("/", getprop("/sim/aircraft-dir"))[-1];
+    return "Aircraft/Q400/Models/Cockpit/Instruments/ND/canvas/"~ file;
 };
 
-var version = getprop('sim/version/flightgear');
-var v = split('.', version);
-version = num(v[0]~'.'~v[1]);
+var version = getprop("sim/version/flightgear");
+var v = split(".", version);
+version = num(v[0]~"."~v[1]);
 
 var SymbolLayer = canvas.SymbolLayer;
 var SingleSymbolLayer = canvas.SingleSymbolLayer;
@@ -25,15 +31,10 @@ var SymbolCache32x32 = canvas.SymbolCache32x32;
 var SymbolCache = canvas.SymbolCache;
 var Text = canvas.Text;
 
-
-if(version < 3.2){
-    io.include('canvas_compat.nas');
-}
-
-io.include('ND_config.nas');
-io.include('framework/canvas.nas');
-io.include('framework/navdisplay.nas');
-io.include('framework/MapDrivers.nas');
-io.include('loaders.nas');
-io.include('helpers.nas');
-io.include('style.nas');
+io.include("ND_config.nas");
+io.include("framework/canvas.nas");
+io.include("framework/navdisplay.nas");
+io.include("framework/MapDrivers.nas");
+io.include("loaders.nas");
+io.include("helpers.nas");
+io.include("style.nas");

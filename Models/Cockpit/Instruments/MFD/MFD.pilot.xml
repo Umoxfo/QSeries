@@ -5,6 +5,28 @@
 	<path>MFD.pilot.ac</path>
 	
 	<animation>
+		<type>select</type>
+		<object-name>MFDpilot.screen</object-name>
+		<condition>
+			<not-equals>
+				<property>/instrumentation/mfd[0]/inputs/main-page</property>
+				<value>nd</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>MFDpilot.screenND</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[0]/inputs/main-page</property>
+				<value>nd</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>MFDpilot.screen</object-name>
 		<action>
