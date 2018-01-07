@@ -349,6 +349,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</flightrcdr>
 		<efis>
 			<serviceable>1</serviceable>
+			<inputs>
+				<data-btn type="int">4</data-btn>
+			</inputs>
 		</efis>
 		<cdu>
 			<input type="string"/>
@@ -396,6 +399,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/doors.nas</file>
 			<file>Nasal/general.nas</file>
 			<file>Nasal/autoflight-helpers.nas</file>
+			<file>Nasal/listeners.nas</file>
 		</q400>
 		<itaf>
 			<file>Aircraft/Q400/Nasal/it-autoflight.nas</file>

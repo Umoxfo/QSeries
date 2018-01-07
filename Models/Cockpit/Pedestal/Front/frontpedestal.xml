@@ -74,8 +74,12 @@
 			<button>0</button>
 			<repeatable>0</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>/instrumentation/efis/inputs/data</property>
+				<command>property-cycle</command>
+				<property>/instrumentation/efis[0]/inputs/data-btn</property>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
 			</binding>
 		</action>
 	</animation>
@@ -103,6 +107,22 @@
 			<min>0.0</min>
 			<max>1.0</max>
 		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>NDrangeL</object-name>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/instrumentation/efis/inputs/range-nm</property>
+				<value>20</value>
+				<value>40</value>
+				<value>80</value>
+				<value>160</value>
+				<value>240</value>
+				<value>10</value>
+			</binding>
 		</action>
 	</animation>
 	
@@ -154,8 +174,12 @@
 			<button>0</button>
 			<repeatable>0</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>/instrumentation/efis[1]/inputs/data</property>
+				<command>property-cycle</command>
+				<property>/instrumentation/efis[1]/inputs/data-btn</property>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
 			</binding>
 		</action>
 	</animation>

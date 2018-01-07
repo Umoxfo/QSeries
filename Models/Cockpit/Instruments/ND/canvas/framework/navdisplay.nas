@@ -77,10 +77,10 @@ canvas.NavDisplay.newMFD = func(canvas_group, parent=nil, nd_options=nil, update
 	# load elements from vector image, and create instance variables using identical names, and call updateCenter() on each
 	# anything that needs updatecenter called, should be added to the vector here
 	#
-	foreach(var element; ["staArrowL2","staArrowR2","staFromL2","staToL2","staFromR2","staToR2",
-			"hdgTrk","trkInd","hdgBug","HdgBugCRT","TrkBugLCD","HdgBugLCD","curHdgPtr",
-			"HdgBugCRT2","TrkBugLCD2","HdgBugLCD2","hdgBug2","selHdgLine","selHdgLine2","curHdgPtr2",
-			"staArrowL","staArrowR","staToL","staFromL","staToR","staFromR"] )
+	foreach(var element; [
+			"hdgTrk","hdgBug","HdgBugCRT","HdgBugLCD","curHdgPtr",
+			"HdgBugCRT2","HdgBugLCD2","hdgBug2","curHdgPtr2","selHdgLine","selHdgLine2",
+			] )
 	me.symbols[element] = me.nd.getElementById(element).updateCenter();
 
 	me.map = me.nd.createChild("map","map")
@@ -376,37 +376,37 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 	var dme1_path = "/instrumentation/dme[2]";
 	var dme2_path = "/instrumentation/dme[3]";
 
-	if(me.get_switch("toggle_rh_vor_adf") == 1) {
-		me.symbols.vorR.setText("VOR R");
-		me.symbols.vorR.setColor(0.195,0.96,0.097);
-		me.symbols.dmeR.setText("DME");
-		me.symbols.dmeR.setColor(0.195,0.96,0.097);
-		if(getprop(vor2_path~ "in-range"))
-			me.symbols.vorRId.setText(getprop(vor2_path~ "nav-id"));
-		else
-			me.symbols.vorRId.setText(getprop(vor2_path~ "frequencies/selected-mhz-fmt"));
-		me.symbols.vorRId.setColor(0.195,0.96,0.097);
-		if(getprop(dme2_path~ "in-range"))
-			me.symbols.dmeRDist.setText(sprintf("%3.1f",getprop(dme2_path~ "indicated-distance-nm")));
-		else me.symbols.dmeRDist.setText(" ---");
-			me.symbols.dmeRDist.setColor(0.195,0.96,0.097);
-	} elsif(me.get_switch("toggle_rh_vor_adf") == -1) {
-		me.symbols.vorR.setText("ADF R");
-		me.symbols.vorR.setColor(0,0.6,0.85);
-		me.symbols.dmeR.setText("");
-		me.symbols.dmeR.setColor(0,0.6,0.85);
-		if((var navident=getprop("instrumentation/adf[1]/ident")) != "")
-			me.symbols.vorRId.setText(navident);
-		else me.symbols.vorRId.setText(sprintf("%3d",getprop("instrumentation/adf[1]/frequencies/selected-khz")));
-			me.symbols.vorRId.setColor(0,0.6,0.85);
-		me.symbols.dmeRDist.setText("");
-		me.symbols.dmeRDist.setColor(0,0.6,0.85);
-	} else {
-		me.symbols.vorR.setText("");
-		me.symbols.dmeR.setText("");
-		me.symbols.vorRId.setText("");
-		me.symbols.dmeRDist.setText("");
-	}
+	#if(me.get_switch("toggle_rh_vor_adf") == 1) {
+	#	me.symbols.vorR.setText("VOR R");
+	#	me.symbols.vorR.setColor(0.195,0.96,0.097);
+	#	me.symbols.dmeR.setText("DME");
+	#	me.symbols.dmeR.setColor(0.195,0.96,0.097);
+	#	if(getprop(vor2_path~ "in-range"))
+	#		me.symbols.vorRId.setText(getprop(vor2_path~ "nav-id"));
+	#	else
+	#		me.symbols.vorRId.setText(getprop(vor2_path~ "frequencies/selected-mhz-fmt"));
+	#	me.symbols.vorRId.setColor(0.195,0.96,0.097);
+	#	if(getprop(dme2_path~ "in-range"))
+	#		me.symbols.dmeRDist.setText(sprintf("%3.1f",getprop(dme2_path~ "indicated-distance-nm")));
+	#	else me.symbols.dmeRDist.setText(" ---");
+	#		me.symbols.dmeRDist.setColor(0.195,0.96,0.097);
+	#} elsif(me.get_switch("toggle_rh_vor_adf") == -1) {
+	#	me.symbols.vorR.setText("ADF R");
+	#	me.symbols.vorR.setColor(0,0.6,0.85);
+	#	me.symbols.dmeR.setText("");
+	#	me.symbols.dmeR.setColor(0,0.6,0.85);
+	#	if((var navident=getprop("instrumentation/adf[1]/ident")) != "")
+	#		me.symbols.vorRId.setText(navident);
+	#	else me.symbols.vorRId.setText(sprintf("%3d",getprop("instrumentation/adf[1]/frequencies/selected-khz")));
+	#		me.symbols.vorRId.setColor(0,0.6,0.85);
+	#	me.symbols.dmeRDist.setText("");
+	#	me.symbols.dmeRDist.setColor(0,0.6,0.85);
+	#} else {
+	#	me.symbols.vorR.setText("");
+	#	me.symbols.dmeR.setText("");
+	#	me.symbols.vorRId.setText("");
+	#	me.symbols.dmeRDist.setText("");
+	#}
 
 	# Hide heading bug 10 secs after change
 	var vhdg_bug = getprop("/it-autoflight/input/hdg") or 0;
@@ -414,19 +414,19 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 	if (hdg_bug_active == nil)
 		hdg_bug_active = 1;
 
-	if((me.in_mode("toggle_display_mode", ["MAP"]) and me.get_switch("toggle_display_type") == "CRT")
-	   or (me.get_switch("toggle_track_heading") and me.get_switch("toggle_display_type") == "LCD"))
-	{
-		me.symbols.trkInd.setRotation(0);
-		me.symbols.curHdgPtr.setRotation((userHdg-userTrk)*D2R);
-		me.symbols.curHdgPtr2.setRotation((userHdg-userTrk)*D2R);
-	}
-	else
-	{
-		me.symbols.trkInd.setRotation((userTrk-userHdg)*D2R);
-		me.symbols.curHdgPtr.setRotation(0);
-		me.symbols.curHdgPtr2.setRotation(0);
-	}
+	#if((me.in_mode("toggle_display_mode", ["MAP"]) and me.get_switch("toggle_display_type") == "CRT")
+	#   or (me.get_switch("toggle_track_heading") and me.get_switch("toggle_display_type") == "LCD"))
+	#{
+	#	me.symbols.trkInd.setRotation(0);
+	#	me.symbols.curHdgPtr.setRotation((userHdg-userTrk)*D2R);
+	#	me.symbols.curHdgPtr2.setRotation((userHdg-userTrk)*D2R);
+	#}
+	#else
+	#{
+	#	me.symbols.trkInd.setRotation((userTrk-userHdg)*D2R);
+	#	me.symbols.curHdgPtr.setRotation(0);
+	#	me.symbols.curHdgPtr2.setRotation(0);
+	#}
 	if(!me.in_mode("toggle_display_mode", ["PLAN"])) {
 		var hdgBugRot = (vhdg_bug-userHdgTrk)*D2R;
 		me.symbols.selHdgLine.setRotation(hdgBugRot);
@@ -465,42 +465,10 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 	var adf1hdg=getprop("instrumentation/adf[1]/indicated-bearing-deg");
 	if(!me.get_switch("toggle_centered"))
 	{
-		if(me.in_mode("toggle_display_mode", ["PLAN"]))
-			me.symbols.trkInd.hide();
-		else
-			me.symbols.trkInd.show();
-		if((getprop("instrumentation/nav[2]/in-range") and me.get_switch("toggle_lh_vor_adf") == 1)) {
-			me.symbols.staArrowL.setVisible(staPtrVis);
-			me.symbols.staToL.setColor(0.195,0.96,0.097);
-			me.symbols.staFromL.setColor(0.195,0.96,0.097);
-			me.symbols.staArrowL.setRotation(nav0hdg*D2R);
-		}
-		elsif(getprop("instrumentation/adf/in-range") and (me.get_switch("toggle_lh_vor_adf") == -1)) {
-			me.symbols.staArrowL.setVisible(staPtrVis);
-			me.symbols.staToL.setColor(0,0.6,0.85);
-			me.symbols.staFromL.setColor(0,0.6,0.85);
-			me.symbols.staArrowL.setRotation(adf0hdg*D2R);
-		} else {
-			me.symbols.staArrowL.hide();
-		}
-		if((getprop("instrumentation/nav[3]/in-range") and me.get_switch("toggle_rh_vor_adf") == 1)) {
-			me.symbols.staArrowR.setVisible(staPtrVis);
-			me.symbols.staToR.setColor(0.195,0.96,0.097);
-			me.symbols.staFromR.setColor(0.195,0.96,0.097);
-			me.symbols.staArrowR.setRotation(nav1hdg*D2R);
-		} elsif(getprop("instrumentation/adf[1]/in-range") and (me.get_switch("toggle_rh_vor_adf") == -1)) {
-			me.symbols.staArrowR.setVisible(staPtrVis);
-			me.symbols.staToR.setColor(0,0.6,0.85);
-			me.symbols.staFromR.setColor(0,0.6,0.85);
-			me.symbols.staArrowR.setRotation(adf1hdg*D2R);
-		} else {
-			me.symbols.staArrowR.hide();
-		}
-		me.symbols.staArrowL2.hide();
-		me.symbols.staArrowR2.hide();
+		
 		me.symbols.curHdgPtr2.hide();
 		me.symbols.HdgBugCRT2.hide();
-		me.symbols.TrkBugLCD2.hide();
+#		me.symbols.TrkBugLCD2.hide();
 		me.symbols.HdgBugLCD2.hide();
 		me.symbols.selHdgLine2.hide();
 		me.symbols.curHdgPtr.setVisible(staPtrVis);
@@ -508,12 +476,12 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 		if (me.get_switch("toggle_track_heading")) {
 			me.symbols.HdgBugLCD.hide();
 			if (hdg_bug_active) {
-				me.symbols.TrkBugLCD.setVisible(staPtrVis and dispLCD);
+				#me.symbols.TrkBugLCD.setVisible(staPtrVis and dispLCD);
 			} else {
-				me.symbols.TrkBugLCD.hide();
+				#me.symbols.TrkBugLCD.hide();
 			}
 		} else {
-			me.symbols.TrkBugLCD.hide();
+			#me.symbols.TrkBugLCD.hide();
 			if (hdg_bug_active) {
 				me.symbols.HdgBugLCD.setVisible(staPtrVis and dispLCD);
 			} else {
@@ -522,38 +490,10 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 		}
 		me.symbols.selHdgLine.setVisible(staPtrVis and hdg_bug_active);
 	} else {
-		me.symbols.trkInd.hide();
-		if((getprop("instrumentation/nav[2]/in-range") and me.get_switch("toggle_lh_vor_adf") == 1)) {
-			me.symbols.staArrowL2.setVisible(staPtrVis);
-			me.symbols.staFromL2.setColor(0.195,0.96,0.097);
-			me.symbols.staToL2.setColor(0.195,0.96,0.097);
-			me.symbols.staArrowL2.setRotation(nav0hdg*D2R);
-		} elsif(getprop("instrumentation/adf/in-range") and (me.get_switch("toggle_lh_vor_adf") == -1)) {
-			me.symbols.staArrowL2.setVisible(staPtrVis);
-			me.symbols.staFromL2.setColor(0,0.6,0.85);
-			me.symbols.staToL2.setColor(0,0.6,0.85);
-			me.symbols.staArrowL2.setRotation(adf0hdg*D2R);
-		} else {
-			me.symbols.staArrowL2.hide();
-		}
-		if((getprop("instrumentation/nav[3]/in-range") and me.get_switch("toggle_rh_vor_adf") == 1)) {
-			me.symbols.staArrowR2.setVisible(staPtrVis);
-			me.symbols.staFromR2.setColor(0.195,0.96,0.097);
-			me.symbols.staToR2.setColor(0.195,0.96,0.097);
-			me.symbols.staArrowR2.setRotation(nav1hdg*D2R);
-		} elsif(getprop("instrumentation/adf[1]/in-range") and (me.get_switch("toggle_rh_vor_adf") == -1)) {
-			me.symbols.staArrowR2.setVisible(staPtrVis);
-			me.symbols.staFromR2.setColor(0,0.6,0.85);
-			me.symbols.staToR2.setColor(0,0.6,0.85);
-			me.symbols.staArrowR2.setRotation(adf1hdg*D2R);
-		} else {
-			me.symbols.staArrowR2.hide();
-		}
-		me.symbols.staArrowL.hide();
-		me.symbols.staArrowR.hide();
+#		me.symbols.trkInd.hide();
 		me.symbols.curHdgPtr.hide();
 		me.symbols.HdgBugCRT.hide();
-		me.symbols.TrkBugLCD.hide();
+#		me.symbols.TrkBugLCD.hide();
 		me.symbols.HdgBugLCD.hide();
 		me.symbols.selHdgLine.hide();
 		me.symbols.curHdgPtr2.setVisible(staPtrVis);
@@ -561,12 +501,12 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 		if (me.get_switch("toggle_track_heading")) {
 			me.symbols.HdgBugLCD2.hide();
 			if (hdg_bug_active) {
-				me.symbols.TrkBugLCD2.setVisible(staPtrVis and dispLCD);
+				#me.symbols.TrkBugLCD2.setVisible(staPtrVis and dispLCD);
 			} else {
-				me.symbols.TrkBugLCD2.hide();
+				#me.symbols.TrkBugLCD2.hide();
 			}
 		} else {
-			me.symbols.TrkBugLCD2.hide();
+			#me.symbols.TrkBugLCD2.hide();
 			if (hdg_bug_active) {
 				me.symbols.HdgBugLCD2.setVisible(staPtrVis and dispLCD);
 			} else {
