@@ -10,5 +10,5 @@ As the dhc8-400 before, it is licensed under GPL v2.0 (see LICENSE.txt)
 Original author: MaverickAlex
 Re-modelling and updating by Florian K (cockpit, exterior; pushback (!)) and D-ECHO (exterior)
 Instruments partly from CitationX by Syd Adams and Patten (version from pattenflightgear.wifeo.com)
-JSBsim FDM by Joshua Davidson (it0uchpods) and D-ECHO
+JSBsim FDM by Joshua Davidson (it0uchpods)
 Licensed under GPL v2.0

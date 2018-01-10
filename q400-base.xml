@@ -253,9 +253,9 @@ DHC8 -400Q by Alex Park Jan 2010
 		
 		<flaps>
 			<setting>0.000</setting>
-			<setting>0.142</setting>
-			<setting>0.284</setting>
-			<setting>0.426</setting>
+			<setting>0.143</setting>
+			<setting>0.286</setting>
+			<setting>0.429</setting>
 			<setting>1.000</setting>
 		</flaps>
 		
@@ -330,59 +330,51 @@ DHC8 -400Q by Alex Park Jan 2010
 		
 		<chase-distance-m>-60</chase-distance-m>
 	</sim>
-
+	
 	<it-autoflight>
-		<input>
-			<yd type="double">0</yd>
-		</input>
 		<config>
 			<roll>
-				<umin>-0.50</umin>
-				<umax>0.50</umax>
-				<kp>0.05</kp>
-				<kp-vloc>0.06</kp-vloc>
-				<ti>5.0</ti>
+				<kp-low>0.12</kp-low> <!-- Kp at low speed -->
+				<kp-high>0.05</kp-high> <!-- Kp at high speed -->
+				<ti>1.0</ti>
 				<td>0.0001</td>
 			</roll>
 			<pitch>
-				<umin>-0.30</umin>
-				<umax>0.30</umax>
-				<kp>-0.06</kp>
-				<ti>10.0</ti>
-				<td>0.0001</td>
+				<kp-low>-0.14</kp-low> <!-- Kp at low speed -->
+				<kp-high>-0.06</kp-high> <!-- Kp at high speed -->
+				<ti>0.5</ti>
+				<td>0.001</td>
 			</pitch>
 			<cmd>
-				<roll-kp>-1.5</roll-kp>
-				<roll-scale>1.0</roll-scale>
-				<vorloc>-2.0</vorloc>
-				<vs>0.01</vs>
+				<roll-kp>-1.3</roll-kp>
+				<vorloc>-2.5</vorloc>
+				<vs>0.0017</vs>
 			</cmd>
-			<autoland>
-				<kp-pitch>0.02</kp-pitch>
-				<kp-rudder>-0.3</kp-rudder>
+			<autoland> 
+				<kp-pitch>0.0051</kp-pitch>
+				<kp-rudder>-0.05</kp-rudder>
 			</autoland>
+			<rollout>
+				<defl-pitch>0.15</defl-pitch>
+				<kp-rudder>-0.02</kp-rudder>
+			</rollout>
 		</config>
 		<settings>
 			<nav-source type="string">NAV1</nav-source>
-			<auto-bank-max-deg>25</auto-bank-max-deg> 
-			<!-- Maximum Auto Bank Limit -->
-			<land-enable>0</land-enable>
-			<!-- Enable/Disable Autoland -->
-			<land-flap>0.7</land-flap>
-			<!-- Minimum Flap used for Landing -->
-			<retard-ft>40</retard-ft>
-			<!-- Enable Thrust Retard -->
-			<retard-enable>0</retard-enable>
-			<!-- AGL to Thrust Retard -->
-			<togaspd>121</togaspd>
-			<!-- V2 + 10kts -->
-			<lat-agl-ft>200</lat-agl-ft>
-			<!-- Set to 999999 if you do not want T/O to change automatically to HDG, or LNAV -->
-			<reduc-agl-ft>1500</reduc-agl-ft>
-			<!-- Set to 999999 if you do not want TOGA to change automatically to FLCH -->
-			<autoland-without-ap>0</autoland-without-ap>
-			<!-- Engage LAND and FLARE Modes even if the AP is off -->
+			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
+			<disable-final>0</disable-final> <!-- Disable the Final Controllers -->
+			<land-enable>0</land-enable> <!-- Enable/Disable Autoland -->
+			<land-flap>0.7</land-flap> <!-- Minimum Flap used for Landing -->
+			<retard-ft>50</retard-ft> <!-- Enable Thrust Retard -->
+			<retard-enable>0</retard-enable> <!-- AGL to Thrust Retard -->
+			<togaspd>141</togaspd> <!-- V2 + 10kts -->
+			<lat-agl-ft>50</lat-agl-ft> <!-- Set to 999999 if you do not want T/O to change automatically to LNAV (if armed) -->
+			<reduc-agl-ft>1500</reduc-agl-ft> <!-- Set to 999999 if you do not want TOGA to change automatically to FLCH -->
+			<autoland-without-ap>0</autoland-without-ap> <!-- Engage LAND and FLARE Modes even if the AP is off -->
 		</settings>
+		<input>
+			<yd>0</yd>
+		</input>
 	</it-autoflight>
 	
 	<position>

@@ -1,3 +1,12 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
 <fdm_config name="Q400" version="2.0" release="BETA"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
@@ -9,26 +18,25 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</fileheader>
 
 	<metrics>
-	
-		<wingarea  unit="FT2">  689.00 </wingarea>
-		<wingspan  unit="FT" >   93.25 </wingspan>
-		<wing_incidence>          1.03 </wing_incidence>
-		<chord     unit="FT" >   13.76 </chord>
-		<htailarea unit="FT2">   32.80 </htailarea>
-		<htailarm  unit="FT" >   13.28 </htailarm>
-		<vtailarea unit="FT2">   49.21 </vtailarea>
-		<vtailarm  unit="FT" >   16.07 </vtailarm>
+		<wingarea  unit="FT2"> 689.00 </wingarea>
+		<wingspan  unit="FT" >  93.25 </wingspan>
+		<wing_incidence      >   1.03 </wing_incidence>
+		<chord     unit="FT" >  13.76 </chord>
+		<htailarea unit="FT2">  32.80 </htailarea>
+		<htailarm  unit="FT" >  13.28 </htailarm>
+		<vtailarea unit="FT2">  49.21 </vtailarea>
+		<vtailarm  unit="FT" >  16.07 </vtailarm>
 
-	   <location name="AERORP" unit="M">
-			<x> 0.39127 </x>
+		<location name="AERORP" unit="M">
+			<x> 0.58265 </x>
 			<y> 0 </y>
 			<z> 1.71115 </z>
 		</location>
 
 		<location name="EYEPOINT" unit="M">
-			<x> -12.1792 </x>
-			<y> -0.47958 </y>
-			<z> 2.64688 </z>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 0 </z>
 		</location>
 
 		<location name="VRP" unit="M">
@@ -36,22 +44,20 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<y> 0 </y>
 			<z> 0 </z>
 		</location>
-		
 	</metrics>
 
 	<mass_balance>
-	
-		<ixx unit="SLUG*FT2"> 611903</ixx>
-		<iyy unit="SLUG*FT2">1735389</iyy>
-		<izz unit="SLUG*FT2">2301293</izz>
+		<ixx unit="SLUG*FT2">  385013 </ixx>
+		<iyy unit="SLUG*FT2">  803956 </iyy>
+		<izz unit="SLUG*FT2"> 1224581 </izz>
 
-		<ixy unit="SLUG*FT2">0</ixy>
-		<ixz unit="SLUG*FT2">0</ixz>
-		<iyz unit="SLUG*FT2">0</iyz>
-		<emptywt unit="LBS">39284</emptywt>
+		<ixy unit="SLUG*FT2">       0 </ixy>
+		<ixz unit="SLUG*FT2">       0 </ixz>
+		<iyz unit="SLUG*FT2">       0 </iyz>
+		<emptywt unit="LBS" >   39284 </emptywt>
 
 		<location name="CG" unit="M">
-			<x> 0.37127 </x>
+			<x> 0.54265 </x>
 			<y> 0 </y>
 			<z> 1.71115 </z>
 		</location>
@@ -64,35 +70,32 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<z> 1.71115 </z>
 			</location>
 		</pointmass>
-
 	</mass_balance>
 
 	<ground_reactions>
-	
 		<contact type="BOGEY" name="NOSE_LG">
 			<location unit="M">
 				<x> -12.54159 </x>
 				<y> 0 </y>
-				<z>-0.0059 </z> 
+				<z> -0.0059 </z> 
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 30935.5 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 16978.5 </damping_coeff>
 			<max_steer unit="DEG"> 70 </max_steer>
-			<brake_group> NONE </brake_group>
+			<brake_group> NOSE </brake_group>
 			<retractable>1</retractable>
 		</contact>
-		
 		<contact type="BOGEY" name="LEFT_MLG">
 			<location unit="M">
 				<x> 1.11067 </x>
-				<y>-4.6128 </y>
-				<z>-0.012 </z> 
+				<y> -4.6128 </y>
+				<z> -0.012 </z> 
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
@@ -100,15 +103,14 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> LEFT </brake_group>
 			<retractable>1</retractable>
 		</contact>
-		
 		<contact type="BOGEY" name="RIGHT_MLG">
 			<location unit="M">
 				<x> 1.11067 </x>
 				<y> 4.6128 </y>
-				<z>-0.012 </z> 
+				<z> -0.012 </z>
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
@@ -116,58 +118,12 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> RIGHT </brake_group>
 			<retractable>1</retractable>
 		</contact>
-		
-		<!--Maintenance jacks, e.g. to check gear-->		
-		<!--<contact type="BOGEY" name="FRONT_JACK">
-			<location unit="M">
-				<x> -11.79307 </x>
-				<y> 0.0 </y>
-				<z>-0.36896 </z> 
-			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
-			<rolling_friction> 0.02 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
-			<max_steer unit="DEG"> 0.0 </max_steer>
-			<retractable>1</retractable>
-		</contact>
-		
-		<contact type="BOGEY" name="LEFT_JACK">
-			<location unit="M">
-				<x> 0.3938 </x>
-				<y> -2.96077 </y>
-				<z>-0.36999 </z> 
-			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
-			<rolling_friction> 0.02 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
-			<max_steer unit="DEG"> 0.0 </max_steer>
-			<retractable>1</retractable>
-		</contact>
-		
-		<contact type="BOGEY" name="RIGHT_JACK">
-			<location unit="M">
-				<x> 0.3938 </x>
-				<y> 2.96077 </y>
-				<z>-0.36999 </z> 
-			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
-			<rolling_friction> 0.02 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
-			<max_steer unit="DEG"> 0.0 </max_steer>
-			<retractable>1</retractable>
-		</contact>-->
 
 		<contact type="STRUCTURE" name="NOSE_1">
 			<location unit="M">
-				<x> -12.33261 </x>
+				<x> -14.3831 </x>
 				<y> 0 </y>
-				<z> 0.74201 </z>
+				<z> 1.18355 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -178,12 +134,73 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
 		<contact type="STRUCTURE" name="NOSE_2">
 			<location unit="M">
-				<x> -14.37381 </x>
+				<x> -11.724 </x>
 				<y> 0 </y>
-				<z> 1.1446 </z>
+				<z> 3.17653 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="BOTTOM_1">
+			<location unit="M">
+				<x> -11.1607 </x>
+				<y> 0 </y>
+				<z> 0.75394 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="BOTTOM_2">
+			<location unit="M">
+				<x> 7.38987 </x>
+				<y> 0 </y>
+				<z> 1.07175 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="TOP_1">
+			<location unit="M">
+				<x> -7.67275 </x>
+				<y> 0 </y>
+				<z> 3.38003 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="TOP_2">
+			<location unit="M">
+				<x> 8.35559 </x>
+				<y> 0 </y>
+				<z> 3.99113 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -195,11 +212,56 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<retractable>0</retractable>
 		</contact>
 
-		<contact type="STRUCTURE" name="ENG_1">
+		<contact type="STRUCTURE" name="ENG_1_FAN_BOTTOM">
 			<location unit="M">
-				<x>0.33943</x>	
-				<y>-4.78698</y>
-				<z>2.10356</z>
+				<x> -3.33331 </x>
+				<y> -4.37881 </y>
+				<z> 1.08987 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_FAN_BOTTOM">
+			<location unit="M">
+				<x> -3.33331 </x>
+				<y> 4.37881 </y>
+				<z> 1.08987 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_1_BOTTOM">
+			<location unit="M">
+				<x> 0.80508 </x>
+				<y> -4.73245 </y>
+				<z> 2.0868 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_BOTTOM">
+			<location unit="M">
+				<x> 0.80508 </x>
+				<y> 4.73245 </y>
+				<z> 2.0868 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -211,14 +273,14 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<retractable>0</retractable>
 		</contact>
 		
-		<contact type="STRUCTURE" name="ENG_2">
+		<contact type="STRUCTURE" name="ENG_1_FAN_TOP">
 			<location unit="M">
-				<x>0.33943</x>	
-				<y>4.78698</y>
-				<z>2.10356</z>
+				<x> -3.33331 </x>
+				<y> -4.37881 </y>
+				<z> 5.31077 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
 			<rolling_friction> 0.4 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
@@ -226,12 +288,57 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
+		<contact type="STRUCTURE" name="ENG_2_FAN_TOP">
+			<location unit="M">
+				<x> -3.33331 </x>
+				<y> 4.37881 </y>
+				<z> 5.31077 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_1_TOP">
+			<location unit="M">
+				<x> -0.98556 </x>
+				<y> -4.48552 </y>
+				<z> 3.78763 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_TOP">
+			<location unit="M">
+				<x> -0.98556 </x>
+				<y> 4.48552 </y>
+				<z> 3.78763 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+
 		<contact type="STRUCTURE" name="TAIL_1">
 			<location unit="M">
-				<x> 16.44197 </x>
+				<x> 16.4773 </x>
 				<y> 0 </y>
-				<z> 3.05302 </z>
+				<z> 3.2654 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -242,12 +349,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
 		<contact type="STRUCTURE" name="TAIL_2">
 			<location unit="M">
-				<x> 16.42078 </x>
+				<x> 16.7289 </x>
 				<y> 0 </y>
-				<z> 3.43019 </z>
+				<z> 8.26156 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -259,43 +365,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<retractable>0</retractable>
 		</contact>
 		
-		<contact type="STRUCTURE" name="TAIL_3">
-			<location unit="M">
-				<x> 18.21213 </x>
-				<y> 0 </y>
-				<z> 7.91958 </z>
-			</location>
-			<static_friction> 1.0 </static_friction>
-			<dynamic_friction> 0.4 </dynamic_friction>
-			<rolling_friction> 0.4 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
-			<max_steer unit="DEG"> 0.0 </max_steer>
-			<brake_group> NONE </brake_group>
-			<retractable>0</retractable>
-		</contact>
-		
-		<contact type="STRUCTURE" name="TAIL_4">
-			<location unit="M">
-				<x> 14.39293 </x>
-				<y> 0 </y>
-				<z> 7.9549 </z>
-			</location>
-			<static_friction> 1.0 </static_friction>
-			<dynamic_friction> 1 </dynamic_friction>
-			<rolling_friction> 1 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
-			<max_steer unit="DEG"> 0.0 </max_steer>
-			<brake_group> NONE </brake_group>
-			<retractable>0</retractable>
-		</contact>
-
 		<contact type="STRUCTURE" name="WING_TIP_1">
 			<location unit="M">
-				<x> 0.51977 </x>
-				<y> -14.21847 </y>
-				<z> 4.16 </z>
+				<x> 0.7223 </x>
+				<y> -14.2253 </y>
+				<z> 4.13349 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 0.4 </dynamic_friction>
@@ -306,12 +380,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
 		<contact type="STRUCTURE" name="WING_TIP_2">
 			<location unit="M">
-				<x> 0.51977 </x>
-				<y> 14.21847 </y>
-				<z> 4.16 </z>
+				<x> 0.7223 </x>
+				<y> 14.2253 </y>
+				<z> 4.13349 </z>
 			</location>
 			<static_friction> 1.0 </static_friction>
 			<dynamic_friction> 1 </dynamic_friction>
@@ -322,11 +395,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<brake_group> NONE </brake_group>
 			<retractable>0</retractable>
 		</contact>
-		
 	</ground_reactions>
 
 	<propulsion>
-
 		<engine file="PW150A">
 			<location unit="M">
 				<x> -1.13603 </x>
@@ -406,11 +477,10 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		
 	</propulsion>
 
 	<system file="pushback" />
-	<system file="fcs" />
+	<system file="q400-fcs" />
 	<system file="fadec" />
 
 	<flight_control name="none"/>
@@ -419,15 +489,15 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 	<external_reactions>
 		<force name="pushback" frame="BODY">
-			<location unit="IN">
-				<x>294</x>
-				<y>0</y>
-				<z>-149</z>
+			<location unit="M">
+				<x> -12.4539 </x>
+				<y> 0 </y>
+				<z> 1.35625 </z>
 			</location>
 			<direction>
-				<x>1</x>
-				<y>0</y>
-				<z>0</z>
+				<x> 1 </x>
+				<y> 0 </y>
+				<z> 0 </z>
 			</direction>
 		</force>
 	</external_reactions>

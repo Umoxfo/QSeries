@@ -1,0 +1,313 @@
+<!-- Q400 FCS -->
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<system name="Q400: FCS">
+	
+	<channel name="Thrust">
+		
+		<summer name="Thrust Coefficient">
+			<input>propulsion/engine[0]/thrust-coefficient</input>
+			<input>propulsion/engine[1]/thrust-coefficient</input>
+			<output>systems/propulsion/thrust-coefficient</output>
+		</summer>
+	
+	</channel>
+	
+	<channel name="Roll">
+		
+		<summer name="fcs/roll-sum">
+			<input>/controls/flight/aileron</input>
+			<input>/controls/flight/aileron-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<aerosurface_scale name="fcs/roll-pos-rad">
+			<input>fcs/roll-sum</input>
+			<range>
+				<min>-0.296706</min>
+				<max>0.296706</max>
+			</range>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Pitch">
+		
+		<summer name="fcs/pitch-sum">
+			<input>/controls/flight/elevator-int</input>
+			<input>/controls/flight/elevator-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<kinematic name="hydraulics/elevators/final">
+			<input>fcs/pitch-sum</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+		</kinematic>
+		
+		<aerosurface_scale name="fcs/pitch-pos-rad">
+			<input>hydraulics/elevators/final</input>
+			<range>
+				<min>-0.349066</min>
+				<max>0.349066</max>
+			</range>
+		</aerosurface_scale>
+		
+		<scheduled_gain name="fcs/pitch-pos-geared">
+			<input>fcs/pitch-pos-rad</input>
+			<table>
+				<independentVar lookup="row">velocities/mach</independentVar>
+				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+				<tableData>
+					     0     43000
+					0.0  1.00  0.850
+					0.9  0.05  0.750
+				</tableData>
+			</table>
+		</scheduled_gain>
+	
+	</channel>
+	
+	<channel name="Yaw">
+		
+		<fcs_function name="hydraulics/rudder/max-deg-scale">
+			<function>
+				<table>
+					<independentVar lookup="row">fcs/flap-pos-norm</independentVar>
+					<tableData>
+						 0  0.666667
+						35  1.000000
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="hydraulics/rudder/max-deg-scale-neg">
+			<input>hydraulics/rudder/max-deg-scale</input>
+			<gain>-1.0</gain>
+		</pure_gain>
+		
+		<kinematic name="hydraulics/rudder/final">
+			<input>/controls/flight/rudder-int</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<clipto>
+				<min>hydraulics/rudder/max-deg-scale-neg</min>
+				<max>hydraulics/rudder/max-deg-scale</max>
+			</clipto>
+		</kinematic>
+		
+		<pure_gain name="fcs/rudder-cmd">
+			<input>hydraulics/rudder/final</input>
+			<gain>-1.0</gain>
+		</pure_gain>
+		
+		<scheduled_gain name="fcs/yaw-damper-rate">
+			<input>velocities/r-aero-rad_sec</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+					30  0.00
+					60  2.00
+				</tableData>
+			</table>
+			<clipto>
+				<min>-0.05</min>
+				<max>0.05</max>
+			</clipto>
+		</scheduled_gain>
+		
+		<scheduled_gain name="fcs/yaw-damper-final">
+			<input>fcs/yaw-damper-rate</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+					30		0.0
+					31		1.0
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<switch name="fcs/yaw-damper-switch">
+			<default value="0"/>
+			<test logic="AND" value="fcs/yaw-damper-final">
+				/it-autoflight/input/yd EQ 1
+				/gear/gear[1]/wow EQ 0
+				/gear/gear[2]/wow EQ 0
+			</test>
+		</switch>
+		
+		<summer name="fcs/yaw-sum">
+			<input>fcs/rudder-cmd</input>
+			<input>fcs/yaw-damper-switch</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<aerosurface_scale name="rubbish/rudder-pos-rad">
+			<input>fcs/yaw-sum</input>
+			<range>
+				<min>-0.628319</min>
+				<max>0.628319</max>
+			</range>
+			<output>fcs/rudder-pos-rad</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Flaps">
+		
+		<kinematic name="Flaps Control">
+			<input>/controls/flight/flaps-int</input>
+			<traverse>
+			<setting>
+				<position>0</position>
+				<time>0</time>
+			</setting>
+			<setting>
+				<position>35</position>
+				<time>30</time>
+			</setting>
+			</traverse>
+			<output>fcs/flap-pos-deg</output>
+		</kinematic>
+		
+		<aerosurface_scale name="Flap position normalized">
+			<input>fcs/flap-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>35</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/flap-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Slats">
+		
+		<kinematic name="Slats Control">
+			<input>/controls/flight/slats</input>
+			<traverse>
+			<setting>
+				<position>0</position>
+				<time>0</time>
+			</setting>
+			<setting>
+				<position>27</position>
+				<time>30</time>
+			</setting>
+			</traverse>
+			<output>fcs/slat-pos-deg</output>
+		</kinematic>
+		
+		<aerosurface_scale name="Slat position normalized">
+			<input>fcs/slat-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>27</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/slat-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Landing Gear">
+		
+		<kinematic name="Gear Control">
+			<input>/controls/gear/gear-down-int</input>
+			<traverse>
+			<setting>
+				<position>0</position>
+				<time>0</time>
+			</setting>
+			<setting>
+				<position>1</position>
+				<time>6</time>
+			</setting>
+			</traverse>
+			<output>gear/gear-pos-norm</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Spoilers">
+		
+		<kinematic name="Spoilers">
+			<input>/controls/flight/spoilers-int</input>
+			<traverse>
+			<setting>
+				<position>0</position>
+				<time>0</time>
+			</setting>
+			<setting>
+				<position>1</position>
+				<time>1</time>
+			</setting>
+			</traverse>
+			<output>fcs/speedbrake-pos-norm</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Tiller">
+		
+		<fcs_function name="hydraulics/tiller/function">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+					<independentVar lookup="column">/controls/flight/rudder</independentVar>
+					<tableData>
+						       -1     0  1
+						30.000 -70.0  0  70.0
+						30.001 -10.0  0  10.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fcs/steer-deg">
+			<input>hydraulics/tiller/function</input>
+			<rate_limit>70</rate_limit>
+			<output>fcs/steer-pos-deg[0]</output>
+		</actuator>
+	
+	</channel>
+
+</system>
