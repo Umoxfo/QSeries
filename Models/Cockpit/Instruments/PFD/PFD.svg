@@ -45,9 +45,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.8101934"
-     inkscape:cx="378.93592"
-     inkscape:cy="353.67015"
+     inkscape:zoom="10.24"
+     inkscape:cx="437.31738"
+     inkscape:cy="488.49401"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1622,14 +1622,14 @@
        d="m 447.40587,657.61173 2.40319,0 0,19.50026 27.68297,0 1.6267,1.36831 0,6.75679 -29.43437,0 0,27.00035 0.52308,2.97374 9.70217,0 0,6.77639 -12.38034,0"
        style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.99865609;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
-       id="ADFInd1"
+       id="ADF1ind"
        style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="m 464.88736,547.51686 c 1.11971,9.93904 -5.99612,18.91707 -15.92823,20.09664 -9.93209,1.17957 -18.95284,-5.882 -20.19227,-15.80682 -1.23941,-9.92479 5.76767,-18.98795 15.68483,-20.28716 9.91716,-1.29921 19.02237,5.65312 20.38134,15.56226 M 446.5318,531.45155 446.91816,463.392 m 0.72278,434.33957 -0.13944,-72.57577"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csssccccc"
        inkscape:label="#path5331" />
     <path
-       id="ADFInd2"
+       id="ADF2ind"
        style="fill:none;fill-rule:evenodd;stroke:#00ff00;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 465.08579,510.08593 -0.0364,36.55929 m -36.55638,-36.55929 -0.0231,36.55929 m 18.23031,-84.05253 0.0175,40.06539 -17.10879,7.42179 17.13234,7.43685 17.23429,-7.4624 -17.19155,-7.41834 m 0.72349,394.84468 -0.0509,-37.446 -15.79802,6.76223 -0.0691,-40.91429 m 15.91857,71.60048 0.0505,-37.4485 15.69495,6.76268 0.0686,-40.91701"
        inkscape:label="#path5350" />
