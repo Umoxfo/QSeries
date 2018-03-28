@@ -6,6 +6,7 @@
         <livery>
             <name type="string">EuroLOT</name>
             <texture>Liveries/eurolot.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

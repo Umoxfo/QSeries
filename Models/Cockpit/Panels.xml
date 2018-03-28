@@ -74,19 +74,26 @@
 	<model>
 		<path>Instruments/ED/ED.xml</path>
 	</model>
+	
+	<!--Multi-Functional Flight Display (System pages/Nav Display)-->
 	<model>
 		<path>Instruments/MFD/MFD.pilot.xml</path>
 	</model>
+	<model>
+		<path>Instruments/MFD/MFD.copilot.xml</path>
+	</model>
 
+	<!--Landing Gear Panel-->
 	<model>
 		<path>MainPanel/lg/lg.xml</path>
 	</model>
 
-
+	<!--Integrated Electronic Standby Instrument-->
 	<model>
 		<path>Instruments/IESI/IESI.xml</path>
 	</model>
 	
+	<!--Pilot's/Copilot's side panel-->
 	<model>
 		<path>MainPanel/baropanel/baropanel.xml</path>
 	</model>
@@ -97,6 +104,7 @@
 		</offsets>
 	</model>
 
+	<!--Control Yokes-->
 	<model>
 		<path>Yoke/yoke.xml</path>
 		<name>yoke</name>

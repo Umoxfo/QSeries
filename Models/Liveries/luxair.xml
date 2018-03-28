@@ -12,6 +12,7 @@
         <livery>
             <name type="string">Luxair (LX-LGF)</name>
             <texture>Liveries/luxair.png</texture>
+	    <enable-hud type="bool">1</enable-hud>
         </livery>
     </model>
 </sim>

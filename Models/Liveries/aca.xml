@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Air Canada express (2017)</name>
             <texture>Liveries/aca.png</texture>
+	    <enable-hud type="bool">1</enable-hud>
         </livery>
     </model>
 </sim>

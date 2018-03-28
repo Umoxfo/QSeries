@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Qantas Link</name>
             <texture>Liveries/qlk.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

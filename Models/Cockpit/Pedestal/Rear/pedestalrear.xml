@@ -179,6 +179,39 @@
         </action>
     </animation>
     
+  <animation>
+        <type>pick</type>
+        <object-name>MFD2.mainpage</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>/instrumentation/mfd[1]/inputs/main-page</property>
+		<value>pfd</value>
+		<value>sys</value>
+		<value>ed</value>
+		<value>nd</value>
+            </binding>
+        </action>
+    </animation>
+    
+    <!--Engine Display Screen Brightness-->
+	<animation>
+		<type>knob</type>
+		<object-name>ED_brightness</object-name>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/ED/brightness-norm</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+			</binding>
+		</action>
+	</animation>
+
+    
     <!--LEFT TEAM-->
 	<!--Screen Brightness-->
 	<animation>

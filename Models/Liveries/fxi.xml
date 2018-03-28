@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Flugfelag Islands (Air Iceland)</name>
             <texture>Liveries/fxi.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

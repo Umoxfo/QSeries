@@ -15,8 +15,6 @@
 		</condition>
 		<object-name>baggage_cart1</object-name>
 		<object-name>baggage_cart2</object-name>
-		<object-name>baggage_cart3</object-name>
-		<object-name>baggage_cart4</object-name>
 	</animation>
 	<animation>
 		<type>select</type>

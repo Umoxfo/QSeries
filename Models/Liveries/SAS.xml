@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Scandinavian Airlines</name>
             <texture>Liveries/SAS.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

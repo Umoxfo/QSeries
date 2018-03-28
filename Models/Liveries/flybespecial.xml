@@ -11,6 +11,7 @@
         <livery>
             <name type="string">Flybe (special livery)</name>
             <texture>Liveries/flybespecial.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

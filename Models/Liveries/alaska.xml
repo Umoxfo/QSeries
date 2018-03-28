@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Alaska Airlines (N429QX)</name>
             <texture>Liveries/alaska.png</texture>
+	    <enable-hud type="bool">1</enable-hud>
         </livery>
     </model>
 </sim>

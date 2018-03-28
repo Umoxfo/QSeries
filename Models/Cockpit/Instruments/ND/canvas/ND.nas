@@ -241,7 +241,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	});
 
 	nd_display.main.addPlacement({"node": "MFDpilot.screenND"});
-	nd_display.right.addPlacement({"node": "ND_R.screen"});
+	nd_display.right.addPlacement({"node": "MFDcopilot.screenND"});
 	var group_nd1 = nd_display.main.createGroup();
 	var group_nd1_test = nd_display.main.createGroup();
 	var group_nd2 = nd_display.right.createGroup();

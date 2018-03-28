@@ -5,43 +5,6 @@
 	<path>MFD.copilot.ac</path>
 	
 	<animation>
-		<type>pick</type>
-		<object-name>MFDcopilot.screen</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>canvas_mfd.showMFDpilot();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>navdisplayR</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>canvas_nd.showNd(fo);</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>navdisplayR</object-name>
-		<condition>
-			<equals>
-				<property>/instrumentation/mfd[1]/inputs/main-page</property>
-				<value>nd</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
 		<type>select</type>
 		<object-name>MFDcopilot.screen</object-name>
 		<condition>
@@ -52,11 +15,34 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>select</type>
+		<object-name>MFDcopilot.screenND</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>nd</value>
+			</equals>
+		</condition>
+	</animation>
 	
 	<animation>
-		<type>material</type>
-		<object-name>navdisplayR</object-name>
+		<type>pick</type>
 		<object-name>MFDcopilot.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_mfd.showMFDcopilot();</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>MFDcopilot.screen</object-name>
+		<object-name>MFDcopilot.screenND</object-name>
 		<ambient>
 			<red>1</red>
 			<green>1</green>

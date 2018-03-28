@@ -17,5 +17,28 @@
 		</action>
 	</animation>
 		
+	<animation>
+		<type>material</type>
+		<object-name>ED.screen</object-name>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/ED/brightness-norm</factor-prop>
+		</ambient>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/ED/brightness-norm</factor-prop>
+		</diffuse>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>instrumentation/ED/brightness-norm</factor-prop>
+		</emission>
+	</animation>
+
 
 </PropertyList>

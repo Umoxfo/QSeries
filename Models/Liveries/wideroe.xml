@@ -12,6 +12,7 @@
         <livery>
             <name type="string">Wideroe</name>
             <texture>Liveries/wideroe.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

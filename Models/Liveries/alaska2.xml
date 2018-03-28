@@ -11,6 +11,7 @@
         <livery>
             <name type="string">Alaska (N44IQX)</name>
             <texture>Liveries/alaska2.png</texture>
+	    <enable-hud type="bool">1</enable-hud>
         </livery>
     </model>
 </sim>

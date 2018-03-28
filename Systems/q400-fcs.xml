@@ -92,7 +92,7 @@
 		<fcs_function name="hydraulics/rudder/max-deg-scale">
 			<function>
 				<table>
-					<independentVar lookup="row">fcs/flap-pos-norm</independentVar>
+					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 					<tableData>
 						 0  0.666667
 						35  1.000000

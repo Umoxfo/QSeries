@@ -11,6 +11,7 @@
         <livery>
             <name type="string">Bangladesh</name>
             <texture>Liveries/bangladesh.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

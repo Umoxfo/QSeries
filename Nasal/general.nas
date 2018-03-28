@@ -138,3 +138,7 @@ if(taxi_light_sw and gear_pos_front==1){
 
 settimer(update_loop, 0);
 }
+
+
+
+gui.menuBind("fuel-and-payload", "dialogs.fuelPayload.toggle();");

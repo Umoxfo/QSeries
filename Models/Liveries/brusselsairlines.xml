@@ -12,6 +12,7 @@
         <livery>
             <name type="string">Brussels Airlines</name>
             <texture>Liveries/brusselsairlines.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

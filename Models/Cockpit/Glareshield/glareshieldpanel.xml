@@ -66,10 +66,7 @@
     </animation>-->
 
     <effect>
-        <inherits-from>../../Effects/panel-lighting</inherits-from>
-        <parameters>
-            <implicit-lightmap-intensity><use>/systems/electrical/outputs/glareshield-lights</use></implicit-lightmap-intensity>
-        </parameters>
+         <inherits-from>../../Effects/panel</inherits-from> 
 	<object-name>base.1</object-name>
 	<object-name>base.2</object-name>
 	<object-name>base.3</object-name>
@@ -114,6 +111,32 @@
 	<object-name>yd</object-name>
     </effect>
     
+    <!--Lighting-->
+    <animation>
+        <type>material</type>
+        <object-name>lighted</object-name>
+        <object-name>lighted2</object-name>
+	<object-name>ias</object-name>
+	<object-name>vs</object-name>
+        <object-name>vnav</object-name>
+	<object-name>alt</object-name>
+	<object-name>altsel</object-name>
+	<object-name>hdg</object-name>
+	<object-name>hsisel</object-name>
+	<object-name>nav</object-name>
+	<object-name>appr</object-name>
+	<object-name>bc</object-name>
+	<object-name>stby</object-name>
+	<object-name>ap</object-name>
+	<object-name>yd</object-name>
+	<emission>
+		<red>1</red>
+		<green>1</green>
+		<blue>1</blue>
+		<factor-prop>/systems/electrical/outputs/glareshield-lights</factor-prop>
+	</emission>
+    </animation>
+
     
 <!-- FD/AP -->
 

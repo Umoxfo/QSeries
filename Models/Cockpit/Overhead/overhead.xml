@@ -6,31 +6,44 @@
         
         <!--Panel illumination-->
     <effect>
-        <inherits-from>Aircraft/Q400/Models/Effects/panel-lighting</inherits-from>
-        <parameters>
-            <implicit-lightmap-intensity><use>/systems/electrical/outputs/overhead-lights</use></implicit-lightmap-intensity>
-        </parameters>
+        <inherits-from>Aircraft/Q400/Models/Effects/panel</inherits-from>
 	<object-name>base</object-name>
 	<object-name>bases</object-name>
 	<object-name>bases2</object-name>
 	<object-name>scrws</object-name>
     </effect>
     
-<!--<animation>
-      <type>material</type>
-	<object-name>base</object-name>
-	<object-name>bases</object-name>
-	<object-name>bases2</object-name>
-	<object-name>scrws</object-name>
-        <condition><property>/controls/electric/battery-switch</property>
-<property>/controls/lighting/panel-lights</property></condition>
-        <emission>
-            <red>1</red>
-            <green>1</green>
-            <blue>1</blue>
-            <factor-prop>/controls/lighting/panel/overhead</factor-prop>
-        </emission>
-    </animation>-->
+    <!--Illuminate Buttons-->
+	<animation>
+		<type>material</type>
+		<object-name>APUpower</object-name>
+		<object-name>APUstart</object-name>
+		<object-name>APUgen</object-name>
+		<object-name>APUbleedair</object-name>
+		<object-name>APUgenoht</object-name>
+		<object-name>startbtn</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+<!--			<factor-prop>/controls/lighting/panel/overhead</factor-prop>-->
+		</emission>
+	</animation>
+	
+	<!--Illuminate Markings-->
+	<animation>
+		<type>material</type>
+		<object-name>lighted</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/systems/electrical/outputs/overhead-lights</factor-prop>
+		</emission>
+	</animation>
         
         <!--CAUTION PANEL-->
 <!--Test-->

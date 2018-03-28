@@ -70,17 +70,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<interior>
 				<seats type="double">74</seats>
 			</interior>
-			<rendering>
-				<reflection-enabled type="int">1</reflection-enabled>
-				<reflection-type type="int">2</reflection-type>
-				<reflection-dynamic type="int">1</reflection-dynamic>
-				<reflection-correction type="float">-0.1</reflection-correction>
-				<reflection-fresnel type="float">0.5</reflection-fresnel>
-				<reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
-				<reflection-rainbow type="float">0.1</reflection-rainbow>
-				<reflection-noise type="float">0.05</reflection-noise>
-				<ambient-correction type="float">0.1</ambient-correction>
-			</rendering>
 			<always-show-hud type="bool">0</always-show-hud>
 		</model>
 
@@ -112,10 +101,17 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 						</binding>
 					</item>
 					<item>
-						<label>Enable External Power Box</label>
+						<label>Ground Services</label>
 						<binding>
-							<command>property-toggle</command>
-							<property>services/ext-pwr/enable</property>
+							<command>dialog-show</command>
+							<dialog-name>groundservices</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Fuel and Payload</label>
+						<binding>
+							<command>nasal</command>
+							<script>dialogs.FuelPayloadClass.open()</script>
 						</binding>
 					</item>
 					<item>
@@ -246,19 +242,19 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<min-lb type="double">200</min-lb>
 			<max-lb type="double">440</max-lb>
 		</weight>
-		<weight n="2">
+		<weight n="1">
 			<name>PAX Front (43 seats)</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]" />
 			<min-lb type="double">300</min-lb>
 			<max-lb type="double">9460</max-lb>
 		</weight>
-		<weight n="3">
+		<weight n="2">
 			<name>PAX Rear (43 seats)</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]" />
 			<min-lb type="double">300</min-lb>
 			<max-lb type="double">9460</max-lb>
 		</weight>
-		<weight n="4">
+		<weight n="3">
 			<name>Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]" />
 			<min-lb type="double">0</min-lb>
@@ -370,8 +366,19 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			</ias-bugs>
 		</PFD>
 	</instrumentation>
+	
+	<q400>
+		<const>
+			<JETA_LBGAL type="double">6.7898</JETA_LBGAL>
+			<JETA_LB2L type="double">0.557518</JETA_LB2L>
+			<JETA_USG2L type="double">3.785412</JETA_USG2L>
+		</const>
+	</q400>
 
 	<nasal>  
+		<global>
+			<file>Aircraft/Q400/Nasal/global.canvas.nas</file>
+		</global>
 		<canvas_nd>
 			<file>Aircraft/Q400/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
 		</canvas_nd>
@@ -404,6 +411,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/autoflight-helpers.nas</file>
 			<file>Nasal/listeners.nas</file>
 		</q400>
+		<dialogs>
+			<file>gui/dialogs/fuelpayload.nas</file>
+		</dialogs>
 		<itaf>
 			<file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
 		</itaf>

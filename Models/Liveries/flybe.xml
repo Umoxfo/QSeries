@@ -6,6 +6,7 @@
         <livery>
             <name type="string">Flybe</name>
             <texture>Liveries/flybe.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

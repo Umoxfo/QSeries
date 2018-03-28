@@ -6,6 +6,7 @@
         <livery>
             <name type="string">SATA Air Acores</name>
             <texture>Liveries/sata.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
         </livery>
     </model>
 </sim>

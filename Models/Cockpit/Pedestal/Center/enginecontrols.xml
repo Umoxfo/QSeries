@@ -175,40 +175,40 @@
 		<object-name>conditionL</object-name>
 		<action>
 			<button>0</button>
-		<binding>
-		<command>property-cycle</command>
-			<property>controls/engines/engine[0]/condition-lever-state</property>
-			<value>1</value><!--START&FEATHER-->
-			<value>2</value><!--MIN 850-->
-			<value>3</value><!--900-->
-			<value>4</value><!--MAX 1020-->
-			<value>0</value><!--FUEL OFF-->
-		</binding>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/engines/engine[0]/condition-lever-state</property>
+				<value>1</value><!--START&FEATHER-->
+				<value>2</value><!--MIN 850-->
+				<value>3</value><!--900-->
+				<value>4</value><!--MAX 1020-->
+				<value>0</value><!--FUEL OFF-->
+			</binding>
 		</action>
 		<action>
 			<button>1</button>
-		<binding>
-		<command>property-cycle</command>
-			<property>controls/engines/engine[0]/condition-lever-state</property>
-			<value>0</value><!--FUEL OFF-->
-			<value>4</value><!--MAX 1020-->
-			<value>3</value><!--900-->
-			<value>2</value><!--MIN 850-->
-			<value>1</value><!--START&FEATHER-->
-		</binding>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/engines/engine[0]/condition-lever-state</property>
+				<value>0</value><!--FUEL OFF-->
+				<value>4</value><!--MAX 1020-->
+				<value>3</value><!--900-->
+				<value>2</value><!--MIN 850-->
+				<value>1</value><!--START&FEATHER-->
+			</binding>
 		</action>
 		<hovered>
-		<binding>
-		<command>set-tooltip</command>
-		<label>LH Condition Lever: %s</label>
-		<tooltip-id>lh-condition</tooltip-id>
-			<property>controls/engines/engine[0]/condition-lever-state</property>
-			<mapping>nasal</mapping>
-			<script>
-				var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
-				return modes[arg[0]];
-			</script>
-		</binding>
+			<binding>
+				<command>set-tooltip</command>
+				<label>LH Condition Lever: %s</label>
+				<tooltip-id>lh-condition</tooltip-id>
+				<property>controls/engines/engine[0]/condition-lever-state</property>
+				<mapping>nasal</mapping>
+				<script>
+					var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
+					return modes[arg[0]];
+				</script>
+			</binding>
 		</hovered>
 	</animation>
 	<animation>
