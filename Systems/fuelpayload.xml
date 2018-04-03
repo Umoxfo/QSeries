@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+	
+<!--
+    properties necessary for fuel and payload dialog, based on extra500
+-->
+
+<system name="indication">
+	
+	<channel name="weight" execrate="60">
+<!-- this is for the weight listener in the nasal/fuel payload.nas -->
+		<fcs_function name="weight-lbs">
+			<function>
+			<sum>
+				<property>/fdm/jsbsim/inertia/weight-lbs</property>
+			</sum>
+			</function>			
+			<output>/fdm/jsbsim/inertia/nt-weight-lbs</output>
+		</fcs_function>
+	</channel>
+
+</system>
+
+
+

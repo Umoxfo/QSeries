@@ -23,6 +23,8 @@
 
 #Load Constants
 var JETA_LBGAL=getprop("/q400/const/JETA_LBGAL");
+var ad_const=160; 	#160lbs average adult weight
+var ch_const=80;	#80lbs average children weight
 
 var clamp = func(value,min=0.0,max=0.0){
 	if(value < min) {value = min;}
@@ -535,7 +537,9 @@ var WeightWidget = {
 # 		m._cCenterGravityBall	 	= m._group.getElementById("CenterGravity_Ball").updateCenter();
 #		m._cWeightEmpty		 	= m._group.getElementById("Weight_Empty");
 		m._cWeightGross	 		= m._group.getElementById("Weight_Gross");
+		m._cWeightWarning	 	= m._group.getElementById("Weight_Warning");
 		m._cWeightPayload	 	= m._group.getElementById("Weight_Payload");
+		m._cWeightPAX		 	= m._group.getElementById("Weight_PAX");
 #		m._cWeightMaxRamp	 	= m._group.getElementById("Weight_Max_Ramp");
 #		m._cWeightMaxTakeoff	 	= m._group.getElementById("Weight_Max_Takeoff");
 #		m._cWeightMaxLanding	 	= m._group.getElementById("Weight_Max_Landing");
@@ -553,9 +557,10 @@ var WeightWidget = {
 		m._nCGx 	= props.globals.initNode("/fdm/jsbsim/inertia/cg-x-in");
 		m._nCGy 	= props.globals.initNode("/fdm/jsbsim/inertia/cg-y-in");
 		m._nGross 	= props.globals.initNode("/fdm/jsbsim/inertia/weight-lbs");
+		m._nPayload 	= props.globals.initNode("/fdm/jsbsim/inertia/weight-lbs");
 		m._nEmpty 	= props.globals.initNode("/fdm/jsbsim/inertia/empty-weight-lbs");
 		m._nRamp 	= props.globals.initNode("/limits/mass-and-balance/maximum-ramp-mass-lbs");
-		m._nTakeoff 	= props.globals.initNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs");
+		m._nTakeoff 	= props.globals.initNode("/limits/mass-and-balance/mtow-lbs");
 		m._nLanding 	= props.globals.initNode("/limits/mass-and-balance/maximum-landing-mass-lbs");
 # 		m._nCGxMax 	= props.globals.initNode("/limits/mass-and-balance/cg-x-max-in",120.0,"DOUBLE");
 # 		m._nCGxMin 	= props.globals.initNode("/limits/mass-and-balance/cg-x-min-in",150.0,"DOUBLE");
@@ -569,6 +574,7 @@ var WeightWidget = {
 		m._cgY  	= 0;
 		m._empty 	= 0;
 		m._payload 	= 0;
+		m._pax		= 0;
 		m._gross 	= 0;
 		m._ramp  	= 0;
 		m._takeoff  	= 0;
@@ -595,7 +601,7 @@ var WeightWidget = {
 		
 #		m._ramp = m._nRamp.getValue();
 #		m._cWeightMaxRamp.setText(sprintf("%.0f",m._ramp));
-#		m._takeoff = m._nTakeoff.getValue();
+		m._takeoff = m._nTakeoff.getValue();
 #		m._cWeightMaxTakeoff.setText(sprintf("%.0f",m._takeoff));
 #		m._landing = m._nLanding.getValue();
 #		m._cWeightMaxLanding.setText(sprintf("%.0f",m._landing));
@@ -625,16 +631,16 @@ var WeightWidget = {
 	},
 	_onGrossWeightChange : func(n){
 		
-		me._cgX = me._nCGx.getValue();
+#		me._cgX = me._nCGx.getValue();
 # 		me._cCenterGravityX.setText(sprintf("%.2f",me._cgX));
 # 		me._cgY = me._nCGy.getValue();
 # 		me._cCenterGravityY.setText(sprintf("%.2f",me._cgY));
 		
 		me._gross = me._nGross.getValue();
-		me._cWeightGross.setText(sprintf("%.0f",me._gross));
+		me._cWeightGross.setText(sprintf("%5d",me._gross));
 		
-		me._WeightLimit_lbs_pixel 	= ((me._gross - 3000) * (21.0 / 250.0));
-		me._WeightLimit_in_pixel 	= ((me._cgX - 133.7913) * (51.0 / 2.602362205));
+#		me._WeightLimit_lbs_pixel 	= ((me._gross - 3000) * (21.0 / 250.0));
+#		me._WeightLimit_in_pixel 	= ((me._cgX - 133.7913) * (51.0 / 2.602362205));
 		
 		
 #		me._cWeight_Limits_lbs.set("coord[1]",me._WeightLimit_lbs_y0 - me._WeightLimit_lbs_pixel);
@@ -643,19 +649,18 @@ var WeightWidget = {
 #		me._cWeight_Limits_in.set("coord[0]",me._WeightLimit_in_x0 + me._WeightLimit_in_pixel);
 #		me._cWeight_Limits_in.set("coord[3]",me._WeightLimit_in_y0 - me._WeightLimit_lbs_pixel);
 		
-		me._payload = 0;
-		foreach(w;keys(me._widget)){
-			me._payload	+= me._widget[w]._weight;
-		}
-		#print("WeightWidget._onGrossWeightChange() ... _payload="~me._payload);
+		me._payload = getprop("/payload/weight[0]/weight-lb")+getprop("/payload/weight[1]/weight-lb")+getprop("/payload/weight[2]/weight-lb")+getprop("/payload/weight[3]/weight-lb");
 		me._cWeightPayload.setText(sprintf("%.0f",me._payload));
+		
+		me._pax = getprop("/payload/weight[1]/weight-lb")+getprop("/payload/weight[2]/weight-lb");
+		me._cWeightPAX.setText(sprintf("%.0f",me._pax));
 		
 		
 		#me._cCenterGravityBall.setTranslation(me._cgX * (64/13), (me._cgY - 136.0) * (64/13) );
 		#me._cCenterGravityBall.setTranslation((me._cgY - 136.0) , me._cgX);
 		
-		var y = (me._cgX - 135.0) * (64/18);
-		var x = (me._cgY ) * (64/13);
+#		var y = (me._cgX - 135.0) * (64/18);
+#		var x = (me._cgY ) * (64/13);
 # 		me._cCenterGravityBall.setTranslation(x ,y );
 		
 		
@@ -666,13 +671,16 @@ var WeightWidget = {
 			me._cWeightWarning.show();
 			me._cWeightGross.setColor(COLOR["Red"]);
 		}else{
+			me._cWeightWarning.hide();
 			me._cWeightGross.setColor(COLOR["Black"]);
 		}
-		if (me._MACPercent < me._MAC_Limit_Min or me._MACPercent > me._MAC_Limit_Max){
-			me._cWeightMACPercent.setColor(COLOR["Red"]);
-		}else{
-			me._cWeightMACPercent.setColor(COLOR["Black"]);
-		}
+		
+		#if (me._MACPercent < me._MAC_Limit_Min or me._MACPercent > me._MAC_Limit_Max){
+		#	me._cWeightMACPercent.setColor(COLOR["Red"]);
+		#}else{
+		#	me._cWeightMACPercent.setColor(COLOR["Black"]);
+		#}
+		
 		
 	},
 	
@@ -681,13 +689,11 @@ var WeightWidget = {
 };
 
 var PayloadWidget = {
-	new: func(dialog,canvasGroup,name,lable,index,listCategory=nil){
+	new: func(dialog,canvasGroup,name,lable,index){
 		var m = {parents:[PayloadWidget,SvgWidget.new(dialog,canvasGroup,name)]};
 		m._class = "PayloadWidget";
 		m._index 	= index;
 		m._lable 	= lable;
-		m._listCategory	= listCategory;
-		m._listCategoryKeys = sort(keys(m._listCategory),func(a, b){return -cmp(a,b)} );
 		
 		#debug.dump(m._listCategoryKeys);
 		
@@ -701,34 +707,20 @@ var PayloadWidget = {
 		m._nWeight 	= m._nRoot.initNode("nt-weight-lb",m._weight,"DOUBLE");
 		
 		m._nCapacity 	= m._nRoot.initNode("max-lb",0.0,"DOUBLE");
-		m._nCategory 	= m._nRoot.initNode("category","","STRING");
 		
 		m._capacity	= m._nCapacity.getValue();
 		m._fraction	= m._weight / m._capacity;
-		m._category	= m._nCategory.getValue();
 		
 		m._cFrame 	= m._group.getElementById(m._name~"_Frame");
 		m._cLevel 	= m._group.getElementById(m._name~"_Level");
 		m._cLBS 	= m._group.getElementById(m._name~"_Lbs");
-		m._cName 	= m._group.getElementById(m._name~"_Name");
-		
-		m._cCats	= {
-			Cat1	: nil,
-			Cat2	: nil,
-			Cat3	: nil,
-		};
-		
-		if (m._listCategory!=nil){
-			foreach(cat;keys(m._listCategory)){
-				m._cCats[cat]	= m._group.getElementById(m._name~"_"~cat);
-			}
-		}
+	
 		m._cLBS.setText(sprintf("%3.0f",m._weight));
-		m._cName.setText(m._lable);
 				
-		m._bottom	= m._cFrame.get("coord[3]");
-		m._top		= m._cFrame.get("coord[1]");
-		m._height	= m._bottom - m._top;
+		
+		m._left		= m._cFrame.get("coord[0]");
+		m._right	= m._cFrame.get("coord[2]");
+		m._width	= m._right - m._left;
 		
 		return m;
 	},
@@ -740,85 +732,15 @@ var PayloadWidget = {
 		me._cLevel.addEventListener("drag",func(e){me._onInputChange(e);});
 		me._cFrame.addEventListener("wheel",func(e){me._onInputChange(e);});
 		me._cLevel.addEventListener("wheel",func(e){me._onInputChange(e);});
-		if (me._listCategory!=nil){
-			if(me._cCats["Cat1"] != nil){
-				me._cCats["Cat1"].addEventListener("click",func(e){me._onCatClick(e,"Cat1");});
-			}
-			if(me._cCats["Cat2"] != nil){
-				me._cCats["Cat2"].addEventListener("click",func(e){me._onCatClick(e,"Cat2");});
-			}
-			if(me._cCats["Cat3"] != nil){
-				me._cCats["Cat3"].addEventListener("click",func(e){me._onCatClick(e,"Cat3");});
-			}
-		}
+		
 			
 		
 	},
 	init : func(instance=me){
 		me.setListeners(instance);
-		me._checkCat();
 	},
 	deinit : func(){
 		me.removeListeners();	
-	},
-	_checkCat : func(){
-		
-		me._category = "";
-		if(me._weight > 0){
-			me._category = me._listCategoryKeys[-1];
-			foreach(cat;me._listCategoryKeys){
-				if (me._weight <= me._listCategory[cat]*me._capacity){
-					me._category = cat;
-					me._nCategory.setValue(me._category);
-					break;
-				}
-			}
-		}
-		
-		if(me._category == "Cat1"){
-			if(me._cCats["Cat1"] != nil){
-				me._cCats["Cat1"].set("fill",COLOR["Green"]);
-			}
-			if(me._cCats["Cat2"] != nil){
-				me._cCats["Cat2"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat3"] != nil){
-				me._cCats["Cat3"].set("fill",COLOR["TabPassive"]);
-			}
-		}elsif(me._category == "Cat2"){
-			if(me._cCats["Cat1"] != nil){
-				me._cCats["Cat1"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat2"] != nil){
-				me._cCats["Cat2"].set("fill",COLOR["Green"]);
-			}
-			if(me._cCats["Cat3"] != nil){
-				me._cCats["Cat3"].set("fill",COLOR["TabPassive"]);
-			}
-			
-		}elsif(me._category == "Cat3"){
-			if(me._cCats["Cat1"] != nil){
-				me._cCats["Cat1"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat2"] != nil){
-				me._cCats["Cat2"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat3"] != nil){
-				me._cCats["Cat3"].set("fill",COLOR["Green"]);
-			}
-			
-		}else{
-			if(me._cCats["Cat1"] != nil){
-				me._cCats["Cat1"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat2"] != nil){
-				me._cCats["Cat2"].set("fill",COLOR["TabPassive"]);
-			}
-			if(me._cCats["Cat3"] != nil){
-				me._cCats["Cat3"].set("fill",COLOR["TabPassive"]);
-			}
-			
-		}
 	},
 	setWeight : func(weight){
 		me._weight = weight;
@@ -828,23 +750,6 @@ var PayloadWidget = {
 		me._nWeightFdm.setValue(me._weight);
 		
 	},
-	_onCatClick : func(e,cat){
-		#print("PayloadWidget._onCatClick() ... "~cat);
-		if(me._category == cat){
-			me._category = "";
-		}else{
-			me._category = cat;
-		}
-		if(me._category != ""){
-			me._weight = me._listCategory[me._category]*me._capacity;
-		}else{
-			me._weight = 0;
-		}
-		me._nCategory.setValue(me._category);
-		
-		me.setWeight(me._weight);
-				
-	},
 	_onWeightChange : func(n){
 		me._weight	= me._nWeight.getValue();
 		#print("PayloadWidget._onWeightChange() ... "~me._weight);
@@ -853,19 +758,17 @@ var PayloadWidget = {
 		
 		me._cLBS.setText(sprintf("%3.0f",me._weight));
 		
-		me._cLevel.set("coord[1]", me._bottom - (me._height * me._fraction));
+		me._cLevel.set("coord[2]", me._left + (me._width * me._fraction));
 		
 		
-		
-		me._checkCat();
 			
 	},
 	_onInputChange : func(e){
 		var newFraction =0;
 		if(e.type == "wheel"){
-			newFraction = me._fraction + (e.deltaY/me._height);
+			newFraction = me._fraction + (e.deltaY/me._width);
 		}else{
-			newFraction = me._fraction - (e.deltaY/me._height);
+			newFraction = me._fraction + (e.deltaX/me._width);
 		}
 		newFraction = clamp(newFraction,0.0,1.0);
 		me._weight = me._capacity * newFraction;
@@ -875,6 +778,146 @@ var PayloadWidget = {
 	},
 };
 
+var PAXWidget = {
+	new: func(dialog,canvasGroup,name,lable,index){
+		var m = {parents:[PAXWidget,SvgWidget.new(dialog,canvasGroup,name)]};
+		m._class = "PAXWidget";
+		m._index 	= index;
+		m._lable 	= lable;
+		
+		#debug.dump(m._listCategoryKeys);
+		
+		m._nRoot	= props.globals.getNode("/payload/weight["~m._index~"]");
+		m._nLable 	= m._nRoot.initNode("name","","STRING");
+		
+		### HACK : listener on /payload/weight[0]/weight-lb not working
+		###	   two props one for fdm(weight-lb) one for dialog(nt-weight-lb) listener
+		m._nWeightFdm 	= m._nRoot.initNode("weight-lb",0.0,"DOUBLE");
+		m._weight	= m._nWeightFdm.getValue(); # lbs
+		m._nWeight 	= m._nRoot.initNode("nt-weight-lb",m._weight,"DOUBLE");
+		
+		m._nCapacity 	= m._nRoot.initNode("max-lb",0.0,"DOUBLE");
+		
+		m._nAdults	= m._nRoot.initNode("adults",5,"DOUBLE");
+		m._nAdultsMax	= m._nRoot.initNode("adults-max",42,"DOUBLE");
+		m._nChildren	= m._nRoot.initNode("children",5,"DOUBLE");
+		m._nChildrenMax	= m._nRoot.initNode("children-max",42,"DOUBLE");
+		
+		m._fractionAd	= m._nAdults.getValue() / m._nAdultsMax.getValue();
+		m._fractionCh	= m._nChildren.getValue() / m._nChildrenMax.getValue();
+		
+		m._cFrameAd 	= m._group.getElementById(m._name~"_FrameAd");
+		m._cLevelAd 	= m._group.getElementById(m._name~"_LevelAd");
+		m._cNAd 	= m._group.getElementById(m._name~"_nAd");
+		m._cFrameCh	= m._group.getElementById(m._name~"_FrameCh");
+		m._cLevelCh 	= m._group.getElementById(m._name~"_LevelCh");
+		m._cNCh 	= m._group.getElementById(m._name~"_nCh");
+	
+		m._cNAd.setText(sprintf("%3d",m._nAdults.getValue()));
+		m._cNCh.setText(sprintf("%3d",m._nChildren.getValue()));
+				
+		
+		m._leftAd	= m._cFrameAd.get("coord[0]");
+		m._leftCh	= m._cFrameCh.get("coord[0]");
+		m._right	= m._cFrameAd.get("coord[2]");
+		m._width	= m._right - m._leftAd;
+		
+		return m;
+	},
+	setListeners : func(instance) {
+		### FIXME : use one property remove the HACK
+		append(me._listeners, setlistener(me._nAdults,func(n){me._onNAdChange(n);},1,0) );
+		append(me._listeners, setlistener(me._nChildren,func(n){me._onNChChange(n);},1,0) );
+				
+		me._cFrameAd.addEventListener("drag",func(e){me._onInputChangeAd(e);});
+		me._cLevelAd.addEventListener("drag",func(e){me._onInputChangeAd(e);});
+		me._cFrameAd.addEventListener("wheel",func(e){me._onInputChangeAd(e);});
+		me._cLevelAd.addEventListener("wheel",func(e){me._onInputChangeAd(e);});
+				
+		me._cFrameCh.addEventListener("drag",func(e){me._onInputChangeCh(e);});
+		me._cLevelCh.addEventListener("drag",func(e){me._onInputChangeCh(e);});
+		me._cFrameCh.addEventListener("wheel",func(e){me._onInputChangeCh(e);});
+		me._cLevelCh.addEventListener("wheel",func(e){me._onInputChangeCh(e);});
+		
+			
+		
+	},
+	init : func(instance=me){
+		me.setListeners(instance);
+	},
+	deinit : func(){
+		me.removeListeners();	
+	},
+	setWeight : func(weight){
+		me._weight = weight;
+		### HACK : set two props 
+		me._nWeight.setValue(me._weight);
+		me._nWeightFdm.setValue(me._weight);
+		
+	},
+	_onNAdChange : func(n){
+		var nAd = me._nAdults.getValue();
+	
+		me._fractionAd	= nAd / me._nAdultsMax.getValue();
+		
+		me._cNAd.setText(sprintf("%3.0f",nAd));
+		
+		me._cLevelAd.set("coord[2]", me._leftAd + (me._width * me._fractionAd));
+		
+		me.setWeight(me._nAdults.getValue()*ad_const+me._nChildren.getValue()*ch_const);
+		
+		
+			
+	},
+	_onNChChange : func(n){
+		var nCh = me._nChildren.getValue();
+	
+		me._fractionCh	= nCh / me._nChildrenMax.getValue();
+		
+		me._cNCh.setText(sprintf("%3.0f",nCh));
+		
+		me._cLevelCh.set("coord[2]", me._leftCh + (me._width * me._fractionCh));
+		
+		me.setWeight(me._nAdults.getValue()*ad_const+me._nChildren.getValue()*ch_const);;
+		
+		
+			
+	},
+	_onInputChangeAd : func(e){
+		var newFraction =0;
+		if(e.type == "wheel"){
+			newFraction = me._fractionAd + (e.deltaY/me._width);
+		}else{
+			newFraction = me._fractionAd + (e.deltaX/me._width);
+		}
+		newFraction = clamp(newFraction,0.0,1.0);
+		me._nAdults.setValue(me._nAdultsMax.getValue() * newFraction);
+		
+		if((me._nChildren.getValue()+me._nAdults.getValue())>42){
+			me._nChildren.setValue(42-me._nAdults.getValue());
+		}
+		
+		me.setWeight(me._weight);
+
+	},
+	_onInputChangeCh : func(e){
+		var newFraction =0;
+		if(e.type == "wheel"){
+			newFraction = me._fractionCh + (e.deltaY/me._width);
+		}else{
+			newFraction = me._fractionCh + (e.deltaX/me._width);
+		}
+		newFraction = clamp(newFraction,0.0,1.0);
+		me._nChildren.setValue(me._nChildrenMax.getValue() * newFraction);
+		
+		if((me._nChildren.getValue()+me._nAdults.getValue())>42){
+			me._nAdults.setValue(42-me._nChildren.getValue());
+		}
+		
+		me.setWeight(me._weight);
+
+	},
+};
 
 var TripWidget = {
 	new: func(dialog,canvasGroup,name){
@@ -1533,7 +1576,7 @@ var FuelPayloadClass = {
 		var m = {parents:[FuelPayloadClass]};
 		m._nRoot 	= props.globals.initNode("/extra500/dialog/fuel");
 		
-		m._nGrossWeight	= props.globals.initNode("/fdm/jsbsim/inertia/weight-lbs",0.0,"DOUBLE");
+		m._nGrossWeight	= props.globals.initNode("/fdm/jsbsim/inertia/nt-weight-lbs",0.0,"DOUBLE"); #listener on weight-lbs not possible, set via system in Systems/fuelpayload.xml
 		
 		m._name  = "Fuel and Payload";
 		m._title = "Fuel and Payload Settings";
@@ -1561,25 +1604,12 @@ var FuelPayloadClass = {
 		m._isNotInitialized = 1;
 		
 		m._widget = {
-			LeftAux 	: nil,
-			LeftMain 	: nil,
-			LeftCol 	: nil,
-			RightAux 	: nil,
-			RightMain 	: nil,
-			RightCol 	: nil,
-		
-			Seat1A	 	: nil,
-			Seat1B 		: nil,
-			Seat2A 		: nil,
-			Seat2B 		: nil,
-			Seat3A 		: nil,
-			Seat3B 		: nil,
-			Seat4A 		: nil,
-		   
-			tanker		: nil,
-			selector	: nil,
-			weight		: nil,
-			trip		: nil,
+			Left	 	: nil,
+			Right	 	: nil,
+			Cockpit 	: nil,
+			Cargo	 	: nil,
+			PAXFront 	: nil,
+			PAXRear		: nil,
 		};
 		
 
@@ -1644,7 +1674,6 @@ var FuelPayloadClass = {
 		
 		me._canvas = me._dlg.createCanvas();
 		me._canvas.set("background", "#3F3D38");
-#                        
 		
 		me._group = me._canvas.createGroup();
 
@@ -1657,16 +1686,12 @@ var FuelPayloadClass = {
 		
 		#me._widget.tanker		= TankerWidget.new(me,me._group,"Tanker","Tanker",me._widget);
 
-		#me._widget.Seat1A		= PayloadWidget.new(me,me._group,"Seat_1A","Pilot",0,{"Cat1":0.55});
-		#me._widget.Seat1B		= PayloadWidget.new(me,me._group,"Seat_1B","Co-Pilot",1,{"Cat1":0.55});
-		#me._widget.Seat2A		= PayloadWidget.new(me,me._group,"Seat_2A","Seat 2A",2,{"Cat1":0.6,"Cat2":0.4,"Cat3":0.1});
-		#me._widget.Seat2B		= PayloadWidget.new(me,me._group,"Seat_2B","Seat 2B",3,{"Cat1":0.6,"Cat2":0.4,"Cat3":0.1});
-		#me._widget.Seat3A		= PayloadWidget.new(me,me._group,"Seat_3A","Seat 3A",4,{"Cat1":0.6,"Cat2":0.4,"Cat3":0.1});
-		#me._widget.Seat3B		= PayloadWidget.new(me,me._group,"Seat_3B","Seat 3B",5,{"Cat1":0.6,"Cat2":0.4,"Cat3":0.1});
-		#me._widget.Seat4A		= PayloadWidget.new(me,me._group,"Seat_4A","Baggage",6,{"Cat1":0.8,"Cat2":0.5,"Cat3":0.2});
+		me._widget.Cockpit		= PayloadWidget.new(me,me._group,"Cockpit","Cockpit Crew",0);
+		me._widget.Cargo		= PayloadWidget.new(me,me._group,"Cargo","Cargo",3);
+		me._widget.PAXFront		= PAXWidget.new(me,me._group,"Front","Passengers Front",1);
+		me._widget.PAXRear		= PAXWidget.new(me,me._group,"Rear","Passengers Rear",2);
 		
 		me._widget.weight = WeightWidget.new(me,me._group,"Weight",me._widget);
-		#me._widget.trip = TripWidget.new(me,me._group,"Trip");
 		
 		foreach(widget;keys(me._widget)){
 			if(me._widget[widget] != nil){

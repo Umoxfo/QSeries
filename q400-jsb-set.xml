@@ -33,6 +33,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
         
 		<max-positive-g>4.4</max-positive-g>
 		<max-negative-g>-1.76</max-negative-g>
+		
+		<mass-and-balance>
+			<mtow-lbs>61700</mtow-lbs>
+		</mass-and-balance>
 	</limits>
 	<sim>
 		<description>Bombardier Q400 (JSBSim)</description>
@@ -244,19 +248,19 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</weight>
 		<weight n="1">
 			<name>PAX Front (43 seats)</name>
-			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]" />
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]" />
 			<min-lb type="double">300</min-lb>
 			<max-lb type="double">9460</max-lb>
 		</weight>
 		<weight n="2">
 			<name>PAX Rear (43 seats)</name>
-			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]" />
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]" />
 			<min-lb type="double">300</min-lb>
 			<max-lb type="double">9460</max-lb>
 		</weight>
 		<weight n="3">
 			<name>Cargo</name>
-			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]" />
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]" />
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">4710</max-lb>
 		</weight>

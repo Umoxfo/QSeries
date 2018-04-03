@@ -16,6 +16,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<version>Pre V1.0</version>
 		<description>Q400 FDE</description>
 	</fileheader>
+	
+	<system file="fuelpayload.xml"/>
 
 	<metrics>
 		<wingarea  unit="FT2"> 689.00 </wingarea>
@@ -65,9 +67,36 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Cockpit Crew">
 			<weight unit="LBS">400</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 0.37127 </x>
+				<x> -11.55 </x>
 				<y> 0 </y>
-				<z> 1.71115 </z>
+				<z> 2.2 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="PAX Front">
+			<weight unit="LBS">300</weight>
+			<location name="POINTMASS" unit="M">
+				<x> -4.5 </x>
+				<y> 0 </y>
+				<z> 2.2 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="PAX Rear">
+			<weight unit="LBS">300</weight>
+			<location name="POINTMASS" unit="M">
+				<x> 3.2 </x>
+				<y> 0 </y>
+				<z> 2.4 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="Cargo">
+			<weight unit="LBS">0</weight>
+			<location name="POINTMASS" unit="M">
+				<x> 9.2 </x>
+				<y> 0 </y>
+				<z> 2.4 </z>
 			</location>
 		</pointmass>
 	</mass_balance>
