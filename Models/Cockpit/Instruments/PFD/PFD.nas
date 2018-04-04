@@ -426,7 +426,7 @@ var canvas_PFD_avail = {
 setlistener("sim/signals/fdm-initialized", func {
 	PFD_display = canvas.new({
 		"name": "PFD",
-		"size": [1024, 1536],
+		"size": [768, 1152],
 		"view": [1024, 1536],
 		"mipmapping": 1
 	});

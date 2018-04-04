@@ -11,6 +11,19 @@
   </animation>
   
   
+    <effect>
+        <inherits-from>Aircraft/Q400/Models/Effects/panel</inherits-from>
+        <object-name>tillersteerL</object-name>
+        <object-name>tillersteerR</object-name>
+		<object-name>hud</object-name>
+		<object-name>hud.base</object-name>
+		<object-name>panel.003</object-name>
+		<object-name>seatP1</object-name>
+		<object-name>seatP2</object-name>
+		<object-name>seatCP1</object-name>
+		<object-name>seatCP2</object-name>
+		<object-name>somepanel</object-name>
+    </effect>
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>hud.glass</object-name>
@@ -119,10 +132,4 @@
 		</condition>
 	</animation>
 	
-	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
-		<object-name>panel.003</object-name>
-		<object-name>seatP1</object-name>
-		<object-name>seatCP1</object-name>
-	</effect>
 </PropertyList>
