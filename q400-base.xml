@@ -315,6 +315,9 @@ DHC8 -400Q by Alex Park Jan 2010
 			<property-rule n="101">
 				<path>Aircraft/Q400/Systems/MFD.xml</path>
 			</property-rule>
+			<property-rule n="102">
+				<path>Aircraft/Q400/Systems/model.xml</path>
+			</property-rule>
 		</systems>
 		
 		<chase-distance-m>-60</chase-distance-m>

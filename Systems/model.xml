@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+	<filter>
+		<name>Lightmap Landing Lights</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<input>
+			<expression>
+				<sum>
+					<property>/systems/electrical/outputs/landing-light-app-norm</property>
+					<property>/systems/electrical/outputs/landing-light-flr-norm</property>
+				</sum>
+			</expression>
+		</input>
+		<gain>0.5</gain>
+		<output>/systems/electrical/outputs/landing-light-sum-norm</output>
+		<max>1</max>
+		<min>0</min>
+	</filter>
+	
+</PropertyList>
