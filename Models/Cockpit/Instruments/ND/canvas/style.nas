@@ -1056,7 +1056,7 @@ canvas.NDStyles["Airbus"] = {
 					var path = nd.get_nav_path(type, 0);
 					var crs = getprop(path~ "radials/selected-deg");
 					if(crs != nil)
-						nd.symbols.crs.setText(sprintf("%03.0f", crs));
+						nd.symbols.crs.setText(sprintf("%03.0f", crs~"°"));
 				},
 				is_false: func(nd) nd.symbols.crs.hide(),
 			},

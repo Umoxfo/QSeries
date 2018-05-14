@@ -78,8 +78,8 @@ canvas.NavDisplay.newMFD = func(canvas_group, parent=nil, nd_options=nil, update
 	# anything that needs updatecenter called, should be added to the vector here
 	#
 	foreach(var element; [
-			"hdgTrk","hdgBug","HdgBugCRT","HdgBugLCD","curHdgPtr",
-			"HdgBugCRT2","HdgBugLCD2","hdgBug2","curHdgPtr2","selHdgLine","selHdgLine2",
+			"hdgTrk","hdgBug","HdgBugCRT","HdgBugLCD","TrkBugLCD","curHdgPtr",
+			"HdgBugCRT2","HdgBugLCD2","TrkBugLCD2","hdgBug2","curHdgPtr2","selHdgLine","selHdgLine2",
 			] )
 	me.symbols[element] = me.nd.getElementById(element).updateCenter();
 
@@ -468,7 +468,7 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 		
 		me.symbols.curHdgPtr2.hide();
 		me.symbols.HdgBugCRT2.hide();
-#		me.symbols.TrkBugLCD2.hide();
+		me.symbols.TrkBugLCD2.hide();
 		me.symbols.HdgBugLCD2.hide();
 		me.symbols.selHdgLine2.hide();
 		me.symbols.curHdgPtr.setVisible(staPtrVis);
@@ -493,7 +493,7 @@ canvas.NavDisplay.update = func() # FIXME: This stuff is still too aircraft spec
 #		me.symbols.trkInd.hide();
 		me.symbols.curHdgPtr.hide();
 		me.symbols.HdgBugCRT.hide();
-#		me.symbols.TrkBugLCD.hide();
+		me.symbols.TrkBugLCD.hide();
 		me.symbols.HdgBugLCD.hide();
 		me.symbols.selHdgLine.hide();
 		me.symbols.curHdgPtr2.setVisible(staPtrVis);

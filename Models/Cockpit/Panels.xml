@@ -55,7 +55,7 @@
 		<path>Pedestal/Front/CDU/CDU.xml</path>
 		<offsets>
 			<x-m>-12.2019</x-m>
-			<y-m>-0.17</y-m>
+			<y-m>-0.145</y-m>
 			<z-m>1.95</z-m>
 			<pitch-deg>-60</pitch-deg>
 		</offsets>
@@ -64,7 +64,7 @@
 		<path>Pedestal/Front/CDU/CDU1.xml</path>
 		<offsets>
 			<x-m>-12.2019</x-m>
-			<y-m>0.17</y-m>
+			<y-m>0.145</y-m>
 			<z-m>1.95</z-m>
 			<pitch-deg>-60</pitch-deg>
 		</offsets>

@@ -22,8 +22,8 @@ setprop("/engines/engine[0]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[0]", 0);
 setprop("/engines/engine[1]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[1]", 0);
-setprop("/engines/engine[0]/fuel-flow-pph", 0);
-setprop("/engines/engine[1]/fuel-flow-pph", 0);
+setprop("/engines/engine[0]/fuel-flow_pph", 0);
+setprop("/engines/engine[1]/fuel-flow_pph", 0);
 setprop("/consumables/fuel/tank[0]/temperature-degc", 0);
 setprop("/consumables/fuel/tank[1]/temperature-degc", 0);
 setprop("/controls/engines/engine[0]/condition-lever-state", 0);
@@ -58,7 +58,7 @@ var canvas_ED_base = {
 			ED_only.page.hide();
 		}
 		
-		settimer(func me.update(), 0.02);
+		settimer(func me.update(), 0.1);
 	},
 };
 
@@ -221,8 +221,8 @@ var canvas_ED_only = {
 			me["OilTempR"].setColor(1,1,1);
 		}
 		
-		var fuelflowL=getprop("/engines/engine[0]/fuel-flow-pph");
-		var fuelflowR=getprop("/engines/engine[1]/fuel-flow-pph");
+		var fuelflowL=getprop("/engines/engine[0]/fuel-flow_pph");
+		var fuelflowR=getprop("/engines/engine[1]/fuel-flow_pph");
 		
 		me["FFL"].setText(sprintf("%s", math.round(fuelflowL)));
 		me["FFR"].setText(sprintf("%s", math.round(fuelflowR)));
@@ -267,7 +267,7 @@ var canvas_ED_only = {
 setlistener("sim/signals/fdm-initialized", func {
 	ED_display = canvas.new({
 		"name": "MFD",
-		"size": [1024, 1536],
+		"size": [512, 768],
 		"view": [1024, 1536],
 		"mipmapping": 1
 	});
