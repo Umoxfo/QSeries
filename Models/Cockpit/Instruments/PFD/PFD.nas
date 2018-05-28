@@ -19,6 +19,8 @@ var PFD_display = nil;
 var page = "only";
 var DC=0.01744;
 
+var heading_prop="orientation/heading-magnetic-deg";
+
 setprop("/it-autoflight/input/alt", 100000);
 setprop("/instrumentation/PFD/ias-bugs/bug1", 0);
 setprop("/instrumentation/PFD/ias-bugs/bug2", 0);
@@ -183,7 +185,7 @@ var canvas_PFD_main = {
 		me["asi.rollingdigits"].setTranslation(0,math.round((10*math.mod(airspeed/10,1))*42.86, 0.1));
 		
 		me["dh"].setText(sprintf("%s", math.round(getprop("/instrumentation/PFD/DH"))));
-		var heading=getprop("/orientation/heading-deg") or 0;
+		var heading=getprop(heading_prop) or 0;
 		me["compassrose"].setRotation(heading*(-0.01744));
 		
 		var alt=getprop("/instrumentation/altimeter/indicated-altitude-ft") or 0;
@@ -248,6 +250,7 @@ var canvas_PFD_main = {
 		settimer(func me.fast_update(), 0.05);
 	},
 	slow_update: func() {
+		var heading=getprop(heading_prop) or 0;
 	
 		#AUTOPILOT INDICATIONS
 		#AP ON
@@ -335,7 +338,7 @@ var canvas_PFD_main = {
 				me["FMSNAVdeviation"].setTranslation((getprop("/instrumentation/nav[0]/heading-needle-deflection-norm") or 0)*130, 0);		
 				me["NavFreq"].setText(sprintf("%s", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt") or 0));
 				me["FMSNAVRadial"].setText(sprintf("%s", getprop("/instrumentation/nav[0]/radials/target-radial-deg") or 0));
-				var nav0_radialdiff=(getprop("/orientation/heading-deg") or 0)-(getprop("/instrumentation/nav[0]/radials/target-radial-deg") or 0);
+				var nav0_radialdiff=heading-(getprop("/instrumentation/nav[0]/radials/target-radial-deg") or 0);
 				me["FMSNAVpointer"].setRotation(nav0_radialdiff*(-DC));
 				me["FMSNAVdeviation"].setRotation(nav0_radialdiff*(-DC));
 				me["FMSNAVdeflectionscale"].setRotation(nav0_radialdiff*(-DC));
@@ -354,7 +357,7 @@ var canvas_PFD_main = {
 				me["FMSNAVdeviation"].setTranslation((getprop("/instrumentation/nav[1]/heading-needle-deflection-norm") or 0)*130, 0);		
 				me["NavFreq"].setText(sprintf("%s", getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt") or 0));
 				me["FMSNAVRadial"].setText(sprintf("%s", getprop("/instrumentation/nav[1]/radials/target-radial-deg") or 0));
-				var nav1_radialdiff=(getprop("/orientation/heading-deg") or 0)-(getprop("/instrumentation/nav[1]/radials/target-radial-deg") or 0);
+				var nav1_radialdiff=heading-(getprop("/instrumentation/nav[1]/radials/target-radial-deg") or 0);
 				me["FMSNAVpointer"].setRotation(nav1_radialdiff*(-DC));
 				me["FMSNAVdeviation"].setRotation(nav1_radialdiff*(-DC));
 				me["FMSNAVdeflectionscale"].setRotation(nav1_radialdiff*(-DC));
@@ -374,7 +377,7 @@ var canvas_PFD_main = {
 			me["ADF1symbol"].show();
 			me["ADF1ind"].show();
 			var ADF1_bearing=getprop("/instrumentation/adf/indicated-bearing-deg") or 0;
-			me["ADF1ind"].setRotation((ADF1_bearing-heading)*D2R);
+			me["ADF1ind"].setRotation(ADF1_bearing*D2R);
 		}else{
 			me["ADF1text"].hide();
 			me["ADF1symbol"].hide();
@@ -387,7 +390,7 @@ var canvas_PFD_main = {
 			me["ADF2symbol"].show();
 			me["ADF2ind"].show();
 			var ADF2_bearing=getprop("/instrumentation/adf[1]/indicated-bearing-deg") or 0;
-			me["ADF2ind"].setRotation((ADF2_bearing-heading)*D2R);
+			me["ADF2ind"].setRotation(ADF2_bearing*D2R);
 		}else{
 			me["ADF2text"].hide();
 			me["ADF2symbol"].hide();

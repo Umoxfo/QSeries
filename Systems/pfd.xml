@@ -546,7 +546,7 @@
       <input>
           <expression>
 		<dif>
-			<property>/orientation/heading-deg</property> 
+			<property>/orientation/heading-magnetic-deg</property> 
 			<property>/it-autoflight/input/hdg</property> 
 		</dif>
           </expression>

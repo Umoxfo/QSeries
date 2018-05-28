@@ -165,4 +165,9 @@ This file selects the instrumentation modules that should be available.
      </voice>
 
    </mk-viii>
+   
+   <vertical-speed-indicator>
+	    <name>vertical-speed-indicator</name>
+	    <number>0</number>
+    </vertical-speed-indicator>
 </PropertyList>
