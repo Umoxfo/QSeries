@@ -121,7 +121,7 @@ var canvas_PFD_main = {
 		return m;
 	},
 	getKeys: func() {
-		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind"];
+		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind","DMEdist"];
 	},
 	fast_update: func() {
 	
@@ -396,6 +396,8 @@ var canvas_PFD_main = {
 			me["ADF2symbol"].hide();
 			me["ADF2ind"].hide();
 		}
+
+		me["DMEdist"].setText(sprintf("%s",getprop("instrumentation/dme[0]/KDI572-574/nm")));
 		
 		var radaralti=getprop("/position/gear-agl-ft") or 0;
 		if(radaralti<2500 and radaralti>0){
