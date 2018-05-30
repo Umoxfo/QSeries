@@ -7,7 +7,7 @@ The original dhc8-400 for flightgear was built by MaverickAlex et. al. It is cur
 A special thanks also goes to D-Sven, who did the Airberlin, Austrian Airlines and Austrian Airlines (Star Alliance) liveries as well as Jonathan Redpath who did the Porter Airlines, Alaska Airlines express 2017, Flugfelag Islands and Qantas Link liveries and Andreas Spiekermann for improvements to the wing fairings, sounds and the great Alaska (N44IQX), Luxair (LX-LGA) and Bangladesh liveries.
 As the dhc8-400 before, it is licensed under GPL v2.0 (see LICENSE.txt)
 
-Also thanks to icalder (via github), who spotted and fixed a bug with the ADF display on the PFD.
+Also thanks to icalder (via github), who spotted and fixed a bug with the ADF display and enabled DME display on the PFD.
 
 Original author: MaverickAlex
 Re-modelling and updating by Florian K (cockpit, exterior; pushback (!)) and D-ECHO (exterior)
