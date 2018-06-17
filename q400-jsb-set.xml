@@ -211,9 +211,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 				<int n="13" alias="/sim/model/lights/strobe/state"/>
 				<int n="14" alias="/sim/model/lights/beacon/state"/>
 				
-				<float n="0" alias="/fdm/jsbsim/hydraulics/rudder/final"/>
+				<float n="0" alias="/fdm/jsbsim/fcs/yaw-sum"/>
 				<float n="1" alias="/fdm/jsbsim/hydraulics/elevators/final"/>
-				<float n="2" alias="/fdm/jsbsim/fcs/roll-sum"/>
+				<float n="2" alias="/fdm/jsbsim/hydraulics/ailerons/final"/>
 				<float n="3" alias="/systems/electrical/outputs/nav-lights">       0 </float>
 				<float n="4" alias="/systems/electrical/outputs/landing-light[0]"> 0 </float>
 				<float n="5" alias="/systems/electrical/outputs/landing-light[1]"> 0 </float>

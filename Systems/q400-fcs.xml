@@ -29,8 +29,22 @@
 			</clipto>
 		</summer>
 		
-		<aerosurface_scale name="fcs/roll-pos-rad">
+		<kinematic name="hydraulics/ailerons/final">
 			<input>fcs/roll-sum</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>0.0</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+		</kinematic>
+		
+		<aerosurface_scale name="fcs/roll-pos-rad">
+			<input>hydraulics/ailerons/final</input>
 			<range>
 				<min>-0.296706</min>
 				<max>0.296706</max>
@@ -55,7 +69,7 @@
 			<traverse>
 				<setting>
 					<position>-1.0</position>
-					<time>1.1</time>
+					<time>0.0</time>
 				</setting>
 				<setting>
 					<position>1.0</position>
@@ -78,7 +92,7 @@
 				<independentVar lookup="row">velocities/mach</independentVar>
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
-					     0     43000
+						 0     43000
 					0.0  1.00  0.850
 					0.9  0.05  0.750
 				</tableData>
@@ -111,7 +125,7 @@
 			<traverse>
 				<setting>
 					<position>-1.0</position>
-					<time>1.1</time>
+					<time>0.0</time>
 				</setting>
 				<setting>
 					<position>1.0</position>
@@ -124,49 +138,86 @@
 			</clipto>
 		</kinematic>
 		
-		<pure_gain name="fcs/rudder-cmd">
-			<input>hydraulics/rudder/final</input>
-			<gain>-1.0</gain>
-		</pure_gain>
-		
-		<scheduled_gain name="fcs/yaw-damper-rate">
-			<input>velocities/r-aero-rad_sec</input>
-			<table>
-				<independentVar lookup="row">velocities/ve-kts</independentVar>
-				<tableData>
-					30  0.00
-					60  2.00
-				</tableData>
-			</table>
-			<clipto>
-				<min>-0.05</min>
-				<max>0.05</max>
-			</clipto>
-		</scheduled_gain>
-		
-		<scheduled_gain name="fcs/yaw-damper-final">
-			<input>fcs/yaw-damper-rate</input>
-			<table>
-				<independentVar lookup="row">velocities/ve-kts</independentVar>
-				<tableData>
-					30		0.0
-					31		1.0
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<switch name="fcs/yaw-damper-switch">
+		<switch name="fcs/ap-enabled">
 			<default value="0"/>
-			<test logic="AND" value="fcs/yaw-damper-final">
-				/it-autoflight/input/yd EQ 1
-				/gear/gear[1]/wow EQ 0
-				/gear/gear[2]/wow EQ 0
+			<test logic="OR" value="1">
+				/it-autoflight/output/ap1 eq 1
+				/it-autoflight/output/ap2 eq 1
 			</test>
 		</switch>
 		
+		<switch name="fcs/yaw-autoland-switch">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fcs/ap-enabled eq 1
+				/it-autoflight/output/lat eq 4
+			</test>
+		</switch>
+		
+		<fcs_function name="fcs/yaw-rudder-nul">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/flight/rudder</independentVar>
+					<independentVar lookup="column">fcs/ap-enabled</independentVar>
+					<tableData>
+						       0  1
+						-1.00 -1  0
+						-0.04  0  0
+						 0.04  0  0
+						 1.00  1  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="position/wow">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				gear/unit[0]/WOW eq 1
+				gear/unit[1]/WOW eq 1
+				gear/unit[2]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcs/yaw-gain-switch">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				position/wow eq 1
+				/it-autoflight/input/yd ne 1
+			</test>
+		</switch>
+		
+		<switch name="fcs/yaw-r-r_s-s">
+			<default value="velocities/r-rad_sec"/>
+			<test logic="OR" value="0">
+				position/wow eq 1
+				fcs/yaw-rudder-nul gt 0
+				fcs/yaw-rudder-nul lt 0
+				/position/gear-agl-ft lt 50
+				fcs/yaw-autoland-switch eq 1
+			</test>
+		</switch>
+		
+		<scheduled_gain name="fcs/yaw-yd-f">
+			<input>fcs/yaw-r-r_s-s</input>
+			<table>
+				<independentVar lookup="row">velocities/mach</independentVar>
+				<independentVar lookup="column">fcs/yaw-gain-switch</independentVar>
+				<tableData>
+						 0    1
+					0.2 -4.5  0.0
+					0.9 -1.5  0.0
+				</tableData>
+			</table>
+			<clipto>
+				<min>-0.1</min>
+				<max>0.1</max>
+			</clipto>
+		</scheduled_gain>
+		
 		<summer name="fcs/yaw-sum">
-			<input>fcs/rudder-cmd</input>
-			<input>fcs/yaw-damper-switch</input>
+			<input>hydraulics/rudder/final</input>
+			<input>fcs/yaw-yd-f</input>
 			<clipto>
 				<min>-1</min>
 				<max>1</max>
@@ -294,7 +345,7 @@
 					<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
 					<independentVar lookup="column">/controls/flight/rudder</independentVar>
 					<tableData>
-						       -1     0  1
+							   -1     0  1
 						30.000 -70.0  0  70.0
 						30.001 -10.0  0  10.0
 					</tableData>

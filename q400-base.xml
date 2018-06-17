@@ -374,6 +374,11 @@ DHC8 -400Q by Alex Park Jan 2010
 		<input>
 			<yd>0</yd>
 		</input>
+		<output>
+			<ap1>0</ap1>
+			<ap2>0</ap2>
+			<lat>0</lat>
+		</output>
 	</it-autoflight>
 	
 	<position>

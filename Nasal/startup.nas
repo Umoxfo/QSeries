@@ -13,6 +13,7 @@ var autostartupthing = func {
 	setprop("/sim/model/door-positions/passengerF/position-norm", 1);
 	setprop("/controls/cabin/seatbelts", 1);
 	setprop("/controls/cabin/nosmoking", 1);
+	setprop("/it-autoflight/input/yd", 1);
 	settimer(func {
 		setprop("/controls/engines/engine[0]/condition-lever-state", 4);
 		setprop("/controls/engines/engine[1]/condition-lever-state", 4);
