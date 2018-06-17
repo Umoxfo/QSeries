@@ -345,7 +345,7 @@
 					<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
 					<independentVar lookup="column">/controls/flight/rudder</independentVar>
 					<tableData>
-							   -1     0  1
+						       -1     0  1
 						30.000 -70.0  0  70.0
 						30.001 -10.0  0  10.0
 					</tableData>
