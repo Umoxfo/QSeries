@@ -92,7 +92,7 @@
 				<independentVar lookup="row">velocities/mach</independentVar>
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
-						 0     43000
+					     0     43000
 					0.0  1.00  0.850
 					0.9  0.05  0.750
 				</tableData>
