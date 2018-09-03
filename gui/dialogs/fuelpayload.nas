@@ -939,7 +939,7 @@ var FuelPayloadClass = {
 		me._dlg._onClose = func(){
 			fuelPayload._onClose();
 		}
-		me._dlg.set("title", me._title);
+		me._dlg.set("title", "Fuel and Payload");
 		me._dlg.move(100,100);
 		
 		
