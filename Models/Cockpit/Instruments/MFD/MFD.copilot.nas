@@ -163,15 +163,17 @@ var canvas_MFDcopilot_base = {
 		settimer(func me.update(), 0.02);
 	},
 	updateBottomStatus: func() {
-		me["rudder"].setRotation((getprop("/surface-positions/rudder-pos-norm") or 0)*(-0.01744)*41.4);
-		var elevator=getprop("/surface-positions/elevator-pos-norm") or 0;
-		if(elevator>0){
-			me["Lelev"].setRotation(elevator*(-0.01744)*30);
-			me["Relev"].setRotation(elevator*(0.01744)*30);
-		}else if(elevator<0){
-			me["Lelev"].setRotation(elevator*(-0.01744)*43);
-			me["Relev"].setRotation(elevator*(0.01744)*43);
-		}
+		var flaps_norm = props.globals.getNode("surface-positions/flap-pos-norm").getValue() or 0;
+		me["flaps.pointer"].setRotation(flaps_norm*D2R*210);
+		
+		var press1 = props.globals.getNode("systems/hydraulic/psi1").getValue() or 0;
+		me["one.pointer"].setTranslation(0,-press1*0.045);
+		
+		var press2 = props.globals.getNode("systems/hydraulic/psi2").getValue() or 0;
+		me["two.pointer"].setTranslation(0,-press2*0.045);
+		
+		var press3 = props.globals.getNode("systems/hydraulic/psi3").getValue() or 0;
+		me["three.pointer"].setTranslation(0,-press3*0.045);
 		
 	},
 };
@@ -184,7 +186,7 @@ var canvas_MFDcopilot_elec = {
 		return m;
 	},
 	getKeys: func() {
-		return ["APUload","gen1load","gen2load","DCext1","ACext1","DCext2","ACext2","rudder","Lelev","Relev"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","APUload","gen1load","gen2load","DCext1","ACext1","DCext2","ACext2"];
 	},
 	update: func() {
 	
@@ -219,7 +221,7 @@ var canvas_MFDcopilot_eng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["TRQL","TRQR","PROPRPML","PROPRPMR","ITTL","ITTR","fuelquantityL","fuelquantityR","fueltempL","fueltempR","SAT","FFL","FFR","OilPressL","OilPressR","OilTempL","OilTempR","NLL","NLR","NHL","NHR","NHL.decimal","NHR.decimal","rudder","Lelev","Relev"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","TRQL","TRQR","PROPRPML","PROPRPMR","ITTL","ITTR","fuelquantityL","fuelquantityR","fueltempL","fueltempR","SAT","FFL","FFR","OilPressL","OilPressR","OilTempL","OilTempR","NLL","NLR","NHL","NHR","NHL.decimal","NHR.decimal"];
 	},
 	update: func() {
 			
@@ -294,7 +296,7 @@ var canvas_MFDcopilot_fuel = {
 		return m;
 	},
 	getKeys: func() {
-		return ["rudder","Lelev","Relev","transferL","transferR","transferOFF","leftquantity","rightquantity","totalquantity","tank1booston1","tank1booston2","tank2booston1","tank2booston2","tank1boostoff1","tank1boostoff2","tank2boostoff1","tank2boostoff2"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","transferL","transferR","transferOFF","leftquantity","rightquantity","totalquantity","tank1booston1","tank1booston2","tank2booston1","tank2booston2","tank1boostoff1","tank1boostoff2","tank2boostoff1","tank2boostoff2"];
 	},
 	update: func() {
 	
@@ -357,37 +359,58 @@ var canvas_MFDcopilot_doors = {
 		return m;
 	},
 	getKeys: func() {
-		return ["rudder","Lelev","Relev","PAXF","PAXR","BAGGAGEF","BAGGAGER","SERVICE"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","PAXF","PAXR","BAGGAGEF","BAGGAGER","SERVICE","PAXF.text","PAXR.text","BAGGAGEF.text","BAGGAGER.text","SERVICE.text","EMERGEXIT","EMERGEXIT.text"];
 	},
 	update: func() {
 	
 		if(getprop("/sim/model/door-positions/passengerF/position-norm")==1){
 			me["PAXF"].setColor(0,1,0);
-			me["PAXF"].setColorFill(0,1,0);
+			me["PAXF"].setColorFill(0,0,0);
+			me["PAXF.text"].hide();
 		}else{
 			me["PAXF"].setColor(1,0,0);
 			me["PAXF"].setColorFill(1,0,0);
+			me["PAXF.text"].show();
 		}
 		if((getprop("/sim/model/door-positions/passengerLH/position-norm") or 0)==0){
-			me["PAXR"].setColorFill(0,1,0);
+			me["PAXR"].setColor(0,1,0);
+			me["PAXR"].setColorFill(0,0,0);
+			me["PAXR.text"].hide();
 		}else{
+			me["PAXR"].setColor(1,0,0);
 			me["PAXR"].setColorFill(1,0,0);
+			me["PAXR.text"].show();
 		}
 		if((getprop("/sim/model/door-positions/passengerRF/position-norm") or 0)==0){
-			me["BAGGAGEF"].setColorFill(0,1,0);
+			me["BAGGAGEF"].setColor(0,1,0);
+			me["BAGGAGEF"].setColorFill(0,0,0);
+			me["BAGGAGEF.text"].hide();
 		}else{
+			me["BAGGAGEF"].setColor(1,0,0);
 			me["BAGGAGEF"].setColorFill(1,0,0);
+			me["BAGGAGEF.text"].show();
 		}
 		if((getprop("/sim/model/door-positions/cargo/position-norm") or 0)==0){
-			me["BAGGAGER"].setColorFill(0,1,0);
+			me["BAGGAGER"].setColor(0,1,0);
+			me["BAGGAGER"].setColorFill(0,0,0);
+			me["BAGGAGER.text"].hide();
 		}else{
+			me["BAGGAGER"].setColor(1,0,0);
 			me["BAGGAGER"].setColorFill(1,0,0);
+			me["BAGGAGER.text"].show();
 		}
 		if((getprop("/sim/model/door-positions/passengerRH/position-norm") or 0)==0){
-			me["SERVICE"].setColorFill(0,1,0);
+			me["SERVICE"].setColor(0,1,0);
+			me["SERVICE"].setColorFill(0,0,0);
+			me["SERVICE.text"].hide();
 		}else{
+			me["SERVICE"].setColor(1,0,0);
 			me["SERVICE"].setColorFill(1,0,0);
+			me["SERVICE.text"].show();
 		}
+		
+		#emergency exit door not yet implemented
+		me["EMERGEXIT.text"].hide();
 			
 		
 		me.updateBottomStatus();
@@ -832,10 +855,10 @@ setlistener("sim/signals/fdm-initialized", func {
 	var groupMFDcopilot_pfd = MFDcopilot_display.createGroup();
 	var groupMFDcopilot_ed = MFDcopilot_display.createGroup();
 
-	MFDcopilot_elec = canvas_MFDcopilot_elec.new(groupMFDcopilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD_SYS_ELEC_PILOT.svg");
-	MFDcopilot_eng = canvas_MFDcopilot_eng.new(groupMFDcopilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD_SYS_ENG_PILOT.svg");
-	MFDcopilot_fuel = canvas_MFDcopilot_fuel.new(groupMFDcopilot_fuel, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.PILOT.svg");
-	MFDcopilot_doors = canvas_MFDcopilot_doors.new(groupMFDcopilot_doors, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.PILOT.svg");
+	MFDcopilot_elec = canvas_MFDcopilot_elec.new(groupMFDcopilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.COPILOT.svg");
+	MFDcopilot_eng = canvas_MFDcopilot_eng.new(groupMFDcopilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.COPILOT.svg");
+	MFDcopilot_fuel = canvas_MFDcopilot_fuel.new(groupMFDcopilot_fuel, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.COPILOT.svg");
+	MFDcopilot_doors = canvas_MFDcopilot_doors.new(groupMFDcopilot_doors, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.COPILOT.svg");
 	MFDcopilot_pfd = canvas_MFDcopilot_pfd.new(groupMFDcopilot_pfd, "Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.svg");
 	MFDcopilot_ed = canvas_MFDcopilot_ed.new(groupMFDcopilot_ed, "Aircraft/Q400/Models/Cockpit/Instruments/ED/ED.svg");
 

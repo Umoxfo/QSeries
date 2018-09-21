@@ -357,16 +357,18 @@ var canvas_MFDpilot_doors = {
 		return m;
 	},
 	getKeys: func() {
-		return ["rudder","Lelev","Relev","PAXF","PAXR","BAGGAGEF","BAGGAGER","SERVICE"];
+		return ["rudder","Lelev","Relev","PAXF","PAXR","BAGGAGEF","BAGGAGER","SERVICE","PAXF.text","PAXR.text","BAGGAGEF.text","BAGGAGER.text","SERVICE.text"];
 	},
 	update: func() {
 	
 		if(getprop("/sim/model/door-positions/passengerF/position-norm")==1){
 			me["PAXF"].setColor(0,1,0);
-			me["PAXF"].setColorFill(0,1,0);
+			me["PAXF"].setColorFill(0,0,0,0);
+			me["PAXF.text"].hide();
 		}else{
 			me["PAXF"].setColor(1,0,0);
-			me["PAXF"].setColorFill(1,0,0);
+			me["PAXF"].setColorFill(1,0,0,1);
+			me["PAXF.text"].show();
 		}
 		if((getprop("/sim/model/door-positions/passengerLH/position-norm") or 0)==0){
 			me["PAXR"].setColorFill(0,1,0);
@@ -831,8 +833,8 @@ setlistener("sim/signals/fdm-initialized", func {
 	var groupMFDpilot_pfd = MFDpilot_display.createGroup();
 	var groupMFDpilot_ed = MFDpilot_display.createGroup();
 
-	MFDpilot_elec = canvas_MFDpilot_elec.new(groupMFDpilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD_SYS_ELEC_PILOT.svg");
-	MFDpilot_eng = canvas_MFDpilot_eng.new(groupMFDpilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD_SYS_ENG_PILOT.svg");
+	MFDpilot_elec = canvas_MFDpilot_elec.new(groupMFDpilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.PILOT.svg");
+	MFDpilot_eng = canvas_MFDpilot_eng.new(groupMFDpilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.PILOT.svg");
 	MFDpilot_fuel = canvas_MFDpilot_fuel.new(groupMFDpilot_fuel, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.PILOT.svg");
 	MFDpilot_doors = canvas_MFDpilot_doors.new(groupMFDpilot_doors, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.PILOT.svg");
 	MFDpilot_pfd = canvas_MFDpilot_pfd.new(groupMFDpilot_pfd, "Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.svg");
