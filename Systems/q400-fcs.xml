@@ -29,19 +29,10 @@
 			</clipto>
 		</summer>
 		
-		<kinematic name="hydraulics/ailerons/final">
+		<lag_filter name="hydraulics/ailerons/final">
 			<input>fcs/roll-sum</input>
-			<traverse>
-				<setting>
-					<position>-1.0</position>
-					<time>0.0</time>
-				</setting>
-				<setting>
-					<position>1.0</position>
-					<time>1.1</time>
-				</setting>
-			</traverse>
-		</kinematic>
+			<c1>14.5</c1>
+		</lag_filter>
 		
 		<aerosurface_scale name="fcs/roll-pos-rad">
 			<input>hydraulics/ailerons/final</input>
@@ -64,19 +55,10 @@
 			</clipto>
 		</summer>
 		
-		<kinematic name="hydraulics/elevators/final">
+		<lag_filter name="hydraulics/elevators/final">
 			<input>fcs/pitch-sum</input>
-			<traverse>
-				<setting>
-					<position>-1.0</position>
-					<time>0.0</time>
-				</setting>
-				<setting>
-					<position>1.0</position>
-					<time>1.1</time>
-				</setting>
-			</traverse>
-		</kinematic>
+			<c1>14.5</c1>
+		</lag_filter>
 		
 		<aerosurface_scale name="fcs/pitch-pos-rad">
 			<input>hydraulics/elevators/final</input>
@@ -120,23 +102,14 @@
 			<gain>-1.0</gain>
 		</pure_gain>
 		
-		<kinematic name="hydraulics/rudder/final">
+		<pure_gain name="hydraulics/rudder/final">
 			<input>/controls/flight/rudder-int</input>
-			<traverse>
-				<setting>
-					<position>-1.0</position>
-					<time>0.0</time>
-				</setting>
-				<setting>
-					<position>1.0</position>
-					<time>1.1</time>
-				</setting>
-			</traverse>
+			<gain>1.0</gain>
 			<clipto>
 				<min>hydraulics/rudder/max-deg-scale-neg</min>
 				<max>hydraulics/rudder/max-deg-scale</max>
 			</clipto>
-		</kinematic>
+		</pure_gain>
 		
 		<switch name="fcs/ap-enabled">
 			<default value="0"/>
@@ -224,8 +197,13 @@
 			</clipto>
 		</summer>
 		
-		<aerosurface_scale name="rubbish/rudder-pos-rad">
+		<lag_filter name="fcs/yaw-sum-lag">
 			<input>fcs/yaw-sum</input>
+			<c1>13.5</c1>
+		</lag_filter>
+		
+		<aerosurface_scale name="rubbish/rudder-pos-rad">
+			<input>fcs/yaw-sum-lag</input>
 			<range>
 				<min>-0.628319</min>
 				<max>0.628319</max>
