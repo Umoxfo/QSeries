@@ -141,4 +141,4 @@ settimer(update_loop, 0);
 
 
 
-gui.menuBind("fuel-and-payload", "dialogs.fuelPayload.toggle();");
+#gui.menuBind("fuel-and-payload", "dialogs.fuelPayload.toggle();");

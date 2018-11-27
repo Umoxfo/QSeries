@@ -374,7 +374,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/sim/model/door-positions/passengerF/position-norm", 1);
 }
     itaf.ap_init();
-    var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/Q400/Systems/autopilot-dlg.xml");
     });
     
 

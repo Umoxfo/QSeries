@@ -111,13 +111,13 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 							<dialog-name>groundservices</dialog-name>
 						</binding>
 					</item>
-					<item>
+					<!--item>
 						<label>Fuel and Payload</label>
 						<binding>
 							<command>nasal</command>
 							<script>dialogs.FuelPayloadClass.open()</script>
 						</binding>
-					</item>
+					</item-->
 					<item>
 						<label>Checklists</label>
 						<binding>
@@ -130,14 +130,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 						<binding>
 							<command>property-toggle</command>
 							<property>controls/gear/jacks</property>
-						</binding>
-					</item>
-					<item>
-						<label>LNAV mode</label>
-						<binding>
-							<command>property-assign</command>
-							<property>autopilot/locks/heading</property>
-							<value>LNAV</value>
 						</binding>
 					</item>
 				</menu>
@@ -415,9 +407,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/autoflight-helpers.nas</file>
 			<file>Nasal/listeners.nas</file>
 		</q400>
-		<dialogs>
+		<!--dialogs>
 			<file>gui/dialogs/fuelpayload.nas</file>
-		</dialogs>
+		</dialogs-->
 		<itaf>
 			<file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
 		</itaf>
