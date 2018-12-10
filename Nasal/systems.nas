@@ -370,11 +370,10 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("consumables/fuel/tank[3]/selected",0);
     settimer(update_systems, 2);
     settimer(update_alarms,0);
-    if(getprop("/position/gear-agl-ft") >= 10){
-    setprop("/sim/model/door-positions/passengerF/position-norm", 1);
-}
-    itaf.ap_init();
-    });
+    if (getprop("/position/gear-agl-ft") >= 10){
+        setprop("/sim/model/door-positions/passengerF/position-norm", 1);
+	}
+});
     
 
 
