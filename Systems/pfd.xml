@@ -466,19 +466,6 @@
       </input>
       <output>instrumentation/PFD/alt-100</output>
   </filter>
-  <filter>
-      <name>Altitude 1</name> 
-      <type>gain</type>
-			<gain>1.0</gain> 
-     <input>
-	     <expression>
-		     <floor>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-		</floor>
-	</expression>
-      </input>
-      <output>instrumentation/PFD/alt-1</output>
-  </filter>
   
   
   <filter>
@@ -581,7 +568,7 @@
       </input>
 	<min>-42</min>
 	<max>42</max>
-      <output>instrumentation/pfd/ias-bug1-diff</output>
+      <output>instrumentation/PFD/ias-bugs/bug1-diff</output>
 </filter>
   <filter>
       <name>SPEEDBUGDiff2</name>
@@ -597,7 +584,7 @@
       </input>
 	<min>-42</min>
 	<max>42</max>
-      <output>instrumentation/pfd/ias-bug2-diff</output>
+      <output>instrumentation/PFD/ias-bugs/bug2-diff</output>
 </filter>
 
 

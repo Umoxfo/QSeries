@@ -17,14 +17,75 @@ var PFD_main = nil;
 var PFD_avail = nil;
 var PFD_display = nil;
 var page = "only";
-var DC=0.01744;
 
-var heading_prop="orientation/heading-magnetic-deg";
+#All properties used...
+#...in fast update:
+var IAS_bug1 = props.globals.getNode("/instrumentation/PFD/ias-bugs/bug1",1);
+var IAS_bug1diff = props.globals.getNode("/instrumentation/PFD/ias-bugs/bug1-diff", 1);
+var IAS_bug1 = props.globals.getNode("/instrumentation/PFD/ias-bugs/bug2",1);
+var IAS_bug2diff = props.globals.getNode("/instrumentation/PFD/ias-bugs/bug2-diff", 1);
+var IAS = props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1);
+var IAS_10 = props.globals.getNode("/instrumentation/pfd/asi-10", 1);
+var IAS_100 = props.globals.getNode("/instrumentation/pfd/asi-100", 1);
+var Heading_magnetic = props.globals.getNode("/orientation/heading-magnetic-deg", 1);
+var ALT_bugdiff = props.globals.getNode("/instrumentation/pfd/alt-bug-diff", 1);
+var ALT = props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1);
+var ALT_1000 = props.globals.getNode("/instrumentation/PFD/alt-1000", 1);
+var ALT_100 = props.globals.getNode("/instrumentation/PFD/alt-100", 1);
+var ALT_AGL = props.globals.getNode("/position/gear-agl-ft", 1);
+var VS = props.globals.getNode("/instrumentation/vertical-speed-indicator/indicated-speed-fpm", 1);
+var VS_needle = props.globals.getNode("/instrumentation/pfd/vs-needle", 1);
+var AI_pitch = props.globals.getNode("/orientation/pitch-deg", 1);
+var AI_roll = props.globals.getNode("/orientation/roll-deg", 1);
+var Slip_Skid = props.globals.getNode("/instrumentation/slip-skid-ball/indicated-slip-skid", 1);
+
+#in slow update:
+var AP_ap1 = props.globals.getNode("/it-autoflight/input/ap1", 1);
+var AP_modelat = props.globals.getNode("/it-autoflight/mode/lat", 1);
+var AP_modearm = props.globals.getNode("/it-autoflight/mode/arm", 1);
+var AP_modevert = props.globals.getNode("/it-autoflight/mode/vert", 1);
+var AP_vs = props.globals.getNode("/it-autoflight/input/vs", 1);
+var AP_ias = props.globals.getNode("/it-autoflight/input/spd-kts", 1);
+var AP_alt = props.globals.getNode("/it-autoflight/input/alt", 1);
+var AP_hdg = props.globals.getNode("/it-autoflight/input/hdg", 1);
+var AP_navsource = props.globals.getNode("/it-autoflight/settings/nav-source", 1);
+var Heading_bugdiff = props.globals.getNode("/instrumentation/pfd/hdg-bug-diff", 1);
+var NAV0_inrange = props.globals.getNode("/instrumentation/nav[0]/in-range", 1);
+var NAV0_defl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
+var NAV0_freq = props.globals.getNode("/instrumentation/nav[0]/frequencies/selected-mhz-fmt", 1);
+var NAV0_rad = props.globals.getNode("/instrumentation/nav[0]/radials/target-radial-deg", 1);
+var NAV1_inrange = props.globals.getNode("/instrumentation/nav[1]/in-range", 1);
+var NAV1_defl = props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1);
+var NAV1_freq = props.globals.getNode("/instrumentation/nav[1]/frequencies/selected-mhz-fmt", 1);
+var NAV1_rad = props.globals.getNode("/instrumentation/nav[1]/radials/target-radial-deg", 1);
+var ADF0_inrange = props.globals.getNode("/instrumentation/adf[0]/in-range", 1);
+var ADF0_brg = props.globals.getNode("/instrumentation/adf[0]/indicated-bearing-deg", 1);
+var ADF1_inrange = props.globals.getNode("/instrumentation/adf[1]/in-range", 1);
+var ADF1_brg = props.globals.getNode("/instrumentation/adf[1]/indicated-bearing-deg", 1);
+var DME_dist = props.globals.getNode("/instrumentation/dme[0]/KDI572-574/nm", 1);
+var ALT_qnh = props.globals.getNode("/instrumentation/altimeter/setting-hpa", 1);
+var DecHei = props.globals.getNode("/instrumentation/PFD/DH", 1);
+
+var Volts = props.globals.getNode("/systems/electrical/volts", 1);
+var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page", 1);
+
+
+#init
+var IAS_bug1 = props.globals.initNode("/instrumentation/PFD/ias-bugs/bug1", 0.0, "DOUBLE");
+var IAS_bug2 = props.globals.initNode("/instrumentation/PFD/ias-bugs/bug2", 0.0, "DOUBLE");
+var IAS_10 = props.globals.initNode("/instrumentation/pfd/asi-10", 0.0, "DOUBLE");
+var IAS_100 = props.globals.initNode("/instrumentation/pfd/asi-100", 0.0, "DOUBLE");
+var ALT_bugdiff = props.globals.initNode("/instrumentation/pfd/alt-bug-diff", 0.0, "DOUBLE");
+var ALT_1000 = props.globals.initNode("/instrumentation/PFD/alt-1000", 0.0, "DOUBLE");
+var ALT_100 = props.globals.initNode("/instrumentation/PFD/alt-100", 0.0, "DOUBLE");
+var VS_needle = props.globals.initNode("/instrumentation/pfd/vs-needle", 0.0, "DOUBLE");
+var Heading_bugdiff = props.globals.initNode("/instrumentation/pfd/hdg-bug-diff", 0.0, "DOUBLE");
+var DecHei = props.globals.initNode("/instrumentation/PFD/DH", 0.0, "DOUBLE");
+var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
+var MainPage = props.globals.initNode("/instrumentation/mfd[0]/inputs/main-page","", "STRING");
+
 
 setprop("/it-autoflight/input/alt", 100000);
-setprop("/instrumentation/PFD/ias-bugs/bug1", 0);
-setprop("/instrumentation/PFD/ias-bugs/bug2", 0);
-setprop("/instrumentation/PFD/DH", 200);
 setprop("/test-hdg", 180);
 setprop("/engines/engine[1]/thruster/torque", 0);
 setprop("/engines/engine[0]/thruster/rpm", 0);
@@ -94,9 +155,9 @@ var canvas_PFD_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
-			var mainpage=getprop("/instrumentation/mfd[0]/inputs/main-page") or 0;
-			if(mainpage=="pfd"){
+		if (Volts.getValue() >= 10) {
+			var main_page=MainPage.getValue();
+			if(main_page=="pfd"){
 				PFD_avail.page.show();
 				PFD_main.page.hide();
 			}else{
@@ -121,11 +182,66 @@ var canvas_PFD_main = {
 		return m;
 	},
 	getKeys: func() {
-		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind","DMEdist"];
+		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind","DMEdist","alt.ground"];
 	},
 	fast_update: func() {
-	
-		var altbugdiff=getprop("/instrumentation/pfd/alt-bug-diff") or 0;
+		#Airspeed Indicator
+		#IAS Bugs
+		var ias_bug_1=IAS_bug1.getValue();
+		var ias_bug_2=IAS_bug2.getValue();
+		var ias_bug_1_diff=IAS_bug1diff.getValue();
+		var ias_bug_2_diff=IAS_bug2diff.getValue();
+		
+		if(ias_bug_1<50){
+			me["IASbug1symbol"].hide();
+			me["IASbug1digit"].hide();
+			me["IASbug1"].hide();
+		}else{
+			me["IASbug1symbol"].show();
+			me["IASbug1digit"].show();
+			me["IASbug1"].show();
+			me["IASbug1"].setTranslation(0,ias_bug_1_diff*6.34);
+			me["IASbug1digit"].setText(sprintf("%s", math.round(ias_bug1)));
+		}
+		if(ias_bug_2<50){
+			me["IASbug2symbol"].hide();
+			me["IASbug2digit"].hide();
+			me["IASbug2"].hide();
+		}else{
+			me["IASbug2symbol"].show();
+			me["IASbug2digit"].show();
+			me["IASbug2"].show();
+			me["IASbug2"].setTranslation(0,ias_bug_2_diff*6.34);
+			me["IASbug2digit"].setText(sprintf("%s", math.round(ias_bug2)));
+		}
+		var airspeed=IAS.getValue();
+		#Airspeed Tape
+		me["asitape"].setTranslation(0,airspeed*6.33);
+		me["asitapevmo"].setTranslation(0,airspeed*6.33);
+		#Airspeed Digital Indication
+		var asi10=IAS_10.getValue();
+		if(asi10!=0){
+			me["IAS.10"].show();
+			me["IAS.10"].setText(sprintf("%s", math.round((10*math.mod(asi10/10,1)))));
+		}else{
+			me["IAS.10"].hide();
+		}
+		var asi100=IAS_100.getValue();
+		if(asi100!=0){
+			me["IAS.100"].show();
+			me["IAS.100"].setText(sprintf("%s", math.round(asi100)));
+		}else{
+			me["IAS.100"].hide();
+		}
+		me["asi.rollingdigits"].setTranslation(0,math.round((10*math.mod(airspeed/10,1))*42.86, 0.1));
+		
+		var heading=Heading_magnetic.getValue();
+		me["compassrose"].setRotation(heading*(-0.01744));
+		
+		
+		#Altimeter
+		#Altitude Bug
+		var altbugdiff=ALT_bugdiff.getValue();
 		if(altbugdiff<-500){
 			me["alt.bug"].hide();
 			me["alt.bug.btm"].show();
@@ -141,126 +257,86 @@ var canvas_PFD_main = {
 			me["alt.bug"].setTranslation(0,altbugdiff*(-0.5));
 		}
 		
-		var ias_bug1=getprop("/instrumentation/PFD/ias-bugs/bug1");
-		var ias_bug2=getprop("/instrumentation/PFD/ias-bugs/bug2");
-		if(ias_bug1<50){
-			me["IASbug1symbol"].hide();
-			me["IASbug1digit"].hide();
-			me["IASbug1"].hide();
-		}else{
-			me["IASbug1symbol"].show();
-			me["IASbug1digit"].show();
-			me["IASbug1"].show();
-			me["IASbug1"].setTranslation(0,getprop("/instrumentation/pfd/ias-bug1-diff")*6.34);
-			me["IASbug1digit"].setText(sprintf("%s", math.round(ias_bug1)));
-		}
-		if(ias_bug2<50){
-			me["IASbug2symbol"].hide();
-			me["IASbug2digit"].hide();
-			me["IASbug2"].hide();
-		}else{
-			me["IASbug2symbol"].show();
-			me["IASbug2digit"].show();
-			me["IASbug2"].show();
-			me["IASbug2"].setTranslation(0,getprop("/instrumentation/pfd/ias-bug2-diff")*6.34);
-			me["IASbug2digit"].setText(sprintf("%s", math.round(ias_bug2)));
-		}
-		var airspeed=getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") or 0;
-		me["asitape"].setTranslation(0,airspeed*6.33);
-		me["asitapevmo"].setTranslation(0,airspeed*6.33);
-		var asi10=getprop("/instrumentation/pfd/asi-10") or 0;
-		if(asi10!=0){
-			me["IAS.10"].show();
-			me["IAS.10"].setText(sprintf("%s", math.round((10*math.mod(asi10/10,1)))));
-		}else{
-			me["IAS.10"].hide();
-		}
-		var asi100=getprop("/instrumentation/pfd/asi-100") or 0;
-		if(asi100!=0){
-			me["IAS.100"].show();
-			me["IAS.100"].setText(sprintf("%s", math.round(asi100)));
-		}else{
-			me["IAS.100"].hide();
-		}
-		me["asi.rollingdigits"].setTranslation(0,math.round((10*math.mod(airspeed/10,1))*42.86, 0.1));
-		
-		me["dh"].setText(sprintf("%s", math.round(getprop("/instrumentation/PFD/DH"))));
-		var heading=getprop(heading_prop) or 0;
-		me["compassrose"].setRotation(heading*(-0.01744));
-		
-		var alt=getprop("/instrumentation/altimeter/indicated-altitude-ft") or 0;
-
-		me["alt.tape"].setTranslation(0,(alt - roundToNearest(alt, 1000))*0.4933);
-		if (roundToNearest(alt, 1000) == 0) {
-			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
-			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
-			var altNumLow = "-5";
+		#Alt Tape
+		var altitude=ALT.getValue();
+		me["alt.tape"].setTranslation(0,(altitude - roundToNearest(altitude, 1000))*0.4933);
+		if (roundToNearest(altitude, 1000) == 0) {
+			var altNumLow = "-5"; props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1);
 			var altNumHigh = "5";
 			var altNumCenter = altNumHigh-5;
-		} elsif (roundToNearest(alt, 1000) > 0) {
-			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
-			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
-			var altNumLow = (roundToNearest(alt, 1000)/1000 - 1)*10+5;
-			var altNumHigh = (roundToNearest(alt, 1000)/1000)*10+5;
+		} elsif (roundToNearest(altitude, 1000) > 0) {
+			var altNumLow = (roundToNearest(altitude, 1000)/1000 - 1)*10+5;
+			var altNumHigh = (roundToNearest(altitude, 1000)/1000)*10+5;
 			var altNumCenter = altNumHigh-5;
-		} elsif (roundToNearest(alt, 1000) < 0) {
-			#me["altTextLowSmall1"].setText(sprintf("%0.0f",5));
-			#me["altTextHighSmall2"].setText(sprintf("%0.0f",5));
-			var altNumLow = roundToNearest(alt, 1000)/100+5;
-			var altNumHigh = (roundToNearest(alt, 1000)/1000 + 1)*10+5 ;
+		} elsif (roundToNearest(altitude, 1000) < 0) {
+			var altNumLow = roundToNearest(altitude, 1000)/100+5;
+			var altNumHigh = (roundToNearest(altitude, 1000)/1000 + 1)*10+5 ;
 			var altNumCenter = altNumLow-5;
 		}
 		if ( altNumLow == 0 ) {
 			altNumLow = "";
 		}
-		if ( altNumHigh == 0 and alt < 0) {
+		if ( altNumHigh == 0 and altitude < 0) {
 			altNumHigh = "-";
 		}
 		
-		var alt100=(getprop("/instrumentation/PFD/alt-1") or 0)/100;
-		
-		me["alt.low.digits"].setTranslation(0,math.round((10*math.mod(alt100,1))*15, 0.1));
 		
 		me["altTextLow1"].setText(sprintf("%s", altNumLow));
 		me["altTextHigh1"].setText(sprintf("%s", altNumCenter));
 		me["altTextHigh2"].setText(sprintf("%s", altNumHigh));
 		
 		
-		me["alt.1000"].setText(sprintf("%3d", getprop("/instrumentation/PFD/alt-1000")));
-		me["alt.100"].setText(sprintf("%s", int(10*math.mod((getprop("/instrumentation/PFD/alt-100") or 0)/10,1))));
+		#Altitude Digital Indication		
+		me["alt.low.digits"].setTranslation(0,math.round((10*math.mod(altitude/100,1))*15, 0.1));
+		me["alt.1000"].setText(sprintf("%3d", ALT_1000.getValue()));
+		me["alt.100"].setText(sprintf("%1d", int(10*math.mod(ALT_100.getValue()/10,1))));
 		
-		var fpm=getprop("/velocities/vertical-speed-fps")*60;
-		me["VS"].setText(sprintf("%.1f", (fpm or 0)/1000));
-		me["VS.needle"].setRotation((getprop("/instrumentation/pfd/vs-needle") or 0)*DC);
+		#Alt above Ground, Radar alt and ground on alt tape
+		var agl = ALT_AGL.getValue();
+		if(agl<2500){
+			me["radaralt"].show();
+			me["radaralt"].setText(sprintf("%4d", math.round(agl)));
+			if(agl<550){
+				me["alt.ground"].show();
+				me["alt.ground"].setTranslation(0,agl*0.4933);
+			}else{
+				me["alt.ground"].hide();
+			}
+		}else{
+			me["radaralt"].hide();
+			me["alt.ground"].hide();
+		}
 		
-		var pitch = (getprop("orientation/pitch-deg") or 0);
-		var roll =  getprop("orientation/roll-deg") or 0;
-		var x=math.sin(-3.14/180*roll)*pitch*10.6;
-		var y=math.cos(-3.14/180*roll)*pitch*10.6;
 		
-		#me["horizon"].setTranslation(x,y);
-		#me["horizon"].setRotation(roll*(-DC),me["horizon"].getCenter());
+		#Vertical Speed Indicator
+		var fpm=VS.getValue();
+		me["VS"].setText(sprintf("%.1f", fpm/1000));
+		me["VS.needle"].setRotation(VS_needle.getValue()*D2R);
+		
+		#Attitude Indicator
+		var pitch = AI_pitch.getValue();
+		var roll =  AI_roll.getValue();
 		
 		me.h_trans.setTranslation(0,pitch*10.63);
-		me.h_rot.setRotation(-roll*DC,me["horizon"].getCenter());
+		me.h_rot.setRotation(-roll*D2R,me["horizon"].getCenter());
 		
-		me["rollpointer"].setRotation(roll*(-DC));
-		me["rollpointer2"].setTranslation(math.round(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid") or 0)*5, 0);
+		me["rollpointer"].setRotation(-roll*D2R);
+		me["rollpointer2"].setTranslation(math.round(Slip_Skid.getValue()*5), 0);
+		
 		
 		settimer(func me.fast_update(), 0.05);
 	},
 	slow_update: func() {
-		var heading=getprop(heading_prop) or 0;
-	
+		
 		#AUTOPILOT INDICATIONS
 		#AP ON
-		if((getprop("/it-autoflight/input/ap1") or 0)==1){
+		if(AP_ap1.getValue()==1){
 			me["AP"].show();
 		}else{
 			me["AP"].hide();
 		}
 		
-		var ap_mode_lat=getprop("/it-autoflight/mode/lat");
+		var ap_mode_lat=AP_modelat.getValue();
 		if(ap_mode_lat=="T/O"){
 			me["ap.lat.engaged"].setText("ROLL  HOLD");
 		}else if(ap_mode_lat=="HDG"){
@@ -275,7 +351,7 @@ var canvas_PFD_main = {
 			me["ap.lat.engaged"].setText("");
 		}
 		
-		var ap_mode_arm=getprop("/it-autoflight/mode/arm");
+		var ap_mode_arm=AP_modearm.getValue();
 		if(ap_mode_arm=="HDG"){
 			me["ap.lat.armed"].setText("HDG");
 		}else if(ap_mode_arm=="LOC" or ap_mode_arm=="ILS"){
@@ -284,7 +360,7 @@ var canvas_PFD_main = {
 			me["ap.lat.armed"].setText("");
 		}
 		
-		var ap_mode_vert=getprop("it-autoflight/mode/vert");
+		var ap_mode_vert=AP_modevert.getValue();
 		if(ap_mode_vert=="ALT CAP"){
 			me["ap.vert.eng"].setText("ALT*");
 			me["ap.vert.value"].hide();
@@ -300,68 +376,67 @@ var canvas_PFD_main = {
 		}else if(ap_mode_vert=="V/S"){
 			me["ap.vert.eng"].setText("VS");
 			me["ap.vert.value"].show();
-			me["ap.vert.value"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/vs"))));
+			me["ap.vert.value"].setText(sprintf("%4d", math.round(AP_vs.getValue())));
 		}else if(ap_mode_vert=="G/A CLB"){
 			me["ap.vert.eng"].setText("GA");
 			me["ap.vert.value"].hide();
 		}else if(ap_mode_vert=="SPD CLB" or ap_mode_vert=="SPD DSC"){
 			me["ap.vert.eng"].setText("IAS");
 			me["ap.vert.value"].show();
-			me["ap.vert.value"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/spd-kts"))));
+			me["ap.vert.value"].setText(sprintf("%3d", math.round(AP_ias.getValue())));
 		}else{
 			me["ap.vert.eng"].setText("");
 			me["ap.vert.value"].hide();
 		}
 		
+			
 		me["ap.vert.arm"].hide();
+				
+		me["ap-alt"].setText(sprintf("%5d", math.round(AP_alt.getValue())));
+		
+		var heading=Heading_magnetic.getValue();
+		
+		#me["FMSNAVpointer"].setRotation(heading*(0.01744));
+		#me["FMSNAVdeviation"].setRotation(heading*(0.01744));
+		var hdgbugdiff=Heading_bugdiff.getValue();
+		me["ap-hdg-bug"].setRotation(hdgbugdiff*(-D2R));
+		
+		me["ap-hdg"].setText(sprintf("%s", math.round(AP_hdg.getValue() or 0)));
 		
 		
-		
-		me["ap-alt"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/alt"))));
-		
-		
-		#me["FMSNAVpointer"].setRotation((getprop("/orientation/heading-deg") or 0)*(0.01744));
-		#me["FMSNAVdeviation"].setRotation((getprop("/orientation/heading-deg") or 0)*(0.01744));
-		var hdgbugdiff=getprop("/instrumentation/pfd/hdg-bug-diff") or 0;
-		me["ap-hdg-bug"].setRotation(hdgbugdiff*(-0.01744));
-		
-		me["ap-hdg"].setText(sprintf("%s", math.round(getprop("/it-autoflight/input/hdg") or 0)));
 	
-		var nav_source = getprop("/it-autoflight/settings/nav-source");
+		var nav_source = AP_navsource.getValue();
 		me["FMSNAVtext"].setText(nav_source or "---");
 		if(nav_source == "NAV1"){
-			me["NavFreq"].show();
-			me["NavFreq"].setText(sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz")));
-			if((getprop("/instrumentation/nav[0]/in-range") or 0)==1){
+			me["NavFreq"].show();		
+			me["NavFreq"].setText(sprintf("%3.2f", NAV0_freq.getValue()));
+			if(NAV0_inrange.getValue()==1){
 				me["FMSNAVpointer"].show();
 				me["FMSNAVdeviation"].show();			
-				me["FMSNAVdeviation"].setTranslation((getprop("/instrumentation/nav[0]/heading-needle-deflection-norm") or 0)*130, 0);		
-				me["NavFreq"].setText(sprintf("%s", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt") or 0));
-				me["FMSNAVRadial"].setText(sprintf("%s", getprop("/instrumentation/nav[0]/radials/target-radial-deg") or 0));
-				var nav0_radialdiff=heading-(getprop("/instrumentation/nav[0]/radials/target-radial-deg") or 0);
-				me["FMSNAVpointer"].setRotation(nav0_radialdiff*(-DC));
-				me["FMSNAVdeviation"].setRotation(nav0_radialdiff*(-DC));
-				me["FMSNAVdeflectionscale"].setRotation(nav0_radialdiff*(-DC));
-				
-			
+				me["FMSNAVdeviation"].setTranslation(NAV0_defl.getValue()*130, 0);
+				var trgt_radial0 = NAV0_rad.getValue();
+				me["FMSNAVRadial"].setText(sprintf("%3d", trgt_radial0));
+				var nav0_radialdiff=heading-trgt_radial0;
+				me["FMSNAVpointer"].setRotation(nav0_radialdiff*(-D2R));
+				me["FMSNAVdeviation"].setRotation(nav0_radialdiff*(-D2R));
+				me["FMSNAVdeflectionscale"].setRotation(nav0_radialdiff*(-D2R));
 			}else{
 				me["FMSNAVpointer"].hide();
 				me["FMSNAVdeviation"].hide();			
 			}
 		}else if(nav_source == "NAV2"){
 			me["NavFreq"].show();
-			me["NavFreq"].setText(sprintf("%3.2f", getprop("/instrumentation/nav[1]/frequencies/selected-mhz")));
-			if((getprop("/instrumentation/nav[1]/in-range") or 0)==1){
+			me["NavFreq"].setText(sprintf("%3.2f", NAV1_freq.getValue()));
+			if(NAV1_inrange.getValue()==1){
 				me["FMSNAVpointer"].show();
 				me["FMSNAVdeviation"].show();			
-				me["FMSNAVdeviation"].setTranslation((getprop("/instrumentation/nav[1]/heading-needle-deflection-norm") or 0)*130, 0);		
-				me["NavFreq"].setText(sprintf("%s", getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt") or 0));
-				me["FMSNAVRadial"].setText(sprintf("%s", getprop("/instrumentation/nav[1]/radials/target-radial-deg") or 0));
-				var nav1_radialdiff=heading-(getprop("/instrumentation/nav[1]/radials/target-radial-deg") or 0);
-				me["FMSNAVpointer"].setRotation(nav1_radialdiff*(-DC));
-				me["FMSNAVdeviation"].setRotation(nav1_radialdiff*(-DC));
-				me["FMSNAVdeflectionscale"].setRotation(nav1_radialdiff*(-DC));
-				
+				me["FMSNAVdeviation"].setTranslation(NAV1_defl.getValue()*130, 0);
+				var trgt_radial1 = NAV1_rad.getValue();
+				me["FMSNAVRadial"].setText(sprintf("%3d", trgt_radial0));
+				var nav1_radialdiff=heading-trgt_radial1;
+				me["FMSNAVpointer"].setRotation(nav1_radialdiff*(-D2R));
+				me["FMSNAVdeviation"].setRotation(nav1_radialdiff*(-D2R));
+				me["FMSNAVdeflectionscale"].setRotation(nav1_radialdiff*(-D2R));				
 			
 			}else{
 				me["FMSNAVpointer"].hide();
@@ -371,12 +446,13 @@ var canvas_PFD_main = {
 			me["NavFreq"].hide();
 		}
 		
-		var ADF1_inrange=getprop("/instrumentation/adf/in-range") or 0;
-		if(ADF1_inrange==1){
+
+
+		if(ADF0_inrange.getValue()==1){
 			me["ADF1text"].show();
 			me["ADF1symbol"].show();
 			me["ADF1ind"].show();
-			var ADF1_bearing=getprop("/instrumentation/adf/indicated-bearing-deg") or 0;
+			var ADF1_bearing=ADF0_brg.getValue();
 			me["ADF1ind"].setRotation(ADF1_bearing*D2R);
 		}else{
 			me["ADF1text"].hide();
@@ -384,12 +460,11 @@ var canvas_PFD_main = {
 			me["ADF1ind"].hide();
 		}
 		
-		var ADF2_inrange=getprop("/instrumentation/adf[1]/in-range") or 0;
-		if(ADF2_inrange==1){
+		if(ADF1_inrange.getValue()==1){
 			me["ADF2text"].show();
 			me["ADF2symbol"].show();
 			me["ADF2ind"].show();
-			var ADF2_bearing=getprop("/instrumentation/adf[1]/indicated-bearing-deg") or 0;
+			var ADF2_bearing=ADF1_brg.getValue();
 			me["ADF2ind"].setRotation(ADF2_bearing*D2R);
 		}else{
 			me["ADF2text"].hide();
@@ -397,20 +472,14 @@ var canvas_PFD_main = {
 			me["ADF2ind"].hide();
 		}
 
-		me["DMEdist"].setText(sprintf("%s",getprop("instrumentation/dme[0]/KDI572-574/nm")));
+		me["DMEdist"].setText(sprintf("%3d", DME_dist.getValue()));
 		
-		var radaralti=getprop("/position/gear-agl-ft") or 0;
-		if(radaralti<2500 and radaralti>0){
-			me["radaralt"].show();
-			me["radaralt"].setText(sprintf("%s", math.round(radaralti)));
-		}else{
-			me["radaralt"].hide();
-		}
+		
 			
-			
-		me["QNH"].setText(sprintf("%s", math.round(getprop("/instrumentation/altimeter/setting-hpa"))));
+		me["QNH"].setText(sprintf("%s", ALT_qnh.getValue()));
 		
-		
+
+	
 		settimer(func me.slow_update(), 0.2);
 	},
 };
