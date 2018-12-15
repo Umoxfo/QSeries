@@ -171,30 +171,16 @@
     
 	<!--Condition Levers-->
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>conditionL</object-name>
 		<action>
-			<button>0</button>
 			<binding>
-				<command>property-cycle</command>
+				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/condition-lever-state</property>
-				<value>1</value><!--START&FEATHER-->
-				<value>2</value><!--MIN 850-->
-				<value>3</value><!--900-->
-				<value>4</value><!--MAX 1020-->
-				<value>0</value><!--FUEL OFF-->
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/engines/engine[0]/condition-lever-state</property>
-				<value>0</value><!--FUEL OFF-->
-				<value>4</value><!--MAX 1020-->
-				<value>3</value><!--900-->
-				<value>2</value><!--MIN 850-->
-				<value>1</value><!--START&FEATHER-->
+				<min>0</min>
+				<max>4</max>
+				<factor>-1</factor>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 		<hovered>
@@ -249,44 +235,30 @@
 		</axis>
 	</animation>
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>conditionR</object-name>
 		<action>
-			<button>0</button>
-		<binding>
-		<command>property-cycle</command>
-			<property>controls/engines/engine[1]/condition-lever-state</property>
-			<value>1</value><!--START&FEATHER-->
-			<value>2</value><!--MIN 850-->
-			<value>3</value><!--900-->
-			<value>4</value><!--MAX 1020-->
-			<value>0</value><!--FUEL OFF-->
-		</binding>
-		</action>
-		<action>
-			<button>1</button>
-		<binding>
-		<command>property-cycle</command>
-			<property>controls/engines/engine[1]/condition-lever-state</property>
-			<value>0</value><!--FUEL OFF-->
-			<value>4</value><!--MAX 1020-->
-			<value>3</value><!--900-->
-			<value>2</value><!--MIN 850-->
-			<value>1</value><!--START&FEATHER-->
-		</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/engines/engine[1]/condition-lever-state</property>
+				<min>0</min>
+				<max>4</max>
+				<factor>-1</factor>
+				<wrap>false</wrap>
+			</binding>
 		</action>
 		<hovered>
-		<binding>
-		<command>set-tooltip</command>
-		<label>RH Condition Lever: %s</label>
-		<tooltip-id>rh-condition</tooltip-id>
-			<property>controls/engines/engine[1]/condition-lever-state</property>
-			<mapping>nasal</mapping>
-			<script>
-				var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
-				return modes[arg[0]];
-			</script>
-		</binding>
+			<binding>
+				<command>set-tooltip</command>
+				<label>RH Condition Lever: %s</label>
+				<tooltip-id>rh-condition</tooltip-id>
+				<property>controls/engines/engine[1]/condition-lever-state</property>
+				<mapping>nasal</mapping>
+				<script>
+					var modes = ['FUEL OFF', 'START AND FEATHER', 'MIN 850', '900', 'MAX 1020'];
+					return modes[arg[0]];
+				</script>
+			</binding>
 		</hovered>
 	</animation>
 	<animation>
