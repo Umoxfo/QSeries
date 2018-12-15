@@ -256,6 +256,9 @@
 					<value>4</value>
 				</equals>
 			</or>
+			<not>
+				<property>/controls/engines/mtop-discrete</property>
+			</not>
 			<less-than-equals>
 				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
@@ -467,6 +470,9 @@
 					<value>4</value>
 				</equals>
 			</or>
+			<not>
+				<property>/controls/engines/mtop-discrete</property>
+			</not>
 			<less-than-equals>
 				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>

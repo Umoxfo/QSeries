@@ -10,67 +10,62 @@ DHC8 -400Q by Alex Park Jan 2010
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash1.png</path>
+				<path>Splash/exterior1.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash2.png</path>
-			</preview>
-			<preview>
-				<type>interior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/splash3.png</path>
+				<path>Splash/exterior2.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash4.png</path>
+				<path>Splash/exterior3.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash5.png</path>
+				<path>Splash/exterior4.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash6.png</path>
+				<path>Splash/exterior5.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash7.png</path>
+				<path>Splash/exterior6.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash8.png</path>
+				<path>Splash/exterior7.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash9.png</path>
+				<path>Splash/exterior8.jpg</path>
 			</preview>
 			<preview>
-				<type>exterior</type>
+				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash10.png</path>
+				<path>Splash/cockpit1.jpg</path>
 			</preview>
 			<preview>
-				<type>interior</type>
+				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash11.png</path>
+				<path>Splash/cockpit2.jpg</path>
 			</preview>
 			<preview>
-				<type>exterior</type>
+				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/splash12.png</path>
+				<path>Splash/cockpit3.jpg</path>
 			</preview>
 		</previews>
 		<!--Fallback for older FG versions-->
 		<startup>
-			<splash-texture>Aircraft/Q400/Splash/splash1.png</splash-texture>
+			<splash-texture>Aircraft/Q400/Splash/exterior1.png</splash-texture>
 		</startup>
 		
 		<tags>
