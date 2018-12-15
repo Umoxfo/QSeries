@@ -4,14 +4,34 @@
 
 	<path>MFD.pilot.ac</path>
 	
+	<!--Interior effect-->
+	<effect>
+		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>MFDpilot.screen</object-name>
+		<object-name>MFDpilot.screenED</object-name>
+		<object-name>MFDpilot.screenND</object-name>
+		<object-name>MFDpilot.screenPFD</object-name>
+	</effect>
+	
 	<animation>
 		<type>select</type>
 		<object-name>MFDpilot.screen</object-name>
 		<condition>
-			<not-equals>
+			<equals>
 				<property>/instrumentation/mfd[0]/inputs/main-page</property>
-				<value>nd</value>
-			</not-equals>
+				<value>sys</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>MFDpilot.screenED</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[0]/inputs/main-page</property>
+				<value>ed</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -22,6 +42,17 @@
 			<equals>
 				<property>/instrumentation/mfd[0]/inputs/main-page</property>
 				<value>nd</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>MFDpilot.screenPFD</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[0]/inputs/main-page</property>
+				<value>pfd</value>
 			</equals>
 		</condition>
 	</animation>
@@ -41,8 +72,10 @@
 
 	<animation>
 		<type>material</type>
-		<object-name>navdisplayL</object-name>
 		<object-name>MFDpilot.screen</object-name>
+		<object-name>MFDpilot.screenED</object-name>
+		<object-name>MFDpilot.screenND</object-name>
+		<object-name>MFDpilot.screenPFD</object-name>
 		<ambient>
 			<red>1</red>
 			<green>1</green>
