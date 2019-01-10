@@ -345,8 +345,8 @@ DHC8 -400Q by Alex Park Jan 2010
 				<td>0.001</td>
 			</pitch>
 			<cmd>
-				<hdg>-1.3</hdg>
-				<vorloc>-2.6</vorloc>
+				<hdg>1.3</hdg>
+				<vorloc>2.6</vorloc>
 				<alt-gain>-5</alt-gain>
 			</cmd>
 			<autoland> 
