@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	
+	
+	<!--Overhead Panel-->
+	<model>
+		<path>Overhead/overhead.xml</path>
+		<offsets>
+			<x-m>6.83013</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-2</z-m>
+		</offsets>
+	</model>
+	
+	
+	<!--Glareshield Panel-->
+	<model>
+		<path>Glareshield/glareshieldpanel-200.xml</path> 
+		<offsets>
+			<x-m>-5.41738</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.472182</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<path>FlightInstruments-200.xml</path> <!--centered around EADI-->
+		<offsets>
+			<x-m>-5.4659</x-m>
+			<y-m>-0.45158</y-m>
+			<z-m>0.313012</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>MainPanel/engine_instruments/engine_instruments.xml</path>
+		<offsets>
+			<x-m>-5.47</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.3</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	
+	<!--CDUs-->
+	<!--<model>
+		<path>Pedestal/Front/CDU/CDU.xml</path>
+		<offsets>
+			<x-m>-12.2019</x-m>
+			<y-m>-0.145</y-m>
+			<z-m>1.95</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Front/CDU/CDU1.xml</path>
+		<offsets>
+			<x-m>-12.2019</x-m>
+			<y-m>0.145</y-m>
+			<z-m>1.95</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+	</model>-->
+
+	<!--Control Yokes-->
+	<!--<model>
+		<path>Yoke/yoke.xml</path>
+		<offsets>
+			<x-m>-4.90249</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.563288</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+		<name>yoke</name>
+	</model>-->
+
+	<!--PEDESTAL-->
+	<model>
+		<path>Pedestal/Front/frontpedestal.xml</path> <!--TODO change to 100/200/300-->
+		<offsets>
+			<x-m>6.85</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-1.832</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Center/enginecontrols-200.xml</path>
+		<offsets>
+			<x-m>-5.04161</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.034456</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Rear/pedestalrear-200.xml</path>
+		<offsets>
+			<x-m>-4.76</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.032</z-m>
+		</offsets>
+	</model>
+	
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>30</max-m>
+		<max-property>sim/rendering/static-lod/bare</max-property>
+	</animation>
+  
+
+</PropertyList>

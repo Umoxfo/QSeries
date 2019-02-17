@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+	<path>VSI.ac</path>
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>VSI.base</object-name>
+		<object-name>VSI.screws</object-name>
+	</effect>
+</PropertyList>

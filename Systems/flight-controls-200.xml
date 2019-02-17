@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+<!-- ELEVATOR -->
+
+  <filter>
+    <name>Elevator</name>
+    <type>gain</type>
+    <input>
+      <property>/controls/flight/elevator</property>
+    </input>
+    <enable>
+        <condition>
+            <or>
+                <greater-than>
+                    <property>/systems/hydraulic/psi1</property>
+                    <value>2900</value>
+                </greater-than>
+                <greater-than>
+                    <property>/systems/hydraulic/psi2</property>
+                    <value>2900</value>
+                </greater-than>
+                <and>
+                    <greater-than>
+                        <property>/systems/hydraulic/psi3</property>
+                        <value>2900</value>
+                    </greater-than>
+                    <property>/controls/hydraulic/isol-valve3</property>
+                </and>
+            </or>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/flight/elevator-int</output>
+  </filter>
+
+<!-- RUDDER -->
+
+  <filter>
+    <name>Rudder</name>
+    <type>gain</type>
+    <input>
+      <property>/controls/flight/rudder</property>
+    </input>
+    <enable>
+        <condition>
+            <or>
+                <greater-than>
+                    <property>/systems/hydraulic/psi1</property>
+                    <value>2900</value>
+                </greater-than>
+                <greater-than>
+                    <property>/systems/hydraulic/psi2</property>
+                    <value>2900</value>
+                </greater-than>
+            </or>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/flight/rudder-int</output>
+  </filter>
+
+<!-- NOSE WHEEL STEERING -->
+
+  <filter>
+    <name>Nose Wheel Steering</name>
+    <type>gain</type>
+    <input>
+      <property>/controls/flight/rudder</property>
+    </input>
+    <enable>
+        <condition>
+		<or>
+			<greater-than>
+				<property>/systems/hydraulic/psi2</property>
+				<value>2900</value>
+			</greater-than>
+			<equals>
+				<property>/sim/model/pushback/position-norm</property>
+				<value>1</value>
+			</equals>
+		</or>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/gear/nose-steering-int</output>
+  </filter>
+  
+	<!--Power Lever Control Lock-->
+	<filter>
+		<name>Power Lever Control Left</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<table>
+						<property>/controls/engines/throttle-lock-position</property>
+						<entry><ind> 0.0</ind><dep> 1</dep></entry>
+						<entry><ind> 1.0</ind><dep> 0.15</dep></entry>
+					</table>
+				</prod>
+			</expression>
+			<condition>
+				<not>
+					<property>/engines/engine[0]/reversed</property>				
+				</not>
+			</condition>
+		</input>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<value>0.963</value> <!--1000 SHP available for reverse-->
+				</prod>
+			</expression>
+			<condition>
+				<property>/engines/engine[0]/reversed</property>
+			</condition>
+		</input>
+		<gain>1.0</gain>
+		<output>controls/engines/engine[0]/throttle-int</output>
+	</filter>
+	<filter>
+		<name>Power Lever Control Right</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<table>
+						<property>/controls/engines/throttle-lock-position</property>
+						<entry><ind> 0.0</ind><dep> 1</dep></entry>
+						<entry><ind> 1.0</ind><dep> 0.15</dep></entry>
+					</table>
+				</prod>
+			</expression>
+			<condition>
+				<not>
+					<property>/engines/engine[1]/reversed</property>				
+				</not>
+			</condition>
+		</input>
+		<input>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<value>0.963</value> <!--1000 SHP available for reverse-->
+				</prod>
+			</expression>
+			<condition>
+				<property>/engines/engine[1]/reversed</property>
+			</condition>
+		</input>
+		<gain>1.0</gain>
+		<output>controls/engines/engine[1]/throttle-int</output>
+	</filter>
+  
+  
+  <!--THRUST DETENT MODES-->
+	<!--the 200 has no thrust detent modes-->
+	<!--
+	http://www.smartcockpit.com/docs/Dash8-200-300-Powerplant.pdf
+	
+	-->
+	<!--Propeller RPM-->
+  <filter>
+	  <name>PROP RPM L</name>
+    <type>gain</type>
+    <input>
+	    <property>/controls/engines/engine[0]/condition-lever-set</property>
+    </input>
+    <enable>
+        <condition>
+		<equals>
+			<property>/controls/engines/engine[0]/condition-lever-state</property>
+			<value>2</value>
+		</equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>/controls/engines/engine[0]/propeller-pitch</output>
+  </filter>
+  <filter>
+	  <name>PROP RPM R</name>
+    <type>gain</type>
+    <input>
+	    <property>/controls/engines/engine[1]/condition-lever-set</property>
+    </input>
+    <enable>
+        <condition>
+		<equals>
+			<property>/controls/engines/engine[1]/condition-lever-state</property>
+			<value>2</value>
+		</equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>/controls/engines/engine[1]/propeller-pitch</output>
+  </filter>
+ 
+  
+  <!--Positive Thrust-->
+  <filter>
+    <name>Positive Thrust L</name>
+    <type>gain</type>
+    <input>
+		<property>/controls/engines/engine[0]/throttle-int</property>
+    </input>
+    <enable>
+        <condition>
+		<greater-than-equals>
+			<property>/controls/engines/engine[0]/condition-lever-state</property>
+			<value>1</value>
+		</greater-than-equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  <filter>
+    <name>Positive Thrust R</name>
+    <type>gain</type>
+    <input>
+		<property>/controls/engines/engine[1]/throttle-int</property>
+    </input>
+    <enable>
+        <condition>
+		<greater-than-equals>
+			<property>/controls/engines/engine[1]/condition-lever-state</property>
+			<value>1</value>
+		</greater-than-equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>fcs/throttle-cmd-norm[1]</output>
+	<output>fcs/throttle-pos-norm[1]</output>
+  </filter>
+  
+  
+  <!--FUEL CUTOFF: no power at all-->
+  
+  <filter>
+    <name>CUTOFF L</name>
+    <type>gain</type>
+    <input>
+	    <value>0</value>
+    </input>
+    <enable>
+        <condition>
+		<equals>
+			<property>/controls/engines/engine[0]/condition-lever-state</property>
+			<value>0</value>
+		</equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+  <filter>
+    <name>CUTOFF R</name>
+    <type>gain</type>
+    <input>
+	    <value>0</value>
+    </input>
+    <enable>
+        <condition>
+		<equals>
+			<property>/controls/engines/engine[1]/condition-lever-state</property>
+			<value>0</value>
+		</equals>
+        </condition>
+    </enable>
+    <gain>1</gain>
+	<output>fcs/throttle-cmd-norm[0]</output>
+	<output>fcs/throttle-pos-norm[0]</output>
+  </filter>
+  
+
+</PropertyList>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+	<path>ASI.ac</path>
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>airspeed.screws</object-name>
+		<object-name>airspeed.base</object-name>
+		<object-name>asi.bug.knob</object-name>
+		<object-name>asi.needle</object-name>
+		<object-name>asi.bug1</object-name>
+		<object-name>asi.bug2</object-name>
+		<object-name>asi.vmo</object-name>
+		<object-name>airspeed.face</object-name>
+		<object-name>airspeed.drum</object-name>
+	</effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>asi.glass</object-name>
+	</effect>
+	<animation><!--TODO correct lighting property-->
+		<type>material</type>
+		<object-name>airspeed.face</object-name>
+		<object-name>airspeed.drum</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>10</value>
+			</greater-than>		
+		</condition>
+		<emission>
+		<red>   0.50 </red>
+		<green> 0.25 </green>
+		<blue>  0.25 </blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>asi.bug.knob</object-name>
+		<property>instrumentation/airspeed-indicator/red-bug-kt</property>
+		<center>
+			<y-m>-0.027074</y-m>
+			<z-m>-0.025123</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+		<factor>5</factor>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/airspeed-indicator/red-bug-kt</property>
+				<min>0</min>
+				<max>400</max>
+				<factor>-5</factor>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>airspeed.drum</object-name>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  110.00 </ind>
+				<dep>  191.97</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-0.030413</x-m>
+		</center>
+		<axis>
+			<x> 0 </x>
+			<y>  0 </y>
+			<z>  -1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>asi.needle</object-name>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  50.00 </ind>
+				<dep>  22.75 </dep>
+			</entry>
+			<entry>
+				<ind>  400.00 </ind>
+				<dep>  336.75 </dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>asi.bug.1</object-name>
+		<property>instrumentation/airspeed-indicator/red-bug-kt</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  50.00 </ind>
+				<dep>  22.75 </dep>
+			</entry>
+			<entry>
+				<ind>  400.00 </ind>
+				<dep>  336.75 </dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>asi.vmo</object-name>
+		<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>  198 </dep>
+			</entry>
+			<entry>
+				<ind> 14000.00 </ind>
+				<dep> 198 </dep>
+			</entry>
+			<entry>
+				<ind>  25000.00 </ind>
+				<dep> 170 </dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+</PropertyList>

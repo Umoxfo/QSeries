@@ -1,0 +1,31 @@
+<PropertyList>
+
+	<path>EADI.ac</path>
+	
+	<!--Panel effect-->
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>EADI.base</object-name>
+	</effect>
+	
+	<!--Display effect-->
+	<!--<effect>
+		<inherits-from>Aircraft/QSeries/Models/Effects/display-crt</inherits-from>
+		<object-name>EADI.screen</object-name>
+	</effect>-->
+	
+	
+	<animation>
+		<type>pick</type>
+		<object-name>EADI.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_eadi.showEADI();</script>
+			</binding>
+		</action>
+	</animation>
+    
+</PropertyList>

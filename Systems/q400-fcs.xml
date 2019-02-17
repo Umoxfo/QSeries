@@ -10,7 +10,7 @@
 	
 	<channel name="Throttle">
 		
-		
+		<!--
 		<fcs_function name="rubbish/throttle[0]">
 			<function>
 				<property>/fcs/throttle-cmd-norm[0]</property>
@@ -24,7 +24,7 @@
 			</function>
 			<output>fcs/throttle-cmd-norm[1]</output>
 			<output>fcs/throttle-pos-norm[1]</output>
-		</fcs_function>
+		</fcs_function>-->
 	
 	</channel>
 	

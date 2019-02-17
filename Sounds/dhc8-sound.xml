@@ -250,7 +250,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/out.wav</path>
+            <path>Aircraft/QSeries/Sounds/out.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                 <not>
@@ -287,7 +287,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/intern.wav</path>
+            <path>Aircraft/QSeries/Sounds/intern.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
@@ -322,7 +322,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/reverse.wav</path>
+            <path>Aircraft/QSeries/Sounds/reverse.wav</path>
             <property>engines/engine[0]/reverse</property>
             <condition>               
                 <greater-than>
@@ -476,7 +476,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/out.wav</path>
+            <path>Aircraft/QSeries/Sounds/out.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition><not>
                     <property>sim/current-view/internal</property></not>
@@ -511,7 +511,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/intern.wav</path>
+            <path>Aircraft/QSeries/Sounds/intern.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
@@ -547,7 +547,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/Q400/Sounds/reverse.wav</path>
+            <path>Aircraft/QSeries/Sounds/reverse.wav</path>
             <property>engines/engine[1]/reverse</property>
             <condition>               
                 <greater-than>

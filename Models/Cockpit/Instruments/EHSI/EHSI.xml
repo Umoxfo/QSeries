@@ -1,0 +1,31 @@
+<PropertyList>
+
+	<path>EHSI.ac</path>
+	
+	<!--Panel effect-->
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>EHSI.base</object-name>
+	</effect>
+	
+	<!--Display effect-->
+	<!--<effect>
+		<inherits-from>Aircraft/QSeries/Models/Effects/display-crt</inherits-from>
+		<object-name>EHSI.screen</object-name>
+	</effect>-->
+	
+	
+	<animation>
+		<type>pick</type>
+		<object-name>EHSI.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_ehsi.showEHSI();</script>
+			</binding>
+		</action>
+	</animation>
+    
+</PropertyList>

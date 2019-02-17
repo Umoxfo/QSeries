@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Alaska Airlines (N429QX)</name>
+            <texture>Liveries/q400-jsb/alaska.png</texture>
+	    <enable-hud type="bool">1</enable-hud>
+        </livery>
+    </model>
+</sim>
+</PropertyList>
+ 

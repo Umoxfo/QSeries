@@ -31,6 +31,13 @@ This file selects the instrumentation modules that should be available.
         <number>0</number>
         <static-pressure>/systems/static/pressure-inhg</static-pressure>
     </altimeter>
+	
+    <!--Standby altimter-->
+    <altimeter>
+        <name>altimeter</name>
+        <number>1</number>
+        <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </altimeter>
 
     <attitude-indicator>
         <name>attitude-indicator</name>

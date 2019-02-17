@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+<!-- Interpolation table for VSI digital indicator -->
+
+	<filter>
+		<name>VSI Needle</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<table>
+					<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property> 
+					<entry><ind>-6000</ind><dep>-163</dep></entry>
+					<entry><ind>-4000</ind><dep>-144</dep></entry>
+					<entry><ind>-2000</ind><dep>-108</dep></entry>
+					<entry><ind>-1000</ind><dep> -68</dep></entry>
+					<entry><ind> -500</ind><dep> -36</dep></entry>
+					<entry><ind>    0</ind><dep>  0</dep></entry>
+					<entry><ind>  500</ind><dep>  36</dep></entry>
+					<entry><ind> 1000</ind><dep>  68</dep></entry>
+					<entry><ind> 2000</ind><dep> 108</dep></entry>
+					<entry><ind> 4000</ind><dep> 144</dep></entry>
+					<entry><ind> 6000</ind><dep> 163</dep></entry>
+				</table>
+			</expression>
+		</input>
+		
+		<output>instrumentation/vertical-speed-indicator/vsi-needle</output>
+	</filter>
+
+</PropertyList>

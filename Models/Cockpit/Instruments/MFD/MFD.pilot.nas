@@ -387,10 +387,10 @@ setlistener("sim/signals/fdm-initialized", func {
 	var groupMFDpilot_fuel = MFDpilot_display.createGroup();
 	var groupMFDpilot_doors = MFDpilot_display.createGroup();
 
-	MFDpilot_elec = canvas_MFDpilot_elec.new(groupMFDpilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.PILOT.svg");
-	MFDpilot_eng = canvas_MFDpilot_eng.new(groupMFDpilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.PILOT.svg");
-	MFDpilot_fuel = canvas_MFDpilot_fuel.new(groupMFDpilot_fuel, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.PILOT.svg");
-	MFDpilot_doors = canvas_MFDpilot_doors.new(groupMFDpilot_doors, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.PILOT.svg");
+	MFDpilot_elec = canvas_MFDpilot_elec.new(groupMFDpilot_elec, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.PILOT.svg");
+	MFDpilot_eng = canvas_MFDpilot_eng.new(groupMFDpilot_eng, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.PILOT.svg");
+	MFDpilot_fuel = canvas_MFDpilot_fuel.new(groupMFDpilot_fuel, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.PILOT.svg");
+	MFDpilot_doors = canvas_MFDpilot_doors.new(groupMFDpilot_doors, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.PILOT.svg");
 
 	MFDpilot_elec.update();
 	MFDpilot_eng.update();

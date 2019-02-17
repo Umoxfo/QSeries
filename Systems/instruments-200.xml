@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+
+	<filter>
+		<name>RMI selector (1)</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<equals>
+					<property>instrumentation/rmi/selector[0]</property>
+					<value>0</value>
+				</equals>
+			</condition>	
+			<expression>
+				<difference>
+					<value>360</value>
+					<property>instrumentation/adf[0]/indicated-bearing-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>instrumentation/rmi/selector[0]</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<difference>
+					<property>orientation/heading-deg</property>
+					<property>instrumentation/nav[0]/heading-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<max-rate-of-change>180</max-rate-of-change>
+		<output>instrumentation/rmi/needle-deg[0]</output>
+	</filter>
+	<filter>
+		<name>RMI selector (2)</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<equals>
+					<property>instrumentation/rmi/selector[1]</property>
+					<value>0</value>
+				</equals>
+			</condition>	
+			<expression>
+				<difference>
+					<value>360</value>
+					<property>instrumentation/adf[1]/indicated-bearing-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>instrumentation/rmi/selector[1]</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<difference>
+					<property>orientation/heading-deg</property>
+					<property>instrumentation/nav[1]/heading-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<max-rate-of-change>180</max-rate-of-change>
+		<output>instrumentation/rmi/needle-deg[1]</output>
+	</filter>
+	
+</PropertyList>

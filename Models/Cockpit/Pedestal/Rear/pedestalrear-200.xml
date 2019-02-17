@@ -1,0 +1,970 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+        <path>pedestalrear-200.ac</path>
+        <!--Panel illumination-->
+        <effect>
+                <inherits-from>../../../Effects/panel-lighting</inherits-from>
+                <parameters>
+                        <implicit-lightmap-intensity>
+                                <use>/systems/electrical/outputs/centerpanel-lights</use>
+                        </implicit-lightmap-intensity>
+                </parameters>
+                <object-name>base.1</object-name>
+                <object-name>base.2</object-name>
+                <object-name>base.3</object-name>
+                <object-name>base.4</object-name>
+                <object-name>base.5</object-name>
+                <object-name>screws</object-name>
+        </effect>
+        <!--TRIM PANEL-->
+        <!--Rudder Trim-->
+        <animation>
+                <type>knob</type>
+                <object-name>ruddertrim</object-name>
+                <property>/controls/flight/rudder-trim</property>
+                <factor>-360</factor>
+                <center>
+                        <x-m> -11.68977</x-m>
+                        <y-m>  0.03235 </y-m>
+                </center>
+                <axis>
+                        <z>1</z>
+                </axis>
+                <action>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+                                <factor>0.01</factor>
+                                <min>-0.2</min>
+                                <max>0.2</max>
+                                <wrap>false</wrap>
+                        </binding>
+                </action>
+        </animation>
+        <animation>
+                <type>rotate</type>
+                <object-name>ruddertrimind</object-name>
+                <property>/controls/flight/rudder-trim</property>
+                <factor>-360</factor>
+                <center>
+                        <x-m> -11.72675</x-m>
+                        <y-m>  0.03195 </y-m>
+                </center>
+                <axis>
+                        <z>1</z>
+                </axis>
+        </animation>
+        <animation>
+                <type>knob</type>
+                <object-name>ailerontrim</object-name>
+                <property>/controls/flight/aileron-trim</property>
+                <factor>-360</factor>
+                <center>
+                        <y-m> -0.03611</y-m>
+                        <z-m>  1.86654 </z-m>
+                </center>
+                <axis>
+                        <x>1</x>
+                </axis>
+                <action>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/aileron-trim</property>
+                                <factor>0.01</factor>
+                                <min>-0.2</min>
+                                <max>0.2</max>
+                                <wrap>false</wrap>
+                        </binding>
+                </action>
+        </animation>
+        <animation>
+                <type>rotate</type>
+                <object-name>ailerontrimind</object-name>
+                <property>/controls/flight/aileron-trim</property>
+                <factor>-360</factor>
+                <center>
+                        <x-m>-11.7277</x-m>
+                        <y-m>  -0.03483</y-m>
+                </center>
+                <axis>
+                        <z>1</z>
+                </axis>
+        </animation>
+	
+	<!--COMMUNICATIONS-->
+	<!--Collins ADF-->
+	<!--Left Unit-->
+	<animation>
+		<type>knob</type>
+		<object-name>adf0.master</object-name>
+		<property>instrumentation/adf[0]/power-btn</property>
+		<factor>-65</factor>
+		<center>
+			<x-m>-0.064474</x-m>
+			<y-m>-0.190143</y-m>
+		</center>
+		<axis>
+			<z>1</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/adf[0]/power-btn</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>adf0.khz</object-name>
+		<property>instrumentation/adf[0]/frequencies/standby-khz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.066669</x-m>
+			<y-m>-0.163341</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+				<factor>100</factor>
+				<min>200</min>
+				<max>1800</max>
+				<resolution>1</resolution>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>adf0.khz2</object-name>
+		<property>instrumentation/adf[0]/frequencies/standby-khz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.066669</x-m>
+			<y-m>-0.163341</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+				<factor>1</factor>
+				<min>200</min>
+				<max>1800</max>
+				<resolution>1</resolution>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>adf0.xfrmem</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<condition>
+					<property>instrumentation/adf[0]/power-btn</property>
+				</condition>
+				<command>property-swap</command>
+				<property>instrumentation/adf[0]/frequencies/selected-khz</property>
+				<property>instrumentation/adf[0]/frequencies/standby-khz</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/adf[0]/xfrmem</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/adf[0]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<!--MEM not implemented yet-->
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/adf[0]/xfrmem</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/adf[0]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>adf0.xfrmem</object-name>
+		<property>instrumentation/adf[0]/xfrmem</property>
+		<factor>-25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.091822</x-m>
+			<z-m>0.006409</z-m>
+		</center>
+	</animation>
+	<!--Right Unit-->
+	<animation>
+		<type>knob</type>
+		<object-name>adf1.master</object-name>
+		<property>instrumentation/adf[1]/power-btn</property>
+		<factor>-65</factor>
+		<center>
+			<x-m>-0.064474</x-m>
+			<y-m>0.163476</y-m>
+		</center>
+		<axis>
+			<z>1</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/adf[1]/power-btn</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>adf1.khz</object-name>
+		<property>instrumentation/adf[1]/frequencies/standby-khz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.066669</x-m>
+			<y-m>0.190278</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+				<factor>100</factor>
+				<min>200</min>
+				<max>1800</max>
+				<resolution>1</resolution>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>adf1.khz2</object-name>
+		<property>instrumentation/adf[1]/frequencies/standby-khz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.066669</x-m>
+			<y-m>0.190278</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+				<factor>1</factor>
+				<min>200</min>
+				<max>1800</max>
+				<resolution>1</resolution>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>adf1.xfrmem</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<condition>
+					<property>instrumentation/adf[1]/power-btn</property>
+				</condition>
+				<command>property-swap</command>
+				<property>instrumentation/adf[1]/frequencies/selected-khz</property>
+				<property>instrumentation/adf[1]/frequencies/standby-khz</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/adf[1]/xfrmem</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/adf[1]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<!--MEM not implemented yet-->
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/adf[1]/xfrmem</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/adf[1]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>adf1.xfrmem</object-name>
+		<property>instrumentation/adf[1]/xfrmem</property>
+		<factor>-25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.091822</x-m>
+			<z-m>0.006409</z-m>
+		</center>
+	</animation>
+	<!--text-->
+	<text>
+		<name>adf0.act</name>
+		<offsets>
+			<x-m>-0.119384</x-m>
+			<y-m>-0.180856</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>0.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/adf[0]/frequencies/selected-khz</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>adf0.sby</name>
+		<offsets>
+			<x-m>-0.111722</x-m>
+			<y-m>-0.180856</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>0.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/adf[0]/frequencies/standby-khz</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>adf1.act</name>
+		<offsets>
+			<x-m>-0.119384</x-m>
+			<y-m>0.17562</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>0.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/adf[1]/frequencies/selected-khz</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>adf1.sby</name>
+		<offsets>
+			<x-m>-0.111722</x-m>
+			<y-m>0.17562</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>0.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/adf[1]/frequencies/standby-khz</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- Z Colors/Effects -->
+	<animation>
+		<type>material</type>
+		<object-name>adf0.act</object-name>
+		<object-name>adf0.sby</object-name>
+		<object-name>adf1.act</object-name>
+		<object-name>adf1.sby</object-name>
+		<diffuse>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</diffuse>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	<!--Collins on/off-->
+	<!--Left Unit-->
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>12</value>
+			</greater-than>
+			<property>instrumentation/adf[0]/power-btn</property>
+		</condition>
+		<object-name>adf0.act</object-name>
+		<object-name>adf0.sby</object-name>
+		<object-name>adf0.mem.flag</object-name>
+		<object-name>adf0.rmt.flag</object-name>
+		<object-name>adf0.act.flag</object-name>
+	</animation>
+	<!--Right Unit-->
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>12</value>
+			</greater-than>
+			<property>instrumentation/adf[1]/power-btn</property>
+		</condition>
+		<object-name>adf1.act</object-name>
+		<object-name>adf1.sby</object-name>
+		<object-name>adf1.mem.flag</object-name>
+		<object-name>adf1.rmt.flag</object-name>
+		<object-name>adf1.act.flag</object-name>
+	</animation>
+	<!--Collins COMM-->
+	<animation>
+		<type>knob</type>
+		<object-name>comm0.master</object-name>
+		<property>instrumentation/comm[0]/power-btn</property>
+		<factor>-33</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.011567</x-m>
+			<y-m>-0.190143</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/comm[0]/power-btn</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>comm0.mhz</object-name>
+		<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.013762</x-m>
+			<y-m>-0.163341</y-m>
+		</center>
+		<action>
+		<binding>
+			<condition>
+				<property>instrumentation/comm[0]/power-btn</property>
+			</condition>
+			<command>property-adjust</command>
+			<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+			<factor>1</factor>
+			<min>118.0</min>
+			<max>137.0</max>
+			<wrap>true</wrap>
+			<mask>integer</mask>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>comm0.khz</object-name>
+		<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.013762</x-m>
+			<y-m>-0.163341</y-m>
+		</center>
+		<action>
+		<binding>
+			<condition>
+				<property>instrumentation/comm[0]/power-btn</property>
+			</condition>
+			<command>property-adjust</command>
+			<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+			<factor>0.025</factor>
+			<min>0.0</min>
+			<max>1.0</max>
+			<resolution>0.025</resolution>
+			<wrap>true</wrap>
+			<mask>decimal</mask>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>comm0.xfrmem</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<condition>
+					<property>instrumentation/comm[0]/power-btn</property>
+				</condition>
+				<command>property-swap</command>
+				<property>instrumentation/comm[0]/frequencies/selected-mhz</property>
+				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/comm[0]/xfrmem</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/comm[0]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<!--MEM not implemented yet-->
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/comm[0]/xfrmem</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/comm[0]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>comm0.xfrmem</object-name>
+		<property>instrumentation/comm[0]/xfrmem</property>
+		<factor>-25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.038915</x-m>
+			<z-m>0.006409</z-m>
+		</center>
+	</animation>
+	<!--Right Unit-->
+	<animation>
+		<type>knob</type>
+		<object-name>comm1.master</object-name>
+		<property>instrumentation/comm[1]/power-btn</property>
+		<factor>-33</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.011567</x-m>
+			<y-m>0.163984</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/comm[1]/power-btn</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>comm1.mhz</object-name>
+		<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.013762</x-m>
+			<y-m>0.190786</y-m>
+		</center>
+		<action>
+		<binding>
+			<condition>
+				<property>instrumentation/comm[1]/power-btn</property>
+			</condition>
+			<command>property-adjust</command>
+			<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+			<factor>1</factor>
+			<min>118.0</min>
+			<max>137.0</max>
+			<wrap>true</wrap>
+			<mask>integer</mask>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>comm1.khz</object-name>
+		<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.013762</x-m>
+			<y-m>0.190786</y-m>
+		</center>
+		<action>
+		<binding>
+			<condition>
+				<property>instrumentation/comm[1]/power-btn</property>
+			</condition>
+			<command>property-adjust</command>
+			<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+			<factor>0.025</factor>
+			<min>0.0</min>
+			<max>1.0</max>
+			<resolution>0.025</resolution>
+			<wrap>true</wrap>
+			<mask>decimal</mask>
+		</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>comm1.xfrmem</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<condition>
+					<property>instrumentation/comm[1]/power-btn</property>
+				</condition>
+				<command>property-swap</command>
+				<property>instrumentation/comm[1]/frequencies/selected-mhz</property>
+				<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/comm[1]/xfrmem</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/comm[1]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<!--MEM not implemented yet-->
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/comm[1]/xfrmem</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/comm[1]/xfrmem</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>comm1.xfrmem</object-name>
+		<property>instrumentation/comm[1]/xfrmem</property>
+		<factor>-25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.038915</x-m>
+			<z-m>0.006409</z-m>
+		</center>
+	</animation>
+	<!--text-->
+	<text>
+		<name>comm0.act</name>
+		<offsets>
+			<x-m>-0.047265</x-m>
+			<y-m>-0.181126</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/comm[0]/frequencies/selected-mhz-fmt</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>comm0.sby</name>
+		<offsets>
+			<x-m>-0.038885</x-m>
+			<y-m>-0.181126</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/comm[0]/frequencies/standby-mhz-fmt</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>comm1.act</name>
+		<offsets>
+			<x-m>-0.047265</x-m>
+			<y-m>0.173958</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/comm[1]/frequencies/selected-mhz-fmt</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>comm1.sby</name>
+		<offsets>
+			<x-m>-0.038885</x-m>
+			<y-m>0.173958</y-m>
+			<z-m>0.007227</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>instrumentation/comm[1]/frequencies/standby-mhz-fmt</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- Z Colors/Effects -->
+	<animation>
+		<type>material</type>
+		<object-name>comm0.act</object-name>
+		<object-name>comm0.sby</object-name>
+		<object-name>comm1.act</object-name>
+		<object-name>comm1.sby</object-name>
+		<diffuse>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</diffuse>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>instrumentation/comm[0]/ptt</property>
+		</condition>
+		<object-name>comm0.tx.flag</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>instrumentation/comm[1]/ptt</property>
+		</condition>
+		<object-name>comm1.tx.flag</object-name>
+	</animation>
+	<!--Collins on/off-->
+	<!--Left Unit-->
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>12</value>
+			</greater-than>
+			<property>instrumentation/comm[0]/power-btn</property>
+		</condition>
+		<object-name>comm0.act</object-name>
+		<object-name>comm0.sby</object-name>
+		<object-name>comm0.mem.flag</object-name>
+		<object-name>comm0.rmt.flag</object-name>
+		<object-name>comm0.tx.flag</object-name>
+		<object-name>comm0.act.flag</object-name>
+	</animation>
+	<!--Right Unit-->
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>12</value>
+			</greater-than>
+			<property>instrumentation/comm[1]/power-btn</property>
+		</condition>
+		<object-name>comm1.act</object-name>
+		<object-name>comm1.sby</object-name>
+		<object-name>comm1.mem.flag</object-name>
+		<object-name>comm1.rmt.flag</object-name>
+		<object-name>comm1.tx.flag</object-name>
+		<object-name>comm1.act.flag</object-name>
+	</animation>
+</PropertyList>

@@ -411,10 +411,10 @@ setlistener("sim/signals/fdm-initialized", func {
 	var groupMFDcopilot_fuel = MFDcopilot_display.createGroup();
 	var groupMFDcopilot_doors = MFDcopilot_display.createGroup();
 
-	MFDcopilot_elec = canvas_MFDcopilot_elec.new(groupMFDcopilot_elec, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.COPILOT.svg");
-	MFDcopilot_eng = canvas_MFDcopilot_eng.new(groupMFDcopilot_eng, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.COPILOT.svg");
-	MFDcopilot_fuel = canvas_MFDcopilot_fuel.new(groupMFDcopilot_fuel, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.COPILOT.svg");
-	MFDcopilot_doors = canvas_MFDcopilot_doors.new(groupMFDcopilot_doors, "Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.COPILOT.svg");
+	MFDcopilot_elec = canvas_MFDcopilot_elec.new(groupMFDcopilot_elec, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.ELEC.COPILOT.svg");
+	MFDcopilot_eng = canvas_MFDcopilot_eng.new(groupMFDcopilot_eng, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.ENG.COPILOT.svg");
+	MFDcopilot_fuel = canvas_MFDcopilot_fuel.new(groupMFDcopilot_fuel, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.FUEL.COPILOT.svg");
+	MFDcopilot_doors = canvas_MFDcopilot_doors.new(groupMFDcopilot_doors, "Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.SYS.DOORS.COPILOT.svg");
 
 	MFDcopilot_elec.update();
 	MFDcopilot_eng.update();

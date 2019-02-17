@@ -590,7 +590,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	PFD_display.addPlacement({"node": "MFDcopilot.screenPFD"});
 	var groupPFDmain = PFD_display.createGroup();
 
-	PFD_main = canvas_PFD_main.new(groupPFDmain, "Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.svg");
+	PFD_main = canvas_PFD_main.new(groupPFDmain, "Aircraft/QSeries/Models/Cockpit/Instruments/PFD/PFD.svg");
 
 	PFD_main.fast_update();
 	PFD_main.slow_update();

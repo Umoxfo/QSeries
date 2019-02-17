@@ -1,2 +1,3 @@
-aircraft.livery.init("Aircraft/Q400/Models/Liveries");
+var ac=getprop("/sim/aero");
+aircraft.livery.init("Aircraft/QSeries/Models/Liveries/"~ac);
 

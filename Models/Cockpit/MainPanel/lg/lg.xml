@@ -5,7 +5,7 @@
 	
 	<!--Interior effect-->
 	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<inherits-from>../../../Effects/interior/interior-shadow</inherits-from>
 		<object-name>aibase</object-name>
 		<object-name>aibase2</object-name>
 		<object-name>base</object-name>

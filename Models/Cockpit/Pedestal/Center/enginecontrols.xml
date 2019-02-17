@@ -472,7 +472,7 @@
     
 	
 	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<inherits-from>../../../Effects/interior/interior-shadow</inherits-from>
 		<object-name>base</object-name>
 		<object-name>throttlelock</object-name>
 	</effect>
