@@ -276,7 +276,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	ED_display.addPlacement({"node": "MFDcopilot.screenED"});
 	var groupED = ED_display.createGroup();
 
-	ED_only = canvas_ED_only.new(groupED, "Aircraft/Q400/Models/Cockpit/Instruments/ED/ED.svg");
+	ED_only = canvas_ED_only.new(groupED, "Aircraft/QSeries/Models/Cockpit/Instruments/ED/ED.svg");
 
 	ED_only.update();
 	canvas_ED_base.update();

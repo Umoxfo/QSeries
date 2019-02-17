@@ -8,7 +8,7 @@
 
 var get_local_path = func(file){
     var aircraft_dir = split("/", getprop("/sim/aircraft-dir"))[-1];
-    return "Aircraft/Q400/Models/Cockpit/Instruments/ND/canvas/"~ file;
+    return "Aircraft/QSeries/Models/Cockpit/Instruments/ND/canvas/"~ file;
 };
 
 var version = getprop("sim/version/flightgear");

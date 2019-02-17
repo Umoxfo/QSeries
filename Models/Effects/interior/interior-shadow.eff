@@ -6,17 +6,17 @@
         <texture n="4">
             <type>cubemap</type>
             <images>
-                <positive-x>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0004.png</positive-x>
+                <positive-x>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0004.png</positive-x>
                 <!-- px (tail) rotate 90 deg from N or S to W -->
-                <negative-x>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0002.png</negative-x>
+                <negative-x>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0002.png</negative-x>
                 <!-- nx (nose) rotate 90 deg from N or S to E -->
-                <positive-y>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0001.png</positive-y>
+                <positive-y>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0001.png</positive-y>
                 <!-- py (starboard/right) from N do not rotate -->
-                <negative-y>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0003.png</negative-y>
+                <negative-y>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0003.png</negative-y>
                 <!-- ny (port/left) from N rotate 180 deg to S -->
-                <positive-z>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0006.png</positive-z>
+                <positive-z>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0006.png</positive-z>
                 <!-- pz (top) rotate 90 deg from N or S to W -->
-                <negative-z>Aircraft/QSeries//Models/Effects/interior/cubemap_black/0005.png</negative-z>
+                <negative-z>Aircraft/QSeries/Models/Effects/interior/cubemap_black/0005.png</negative-z>
                 <!-- nz (bottom) rotate 90 deg from N or S to W -->
             </images>
         </texture>

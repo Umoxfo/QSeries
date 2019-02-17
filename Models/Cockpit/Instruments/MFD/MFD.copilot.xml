@@ -6,7 +6,7 @@
 	
 	<!--Interior effect-->
 	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<inherits-from>Aircraft/QSeries/Models/Effects/interior/interior-shadow</inherits-from>
 		<object-name>MFDcopilot.screen</object-name>
 		<object-name>MFDcopilot.screenED</object-name>
 		<object-name>MFDcopilot.screenND</object-name>
