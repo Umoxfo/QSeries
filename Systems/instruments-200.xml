@@ -72,4 +72,50 @@
 		<output>instrumentation/rmi/needle-deg[1]</output>
 	</filter>
 	
+	<!--Engine Instruments-->
+	<!--Torque (PCT)-->
+	<filter>
+		<name>TRQ L</name>
+		<type>gain</type>
+		<input>	
+			<expression>
+				<div>
+					<property>engines/engine[0]/thruster/torque</property>
+					<value>-80</value>
+				</div>
+			</expression>
+		</input>
+		<gain>1</gain>
+		<output>engines/engine[0]/thruster/torque-pct</output>
+	</filter>
+	<filter>
+		<name>TRQ R</name>
+		<type>gain</type>
+		<input>	
+			<expression>
+				<div>
+					<property>engines/engine[1]/thruster/torque</property>
+					<value>-80</value>
+				</div>
+			</expression>
+		</input>
+		<gain>1</gain>
+		<output>engines/engine[1]/thruster/torque-pct</output>
+	</filter>
+	<!--Fuel Flow (KG/H)-->
+	<filter>
+		<name>FF L</name>
+		<type>gain</type>
+		<input>engines/engine[0]/fuel-flow_pph</input>
+		<gain>0.453592</gain>
+		<output>engines/engine[0]/fuel-flow_kgph</output>
+	</filter>
+	<filter>
+		<name>FF R</name>
+		<type>gain</type>
+		<input>engines/engine[1]/fuel-flow_pph</input>
+		<gain>0.453592</gain>
+		<output>engines/engine[1]/fuel-flow_kgph</output>
+	</filter>
+	
 </PropertyList>

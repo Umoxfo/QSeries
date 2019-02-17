@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+	<path>hydraulic_instruments.ac</path><!--
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>trq.face</object-name>
+		<object-name>prop.face</object-name>
+		<object-name>itt.face</object-name>
+		<object-name>nh.face</object-name>
+		<object-name>ff.face</object-name>
+		<object-name>nl.face</object-name>
+		<object-name>stbyalt.face</object-name>
+		<object-name>oil.face</object-name>
+		<object-name>fueltemp.face</object-name>
+		<object-name>fuelqty.face</object-name>
+		
+		<object-name>trq1.needle</object-name>
+		<object-name>trq2.needle</object-name>
+		<object-name>prop1.needle</object-name>
+		<object-name>prop2.needle</object-name>
+		<object-name>itt1.needle</object-name>
+		<object-name>itt2.needle</object-name>
+		<object-name>nh1.needle</object-name>
+		<object-name>nh2.needle</object-name>
+		<object-name>ff1.needle</object-name>
+		<object-name>ff2.needle</object-name>
+		<object-name>nl1.needle</object-name>
+		<object-name>nl2.needle</object-name>
+		<object-name>fuel1.needle</object-name>
+		<object-name>fuel2.needle</object-name>
+		
+		<object-name>trq.base</object-name>
+		<object-name>prop.base</object-name>
+		<object-name>itt.base</object-name>
+		<object-name>nh.base</object-name>
+		<object-name>ff.base</object-name>
+		<object-name>nl.base</object-name>
+		<object-name>stbyalt.base</object-name>
+		<object-name>oil.base</object-name>
+		<object-name>fueltemp.base</object-name>
+		<object-name>fuelqty.base</object-name>
+		<object-name>altset.base</object-name>
+		
+		<object-name>base</object-name>
+		<object-name>base2</object-name>
+	</effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>eng.glass</object-name>
+	</effect>-->
+	<!--<animation>TODO correct lighting property
+		<type>material</type>
+		<object-name>trq.face</object-name>
+		<object-name>prop.face</object-name>
+		<object-name>itt.face</object-name>
+		<object-name>nh.face</object-name>
+		<object-name>ff.face</object-name>
+		<object-name>nl.face</object-name>
+		<object-name>stbyalt.face</object-name>
+		<object-name>oil.face</object-name>
+		<object-name>fueltemp.face</object-name>
+		<object-name>fuelqty.face</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>10</value>
+			</greater-than>		
+		</condition>
+		<emission>
+		<red>   0.50 </red>
+		<green> 0.25 </green>
+		<blue>  0.25 </blue>
+		</emission>
+	</animation>-->
+	
+</PropertyList>

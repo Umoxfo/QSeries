@@ -526,7 +526,7 @@
 				<wrap>1</wrap>
 			</binding>
 		</action>
-	</animation>
+	</animation><!--
 	<animation>
 		<type>pick</type>
 		<object-name>navsourceL</object-name>
@@ -543,7 +543,7 @@
 				<value>FMS</value>
 			</binding>
 		</action>
-	</animation>
+	</animation>-->
 	<!--ALT SEL Button-->
 	<animation>
 		<type>pick</type>

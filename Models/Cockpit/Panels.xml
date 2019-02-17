@@ -108,6 +108,11 @@
 	<model>
 		<path>Yoke/yoke.xml</path>
 		<name>yoke</name>
+		<offsets>
+			<x-m>-12</x-m>
+			<y-m>0.0</y-m>
+			<z-m>1.4</z-m>
+		</offsets>
 	</model>
 
 	<!--PEDESTAL-->

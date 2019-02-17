@@ -24,6 +24,11 @@ var AI_pitch = props.globals.getNode("/orientation/pitch-deg", 1);
 var AI_roll = props.globals.getNode("/orientation/roll-deg", 1);
 var ALT_AGL = props.globals.getNode("/position/gear-agl-ft", 1);
 
+var NAV0_isloc = props.globals.getNode("/instrumentation/nav[0]/frequencies/is-localizer-frequency", 1);
+var NAV0_hasgs = props.globals.getNode("/instrumentation/nav[0]/has-gs", 1);
+var NAV0_locdefl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
+var NAV0_gsdefl = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1);
+
 #in slow update:
 var AP_modelat = props.globals.getNode("/it-autoflight/mode/lat", 1);
 var AP_modevert = props.globals.getNode("/it-autoflight/mode/vert", 1);
@@ -37,6 +42,8 @@ var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page",
 var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
 var MainPage = props.globals.initNode("/instrumentation/mfd[0]/inputs/main-page","", "STRING");
 var VREF_diff = props.globals.initNode("/instrumentation/EADI/vref_diff_norm", 0.0, "DOUBLE");
+var NAV0_locdefl = props.globals.initNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 0.0, "DOUBLE");
+var NAV0_gsdefl = props.globals.initNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 0.0, "DOUBLE");
 
 
 setprop("/it-autoflight/input/alt", 100000);
@@ -110,7 +117,7 @@ var canvas_EADI_main = {
 		return m;
 	},
 	getKeys: func() {
-		return ["horizon","rollpointer","vref.assist","radioalt.group","radioalt","rising_runway","ap.lat","ap.vert"];
+		return ["horizon","rollpointer","vref.assist","radioalt.group","radioalt","rising_runway","ap.lat","ap.vert","loc.scale","loc.ind","gs.scale","gs.ind"];
 	},
 	fast_update: func() {
 		
@@ -145,7 +152,25 @@ var canvas_EADI_main = {
 				me["rising_runway"].show();
 				me["rising_runway"].setTranslation(0,radio_alt*1.22);
 			}
-		}			
+		}
+		
+		#Localizer and Glideslope (ILS)
+		if(NAV0_isloc.getValue()==0){
+			me["loc.scale"].hide();
+			me["gs.scale"].hide();
+		}else{
+			me["loc.scale"].show();
+			var loc_dev = NAV0_locdefl.getValue();
+			me["loc.ind"].setTranslation(loc_dev*121,0);
+			if(NAV0_hasgs.getValue()==0){
+				me["gs.scale"].hide();
+			}else{
+				me["gs.scale"].show();
+				var gs_dev = NAV0_gsdefl.getValue();
+				me["gs.ind"].setTranslation(0,-gs_dev*149);
+			}
+		}
+			
 		
 		
 		settimer(func me.fast_update(), 0.05);

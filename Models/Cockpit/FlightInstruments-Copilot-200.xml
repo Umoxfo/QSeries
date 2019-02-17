@@ -2,6 +2,14 @@
 <PropertyList>
 	
 	<model>
+		<path>Instruments/Flaps/flaps.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>-0.205</y-m>
+			<z-m>-0.05</z-m>
+		</offsets>
+	</model>
+	<model>
 		<path>Instruments/ASI/ASI.xml</path>
 		<offsets>
 			<x-m>0.0</x-m>
@@ -15,6 +23,14 @@
 			<x-m>0.0</x-m>
 			<y-m>-0.107468</y-m>
 			<z-m>-0.075534</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Instruments/Hydraulics/hydraulic_instruments.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>-0.15</y-m>
+			<z-m>-0.16</z-m>
 		</offsets>
 	</model>
 	<model>
@@ -47,14 +63,6 @@
 			<x-m>0.0</x-m>
 			<y-m>0.106428</y-m>
 			<z-m>-0.075534</z-m>
-		</offsets>
-	</model>
-	<model>
-		<path>Instruments/PFCS/PFCS.xml</path>
-		<offsets>
-			<x-m>0.0</x-m>
-			<y-m>0.106428</y-m>
-			<z-m>-0.154</z-m>
 		</offsets>
 	</model>
 

@@ -207,11 +207,11 @@
 		<property>sim/model/door-positions/passengerF/position-norm</property>
 		<interpolation>
 			<entry>
-				<ind> 0 </ind>
+				<ind> 1 </ind>
 				<dep> 0 </dep>
 			</entry>
 			<entry>
-				<ind> 1 </ind>
+				<ind> 0 </ind>
 				<dep> 119 </dep>
 			</entry>
 		</interpolation>
@@ -231,11 +231,11 @@
 		<property>sim/model/door-positions/passengerF/position-norm</property>
 		<interpolation>
 			<entry>
-				<ind> 0 </ind>
+				<ind> 1 </ind>
 				<dep>  -119 </dep>
 			</entry>
 			<entry>
-				<ind> 1 </ind>
+				<ind> 0 </ind>
 				<dep> 0 </dep>
 			</entry>
 		</interpolation>
@@ -381,7 +381,7 @@
 		<type>rotate</type>
 		<object-name>flapI</object-name>
 		<property>surface-positions/flap-pos-norm</property>
-		<factor> 40 </factor>
+		<factor> 35 </factor>
 		<center>
 			<x-m>2.49338</x-m>
 			<z-m>1.25351</z-m>
@@ -394,7 +394,7 @@
 		<type>rotate</type>
 		<object-name>flapRO</object-name>
 		<property>surface-positions/flap-pos-norm</property>
-		<factor> 40 </factor>
+		<factor> 35 </factor>
 		<axis>
 			<x1-m>2.47143</x1-m>
 			<y1-m>5.03312</y1-m>
@@ -408,7 +408,7 @@
 		<type>rotate</type>
 		<object-name>flapLO</object-name>
 		<property>surface-positions/flap-pos-norm</property>
-		<factor> -40 </factor>
+		<factor> -35 </factor>
 		<axis>
 			<x1-m>2.47143</x1-m>
 			<y1-m>-5.03312</y1-m>
