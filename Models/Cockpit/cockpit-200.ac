@@ -2302,7 +2302,7 @@ refs 4
 kids 0
 OBJECT poly
 name "seatCP1"
-loc -4.1814251 0.1771026 -0.4728122
+loc -4.2647314 0.1771026 -0.4555938
 crease 35.0
 texture "seat.png"
 texrep 1 1
@@ -13105,7 +13105,7 @@ refs 3
 kids 0
 OBJECT poly
 name "seatCP2"
-loc -4.1630344 0.4855880 -0.4730852
+loc -4.2463408 0.4855880 -0.4558669
 crease 35.0
 texture "seat.png"
 texrep 1 1
@@ -14588,7 +14588,7 @@ refs 32
 kids 0
 OBJECT poly
 name "seatP1"
-loc -4.1814251 0.1771026 0.5181895
+loc -4.2573886 0.1771026 0.4612170
 crease 35.0
 texture "seat.png"
 texrep 1 1
@@ -25391,7 +25391,7 @@ refs 3
 kids 0
 OBJECT poly
 name "seatP2"
-loc -4.1630344 0.4855880 0.5184666
+loc -4.2389979 0.4855880 0.4614941
 crease 35.0
 texture "seat.png"
 texrep 1 1

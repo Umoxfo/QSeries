@@ -130,6 +130,57 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 			<path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
 			<path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
 		</aircraft-data>
+		
+		<color-set><!--TODO where is this used?-->
+			<white>
+				<r type="float">0.9</r>
+				<g type="float">0.9</g>
+				<b type="float">0.9</b>
+				<a type="float">1.0</a>
+			</white>
+			<red>
+				<r type="float">0.9</r>
+				<g type="float">0.0</g>
+				<b type="float">0.0</b>
+				<a type="float">1.0</a>
+			</red>
+			<yellow>
+				<r type="float">0.9</r>
+				<g type="float">0.9</g>
+				<b type="float">0.0</b>
+				<a type="float">1.0</a>
+			</yellow>
+			<green>
+				<r type="float">0.0</r>
+				<g type="float">0.9</g>
+				<b type="float">0.0</b>
+				<a type="float">1.0</a>
+			</green>
+			<cyan>
+				<r type="float">0.0</r>
+				<g type="float">0.9</g>
+				<b type="float">0.9</b>
+				<a type="float">1.0</a>
+			</cyan>
+			<blue>
+				<r type="float">0.0</r>
+				<g type="float">0.0</g>
+				<b type="float">0.9</b>
+				<a type="float">1.0</a>
+			</blue>
+			<magenta>
+				<r type="float">0.9</r>
+				<g type="float">0.0</g>
+				<b type="float">0.9</b>
+				<a type="float">1.0</a>
+			</magenta>
+			<amber>
+				<r type="float">0.9</r>
+				<g type="float">0.5</g>
+				<b type="float">0.0</b>
+				<a type="float">1.0</a>
+			</amber>
+		</color-set>
 	</sim>
 	
         
@@ -412,18 +463,6 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 	
 	<input>
 		<keyboard>
-		<!--
-			<key n="119">
-				<name>w</name>
-				<desc>Walk forward toward view</desc>
-				<repeatable type="bool">true</repeatable>
-				<binding>
-						<command>nasal</command>
-						<script>
-							walk.walk_about(0.1);
-						</script>
-				</binding>
-			</key>-->
 			<key n="113">
 				<name>q</name>
 				<desc>Disengage Autopilot</desc>
@@ -475,68 +514,21 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 					<property>controls/engines/engine[1]/reverser</property>
 				</binding>
 			</key>
-			<key n="77">
-				<name>M</name>
-				<desc>Condition Lever Backward</desc>
-				<repeatable type="bool">true</repeatable>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[0]/condition-lever-state</property>
-					<value>0</value><!--FUEL OFF-->
-					<value>4</value><!--MAX 1020-->
-					<value>3</value><!--900-->
-					<value>2</value><!--MIN 850-->
-					<value>1</value><!--START&FEATHER-->
-				</binding>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[1]/condition-lever-state</property>
-					<value>0</value><!--FUEL OFF-->
-					<value>4</value><!--MAX 1020-->
-					<value>3</value><!--900-->
-					<value>2</value><!--MIN 850-->
-					<value>1</value><!--START&FEATHER-->
-				</binding>
-			</key>
-			<key n="109">
-				<name>m</name>
-				<desc>Condition Lever Forward</desc>
-				<repeatable type="bool">true</repeatable>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[0]/condition-lever-state</property>
-					<value>1</value><!--START&FEATHER-->
-					<value>2</value><!--MIN 850-->
-					<value>3</value><!--900-->
-					<value>4</value><!--MAX 1020-->
-					<value>0</value><!--FUEL OFF-->
-				</binding>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[1]/condition-lever-state</property>
-					<value>1</value><!--START&FEATHER-->
-					<value>2</value><!--MIN 850-->
-					<value>3</value><!--900-->
-					<value>4</value><!--MAX 1020-->
-					<value>0</value><!--FUEL OFF-->
-				</binding>
-			</key>
-			<key n="127">
-				<name>Delete</name>
-				<desc>Toggle Reversers</desc>
-				<binding>
-					<command>property-toggle</command>
-					<property>controls/engines/engine[0]/reverser</property>
-				</binding>
-				<binding>
-					<command>property-toggle</command>
-					<property>controls/engines/engine[1]/reverser</property>
-				</binding>
-			</key>
 		</keyboard>
 	</input>
 	
+	<qseries>
+		<const>
+			<JETA_LBGAL type="double">6.7898</JETA_LBGAL>
+			<JETA_LB2L type="double">0.557518</JETA_LB2L>
+			<JETA_USG2L type="double">3.785412</JETA_USG2L>
+		</const>
+	</qseries>
+	
 	<nasal>
+		<global>
+			<file>Aircraft/QSeries/Nasal/global.canvas.nas</file>
+		</global>
 		<!--dialogs>
 			<file>gui/dialogs/fuelpayload.nas</file>
 		</dialogs-->
@@ -560,5 +552,6 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 		<dialogs>
 			<file>Nasal/dialogs.nas</file>
 		</dialogs>
+		<!--TODO add dual control support-->
 	</nasal>
 </PropertyList>
