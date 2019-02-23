@@ -4,11 +4,13 @@
 	
 	<!--Overhead Panel-->
 	<model>
-		<path>Overhead/overhead.xml</path> <!--TODO change to 100/200/300-->
+		<path>Overhead/overhead-200.xml</path> <!--TODO add warning panel-->
 		<offsets>
-			<x-m>6.83013</x-m>
+			<x-m>-4.9</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-2</z-m>
+			<z-m>0.9</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>158.35</roll-deg>
 		</offsets>
 	</model>
 	

@@ -321,7 +321,8 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 			<engine n="0">
 				<condition-lever-state type="int">0</condition-lever-state>
 				<condition-lever-pos type="float">0</condition-lever-pos>
-				<cutoff-cmd type="bool">0</cutoff-cmd>
+				<cutoff type="bool">true</cutoff>
+				<cutoff-cmd type="bool">true</cutoff-cmd>
 				<condition type="double">0</condition>
 				<mixture>0</mixture>
 				<propeller-pitch>0</propeller-pitch>
@@ -334,7 +335,8 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 			<engine n="1">
 				<condition-lever-state type="int">0</condition-lever-state>
 				<condition-lever-pos type="float">0</condition-lever-pos>
-				<cutoff-cmd type="bool">0</cutoff-cmd>
+				<cutoff type="bool">true</cutoff>
+				<cutoff-cmd type="bool">true</cutoff-cmd>
 				<condition type="double">0</condition>
 				<mixture>0</mixture>
 				<propeller-pitch>0</propeller-pitch>
