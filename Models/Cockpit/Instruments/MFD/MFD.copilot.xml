@@ -4,14 +4,35 @@
 
 	<path>MFD.copilot.ac</path>
 	
+	<!--Interior effect-->
+	<effect>
+		<inherits-from>Aircraft/QSeries/Models/Effects/interior/interior-shadow</inherits-from>
+		<object-name>MFDcopilot.screen</object-name>
+		<object-name>MFDcopilot.screenED</object-name>
+		<object-name>MFDcopilot.screenND</object-name>
+		<object-name>MFDcopilot.screenPFD</object-name>
+	</effect>
+	
+	
 	<animation>
 		<type>select</type>
 		<object-name>MFDcopilot.screen</object-name>
 		<condition>
-			<not-equals>
+			<equals>
 				<property>/instrumentation/mfd[1]/inputs/main-page</property>
-				<value>nd</value>
-			</not-equals>
+				<value>sys</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>MFDcopilot.screenED</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>ed</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -26,6 +47,16 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>select</type>
+		<object-name>MFDcopilot.screenPFD</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>pfd</value>
+			</equals>
+		</condition>
+	</animation>
 	<animation>
 		<type>pick</type>
 		<object-name>MFDcopilot.screen</object-name>
@@ -42,7 +73,9 @@
 	<animation>
 		<type>material</type>
 		<object-name>MFDcopilot.screen</object-name>
+		<object-name>MFDcopilot.screenED</object-name>
 		<object-name>MFDcopilot.screenND</object-name>
+		<object-name>MFDcopilot.screenPFD</object-name>
 		<ambient>
 			<red>1</red>
 			<green>1</green>

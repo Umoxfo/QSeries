@@ -14,7 +14,7 @@
 		<lightmap-factor><use>systems/electrical/lighting/landing-light</use></lightmap-factor>
 		<lightmap-color type="vec3d"> 1 1 1 </lightmap-color>
 		<texture n="3">
-			<image>Aircraft/Q400/Models/lightmap.png</image>
+			<image>Aircraft/QSeries/Models/lightmap.png</image>
 			<filter>linear-mipmap-linear</filter>
 			<wrap-s>clamp</wrap-s>
 			<wrap-t>clamp</wrap-t>

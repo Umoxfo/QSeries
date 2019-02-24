@@ -3,7 +3,7 @@
         <path>pedestalrear.ac</path>
         <!--Panel illumination-->
         <effect>
-                <inherits-from>Aircraft/Q400/Models/Effects/panel-lighting</inherits-from>
+                <inherits-from>../../../Effects/panel-lighting</inherits-from>
                 <parameters>
                         <implicit-lightmap-intensity>
                                 <use>/systems/electrical/outputs/centerpanel-lights</use>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+	
+<!--Vref calculation:
+		source: https://www.pprune.org/questions/158327-landing-speed-dash-8-a.html (Q100 and Q200)
+	-->
+
+<system name="vspeedcalc">
+	
+	<channel name="vref_calc" execrate="60">
+		<fcs_function name="vref">
+			<function>
+				<table>
+					<independentVar lookup="row">/fdm/jsbsim/inertia/weight-lbs</independentVar>
+					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+					<tableData>
+						       15      35
+						26455.5  90  83
+						36376.27  105 95
+					</tableData>
+				</table>
+			</function>			
+			<output>/instrumentation/EADI/vref</output>
+		</fcs_function>
+	</channel>
+	<channel name="vref">
+		<fcs_function name="vref_diff">
+			<function>
+				<difference>
+					<property>/instrumentation/EADI/vref</property>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				</difference>
+			</function>			
+			<output>/instrumentation/EADI/vref_diff</output>
+		</fcs_function>
+		<fcs_function name="vref_diff_norm">
+			<function>
+				<table>
+					<independentVar>/instrumentation/EADI/vref_diff</independentVar>
+					<tableData>
+						-10	-1
+						10	1
+					</tableData>
+				</table>
+			</function>			
+			<output>/instrumentation/EADI/vref_diff_norm</output>
+		</fcs_function>
+	</channel>
+
+</system>
+
+
+

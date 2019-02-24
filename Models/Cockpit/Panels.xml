@@ -4,7 +4,13 @@
 	
 	<!--Overhead Panel-->
 	<model>
-	<path>Overhead/overhead.xml</path>
+		<path>Overhead/overhead.xml</path>
+		<offsets>
+			<x-m>-11.8</x-m>
+			<y-m>0.0</y-m>
+			<z-m>2.9</z-m>
+			<pitch-deg>158.35</pitch-deg>
+		</offsets>
 	</model>
 	
 	
@@ -108,6 +114,11 @@
 	<model>
 		<path>Yoke/yoke.xml</path>
 		<name>yoke</name>
+		<offsets>
+			<x-m>-12</x-m>
+			<y-m>0.0</y-m>
+			<z-m>1.4</z-m>
+		</offsets>
 	</model>
 
 	<!--PEDESTAL-->

@@ -109,7 +109,12 @@
 			</condition>
 		</input>
 		<input>
-			<property>/controls/engines/engine[0]/throttle</property>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<value>0.963</value> <!--1000 SHP available for reverse-->
+				</prod>
+			</expression>
 			<condition>
 				<property>/engines/engine[0]/reversed</property>
 			</condition>
@@ -138,7 +143,12 @@
 			</condition>
 		</input>
 		<input>
-			<property>/controls/engines/engine[1]/throttle</property>
+			<expression>
+				<prod>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<value>0.963</value> <!--1000 SHP available for reverse-->
+				</prod>
+			</expression>
 			<condition>
 				<property>/engines/engine[1]/reversed</property>
 			</condition>
@@ -149,6 +159,20 @@
   
   
   <!--THRUST DETENT MODES-->
+	<!--Source: http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf-->
+	<!--Power is not linear to throttle pos-->
+	<!--Power:	EMERG:	1.25*max engine rated takeoff power
+			MTOP:	5071 SHP
+			NTOP:	4580 SHP
+			guesses based on figure 12.23-4
+			MCL:	unknown; guess: 87% NTOP = 3984.6
+			MCR:	unknown; guess: 78% NTOP = 3572.4
+			Reverse: 1000 SHP
+	-->
+	<!--Tested throttle settings to reach desired power:
+	
+	
+	-->
   
   <!--EMERGENCY POWER-->
   <!--Condition: Thrust lever in Overtravel-->
@@ -256,6 +280,9 @@
 					<value>4</value>
 				</equals>
 			</or>
+			<not>
+				<property>/controls/engines/mtop-discrete</property>
+			</not>
 			<less-than-equals>
 				<property>/controls/engines/engine[0]/throttle-int</property>
 				<value>0.8</value>
@@ -467,6 +494,9 @@
 					<value>4</value>
 				</equals>
 			</or>
+			<not>
+				<property>/controls/engines/mtop-discrete</property>
+			</not>
 			<less-than-equals>
 				<property>/controls/engines/engine[1]/throttle-int</property>
 				<value>0.8</value>

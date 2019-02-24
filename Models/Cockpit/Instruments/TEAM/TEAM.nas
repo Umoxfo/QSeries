@@ -361,8 +361,8 @@ setlistener("sim/signals/fdm-initialized", func {
 	var groupTEAMfirst = TEAM_display.createGroup();
 	var groupTEAMselftest = TEAM_display.createGroup();
 
-	TEAM_first = canvas_TEAM_first.new(groupTEAMfirst, "Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.first.svg");
-	TEAM_selftest = canvas_TEAM_selftest.new(groupTEAMselftest, "Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.selftest.svg");
+	TEAM_first = canvas_TEAM_first.new(groupTEAMfirst, "Aircraft/QSeries/Models/Cockpit/Instruments/TEAM/TEAM.first.svg");
+	TEAM_selftest = canvas_TEAM_selftest.new(groupTEAMselftest, "Aircraft/QSeries/Models/Cockpit/Instruments/TEAM/TEAM.selftest.svg");
 
 	TEAM_first.update();
 	TEAM_selftest.update();

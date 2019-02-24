@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+de Havilland DHC8-400Q/Bombardier Q400
+Jan 2009 Alex Park
+FDM based on Alex Park Dash 8 300Q adapted for the Dash8 - 400Q
+new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior model 2016 by Florian K, D-ECHO, Joshua Davidson and more
+************************************************************************
+-->
+
+<PropertyList include="qseries-common.xml">
+	<limits><!--Source: https://www.easa.europa.eu/sites/default/files/dfu/EASA%20TCDS_DHC-8_Iss%2012.pdf-->
+		<max-flap-extension-speed>
+			<flaps>0.142</flaps>
+			<speed>148</speed>
+		</max-flap-extension-speed>
+		<max-flap-extension-speed>
+			<flaps>0.284</flaps>
+			<speed>148</speed>
+		</max-flap-extension-speed>
+		<max-flap-extension-speed>
+			<flaps>0.426</flaps>
+			<speed>148</speed>
+		</max-flap-extension-speed>
+		<max-flap-extension-speed>
+			<flaps>1</flaps>
+			<speed>130</speed>
+		</max-flap-extension-speed>
+        
+		<vne>242</vne>
+		<!--TODO check from here-->
+		<max-gear-extension-speed>215</max-gear-extension-speed>
+        
+		<max-positive-g>4.4</max-positive-g>
+		<max-negative-g>-1.76</max-negative-g>
+		
+		<mass-and-balance>
+			<mtow-lbs>61700</mtow-lbs>
+		</mass-and-balance>
+	</limits>
+	<sim>
+		<description>Bombardier Q200 (JSBSim)</description>
+		<status>Alpha development</status>
+		<author>Alex Park (Maverickalex), Florian K, D-ECHO, Joshua Davidson (it0uchpods)</author>
+		<flight-model>jsb</flight-model>
+		<aero>q200-jsb</aero>
+		<fuel-fraction>0.5</fuel-fraction>
+		<startup>
+			<splash-texture>Aircraft/QSeries/Splash.png</splash-texture>
+		</startup>
+		<status>early production</status>
+		<rating>
+			<FDM type="int">3</FDM>
+			<systems type="int">4</systems>
+			<cockpit type="int">5</cockpit><!--thanks to FlorianK!!-->
+			<model type="int">5</model><!--thanks to FlorianK!!-->
+		</rating>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q200/exterior1.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q200/exterior2.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q200/exterior3.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q200/cockpit1.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q200/cockpit2.jpg</path>
+			</preview>
+		</previews>
+		<!--Fallback for older FG versions-->
+		<startup>
+			<splash-texture>Aircraft/QSeries/Splash/Q200/exterior1.jpg</splash-texture>
+		</startup>
+
+		<model>
+			<path>Aircraft/QSeries/Models/DH8B.xml</path>
+			<livery> 
+				<file type="string"/>
+			</livery> 
+			<start-idling type="bool">0</start-idling>
+			<variant type="int">1</variant>
+			<interior>
+				<seats type="double">74</seats>
+			</interior>
+			<always-show-hud type="bool">0</always-show-hud>
+		</model>
+		
+		<systems>
+			<autopilot n="2">
+				<path>Aircraft/QSeries/Systems/flight-controls-200.xml</path>
+			</autopilot>
+			<property-rule n="103">
+				<path>Aircraft/QSeries/Systems/vsi.xml</path>
+			</property-rule>
+			<property-rule n="104">
+				<path>Aircraft/QSeries/Systems/instruments-200.xml</path>
+			</property-rule>
+		</systems>
+		
+		<view n="0">
+			<name>Cockpit</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<default-field-of-view-deg>60</default-field-of-view-deg>
+				<x-offset-m type="double">-0.4577</x-offset-m>
+				<y-offset-m type="double">0.695583</y-offset-m>
+				<z-offset-m type="double">-4.31548</z-offset-m>
+				<pitch-offset-deg>-14</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="101">
+			<name>Cabin View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">0</default-heading-deg>
+				<front-direction-deg type="double">0</front-direction-deg>
+				<front-left-direction-deg type="double">45</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">135</back-left-direction-deg>
+				<back-direction-deg type="double">180</back-direction-deg>
+				<back-right-direction-deg type="double">225</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">315</front-right-direction-deg>
+				<x-offset-m type="double">-0.969436</x-offset-m>
+				<y-offset-m type="double">0.426745</y-offset-m>
+				<z-offset-m type="double">2.1875</z-offset-m>
+				<pitch-offset-deg>0</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="102">
+			<name>Stewardess 360 View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">180</default-heading-deg>
+				<front-direction-deg type="double">180</front-direction-deg>
+				<front-left-direction-deg type="double">135</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">45</back-left-direction-deg>
+				<back-direction-deg type="double">0</back-direction-deg>
+				<back-right-direction-deg type="double">315</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">225</front-right-direction-deg>
+				<x-offset-m type="double">0</x-offset-m>
+				<y-offset-m type="double">0.788655</y-offset-m>
+				<z-offset-m type="double">0.495084</z-offset-m>
+				<pitch-offset-deg>0</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="103">
+			<name>Tail Camera View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">120.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">0</default-heading-deg>
+				<front-direction-deg type="double">0</front-direction-deg>
+				<x-offset-m type="double">0.0</x-offset-m>
+				<y-offset-m type="double">5.82</y-offset-m>
+				<z-offset-m type="double">11.9037</z-offset-m>
+				<pitch-offset-deg>-14</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="104">
+			<name>Copilot View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">0</default-heading-deg>
+				<front-direction-deg type="double">0</front-direction-deg>
+				<front-left-direction-deg type="double">45</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">135</back-left-direction-deg>
+				<back-direction-deg type="double">180</back-direction-deg>
+				<back-right-direction-deg type="double">225</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">315</front-right-direction-deg>
+				<default-field-of-view-deg>90</default-field-of-view-deg>
+				<x-offset-m type="double">0.4577</x-offset-m>
+				<y-offset-m type="double">0.695583</y-offset-m>
+				<z-offset-m type="double">-4.31548</z-offset-m>
+				<pitch-offset-deg>-14</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="1">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="2">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="3">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="4">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="5">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="6">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+		<view n="7">
+			<config>
+				<target-y-offset-m archive="y" type="double">1.4</target-y-offset-m>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<menubar>
+			<default>
+				<menu n="10">
+					<label>Bombardier Q200</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Autostart</label>
+						<binding>
+							<command>nasal</command>
+							<script>q200.autostartupthing();</script>
+						</binding>
+					</item>                   
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>aircraft.livery.dialog.toggle()</script>
+						</binding>
+					</item>
+					<item n="10">
+						<label>Pushback</label>
+						<name>pushback</name>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>pushback</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Ground Services</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>groundservices</dialog-name>
+						</binding>
+					</item>
+					<!--item>
+						<label>Fuel and Payload</label>
+						<binding>
+							<command>nasal</command>
+							<script>dialogs.FuelPayloadClass.open()</script>
+						</binding>
+					</item-->
+					<item>
+						<label>Checklists</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>checklists</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Put aircraft on jacks</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>controls/gear/jacks</property>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+		
+		<checklists include="Dialogs/checklists.xml"/><!--TODO check for changes 400 - 200 -->
+		
+		
+<!--		<tutorials include="Tutorials/tutorials.xml"/> TODO add liveries for the older variants-->
+		<multiplay>
+			<generic>
+				<string n="0" alias="/sim/aero"/>
+				<string n="1" alias="/sim/multiplay/callsign"/>
+				<int n="0" alias="/sim/model/blunt-nose"/>
+				<int n="1" alias="/sim/model/display-callsign"/>
+
+				<int n="9" alias="/sim/model/lights/nav-lights/state"/>
+				<int n="10" alias="/sim/model/lights/landing-light[0]/state"/>
+				<int n="11" alias="/sim/model/lights/landing-light[1]/state"/>
+				<int n="12" alias="/sim/model/lights/taxi-lights/state"/>
+				<int n="13" alias="/sim/model/lights/strobe/state"/>
+				<int n="14" alias="/sim/model/lights/beacon/state"/>
+				
+				<float n="0" alias="/fdm/jsbsim/fcs/yaw-sum-lag"/>
+				<float n="1" alias="/fdm/jsbsim/hydraulics/elevators/final"/>
+				<float n="2" alias="/fdm/jsbsim/hydraulics/ailerons/final"/>
+				<float n="3" alias="/systems/electrical/outputs/nav-lights">       0 </float>
+				<float n="4" alias="/systems/electrical/outputs/landing-light[0]"> 0 </float>
+				<float n="5" alias="/systems/electrical/outputs/landing-light[1]"> 0 </float>
+				<float n="6" alias="/systems/electrical/outputs/taxi-lights">      0 </float>
+				<float n="7" alias="/systems/electrical/outputs/strobe">           0 </float>
+				<float n="8" alias="/systems/electrical/outputs/beacon">           0 </float>
+				<float n="9" alias="/systems/electrical/volts">                    0 </float>
+				<float n="15" alias="/gear/gear/position-norm">                    1 </float>
+				<float n="16" alias="/gear/gear[1]/position-norm">                 1 </float>
+				<float n="17" alias="/gear/gear[2]/position-norm">                 1 </float>
+				<float n="18" alias="/sim/model/door-positions/passengerF/position-norm"/>
+				<float n="19" alias="/sim/model/door-positions/passengerLH/position-norm"/>
+				<float n="20" alias="/sim/model/door-positions/passengerRF/position-norm"/>
+				<float n="21" alias="/sim/model/door-positions/passengerRH/position-norm"/>
+				<float n="22" alias="/sim/model/door-positions/cargo/position-norm"/>
+			</generic>
+		</multiplay>
+    
+	</sim>
+	
+	
+	
+	<controls>
+		<engines>
+			<engine n="0">
+				<condition-lever-set type="double">0.0</condition-lever-set>
+			</engine>
+			<engine n="1">
+				<condition-lever-set type="double">0.0</condition-lever-set>
+			</engine>
+		</engines>
+	</controls>
+	
+	<payload>
+		<weight n="0">
+			<name>Cockpit Crew</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]" />
+			<min-lb type="double">200</min-lb>
+			<max-lb type="double">440</max-lb> <!--220*2-->
+		</weight>
+		<weight n="1">
+			<name>PAX Front (18 seats)</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]" />
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">3960</max-lb> <!--220*18-->
+		</weight>
+		<weight n="2">
+			<name>PAX Rear (18 seats)</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]" />
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">3960</max-lb> <!--220*18-->
+		</weight>
+		<weight n="3">
+			<name>Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]" />
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">4710</max-lb> <!--TODO check-->
+		</weight>
+	</payload>
+	
+	<instrumentation>
+		<altimeter n="1">
+			<serviceable type="bool">1</serviceable>
+		</altimeter>
+		<elt>
+			<on type="bool">0</on>
+			<armed type="bool">1</armed>
+			<test type="bool">0</test>
+		</elt>
+		<rmi>
+			<selector n="0" type="float">0</selector>
+			<selector n="1" type="float">0</selector>
+		</rmi>
+		<flightrcdr>
+			<gndtest type="bool">0</gndtest>
+		</flightrcdr>
+		<cdu>
+			<input type="string"/>
+			<serviceable type="bool">1</serviceable>
+			<display>NAVIDENT[0]</display>
+			<ident>
+				<model>DH8B</model>
+			</ident>
+		</cdu>
+		<FMS>
+			<onoff type="bool">false</onoff>
+			<startup type="double">0.0</startup>
+		</FMS>
+	</instrumentation>
+	
+	<!--Version-specific part of the key settings-->
+	<input>
+		<keyboard>
+			<key n="77">
+				<name>M</name>
+				<desc>Condition Lever Backward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+			</key>
+			<key n="109">
+				<name>m</name>
+				<desc>Condition Lever Forward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+			</key>
+		</keyboard>
+	</input>
+
+	<nasal>  
+		<!--<canvas_nd>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
+		</canvas_nd>-->
+		<canvas_eadi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EADI/EADI.nas</file>
+		</canvas_eadi>
+		<canvas_ehsi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EHSI/EHSI.nas</file>
+		</canvas_ehsi>
+		<canvas_vsi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/VSI/VSI.nas</file>
+		</canvas_vsi>
+		<canvas_fms>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/FMS/FMS.nas</file>
+		</canvas_fms>
+		<q200>
+			<file>Nasal/limits.nas</file>
+			<file>Nasal/liveries.nas</file>
+			<file>Nasal/startup.nas</file>
+			<file>Nasal/doors.nas</file>
+			<file>Nasal/general.nas</file>
+			<file>Nasal/autoflight-helpers.nas</file>
+			<file>Nasal/listeners.nas</file>
+			<file>Nasal/engine-system-200.nas</file>
+			<file>Nasal/anti-ice-200.nas</file>
+		</q200>
+	</nasal>
+</PropertyList>

@@ -4,7 +4,7 @@
 	
 	<!--Shadow effect-->
 	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<inherits-from>Aircraft/QSeries/Models/Effects/interior/interior-shadow</inherits-from>
 		<object-name>IESI.base</object-name>
 		<object-name>IESI.screen</object-name>
 		<object-name>IESI.plus</object-name>

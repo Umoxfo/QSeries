@@ -14,10 +14,17 @@ var autostartupthing = func {
 	setprop("/controls/cabin/seatbelts", 1);
 	setprop("/controls/cabin/nosmoking", 1);
 	setprop("/it-autoflight/input/yd", 1);
-	settimer(func {
-		setprop("/controls/engines/engine[0]/condition-lever-state", 4);
-		setprop("/controls/engines/engine[1]/condition-lever-state", 4);
-	}, 2);
+	if(getprop("/sim/aero")=="q400-jsb"){
+		settimer(func {
+			setprop("/controls/engines/engine[0]/condition-lever-state", 4);
+			setprop("/controls/engines/engine[1]/condition-lever-state", 4);
+		}, 2);
+	}else{
+		settimer(func {
+			setprop("/controls/engines/engine[0]/condition-lever-state", 2);
+			setprop("/controls/engines/engine[1]/condition-lever-state", 2);
+		}, 2);
+	}
 }
 
 setlistener("/engines/engine[0]/running", func{

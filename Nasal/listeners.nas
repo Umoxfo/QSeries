@@ -35,7 +35,7 @@ setlistener("/controls/engines/engine[1]/condition-lever-state", func{
 });
 
 var condStateInfo = func{
-	if(getprop("/sim/q400/popups-enabled")==1){
+	if(getprop("/sim/q400/popups-enabled")==1 and getprop("/sim/aero") == "q400-jsb"){
 		var condstateL=getprop("/controls/engines/engine[0]/condition-lever-state");
 		if(condstateL==0){
 			var condstateL2="FUEL OFF";

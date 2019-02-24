@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+	<path>RMI.ac</path>
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>rmi.base</object-name>
+		<object-name>rmi.screws</object-name><!--
+		<object-name>rmi.front</object-name>
+		<object-name>rmi.compass</object-name>-->
+		<object-name>rmi.selector1</object-name>
+		<object-name>rmi.selector2</object-name>
+		<object-name>rmi.needle1</object-name>
+		<object-name>rmi.needle2</object-name>
+	</effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>rmi.front</object-name>
+		<object-name>rmi.compass</object-name>
+	</effect>
+	<animation><!--TODO correct lighting property-->
+		<type>material</type>
+		<object-name>rmi.front</object-name>
+		<object-name>rmi.compass</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>10</value>
+			</greater-than>		
+		</condition>
+		<emission>
+		<red>   0.50 </red>
+		<green> 0.25 </green>
+		<blue>  0.25 </blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>rmi.selector1</object-name>
+		<property>instrumentation/rmi/selector[0]</property>
+		<center>
+			<y-m>-0.025126</y-m>
+			<z-m>-0.022351</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+		<factor>90</factor>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/rmi/selector[0]</property>
+				<value>0</value> <!--ADF-->
+				<value>1</value> <!--VOR-->
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>rmi.selector2</object-name>
+		<property>instrumentation/rmi/selector[1]</property>
+		<center>
+			<y-m>0.025549</y-m>
+			<z-m>-0.022351</z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+		<factor>90</factor>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/rmi/selector[1]</property>
+				<value>0</value> <!--ADF-->
+				<value>1</value> <!--VOR-->
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>rmi.compass</object-name>
+		<property>orientation/heading-deg</property>
+		<factor>1</factor>
+		<axis>
+			<x> 1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>rmi.needle1</object-name>
+		<property>instrumentation/rmi/needle-deg[0]</property>
+		<factor>1</factor>
+		<axis>
+			<x>  1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>rmi.needle2</object-name>
+		<property>instrumentation/rmi/needle-deg[1]</property>
+		<factor>1</factor>
+		<axis>
+			<x>  1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+</PropertyList>

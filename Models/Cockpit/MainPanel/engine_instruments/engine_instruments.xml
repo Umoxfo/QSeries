@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PropertyList>
+	<path>engine_instruments.ac</path>
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>trq.face</object-name>
+		<object-name>prop.face</object-name>
+		<object-name>itt.face</object-name>
+		<object-name>nh.face</object-name>
+		<object-name>ff.face</object-name>
+		<object-name>nl.face</object-name>
+		<object-name>stbyalt.face</object-name>
+		<object-name>oil.face</object-name>
+		<object-name>fueltemp.face</object-name>
+		<object-name>fuelqty.face</object-name>
+		
+		<object-name>trq1.needle</object-name>
+		<object-name>trq2.needle</object-name>
+		<object-name>prop1.needle</object-name>
+		<object-name>prop2.needle</object-name>
+		<object-name>itt1.needle</object-name>
+		<object-name>itt2.needle</object-name>
+		<object-name>nh1.needle</object-name>
+		<object-name>nh2.needle</object-name>
+		<object-name>ff1.needle</object-name>
+		<object-name>ff2.needle</object-name>
+		<object-name>nl1.needle</object-name>
+		<object-name>nl2.needle</object-name>
+		<object-name>fuel1.needle</object-name>
+		<object-name>fuel2.needle</object-name>
+		
+		<object-name>trq.base</object-name>
+		<object-name>prop.base</object-name>
+		<object-name>itt.base</object-name>
+		<object-name>nh.base</object-name>
+		<object-name>ff.base</object-name>
+		<object-name>nl.base</object-name>
+		<object-name>stbyalt.base</object-name>
+		<object-name>oil.base</object-name>
+		<object-name>fueltemp.base</object-name>
+		<object-name>fuelqty.base</object-name>
+		<object-name>altset.base</object-name>
+		
+		<object-name>base</object-name>
+		<object-name>base2</object-name>
+	</effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>eng.glass</object-name>
+	</effect>
+	<animation><!--TODO correct lighting property-->
+		<type>material</type>
+		<object-name>trq.face</object-name>
+		<object-name>prop.face</object-name>
+		<object-name>itt.face</object-name>
+		<object-name>nh.face</object-name>
+		<object-name>ff.face</object-name>
+		<object-name>nl.face</object-name>
+		<object-name>stbyalt.face</object-name>
+		<object-name>oil.face</object-name>
+		<object-name>fueltemp.face</object-name>
+		<object-name>fuelqty.face</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>10</value>
+			</greater-than>		
+		</condition>
+		<emission>
+		<red>   0.50 </red>
+		<green> 0.25 </green>
+		<blue>  0.25 </blue>
+		</emission>
+	</animation>
+	<!--Landing Gear Panel-->
+	<animation>
+		<type>pick</type>
+		<object-name>handle</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/gear-down</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>handle</object-name>
+		<property>controls/gear/gear-down</property>
+		<factor>40</factor>
+		<center>
+			<x-m>-0.006697</x-m>
+			<z-m>0.019667</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<!--Illuminate Indicators-->
+	<!--Gear Doors-->
+	<animation>
+		<type>material</type>
+		<object-name>L.door</object-name>
+		<condition>
+			<and>
+				<greater-than>
+					<property>/gear/gear[1]/position-norm</property>
+					<value>0.05</value>
+				</greater-than>
+				<less-than>
+					<property>/gear/gear[1]/position-norm</property>
+					<value>0.95</value>
+				</less-than>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>N.door</object-name>
+		<condition>
+			<and>
+				<greater-than>
+					<property>/gear/gear[0]/position-norm</property>
+					<value>0.05</value>
+				</greater-than>
+				<less-than>
+					<property>/gear/gear[0]/position-norm</property>
+					<value>0.95</value>
+				</less-than>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>R.door</object-name>
+		<condition>
+			<and>
+				<greater-than>
+					<property>/gear/gear[2]/position-norm</property>
+					<value>0.05</value>
+				</greater-than>
+				<less-than>
+					<property>/gear/gear[2]/position-norm</property>
+					<value>0.95</value>
+				</less-than>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	<!--Gear Fully Down-->
+	<animation>
+		<type>material</type>
+		<object-name>leftgreen</object-name>
+		<condition>
+			<equals>
+				<property>/gear/gear[1]/position-norm</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<emission>
+			<red>0.4</red>
+			<green>1</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>nosegreen</object-name>
+		<condition>
+			<equals>
+				<property>/gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<emission>
+			<red>0.4</red>
+			<green>1</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>rightgreen</object-name>
+		<condition>
+			<equals>
+				<property>/gear/gear[2]/position-norm</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>/systems/electrical/volts</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<emission>
+			<red>0.4</red>
+			<green>1</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<!--Gear Not Fully Down-->
+	<animation>
+		<type>material</type>
+		<object-name>leftred</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>/gear/gear[1]/position-norm</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/gear/gear[1]/position-norm</property>
+					<value>0</value>
+				</not-equals>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>nosered</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>/gear/gear[0]/position-norm</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/gear/gear[0]/position-norm</property>
+					<value>0</value>
+				</not-equals>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>rightred</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>/gear/gear[2]/position-norm</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/gear/gear[2]/position-norm</property>
+					<value>0</value>
+				</not-equals>
+				<greater-than>
+					<property>/systems/electrical/volts</property>
+					<value>15</value>
+				</greater-than>
+			</and>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	<!--<animation>
+    <type>material</type>
+    <object-name>face</object-name>
+    <object-name>needle</object-name>
+    <condition>
+      <property>/controls/lighting/instrument-lights</property>
+      <property>/controls/electric/battery-switch</property>
+    </condition>
+    <emission>
+      <factor-prop>/controls/lighting/luminosite-lights</factor-prop>
+      <red>   0.50 </red>
+      <green> 0.25 </green>
+      <blue>  0.25 </blue>
+    </emission>
+  </animation>-->
+	<!---->
+	<!--Main six instruments (center)-->
+	<animation>
+		<type>rotate</type>
+		<object-name>trq1.needle</object-name>
+		<property>engines/engine/thruster/torque</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  -8000 </ind>
+				<dep>  200</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.027365</y-m>
+			<z-m>0.066963</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>trq2.needle</object-name>
+		<property>engines/engine[1]/thruster/torque</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  -8000 </ind>
+				<dep>  200</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.027365</y-m>
+			<z-m>0.066963</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>prop1.needle</object-name>
+		<property>engines/engine/rpm</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1500 </ind>
+				<dep>  232</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.027365</y-m>
+			<z-m>0.010736</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>prop2.needle</object-name>
+		<property>engines/engine[1]/rpm</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1500 </ind>
+				<dep>  232</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.027365</y-m>
+			<z-m>0.010736</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>itt1.needle</object-name>
+		<property>engines/engine/itt_degc</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1100 </ind>
+				<dep>  248</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.027365</y-m>
+			<z-m>-0.045205</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>itt2.needle</object-name>
+		<property>engines/engine[1]/itt_degc</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1100 </ind>
+				<dep>  248</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.027365</y-m>
+			<z-m>-0.045205</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Side ones-->
+	<animation>
+		<type>rotate</type>
+		<object-name>nh1.needle</object-name>
+		<property>engines/engine/n2</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  110 </ind>
+				<dep>  220</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.082121</y-m>
+			<z-m>0.05565</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>nh2.needle</object-name>
+		<property>engines/engine[1]/n2</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  110 </ind>
+				<dep>  220</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.082121</y-m>
+			<z-m>0.05565</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ff1.needle</object-name>
+		<property>engines/engine/fuel-flow_pph</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1103.75 </ind>
+				<!--500 kg/h-->
+				<dep>  200</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.082121</y-m>
+			<z-m>0.000272</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ff2.needle</object-name>
+		<property>engines/engine[1]/fuel-flow_pph</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1103.75 </ind>
+				<!--500 kg/h-->
+				<dep>  200</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.082121</y-m>
+			<z-m>0.000272</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>nl1.needle</object-name>
+		<property>engines/engine/n1</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  110 </ind>
+				<dep>  220</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.082121</y-m>
+			<z-m>-0.05516</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>nl2.needle</object-name>
+		<property>engines/engine[1]/n1</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  110 </ind>
+				<dep>  220</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.082121</y-m>
+			<z-m>-0.05516</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Combined Instruments-->
+	<animation>
+		<type>rotate</type>
+		<object-name>ot1.needle</object-name>
+		<property>engines/engine[0]/oil-temperature-degc</property>
+		<interpolation>
+			<entry>
+				<ind>   -50 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  150 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.131435</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>op1.needle</object-name>
+		<property>engines/engine[0]/oil-pressure-psi</property>
+		<interpolation>
+			<entry>
+				<ind>   0 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  100 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.131435</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ot2.needle</object-name>
+		<property>engines/engine[1]/oil-temperature-degc</property>
+		<interpolation>
+			<entry>
+				<ind>   -50 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  150 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.131435</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>op2.needle</object-name>
+		<property>engines/engine[1]/oil-pressure-psi</property>
+		<interpolation>
+			<entry>
+				<ind>   0 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  100 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.131435</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ft1.needle</object-name>
+		<property>consumables/fuel/tank[0]/temperature-degc</property>
+		<interpolation>
+			<entry>
+				<ind>   -40 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  80 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.176992</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ft2.needle</object-name>
+		<property>consumables/fuel/tank[1]/temperature-degc</property>
+		<interpolation>
+			<entry>
+				<ind>   -40 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  80 </ind>
+				<dep>  100</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.176992</y-m>
+			<z-m>-0.055296</z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Standby altimeter-->
+	<animation>
+		<type>knob</type>
+		<object-name>stby.alt.qnh.knob</object-name>
+		<property>instrumentation/altimeter[1]/setting-hpa</property>
+		<center>
+			<y-m>-0.164145</y-m>
+			<z-m>0.014318</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+		<factor>5</factor>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter[1]/setting-hpa</property>
+				<min>950</min>
+				<max>1050</max>
+				<factor>-1</factor>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>stby.alt.needle</object-name>
+		<property>instrumentation/altimeter[1]/indicated-altitude-ft</property>
+		<factor>0.36</factor>
+		<center>
+			<y-m>-0.149544</y-m>
+			<z-m>0.034697</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.alt.1000</object-name>
+		<property>instrumentation/altimeter[1]/indicated-altitude-ft</property>
+		<factor>0.0001</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>stby.alt.10000.cover</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/altimeter[1]/indicated-altitude-ft</property>
+				<value>10000</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.alt.10000</object-name>
+		<property>instrumentation/altimeter[1]/indicated-altitude-ft</property>
+		<condition>
+			<greater-than-equals>
+				<property>instrumentation/altimeter[1]/indicated-altitude-ft</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+		<factor>0.00001</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.qnh.1000</object-name>
+		<property>instrumentation/altimeter[1]/setting-hpa</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.qnh.100</object-name>
+		<property>instrumentation/altimeter[1]/setting-hpa</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.qnh.10</object-name>
+		<property>instrumentation/altimeter[1]/setting-hpa</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby.qnh.1</object-name>
+		<property>instrumentation/altimeter[1]/setting-hpa</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<!--Altitude Preselector-->
+	<animation>
+		<type>knob</type>
+		<object-name>alt.presel.knob</object-name>
+		<property>it-autoflight/input/alt</property>
+		<center>
+			<y-m>-0.128129</y-m>
+			<z-m>0.072615</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+		<factor>5</factor>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>it-autoflight/input/alt</property>
+				<min>0</min>
+				<max>40000</max>
+				<factor>-500</factor>
+			</binding>
+		</action>
+	</animation>
+	<!--Fuel Quantity indicators-->
+	<animation>
+		<type>rotate</type>
+		<object-name>fuel1.needle</object-name>
+		<property>consumables/fuel/tank[0]/level-kg</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1500 </ind>
+				<dep>  309</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>-0.073993</y-m>
+			<z-m>-0.110797</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>fuel2.needle</object-name>
+		<property>consumables/fuel/tank[1]/level-kg</property>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>   0.0 </dep>
+			</entry>
+			<entry>
+				<ind>  1500 </ind>
+				<dep>  309</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<y-m>0.070062</y-m>
+			<z-m>-0.110797</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--text-->
+	<text>
+		<name>altset</name>
+		<offsets>
+			<x-m>0.018144</x-m>
+			<y-m>-0.155444</y-m>
+			<z-m>0.087538</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%5.0f</format>
+		<property>it-autoflight/input/alt</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>TRQ1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.027132</y-m>
+			<z-m>0.055006</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%3.1f</format>
+		<property>engines/engine[0]/thruster/torque-pct</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>TRQ2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.027132</y-m>
+			<z-m>0.055006</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%3.1f</format>
+		<property>engines/engine[1]/thruster/torque-pct</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>PROP1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.027132</y-m>
+			<z-m>-0.000211</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%4.0f</format>
+		<property>engines/engine[0]/thruster/rpm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>PROP2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.027132</y-m>
+			<z-m>-0.000211</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%4.0f</format>
+		<property>engines/engine[1]/thruster/rpm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ITT1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.027132</y-m>
+			<z-m>-0.055902</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%4.0f</format>
+		<property>engines/engine[0]/itt_degc</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ITT2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.027132</y-m>
+			<z-m>-0.055902</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%4.0f</format>
+		<property>engines/engine[1]/itt_degc</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>NH1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.08209</y-m>
+			<z-m>0.044164</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%5.1f</format>
+		<property>engines/engine[0]/n2</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>NH2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.08209</y-m>
+			<z-m>0.044164</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%5.1f</format>
+		<property>engines/engine[1]/n2</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>FF1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.08209</y-m>
+			<z-m>-0.011523</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%3.0f</format>
+		<property>engines/engine[0]/fuel-flow_kgph</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>FF2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.08209</y-m>
+			<z-m>-0.011523</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%3.0f</format>
+		<property>engines/engine[1]/fuel-flow_kgph</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>NL1</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>-0.08209</y-m>
+			<z-m>-0.066879</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%5.1f</format>
+		<property>engines/engine[0]/n1</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>NL2</name>
+		<offsets>
+			<x-m>0.018348</x-m>
+			<y-m>0.08209</y-m>
+			<z-m>-0.066879</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>90.0</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%5.1f</format>
+		<property>engines/engine[1]/n1</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.008</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- Z Colors/Effects -->
+	<animation>
+		<type>material</type>
+		<object-name>altset</object-name>
+		<object-name>TRQ1</object-name>
+		<object-name>TRQ2</object-name>
+		<object-name>PROP1</object-name>
+		<object-name>PROP2</object-name>
+		<object-name>ITT1</object-name>
+		<object-name>ITT2</object-name>
+		<object-name>NH1</object-name>
+		<object-name>NH2</object-name>
+		<object-name>FF1</object-name>
+		<object-name>FF2</object-name>
+		<object-name>NL1</object-name>
+		<object-name>NL2</object-name>
+		<diffuse>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</diffuse>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>altset</object-name>
+		<object-name>TRQ1</object-name>
+		<object-name>TRQ2</object-name>
+		<object-name>PROP1</object-name>
+		<object-name>PROP2</object-name>
+		<object-name>ITT1</object-name>
+		<object-name>ITT2</object-name>
+		<object-name>NH1</object-name>
+		<object-name>NH2</object-name>
+		<object-name>FF1</object-name>
+		<object-name>FF2</object-name>
+		<object-name>NL1</object-name>
+		<object-name>NL2</object-name>
+	</animation>
+</PropertyList>

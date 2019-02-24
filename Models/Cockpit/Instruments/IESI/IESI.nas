@@ -131,7 +131,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	IESI_display.addPlacement({"node": "IESI.screen"});
 	var group_IESI = IESI_display.createGroup();
 	
-	IESI = canvas_IESI.new(group_IESI, "Aircraft/Q400/Models/Cockpit/Instruments/IESI/IESI.svg");
+	IESI = canvas_IESI.new(group_IESI, "Aircraft/QSeries/Models/Cockpit/Instruments/IESI/IESI.svg");
 	
 	IESI_update.start();
 });

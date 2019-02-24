@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Flugfelag Islands (Air Iceland)</name>
+            <texture>Liveries/q400-jsb/fxi.png</texture>
+	    <enable-hud type="bool">0</enable-hud>
+        </livery>
+    </model>
+</sim>
+</PropertyList>
+ 

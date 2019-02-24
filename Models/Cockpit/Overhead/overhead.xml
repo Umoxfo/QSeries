@@ -6,7 +6,7 @@
         
         <!--Panel illumination-->
     <effect>
-        <inherits-from>Aircraft/Q400/Models/Effects/panel</inherits-from>
+        <inherits-from>../../Effects/panel</inherits-from>
 	<object-name>base</object-name>
 	<object-name>bases</object-name>
 	<object-name>bases2</object-name>

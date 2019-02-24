@@ -4,9 +4,31 @@
 	
 	<!--Interior effect-->
 	<effect>
-		<inherits-from>Aircraft/Q400/Models/Effects/interior/interior-shadow</inherits-from>
+		<inherits-from>Aircraft/QSeries/Models/Effects/interior/interior-shadow</inherits-from>
 		<object-name>PFD.screen</object-name>
+		<object-name>PFD.avail_screen</object-name>
 	</effect>
+	
+	<animation>
+		<type>select</type>
+		<object-name>PFD.avail_screen</object-name>
+		<condition>
+			<equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>pfd</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PFD.screen</object-name>
+		<condition>
+			<not-equals>
+				<property>/instrumentation/mfd[1]/inputs/main-page</property>
+				<value>pfd</value>
+			</not-equals>
+		</condition>
+	</animation>
 	
 	<animation>
 		<type>pick</type>

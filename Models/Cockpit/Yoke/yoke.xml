@@ -13,9 +13,9 @@
         <property>controls/flight/elevator</property>
         <factor>7.5</factor>
         <center>
-            <x-m>-12.041177</x-m>
+            <x-m>-0.041177</x-m>
             <y-m>-0.499998</y-m>
-            <z-m>1.356261</z-m>
+            <z-m>-0.043739</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -32,9 +32,9 @@
         <property>controls/flight/aileron</property>
         <factor>-45.0</factor>
         <center>
-            <x-m>-11.951792</x-m>
+            <x-m>0.048208</x-m>
             <y-m>-0.499998</y-m>
-            <z-m>1.965158</z-m>
+            <z-m>0.565158</z-m>
         </center>
         <axis>
             <x>1</x>
@@ -99,9 +99,9 @@
         <property>controls/flight/elevator</property>
         <factor>7.5</factor>
         <center>
-            <x-m>-12.041177</x-m>
+            <x-m>-0.041177</x-m>
             <y-m>0.499998</y-m>
-            <z-m>1.356261</z-m>
+            <z-m>-0.043739</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -116,9 +116,9 @@
         <property>controls/flight/aileron</property>
         <factor>-45.0</factor>
         <center>
-            <x-m>-11.951792</x-m>
+            <x-m>0.048208</x-m>
             <y-m>0.499998</y-m>
-            <z-m>1.965158</z-m>
+            <z-m>0.565158</z-m>
         </center>
         <axis>
             <x>1</x>

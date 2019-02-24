@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	
+	
+	<!--Overhead Panel-->
+	<model>
+		<path>Overhead/overhead-200.xml</path> <!--TODO add warning panel-->
+		<offsets>
+			<x-m>-4.9</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.9</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>158.35</roll-deg>
+		</offsets>
+	</model>
+	
+	
+	<!--Glareshield Panel-->
+	<model>
+		<path>Glareshield/glareshieldpanel-200.xml</path> 
+		<offsets>
+			<x-m>-5.41738</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.472182</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<path>FlightInstruments-200.xml</path> <!--centered around EADI-->
+		<offsets>
+			<x-m>-5.4659</x-m>
+			<y-m>-0.45158</y-m>
+			<z-m>0.313012</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>MainPanel/engine_instruments/engine_instruments.xml</path>
+		<offsets>
+			<x-m>-5.47</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.3</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<path>FlightInstruments-Copilot-200.xml</path> <!--centered around EADI-->
+		<offsets>
+			<x-m>-5.4659</x-m>
+			<y-m>0.45158</y-m>
+			<z-m>0.313012</z-m>
+			<pitch-deg>-16.2</pitch-deg>
+		</offsets>
+	</model>
+	
+	<!--FMS-->
+	<model>
+		<path>Pedestal/Front/FMS/FMS.xml</path>
+		<offsets>
+			<x-m>-5.33238</x-m>
+			<y-m>-0.14</y-m>
+			<z-m>0.102625</z-m>
+			<roll-deg>30</roll-deg>
+			<heading-deg>90</heading-deg>
+		</offsets>
+	</model>
+
+	<!--Control Yokes-->
+	<model>
+		<path>Yoke/yoke.xml</path>
+		<offsets>
+			<x-m>-5.1</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.4</z-m>
+		</offsets>
+		<name>yoke</name>
+	</model>
+
+	<!--PEDESTAL-->
+	<model>
+		<path>Pedestal/Front/frontpedestal.xml</path> <!--TODO change to 100/200/300-->
+		<offsets>
+			<x-m>6.85</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-1.832</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Center/enginecontrols-200.xml</path>
+		<offsets>
+			<x-m>-5.04161</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.034456</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Pedestal/Rear/pedestalrear-200.xml</path>
+		<offsets>
+			<x-m>-4.76</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.032</z-m>
+		</offsets>
+	</model>
+	
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>30</max-m>
+		<max-property>sim/rendering/static-lod/bare</max-property>
+	</animation>
+  
+
+</PropertyList>

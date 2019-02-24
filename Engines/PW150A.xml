@@ -7,7 +7,7 @@
   <maxn1>                       104.2   </maxn1>
   <idlen2>                       54.3   </idlen2>
   <maxn2>                       101.1   </maxn2>
-  <maxpower unit="HP">          5070   </maxpower>
+  <maxpower unit="HP">          6338.75   </maxpower> <!--in EMERG position, 1.25*max rated takeoff power 1.25*5071 SHP http://www.smartcockpit.com/docs/Q400-Power_Plant.pdf-->
   <psfc unit="LBS/HR/HP">0.23</psfc>
   <n1idle_max_delay>2</n1idle_max_delay>
   <maxstartingtime>1</maxstartingtime>

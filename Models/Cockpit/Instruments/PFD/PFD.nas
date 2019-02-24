@@ -14,7 +14,6 @@ var roundToNearest = func(n, m) {
 }
 
 var PFD_main = nil;
-var PFD_avail = nil;
 var PFD_display = nil;
 var page = "only";
 
@@ -38,6 +37,12 @@ var VS_needle = props.globals.getNode("/instrumentation/pfd/vs-needle", 1);
 var AI_pitch = props.globals.getNode("/orientation/pitch-deg", 1);
 var AI_roll = props.globals.getNode("/orientation/roll-deg", 1);
 var Slip_Skid = props.globals.getNode("/instrumentation/slip-skid-ball/indicated-slip-skid", 1);
+var NAV0_isloc = props.globals.getNode("/instrumentation/nav[0]/frequencies/is-localizer-frequency", 1);
+var NAV0_hasgs = props.globals.getNode("/instrumentation/nav[0]/has-gs", 1);
+var NAV0_gsdefl = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1);
+var NAV1_isloc = props.globals.getNode("/instrumentation/nav[1]/frequencies/is-localizer-frequency", 1);
+var NAV1_hasgs = props.globals.getNode("/instrumentation/nav[1]/has-gs", 1);
+var NAV1_gsdefl = props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1);
 
 #in slow update:
 var AP_ap1 = props.globals.getNode("/it-autoflight/input/ap1", 1);
@@ -52,19 +57,27 @@ var AP_navsource = props.globals.getNode("/it-autoflight/settings/nav-source", 1
 var Heading_bugdiff = props.globals.getNode("/instrumentation/pfd/hdg-bug-diff", 1);
 var NAV0_inrange = props.globals.getNode("/instrumentation/nav[0]/in-range", 1);
 var NAV0_defl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
-var NAV0_freq = props.globals.getNode("/instrumentation/nav[0]/frequencies/selected-mhz-fmt", 1);
-var NAV0_rad = props.globals.getNode("/instrumentation/nav[0]/radials/target-radial-deg", 1);
+var NAV0_freq = props.globals.getNode("/instrumentation/nav[0]/frequencies/selected-mhz", 1);
+var NAV0_rad = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg", 1);
+var NAV0_dme_inrange = props.globals.getNode("/instrumentation/nav[0]/dme-in-range", 1);
+var NAV0_dme = props.globals.getNode("/instrumentation/nav[0]/nav-distance", 1);
+var NAV0_tofrom = props.globals.getNode("/instrumentation/nav[0]/from-flag", 1);
 var NAV1_inrange = props.globals.getNode("/instrumentation/nav[1]/in-range", 1);
 var NAV1_defl = props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1);
-var NAV1_freq = props.globals.getNode("/instrumentation/nav[1]/frequencies/selected-mhz-fmt", 1);
-var NAV1_rad = props.globals.getNode("/instrumentation/nav[1]/radials/target-radial-deg", 1);
+var NAV1_freq = props.globals.getNode("/instrumentation/nav[1]/frequencies/selected-mhz", 1);
+var NAV1_rad = props.globals.getNode("/instrumentation/nav[1]/radials/selected-deg", 1);
+var NAV1_dme_inrange = props.globals.getNode("/instrumentation/nav[1]/dme-in-range", 1);
+var NAV1_dme = props.globals.getNode("/instrumentation/nav[1]/nav-distance", 1);
+var NAV1_tofrom = props.globals.getNode("/instrumentation/nav[1]/from-flag", 1);
 var ADF0_inrange = props.globals.getNode("/instrumentation/adf[0]/in-range", 1);
 var ADF0_brg = props.globals.getNode("/instrumentation/adf[0]/indicated-bearing-deg", 1);
 var ADF1_inrange = props.globals.getNode("/instrumentation/adf[1]/in-range", 1);
 var ADF1_brg = props.globals.getNode("/instrumentation/adf[1]/indicated-bearing-deg", 1);
-var DME_dist = props.globals.getNode("/instrumentation/dme[0]/KDI572-574/nm", 1);
+var DME_dist = props.globals.getNode("/instrumentation/dme[0]/indicated-distance-nm", 1);
 var ALT_qnh = props.globals.getNode("/instrumentation/altimeter/setting-hpa", 1);
 var DecHei = props.globals.getNode("/instrumentation/PFD/DH", 1);
+var RM_cur_wp = props.globals.getNode("/autopilot/route-manager/current-wp", 1);
+
 
 var Volts = props.globals.getNode("/systems/electrical/volts", 1);
 var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page", 1);
@@ -101,7 +114,7 @@ setprop("/MFD/oil-temperature-needle[0]", 0);
 setprop("/engines/engine[1]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[1]", 0);
 setprop("/engines/engine[0]/fuel-flow-pph", 0);
-setprop("/engines/engine[1]/fuel-flow-pph", 0);
+setprop("/engines/engine[1]/fuel-flsow-pph", 0);
 setprop("/consumables/fuel/tank[0]/temperature-degc", 0);
 setprop("/consumables/fuel/tank[1]/temperature-degc", 0);
 setprop("/controls/engines/engine[0]/condition-lever-state", 0);
@@ -158,16 +171,12 @@ var canvas_PFD_base = {
 		if (Volts.getValue() >= 10) {
 			var main_page=MainPage.getValue();
 			if(main_page=="pfd"){
-				PFD_avail.page.show();
 				PFD_main.page.hide();
 			}else{
 				PFD_main.page.show();
-				PFD_avail.page.hide();
-				#PFD_main.fast_update();
 			}
 		} else {
 			PFD_main.page.hide();
-			PFD_avail.page.hide();
 		}
 		
 		settimer(func me.update(), 0.1);
@@ -182,7 +191,7 @@ var canvas_PFD_main = {
 		return m;
 	},
 	getKeys: func() {
-		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","NavFreq","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","alt.bug.top","alt.bug.btm","asi.rollingdigits","NavFreq","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind","DMEdist","alt.ground"];
+		return ["ap-alt","ap-alt-capture","IASbug1","IASbug1symbol","IASbug1digit","IASbug2","IASbug2symbol","IASbug2digit","compassrose","IAS.100","IAS.10","ap-hdg","ap-hdg-bug","FMSNAVpointer","FMSNAVdeviation","FMSNAVId","FMSNAVRadial","FMSNAVdeflectionscale","FMSNAVtext","FMSNAVDist","FMSNAVtofrom","dh","radaralt","QNH","alt.1000","alt.100","alt.1","alt.1.top","alt.1.btm","VS","horizon","ladder","rollpointer","rollpointer2","asitape","asitapevmo","asi.trend.up","asi.trend.down","alt.tape","VS.needle","AP","ap.lat.engaged","ap.lat.armed","ap.vert.eng","ap.vert.value","ap.vert.arm","altTextLowSmall1","altTextHighSmall2","altTextLow1","altTextHigh1","altTextHigh2","alt.low.digits","alt.bug","asi.rollingdigits","ADF1symbol","ADF1text","ADF1ind","ADF2text","ADF2symbol","ADF2ind","DMEdist","alt.ground","LOCGroup","GSGroup","loc.pointer","gs.pointer"];
 	},
 	fast_update: func() {
 		#Airspeed Indicator
@@ -243,17 +252,10 @@ var canvas_PFD_main = {
 		#Altitude Bug
 		var altbugdiff=ALT_bugdiff.getValue();
 		if(altbugdiff<-500){
-			me["alt.bug"].hide();
-			me["alt.bug.btm"].show();
-			me["alt.bug.top"].hide();
+			me["alt.bug"].setTranslation(0,250);
 		}else if(altbugdiff>500){
-			me["alt.bug"].hide();
-			me["alt.bug.btm"].hide();
-			me["alt.bug.top"].show();
+			me["alt.bug"].setTranslation(0,-250);
 		}else{
-			me["alt.bug"].show();
-			me["alt.bug.btm"].hide();
-			me["alt.bug.top"].hide();
 			me["alt.bug"].setTranslation(0,altbugdiff*(-0.5));
 		}
 		
@@ -292,7 +294,7 @@ var canvas_PFD_main = {
 		me["alt.100"].setText(sprintf("%1d", int(10*math.mod(ALT_100.getValue()/10,1))));
 		
 		#Alt above Ground, Radar alt and ground on alt tape
-		var agl = ALT_AGL.getValue();
+		var agl = ALT_AGL.getValue() + 5.5;
 		if(agl<2500){
 			me["radaralt"].show();
 			me["radaralt"].setText(sprintf("%4d", math.round(agl)));
@@ -322,6 +324,47 @@ var canvas_PFD_main = {
 		
 		me["rollpointer"].setRotation(-roll*D2R);
 		me["rollpointer2"].setTranslation(math.round(Slip_Skid.getValue()*5), 0);
+		
+		#ILS
+		var navsrc = AP_navsource.getValue();
+		if(navsrc=="NAV1"){
+			var nav0isloc = NAV0_isloc.getValue() or 0;
+			if(nav0isloc==1){
+				me["LOCGroup"].show();
+				var nav0dev = NAV0_defl.getValue() or 0;
+				me["loc.pointer"].setTranslation(nav0dev*88,0);
+			}else{
+				me["LOCGroup"].hide();
+			}
+			var nav0isgs = NAV0_hasgs.getValue() or 0;
+			if(nav0isgs==1){
+				me["GSGroup"].show();
+				var nav0gs = NAV0_gsdefl.getValue() or 0;
+				me["gs.pointer"].setTranslation(0,nav0gs*129);
+			}else{
+				me["GSGroup"].hide();
+			}
+		}else if(navsrc=="NAV2"){
+			var nav1isloc = NAV1_isloc.getValue() or 0;
+			if(nav1isloc==1){
+				me["LOCGroup"].show();
+				var nav0dev = NAV1_defl.getValue() or 0;
+				me["loc.pointer"].setTranslation(nav0dev*88,0);
+			}else{
+				me["LOCGroup"].hide();
+			}
+			var nav1isgs = NAV1_hasgs.getValue() or 0;
+			if(nav1isgs==1){
+				me["GSGroup"].show();
+				var nav0gs = NAV1_gsdefl.getValue() or 0;
+				me["gs.pointer"].setTranslation(0,nav1gs*129);
+			}else{
+				me["GSGroup"].hide();
+			}
+		}else{
+			me["LOCGroup"].hide();
+			me["GSGroup"].hide();
+		}
 		
 		
 		settimer(func me.fast_update(), 0.05);
@@ -396,8 +439,6 @@ var canvas_PFD_main = {
 		
 		var heading=Heading_magnetic.getValue();
 		
-		#me["FMSNAVpointer"].setRotation(heading*(0.01744));
-		#me["FMSNAVdeviation"].setRotation(heading*(0.01744));
 		var hdgbugdiff=Heading_bugdiff.getValue();
 		me["ap-hdg-bug"].setRotation(hdgbugdiff*(-D2R));
 		
@@ -408,42 +449,90 @@ var canvas_PFD_main = {
 		var nav_source = AP_navsource.getValue();
 		me["FMSNAVtext"].setText(nav_source or "---");
 		if(nav_source == "NAV1"){
-			me["NavFreq"].show();		
-			me["NavFreq"].setText(sprintf("%3.2f", NAV0_freq.getValue()));
+			me["FMSNAVRadial"].setColor(0,1,1);
+			me["FMSNAVId"].setColor(0,1,1);
+			me["FMSNAVtofrom"].show();	
+			me["FMSNAVId"].setText(sprintf("%3.2f", NAV0_freq.getValue()));
+			var trgt_radial0 = NAV0_rad.getValue() or 0;
+			me["FMSNAVRadial"].setText(sprintf("%3d", math.round(trgt_radial0)));
 			if(NAV0_inrange.getValue()==1){
 				me["FMSNAVpointer"].show();
-				me["FMSNAVdeviation"].show();			
-				me["FMSNAVdeviation"].setTranslation(NAV0_defl.getValue()*130, 0);
-				var trgt_radial0 = NAV0_rad.getValue();
-				me["FMSNAVRadial"].setText(sprintf("%3d", trgt_radial0));
 				var nav0_radialdiff=heading-trgt_radial0;
 				me["FMSNAVpointer"].setRotation(nav0_radialdiff*(-D2R));
-				me["FMSNAVdeviation"].setRotation(nav0_radialdiff*(-D2R));
 				me["FMSNAVdeflectionscale"].setRotation(nav0_radialdiff*(-D2R));
+				me["FMSNAVdeviation"].setTranslation(NAV0_defl.getValue()*130, 0);
+				if(NAV0_dme_inrange.getValue()==1){
+					var nav0_dist = NAV0_dme.getValue();
+					if(nav0_dist>=10){
+						me["FMSNAVDist"].setText(sprintf("%3d", nav0_dist));
+					}else{
+						me["FMSNAVDist"].setText(sprintf("%2.1f", nav0_dist));
+					}
+				}else{
+					me["FMSNAVDist"].setText("---");
+				}
+				if(NAV0_tofrom.getValue()==1){
+					me["FMSNAVtofrom"].setRotation(180*D2R);
+				}else{
+					me["FMSNAVtofrom"].setRotation(0);
+				}
 			}else{
 				me["FMSNAVpointer"].hide();
-				me["FMSNAVdeviation"].hide();			
+				me["FMSNAVDist"].setText("---");
 			}
 		}else if(nav_source == "NAV2"){
-			me["NavFreq"].show();
-			me["NavFreq"].setText(sprintf("%3.2f", NAV1_freq.getValue()));
+			me["FMSNAVRadial"].setColor(0,1,1);
+			me["FMSNAVId"].setColor(0,1,1);
+			me["FMSNAVtofrom"].show();
+			me["FMSNAVId"].setText(sprintf("%3.2f", NAV1_freq.getValue()));
+			var trgt_radial1 = NAV1_rad.getValue() or 0;
+			me["FMSNAVRadial"].setText(sprintf("%3d", math.round(trgt_radial1)));
 			if(NAV1_inrange.getValue()==1){
-				me["FMSNAVpointer"].show();
-				me["FMSNAVdeviation"].show();			
+				me["FMSNAVpointer"].show();		
 				me["FMSNAVdeviation"].setTranslation(NAV1_defl.getValue()*130, 0);
-				var trgt_radial1 = NAV1_rad.getValue();
-				me["FMSNAVRadial"].setText(sprintf("%3d", trgt_radial0));
 				var nav1_radialdiff=heading-trgt_radial1;
 				me["FMSNAVpointer"].setRotation(nav1_radialdiff*(-D2R));
-				me["FMSNAVdeviation"].setRotation(nav1_radialdiff*(-D2R));
 				me["FMSNAVdeflectionscale"].setRotation(nav1_radialdiff*(-D2R));				
-			
+				if(NAV1_dme_inrange.getValue()==1){
+					var nav1_dist = NAV1_dme.getValue();
+					if(nav0_dist>=10){
+						me["FMSNAVDist"].setText(sprintf("%3d", nav1_dist));
+					}else{
+						me["FMSNAVDist"].setText(sprintf("%2.1f", nav1_dist));
+					}
+				}else{
+					me["FMSNAVDist"].setText("---");
+				}
+				if(NAV1_tofrom.getValue()==1){
+					me["FMSNAVtofrom"].setRotation(180*D2R);
+				}else{
+					me["FMSNAVtofrom"].setRotation(0);
+				}
 			}else{
 				me["FMSNAVpointer"].hide();
-				me["FMSNAVdeviation"].hide();			
+				me["FMSNAVDist"].setText("---");			
 			}
 		}else if(nav_source == "FMS"){
-			me["NavFreq"].hide();
+			me["FMSNAVRadial"].setColor(1,0,1);
+			me["FMSNAVId"].setColor(1,0,1);
+			me["FMSNAVpointer"].show();
+			var current_wp = RM_cur_wp.getValue();
+			if(current_wp==-1){
+				me["FMSNAVRadial"].setText("---");
+			}else{
+				var brg = getprop("/autopilot/route-manager/route/wp["~current_wp~"]/leg-bearing-true-deg") or 0;
+				var dst = getprop("/autopilot/route-manager/route/wp["~current_wp~"]/leg-distance-nm") or 0;
+				var wp_id = getprop("/autopilot/route-manager/route/wp["~current_wp~"]/id") or "---";
+				me["FMSNAVRadial"].setText(sprintf("%3d", brg));
+				me["FMSNAVDist"].setText(sprintf("%2.1f", dst));
+				me["FMSNAVId"].setText(wp_id);
+			}
+			me["FMSNAVtofrom"].hide();
+		}else{
+			me["FMSNAVRadial"].setColorFill(1,1,1);
+			me["FMSNAVRadial"].setText("---");
+			me["FMSNAVDist"].setText("---");
+			me["FMSNAVId"].setText("---");
 		}
 		
 
@@ -472,27 +561,20 @@ var canvas_PFD_main = {
 			me["ADF2ind"].hide();
 		}
 
-		me["DMEdist"].setText(sprintf("%3d", DME_dist.getValue()));
+		var dme_distance = DME_dist.getValue() or 0;
+		if(dme_distance>=10){
+			me["DMEdist"].setText(sprintf("%3d", math.round(dme_distance)));
+		}else{
+			me["DMEdist"].setText(sprintf("%2.1f", dme_distance));
+		}
 		
 		
 			
-		me["QNH"].setText(sprintf("%s", ALT_qnh.getValue()));
+		me["QNH"].setText(sprintf("%4d", ALT_qnh.getValue()));
 		
 
 	
 		settimer(func me.slow_update(), 0.2);
-	},
-};
-
-var canvas_PFD_avail = {
-	new: func(canvas_group, file) {
-		var m = { parents: [canvas_PFD_avail,canvas_PFD_base] };
-		m.init(canvas_group, file, "avail");
-
-		return m;
-	},
-	getKeys: func() {
-		return [];
 	},
 };
 
@@ -504,11 +586,11 @@ setlistener("sim/signals/fdm-initialized", func {
 		"mipmapping": 1
 	});
 	PFD_display.addPlacement({"node": "PFD.screen"});
+	PFD_display.addPlacement({"node": "MFDpilot.screenPFD"});
+	PFD_display.addPlacement({"node": "MFDcopilot.screenPFD"});
 	var groupPFDmain = PFD_display.createGroup();
-	var groupPFDavail = PFD_display.createGroup();
 
-	PFD_main = canvas_PFD_main.new(groupPFDmain, "Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.svg");
-	PFD_avail = canvas_PFD_avail.new(groupPFDavail, "Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFDavail.svg");
+	PFD_main = canvas_PFD_main.new(groupPFDmain, "Aircraft/QSeries/Models/Cockpit/Instruments/PFD/PFD.svg");
 
 	PFD_main.fast_update();
 	PFD_main.slow_update();

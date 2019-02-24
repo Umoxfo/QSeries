@@ -8,7 +8,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 ************************************************************************
 -->
 
-<PropertyList include="q400-base.xml">
+<PropertyList include="qseries-common.xml">
 	<limits>
 		<max-flap-extension-speed>
 			<flaps>0.142</flaps>
@@ -46,7 +46,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		<aero>q400-jsb</aero>
 		<fuel-fraction>0.5</fuel-fraction>
 		<startup>
-			<splash-texture>Aircraft/Q400/Splash.png</splash-texture>
+			<splash-texture>Aircraft/QSeries/Splash.png</splash-texture>
 		</startup>
 		<status>early production</status>
 		<rating>
@@ -55,20 +55,79 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<cockpit type="int">5</cockpit><!--thanks to FlorianK!!-->
 			<model type="int">5</model><!--thanks to FlorianK!!-->
 		</rating>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior1.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior2.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior3.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior4.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior5.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior6.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior7.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/exterior8.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/cockpit1.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/cockpit2.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Q400/cockpit3.jpg</path>
+			</preview>
+		</previews>
+		<systems>
+			<autopilot n="2">
+				<path>Aircraft/QSeries/Systems/flight-controls.xml</path>
+			</autopilot>
+		</systems>
+		<!--Fallback for older FG versions-->
+		<startup>
+			<splash-texture>Aircraft/QSeries/Splash/Q400/exterior1.jpg</splash-texture>
+		</startup>
 
 		<model>
-			<path>Aircraft/Q400/Models/q400.xml</path>
+			<path>Aircraft/QSeries/Models/DH8D.xml</path>
 			<livery> 
 				<file type="string"/>
 				<enable-hud type="bool">0</enable-hud>
 			</livery> 
-			<open-cabin-doors type="bool">1</open-cabin-doors>
-			<pushback>
-				<position-norm type="float">0</position-norm>
-				<kp type="float">250</kp>
-				<ki type="float">0</ki>
-				<kd type="float">0</kd>
-			</pushback>
 			<start-idling type="bool">0</start-idling>
 			<variant type="int">1</variant>
 			<interior>
@@ -76,6 +135,139 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			</interior>
 			<always-show-hud type="bool">0</always-show-hud>
 		</model>
+		
+		<view n="0">
+			<name>Cockpit</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<default-field-of-view-deg>90</default-field-of-view-deg>
+				<x-offset-m type="double">-0.4577</x-offset-m>
+				<y-offset-m type="double">2.682</y-offset-m>
+				<z-offset-m type="double">-11.4083</z-offset-m>
+				<pitch-offset-deg>-14</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="101">
+			<name>Cabin View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">0</default-heading-deg>
+				<front-direction-deg type="double">0</front-direction-deg>
+				<front-left-direction-deg type="double">45</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">135</back-left-direction-deg>
+				<back-direction-deg type="double">180</back-direction-deg>
+				<back-right-direction-deg type="double">225</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">315</front-right-direction-deg>
+				<x-offset-m type="double">-0.90</x-offset-m>
+				<y-offset-m type="double">2.8</y-offset-m>
+				<z-offset-m type="double">3.6</z-offset-m>
+				<pitch-offset-deg>0</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="102">
+			<name>Stewardess 360 View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">180</default-heading-deg>
+				<front-direction-deg type="double">180</front-direction-deg>
+				<front-left-direction-deg type="double">135</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">45</back-left-direction-deg>
+				<back-direction-deg type="double">0</back-direction-deg>
+				<back-right-direction-deg type="double">315</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">225</front-right-direction-deg>
+				<x-offset-m type="double">0</x-offset-m>
+				<y-offset-m type="double">2.8</y-offset-m>
+				<z-offset-m type="double">-6.927</z-offset-m>
+				<pitch-offset-deg>0</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="103">
+			<name>Copilot View</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+				<default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+				<default-pitch-deg type="double">0</default-pitch-deg>
+				<default-heading-deg type="double">0</default-heading-deg>
+				<front-direction-deg type="double">0</front-direction-deg>
+				<front-left-direction-deg type="double">45</front-left-direction-deg>
+				<left-direction-deg type="double">90</left-direction-deg>
+				<back-left-direction-deg type="double">135</back-left-direction-deg>
+				<back-direction-deg type="double">180</back-direction-deg>
+				<back-right-direction-deg type="double">225</back-right-direction-deg>
+				<right-direction-deg type="double">270</right-direction-deg>
+				<front-right-direction-deg type="double">315</front-right-direction-deg>
+				<default-field-of-view-deg>90</default-field-of-view-deg>
+				<x-offset-m type="double">0.4577</x-offset-m>
+				<y-offset-m type="double">2.682</y-offset-m>
+				<z-offset-m type="double">-11.4083</z-offset-m>
+				<pitch-offset-deg>-14</pitch-offset-deg>
+			</config>
+			<dynamic>
+				<enabled type="bool" userarchive="y">false</enabled>
+			</dynamic>
+		</view>
+		<view n="1">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="2">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="3">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="4">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="5">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="6">
+			<config>
+				<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
+		<view n="7">
+			<config>
+			<target-y-offset-m archive="y" type="double">3.5</target-y-offset-m>
+			</config>
+		</view>
 
 		<menubar>
 			<default>
@@ -137,56 +329,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</menubar>
 		
 		<checklists include="Dialogs/checklists.xml"/>
-		<color-set>
-			<white>
-				<r type="float">0.9</r>
-				<g type="float">0.9</g>
-				<b type="float">0.9</b>
-				<a type="float">1.0</a>
-			</white>
-			<red>
-				<r type="float">0.9</r>
-				<g type="float">0.0</g>
-				<b type="float">0.0</b>
-				<a type="float">1.0</a>
-			</red>
-			<yellow>
-				<r type="float">0.9</r>
-				<g type="float">0.9</g>
-				<b type="float">0.0</b>
-				<a type="float">1.0</a>
-			</yellow>
-			<green>
-				<r type="float">0.0</r>
-				<g type="float">0.9</g>
-				<b type="float">0.0</b>
-				<a type="float">1.0</a>
-			</green>
-			<cyan>
-				<r type="float">0.0</r>
-				<g type="float">0.9</g>
-				<b type="float">0.9</b>
-				<a type="float">1.0</a>
-			</cyan>
-			<blue>
-				<r type="float">0.0</r>
-				<g type="float">0.0</g>
-				<b type="float">0.9</b>
-				<a type="float">1.0</a>
-			</blue>
-			<magenta>
-				<r type="float">0.9</r>
-				<g type="float">0.0</g>
-				<b type="float">0.9</b>
-				<a type="float">1.0</a>
-			</magenta>
-			<amber>
-				<r type="float">0.9</r>
-				<g type="float">0.5</g>
-				<b type="float">0.0</b>
-				<a type="float">1.0</a>
-			</amber>
-		</color-set>
 		
 		<tutorials include="Tutorials/tutorials.xml"/>
 		<multiplay>
@@ -257,58 +399,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<max-lb type="double">4710</max-lb>
 		</weight>
 	</payload>
-        
-	<systems>
-		<electrical>
-			<lighting>
-				<landing-light type="bool">0</landing-light>
-				<logo-light type="bool">0</logo-light>
-			</lighting>
-			<volts type="float">0</volts>
-		</electrical>
-	</systems>
 	
-	<input>
-		<keyboard>
-			<key n="127">
-				<name>Delete</name>
-				<desc>Toggle Reversers</desc>
-				<binding>
-					<command>property-toggle</command>
-					<property>controls/engines/engine[0]/reverser</property>
-				</binding>
-				<binding>
-					<command>property-toggle</command>
-					<property>controls/engines/engine[1]/reverser</property>
-				</binding>
-			</key>
-		</keyboard>
-	</input>
-
-
-	<controls>
-		<flight>
-			<spoilers type="float">0</spoilers>
-			<spoilers-int type="float">0</spoilers-int>
-			<flaps-int type="float">0</flaps-int>
-			<elevator-int type="float">0</elevator-int>
-			<rudder-int type="float">0</rudder-int>
-		</flight>
-		<electric>
-			<power-source>1</power-source>
-			<autostart type="bool">0</autostart>
-		</electric>
-		<gear>
-			<gear-down-int type="float">1</gear-down-int>
-			<jacks>0</jacks>
-			<brake-parking>1</brake-parking>
-			<brake-parking-position>1</brake-parking-position>
-			<tiller-cmd-norm type="float">0</tiller-cmd-norm>
-			<tiller-enabled type="int">0</tiller-enabled>
-			<tiller-disabled type="int">0</tiller-disabled>
-		</gear>
-	</controls>
-
 	<instrumentation>
 		<comm n="0">
 			<selected type="bool">0</selected>
@@ -353,7 +444,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<serviceable type="bool">1</serviceable>
 			<display>NAVIDENT[0]</display>
 			<ident>
-				<model>Q400</model>
+				<model>DH8D</model>
 			</ident>
 		</cdu>
 		<PFD>
@@ -363,36 +454,77 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</PFD>
 	</instrumentation>
 	
-	<q400>
-		<const>
-			<JETA_LBGAL type="double">6.7898</JETA_LBGAL>
-			<JETA_LB2L type="double">0.557518</JETA_LB2L>
-			<JETA_USG2L type="double">3.785412</JETA_USG2L>
-		</const>
-	</q400>
+	<!--Version-specific part of the key settings-->
+	<input>
+		<keyboard>
+			<key n="77">
+				<name>M</name>
+				<desc>Condition Lever Backward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>4</value><!--MAX 1020-->
+					<value>3</value><!--900-->
+					<value>2</value><!--MIN 850-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>4</value><!--MAX 1020-->
+					<value>3</value><!--900-->
+					<value>2</value><!--MIN 850-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+			</key>
+			<key n="109">
+				<name>m</name>
+				<desc>Condition Lever Forward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--MIN 850-->
+					<value>3</value><!--900-->
+					<value>4</value><!--MAX 1020-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--MIN 850-->
+					<value>3</value><!--900-->
+					<value>4</value><!--MAX 1020-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+			</key>
+		</keyboard>
+	</input>
 
 	<nasal>  
-		<global>
-			<file>Aircraft/Q400/Nasal/global.canvas.nas</file>
-		</global>
 		<canvas_nd>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
 		</canvas_nd>
 		<canvas_ed>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/ED/ED.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/ED/ED.nas</file>
 		</canvas_ed>
 		<canvas_mfd>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.pilot.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/MFD/MFD.copilot.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.pilot.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/MFD/MFD.copilot.nas</file>
 		</canvas_mfd>
 		<canvas_pfd>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/PFD/PFD.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_team>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/TEAM/TEAM.nas</file>
 		</canvas_team>
 		<canvas_iesi>
-			<file>Aircraft/Q400/Models/Cockpit/Instruments/IESI/IESI.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/IESI/IESI.nas</file>
 		</canvas_iesi><!--
 		<ND>
 			<file>Models/panels/ND/ND.nas</file>
@@ -406,46 +538,23 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/general.nas</file>
 			<file>Nasal/autoflight-helpers.nas</file>
 			<file>Nasal/listeners.nas</file>
-		</q400>
-		<!--dialogs>
-			<file>gui/dialogs/fuelpayload.nas</file>
-		</dialogs-->
-		<itaf>
-			<file>Aircraft/Q400/Nasal/it-autoflight.nas</file>
-		</itaf>
-		<systems>
-			<file>Nasal/APU.nas</file>
-			<file>Nasal/Electrical.nas</file>
 			<file>Nasal/FADEC.nas</file>
-			<file>Nasal/hydraulics.nas</file>
-			<file>Nasal/fuel.nas</file>
-			<file>Nasal/pneumatics.nas</file><!--
-			<file>Nasal/engines.nas</file>-->
-		</systems>
-		<doors>
-			<file>Nasal/doors.nas</file>
-		</doors><!--
-		<walk>
-			<file>Nasal/walk.nas</file>
-		</walk-->
-		<dialogs>
-			<file>Nasal/dialogs.nas</file>
-		</dialogs>
+		</q400>
 		<procedures>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsDB.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsWP.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTP.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTransition.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsDB.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsWP.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTP.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/Procedures/fmsTransition.nas</file>
 		</procedures>
 		<displaypages>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/CduStart.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltPlan.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltList.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDeparture.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDestination.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/NavPages.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/Performance.nas</file>
-			<file>Aircraft/Q400/Models/Cockpit/Pedestal/Front/CDU/DispPages/Progress.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/CduStart.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltPlan.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltList.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDeparture.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/FltDestination.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/NavPages.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/Performance.nas</file>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/CDU/DispPages/Progress.nas</file>
 		</displaypages>
 		<cdu>
 			<file>Models/Cockpit/Pedestal/Front//CDU/CDU.nas</file>

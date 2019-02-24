@@ -1,29 +1,9 @@
-#    This file is part of the Q400 (JSB) based on extra500
-#
-#    Q400 is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 2 of the License, or
-#    (at your option) any later version.
-#
-#    Q400 is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with Q400.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-#	Authors: 		Dirk Dittmann
-#	Date: 		Mai 02 2015
-#
-#	Last change:	Eric van den Berg
-#	Date:			15.08.16
+#    This file is part of the QSeries based on extra500
 #
 
 
 #Load Constants
-var JETA_LBGAL=getprop("/q400/const/JETA_LBGAL");
+var JETA_LBGAL=getprop("/qseries/const/JETA_LBGAL");
 var ad_const=160; 	#160lbs average adult weight
 var ch_const=80;	#80lbs average children weight
 
@@ -845,7 +825,7 @@ var PAXWidget = {
 var FuelPayloadClass = {
 	new : func(){
 		var m = {parents:[FuelPayloadClass]};
-		m._nRoot 	= props.globals.initNode("/q400/dialog/fuel");
+		m._nRoot 	= props.globals.initNode("/qseries/dialog/fuel");
 		
 		m._nGrossWeight	= props.globals.initNode("/fdm/jsbsim/inertia/nt-weight-lbs",0.0,"DOUBLE"); #listener on weight-lbs not possible, set via system in Systems/fuelpayload.xml
 		
@@ -948,7 +928,7 @@ var FuelPayloadClass = {
 		
 		me._group = me._canvas.createGroup();
 
-		canvas.parsesvg(me._group, "Aircraft/Q400/gui/dialogs/FuelPayload.svg",{"font-mapper": global.canvas.FontMapper("Liberation Sans", "bold")});
+		canvas.parsesvg(me._group, "Aircraft/QSeries/gui/dialogs/FuelPayload.svg",{"font-mapper": global.canvas.FontMapper("Liberation Sans", "bold")});
 		
 		
 		
