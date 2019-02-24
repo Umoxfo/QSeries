@@ -59,57 +59,57 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior1.jpg</path>
+				<path>Splash/Q400/exterior1.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior2.jpg</path>
+				<path>Splash/Q400/exterior2.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior3.jpg</path>
+				<path>Splash/Q400/exterior3.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior4.jpg</path>
+				<path>Splash/Q400/exterior4.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior5.jpg</path>
+				<path>Splash/Q400/exterior5.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior6.jpg</path>
+				<path>Splash/Q400/exterior6.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior7.jpg</path>
+				<path>Splash/Q400/exterior7.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior8.jpg</path>
+				<path>Splash/Q400/exterior8.jpg</path>
 			</preview>
 			<preview>
 				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/cockpit1.jpg</path>
+				<path>Splash/Q400/cockpit1.jpg</path>
 			</preview>
 			<preview>
 				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/cockpit2.jpg</path>
+				<path>Splash/Q400/cockpit2.jpg</path>
 			</preview>
 			<preview>
 				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/cockpit3.jpg</path>
+				<path>Splash/Q400/cockpit3.jpg</path>
 			</preview>
 		</previews>
 		<systems>
@@ -119,7 +119,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</systems>
 		<!--Fallback for older FG versions-->
 		<startup>
-			<splash-texture>Aircraft/QSeries/Splash/exterior1.png</splash-texture>
+			<splash-texture>Aircraft/QSeries/Splash/Q400/exterior1.jpg</splash-texture>
 		</startup>
 
 		<model>

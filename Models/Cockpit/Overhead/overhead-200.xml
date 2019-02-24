@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
 	<path>overhead-200.ac</path>
+	
+	<!--TODO check size-->
+	<animation>
+		<type>scale</type>
+		<x-offset>0.9</x-offset>
+		<y-offset>0.9</y-offset>
+		<z-offset>0.9</z-offset>
+	</animation>
+	
 	<!--Panel illumination-->
 	<effect>
 		<inherits-from>../../Effects/panel</inherits-from>
@@ -48,8 +57,409 @@
 			<factor-prop>/systems/electrical/outputs/overhead-lights</factor-prop>
 		</emission>
 	</animation>
-	<!--CAUTION PANEL-->
-	<!--Test-->
+	<!--ICE PROTECTION-->
+	<!--Airframe-->
+	<!--Auto-->
+	<animation>
+		<type>knob</type>
+		<object-name>antiice.airframeauto.knob</object-name>
+		<property>/controls/anti-ice/airframe-auto</property>
+		<factor>45</factor>
+		<center>
+			<x-m>  -0.335138 </x-m>
+			<y-m> 0.083654 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/anti-ice/airframe-auto</property>
+				<value>1</value>
+				<value>2</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	<!--Manual-->
+	<animation>
+		<type>knob</type>
+		<object-name>antiice.airframemanual.knob</object-name>
+		<property>/controls/anti-ice/airframe-manual</property>
+		<factor>45</factor>
+		<center>
+			<x-m> -0.248984 </x-m>
+			<y-m> 0.083654 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+				<value>5</value>
+				<value>6</value>
+				<value>7</value>
+				<value>0</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/anti-ice/airframe-manual</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<!--Prop Threshold Knob-->
+	<animation>
+		<type>knob</type>
+		<object-name>antiice.propthr.knob</object-name>
+		<property>/controls/anti-ice/prop-threshold</property>
+		<factor>62</factor>
+		<center>
+			<x-m> -0.343873 </x-m>
+			<y-m> -0.006867 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/anti-ice/prop-threshold</property>
+				<value>1</value> <!--2 above-->
+				<value>2</value> <!--2 below-->
+				<value>-2</value><!--1 below-->
+				<value>-1</value><!--1 above-->
+				<value>0</value> <!--off-->
+			</binding>
+		</action>
+	</animation>
+	<!--Lights-->
+	<!--TODO only works in manual mode for now-->
+	<animation>
+		<type>material</type>
+		<object-name>antiice.wing.L4</object-name>
+		<object-name>antiice.wing.R4</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>2</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.wing.L3</object-name>
+		<object-name>antiice.wing.R3</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>3</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.wing.L2</object-name>
+		<object-name>antiice.wing.R2</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>4</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.wing.L1</object-name>
+		<object-name>antiice.wing.R1</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>5</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.tail.L1</object-name>
+		<object-name>antiice.tail.R1</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>6</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.tail.L2</object-name>
+		<object-name>antiice.tail.R2</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<equals>
+				<property>/controls/anti-ice/airframe-manual</property>
+				<value>7</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<!--Prop-->
+	<animation>
+		<type>material</type>
+		<object-name>antiice.prop.L2</object-name>
+		<object-name>antiice.prop.L1</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<property>/systems/anti-ice/prop-left/state</property>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>antiice.prop.R2</object-name>
+		<object-name>antiice.prop.R1</object-name>
+		<condition>
+			<property>/controls/electric/battery-switch</property>
+			<property>/systems/anti-ice/prop-right/state</property>
+		</condition>
+		<ambient>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</ambient>
+		<emission>
+			<red>0.1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+		</emission>
+	</animation>
+	<!--Elev Horn Heat-->
+	<animation>
+		<type>pick</type>
+		<object-name>antiice.elevhorn.test</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/anti-ice/elev-horn</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/anti-ice/elev-horn</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>antiice.elevhorn.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/anti-ice/elev-horn</property>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>antiice.elevhorn.switch</object-name>
+		<property>/controls/anti-ice/elev-horn</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.008281 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Valve Heat-->
+	<animation>
+		<type>pick</type>
+		<object-name>antiice.valveheat.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/anti-ice/valve-heat</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>antiice.valveheat.switch</object-name>
+		<property>/controls/anti-ice/valve-heat</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.008281 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Pitot and Static Port Heat-->
+	<animation>
+		<type>pick</type>
+		<object-name>pitotstatic1</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/anti-ice/pitot-heat[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>pitotstatic1</object-name>
+		<property>/controls/anti-ice/pitot-heat[0]</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.051953 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>pitotstatic2</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/anti-ice/pitot-heat[1]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>pitotstatic2</object-name>
+		<property>/controls/anti-ice/pitot-heat[1]</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.051953 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Annunciator Test-->
 	<animation>
 		<type>pick</type>
 		<object-name>cautiontest</object-name>
@@ -61,6 +471,13 @@
 				<command>property-toggle</command>
 				<property>/controls/panel/cautiontest</property>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/panel/cautiontest</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -78,31 +495,262 @@
 			<z> 0 </z>
 		</axis>
 	</animation>
+	<!--Annunciator Dim/Brt-->
 	<animation>
-		<type>material</type>
-		<object-name>cautions</object-name>
-		<object-name>empty</object-name>
-		<object-name>passdoor</object-name>
-		<object-name>bagdoor</object-name>
-		<object-name>parkbrake</object-name>
-		<object-name>stall</object-name>
+		<type>pick</type>
+		<object-name>caution.dimbrt.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/panel/annun-dim</property>
+				<value>1</value> <!--BRT-->
+				<value>-1</value> <!--DIM-->
+				<value>0</value> <!--NORM-->
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/panel/annun-dim</property>
+				<value>-1</value> <!--DIM-->
+				<value>1</value> <!--BRT-->
+				<value>0</value> <!--NORM-->
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>caution.dimbrt.switch</object-name>
+		<property>/controls/panel/annun-dim</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.095667 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Emergency Lights-->
+	<animation>
+		<type>pick</type>
+		<object-name>emerlights.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/cabin/emergency-lights</property>
+				<value>1</value> <!--ON-->
+				<value>-1</value> <!--OFF-->
+				<value>0</value> <!--ARMED-->
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/cabin/emergency-lights</property>
+				<value>-1</value> <!--OFF-->
+				<value>1</value> <!--ON-->
+				<value>0</value> <!--ARMED-->
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>emerlights.switch</object-name>
+		<property>/controls/cabin/emergency-lights</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.139737 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	
+	<!--WARNING and CAUTION PANEL-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.others</object-name>
+		<object-name>caut.parkingbrake</object-name>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<object-name>caut.pitotheat1</object-name>
+		<object-name>caut.pitotheat2</object-name>
+		<object-name>caut.1tankfuellow</object-name>
+		<object-name>caut.2tankfuellow</object-name>
+		<object-name>caut.elevhornheat</object-name>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>warn.others</object-name>
+		<object-name>warn.passdoor</object-name>
+		<object-name>warn.baddoor</object-name>
+		<object-name>warn.fwdexitdoor</object-name>
+		<object-name>warn.servdoor</object-name>
+		<object-name>warn.1engoilpress</object-name>
+		<object-name>warn.2engoilpress</object-name>
 		<condition>
 			<property>controls/electric/battery-switch</property>
-			<property>/controls/panel/cautiontest</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>caut.others</object-name>
+		<object-name>caut.parkingbrake</object-name>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<object-name>caut.pitotheat1</object-name>
+		<object-name>caut.pitotheat2</object-name>
+		<object-name>caut.1tankfuellow</object-name>
+		<object-name>caut.2tankfuellow</object-name>
+		<object-name>caut.elevhornheat</object-name>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>warn.others</object-name>
+		<object-name>warn.passdoor</object-name>
+		<object-name>warn.baddoor</object-name>
+		<object-name>warn.fwdexitdoor</object-name>
+		<object-name>warn.servdoor</object-name>
+		<object-name>warn.1engoilpress</object-name>
+		<object-name>warn.2engoilpress</object-name>
+		<condition>
+			<equals>
+				<property>/controls/panel/annun-dim</property>
+				<value>-1</value> <!--DIM-->
+			</equals>
+		</condition>
+		<emission>
+			<red>0.33</red>
+			<green>0.33</green>
+			<blue>0.33</blue>
+		</emission>
+		<ambient>
+			<red>0.33</red>
+			<green>0.33</green>
+			<blue>0.33</blue>
+		</ambient>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>caut.others</object-name>
+		<object-name>caut.parkingbrake</object-name>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<object-name>caut.pitotheat1</object-name>
+		<object-name>caut.pitotheat2</object-name>
+		<object-name>caut.1tankfuellow</object-name>
+		<object-name>caut.2tankfuellow</object-name>
+		<object-name>caut.elevhornheat</object-name>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>warn.others</object-name>
+		<object-name>warn.passdoor</object-name>
+		<object-name>warn.baddoor</object-name>
+		<object-name>warn.fwdexitdoor</object-name>
+		<object-name>warn.servdoor</object-name>
+		<object-name>warn.1engoilpress</object-name>
+		<object-name>warn.2engoilpress</object-name>
+		<condition>
+			<equals>
+				<property>/controls/panel/annun-dim</property>
+				<value>0</value> <!--NORM-->
+			</equals>
+		</condition>
+		<emission>
+			<red>0.66</red>
+			<green>0.66</green>
+			<blue>0.66</blue>
+		</emission>
+		<ambient>
+			<red>0.66</red>
+			<green>0.66</green>
+			<blue>0.66</blue>
+		</ambient>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>caut.others</object-name>
+		<object-name>caut.parkingbrake</object-name>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<object-name>caut.pitotheat1</object-name>
+		<object-name>caut.pitotheat2</object-name>
+		<object-name>caut.1tankfuellow</object-name>
+		<object-name>caut.2tankfuellow</object-name>
+		<object-name>caut.elevhornheat</object-name>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>warn.others</object-name>
+		<object-name>warn.passdoor</object-name>
+		<object-name>warn.baddoor</object-name>
+		<object-name>warn.fwdexitdoor</object-name>
+		<object-name>warn.servdoor</object-name>
+		<object-name>warn.1engoilpress</object-name>
+		<object-name>warn.2engoilpress</object-name>
+		<condition>
+			<equals>
+				<property>/controls/panel/annun-dim</property>
+				<value>1</value> <!--BRT-->
+			</equals>
 		</condition>
 		<emission>
 			<red>1</red>
 			<green>1</green>
-			<blue>0.4</blue>
+			<blue>1</blue>
 		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</ambient>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>caut.others</object-name>
+		<object-name>warn.others</object-name>
+		<object-name>warn.servdoor</object-name>
+		<condition>
+			<property>/controls/panel/cautiontest</property>
+		</condition>
+	</animation>
+	<!--Emergency Lights Disarmed-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>/controls/cabin/emergency-lights</property>
+					<value>-1</value>
+				</equals>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
 	</animation>
 	<!--Doors-->
 	<!--Passenger Doors-->
 	<animation>
-		<type>material</type>
-		<object-name>passdoor</object-name>
+		<type>select</type>
+		<object-name>warn.passdoor</object-name>
 		<condition>
-			<property>controls/electric/battery-switch</property>
 			<or>
 				<less-than>
 					<property>/sim/model/door-positions/passengerF/position-norm</property>
@@ -120,56 +768,166 @@
 					<property>/sim/model/door-positions/passengerRF/position-norm</property>
 					<value>0</value>
 				</greater-than>
+				<property>/controls/panel/cautiontest</property>
 			</or>
 		</condition>
-		<ambient>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</ambient>
-		<emission>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</emission>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>warn.fwdexitdoor</object-name>
+		<condition>
+			<or>
+				<greater-than>
+					<property>/sim/model/door-positions/passengerRF/position-norm</property>
+					<value>0</value>
+				</greater-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
 	</animation>
 	<!--Cargo Doors-->
 	<animation>
-		<type>material</type>
-		<object-name>bagdoor</object-name>
+		<type>select</type>
+		<object-name>warn.bagdoor</object-name>
 		<condition>
-			<property>controls/electric/battery-switch</property>
-			<greater-than>
-				<property>/sim/model/door-positions/cargo/position-norm</property>
-				<value>0</value>
-			</greater-than>
+			<or>
+				<greater-than>
+					<property>/sim/model/door-positions/cargo/position-norm</property>
+					<value>0</value>
+				</greater-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
 		</condition>
-		<ambient>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</ambient>
-		<emission>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</emission>
+	</animation>
+	<!--Electrical-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<condition>
+			<or>
+				<not>
+					<property>/controls/electric/engine[0]/generator</property>
+				</not>	
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<condition>
+			<or>
+				<not>
+					<property>/controls/electric/engine[1]/generator</property>
+				</not>	
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
 	</animation>
 	<!--Parking Brake-->
 	<animation>
-		<type>material</type>
-		<object-name>parkbrake</object-name>
+		<type>select</type>
+		<object-name>caut.parkingbrake</object-name>
 		<condition>
-			<property>controls/electric/battery-switch</property>
-			<property>/controls/gear/brake-parking</property>
+			<or>
+				<property>/controls/gear/brake-parking</property>
+				<property>/controls/panel/cautiontest</property>
+			</or>
 		</condition>
-		<emission>
-			<red>1</red>
-			<green>1</green>
-			<blue>0.4</blue>
-		</emission>
 	</animation>
-	<!--Stall-->
+	<!--Fuel Low-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.1tankfuellow</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>/consumables/fuel/tank[0]/level-kg</property>
+					<value>60</value>
+				</less-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>caut.2tankfuellow</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>/consumables/fuel/tank[1]/level-kg</property>
+					<value>60</value>
+				</less-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--Oil Pressure Low-->
+	<animation>
+		<type>select</type>
+		<object-name>warn.1engoilpress</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>/engines/engine[0]/oil-pressure-psi</property>
+					<value>40</value>
+				</less-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>warn.2engoilpress</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>/engines/engine[0]/oil-pressure-psi</property>
+					<value>40</value>
+				</less-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--Elev Horn Heat-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.elevhornheat</object-name>
+		<condition>
+			<or>
+				<property>/systems/anti-ice/elev-horn-heated</property>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--Pitot Heat OFF-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.pitotheat1</object-name>
+		<condition>
+			<or>
+				<not>
+					<property>/controls/anti-ice/pitot-heat[0]</property>
+				</not>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>caut.pitotheat2</object-name>
+		<condition>
+			<or>
+				<not>
+					<property>/controls/anti-ice/pitot-heat[1]</property>
+				</not>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--Stall--><!--
 	<animation>
 		<type>material</type>
 		<object-name>stall</object-name>
@@ -192,7 +950,7 @@
 			<green>1</green>
 			<blue>0.4</blue>
 		</emission>
-	</animation>
+	</animation>-->
 	<!-- WIP ;)-->
 	<!--DC CONTROL PANEL-->
 	<!--Battery Switches-->
@@ -610,102 +1368,82 @@
 	<!--WINDSHIELD PANEL-->
 	<!--Heating-->
 	<animation>
-		<type>pick</type>
-		<object-name>windshieldheat</object-name>
+		<type>knob</type>
+		<object-name>windowheat.knob</object-name>
+		<property>/controls/anti-ice/windshield-heat</property>
+		<factor>45</factor>
+		<center>
+			<x-m> -0.340212 </x-m>
+			<y-m> -0.110208 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
 		<action>
-			<button>0</button>
-			<repeatable>0</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>/controls/windshield/heating</property>
-				<value>WARMUP</value>
-				<value>NORM</value>
-				<value>OFF</value>
-			</binding>
-			<binding>
-				<command>property-cycle</command>
-				<property>/controls/windshield/heating-knob</property>
+				<property>/controls/anti-ice/windshield-heat</property>
 				<value>1</value>
 				<value>2</value>
 				<value>0</value>
 			</binding>
 		</action>
 	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>windshieldheat</object-name>
-		<property>/controls/windshield/heating-knob</property>
-		<interpolation>
-			<entry>
-				<ind> 0 </ind>
-				<dep>  0 </dep>
-			</entry>
-			<entry>
-				<ind> 1 </ind>
-				<dep> -50 </dep>
-			</entry>
-			<entry>
-				<ind> 2 </ind>
-				<dep> -90 </dep>
-			</entry>
-		</interpolation>
-		<axis>
-			<x1-m>-11.90109</x1-m>
-			<y1-m>-0.33854</y1-m>
-			<z1-m>2.84798</z1-m>
-			<x2-m>-11.89965</x2-m>
-			<y2-m>-0.33854</y2-m>
-			<z2-m>2.84417</z2-m>
-		</axis>
-	</animation>
+	
 	<!--Wiper-->
 	<animation>
-		<type>pick</type>
-		<object-name>wiper</object-name>
+		<type>knob</type>
+		<object-name>wiper.knob</object-name>
+		<property>/controls/wiper</property>
+		<factor>45</factor>
+		<center>
+			<x-m> -0.277794 </x-m>
+			<y-m> -0.110208 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
 		<action>
-			<button>0</button>
-			<repeatable>0</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>/controls/windshield/wiper</property>
-				<value>LOW</value>
-				<value>HIGH</value>
-				<value>OFF</value>
-			</binding>
-			<binding>
-				<command>property-cycle</command>
-				<property>/controls/windshield/wiper-knob</property>
+				<property>/controls/wiper</property>
 				<value>1</value>
 				<value>2</value>
 				<value>0</value>
 			</binding>
 		</action>
 	</animation>
+	<!--Pilot Window Heat-->
+	<animation>
+		<type>pick</type>
+		<object-name>pilotwindowheat.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/anti-ice/pilot-window-heat</property>
+			</binding>
+		</action>
+	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>wiper</object-name>
-		<property>/controls/windshield/wiper-knob</property>
-		<interpolation>
-			<entry>
-				<ind> 0 </ind>
-				<dep>  0 </dep>
-			</entry>
-			<entry>
-				<ind> 1 </ind>
-				<dep> -50 </dep>
-			</entry>
-			<entry>
-				<ind> 2 </ind>
-				<dep> -90 </dep>
-			</entry>
-		</interpolation>
+		<object-name>pilotwindowheat.switch</object-name>
+		<property>/controls/anti-ice/pilot-window-heat</property>
+		<factor>30</factor>
+		<center>
+			<y-m> -0.110712 </y-m>
+			<z-m> 0.013066 </z-m>
+		</center>
 		<axis>
-			<x1-m>-11.90109</x1-m>
-			<y1-m>-0.27681</y1-m>
-			<z1-m>2.84798</z1-m>
-			<x2-m>-11.89965</x2-m>
-			<y2-m>-0.27681</y2-m>
-			<z2-m>2.84417</z2-m>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
 		</axis>
 	</animation>
 	<!--AIR CONDITIONING PANEL-->
@@ -763,96 +1501,6 @@
 			<x> 1 </x>
 			<y> 0 </y>
 			<z> 0 </z>
-		</axis>
-	</animation>
-	<!--ICE PROTECTION PANEL-->
-	<!--Illuminate Lamps-->
-	<animation>
-		<type>material</type>
-		<object-name>icetailL1</object-name>
-		<object-name>icetailL2</object-name>
-		<object-name>icetailR1</object-name>
-		<object-name>icetailR2</object-name>
-		<object-name>icewingL1</object-name>
-		<object-name>icewingL2</object-name>
-		<object-name>icewingL3</object-name>
-		<object-name>icewingL4</object-name>
-		<object-name>icewingR1</object-name>
-		<object-name>icewingR2</object-name>
-		<object-name>icewingR3</object-name>
-		<object-name>icewingR4</object-name>
-		<object-name>icepropLR</object-name>
-		<object-name>icepropLL</object-name>
-		<object-name>icepropRL</object-name>
-		<object-name>icepropRR</object-name>
-		<condition>
-			<greater-than>
-				<property>/controls/iceprotection/automodes-knob</property>
-				<value>0.5</value>
-			</greater-than>
-			<greater-than>
-				<property>/systems/electrical/volts</property>
-				<value>5</value>
-			</greater-than>
-		</condition>
-		<emission>
-			<red>0</red>
-			<green>1</green>
-			<blue>0</blue>
-		</emission>
-	</animation>
-	<!--Airframe Automatic Modes-->
-	<animation>
-		<type>pick</type>
-		<object-name>airframeauto</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>0</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>/controls/iceprotection/automodes</property>
-				<value>SLOW</value>
-				<value>FAST</value>
-				<value>OFF</value>
-			</binding>
-			<binding>
-				<command>property-cycle</command>
-				<property>/controls/iceprotection/automodes-knob</property>
-				<value>1</value>
-				<value>2</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>airframeauto</object-name>
-		<property>/controls/iceprotection/automodes-knob</property>
-		<interpolation>
-			<entry>
-				<ind> 0 </ind>
-				<dep>  0 </dep>
-			</entry>
-			<entry>
-				<ind> 1 </ind>
-				<dep> -50 </dep>
-			</entry>
-			<entry>
-				<ind> 2 </ind>
-				<dep> -90 </dep>
-			</entry>
-		</interpolation>
-		<center>
-			<x-m> -11.72076 </x-m>
-			<z-m> 2.91948 </z-m>
-		</center>
-		<axis>
-			<x1-m>-11.90109</x1-m>
-			<y1-m>-0.33940</y1-m>
-			<z1-m>2.84798</z1-m>
-			<x2-m>-11.89965</x2-m>
-			<y2-m>-0.33940</y2-m>
-			<z2-m>2.84417</z2-m>
 		</axis>
 	</animation>
 	<!--PASSENGER SIGNS-->
@@ -1013,12 +1661,14 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
 				<property>instrumentation/elt/armed</property>
+				<value>0</value>
 			</binding>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
 				<property>instrumentation/elt/on</property>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
@@ -1033,10 +1683,12 @@
 				<property>instrumentation/elt/on</property>
 				<mapping>nasal</mapping>
 				<script>
-          var m = getprop("/instrumentation/elt/on");
-          if ( m ) return 'ON';
-          return 'ARMED';
-        </script>
+					var m = getprop("/instrumentation/elt/on");
+					var n = getprop("/instrumentation/elt/armed");
+					if ( m ) return 'ON';
+					if ( n ) return 'ARMED';
+					return 'OFF';
+				</script>
 			</binding>
 		</hovered>
 	</animation>
@@ -1082,10 +1734,17 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>elt-test</tooltip-id>
-				<label>ELT test: %s</label>
-				<property>instrumentation/elt/test</property>
-				<mapping>on-off</mapping>
+				<tooltip-id>elt-switch</tooltip-id>
+				<label>ELT: %s</label>
+				<property>instrumentation/elt/on</property>
+				<mapping>nasal</mapping>
+				<script>
+					var m = getprop("/instrumentation/elt/on");
+					var n = getprop("/instrumentation/elt/armed");
+					if ( m ) return 'ON';
+					if ( n ) return 'ARMED';
+					return 'OFF';
+				</script>
 			</binding>
 		</hovered>
 	</animation>
@@ -1098,18 +1757,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>instrumentation/elt/test</property>
-				<value type="bool">true</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
 				<property>instrumentation/elt/armed</property>
 				<value type="bool">false</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/elt/on</property>
-				<value type="bool">false</value>
+				<value type="bool">true</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
@@ -1131,25 +1785,38 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>elt-test</tooltip-id>
-				<label>ELT test: %s</label>
-				<property>instrumentation/elt/test</property>
-				<mapping>on-off</mapping>
+				<tooltip-id>elt-switch</tooltip-id>
+				<label>ELT: %s</label>
+				<property>instrumentation/elt/on</property>
+				<mapping>nasal</mapping>
+				<script>
+					var m = getprop("/instrumentation/elt/on");
+					var n = getprop("/instrumentation/elt/armed");
+					if ( m ) return 'ON';
+					if ( n ) return 'ARMED';
+					return 'OFF';
+				</script>
 			</binding>
 		</hovered>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>elt</object-name>
-		<factor>-15</factor>
-		<property>instrumentation/elt/test</property>
+		<factor>15</factor>
+		<offset-deg>-15</offset-deg>
+		<property>instrumentation/elt/armed</property>
+		<condition>
+			<not>
+				<property>instrumentation/elt/on</property>
+			</not>
+		</condition>
 		<center>
-			<x-m>-11.7619</x-m>
-			<z-m>2.90577</z-m>
+			<y-m>0.042179</y-m>
+			<z-m>0.013066</z-m>
 		</center>
 		<axis>
-			<x> 0</x>
-			<y>-1</y>
+			<x>1</x>
+			<y>0</y>
 			<z> 0</z>
 		</axis>
 	</animation>
@@ -1159,12 +1826,12 @@
 		<property>instrumentation/elt/on</property>
 		<factor>15</factor>
 		<center>
-			<x-m>-11.7619</x-m>
-			<z-m>2.90577</z-m>
+			<y-m>0.042179</y-m>
+			<z-m>0.013066</z-m>
 		</center>
 		<axis>
-			<x> 0</x>
-			<y>-1</y>
+			<x>1</x>
+			<y>0</y>
 			<z> 0</z>
 		</axis>
 	</animation>
@@ -1216,15 +1883,15 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>flightrcdr</object-name>
-		<factor>-15</factor>
+		<factor>30</factor>
 		<property>instrumentation/flightrcdr/gndtest</property>
 		<center>
-			<x-m>-11.7619</x-m>
-			<z-m>2.90577</z-m>
+			<y-m>0.042179</y-m>
+			<z-m>0.013066</z-m>
 		</center>
 		<axis>
-			<x> 0</x>
-			<y>-1</y>
+			<x>1</x>
+			<y>0</y>
 			<z> 0</z>
 		</axis>
 	</animation>

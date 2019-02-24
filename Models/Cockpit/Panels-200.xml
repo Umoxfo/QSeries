@@ -54,25 +54,17 @@
 		</offsets>
 	</model>
 	
-	<!--CDUs-->
-	<!--<model>
-		<path>Pedestal/Front/CDU/CDU.xml</path>
+	<!--FMS-->
+	<model>
+		<path>Pedestal/Front/FMS/FMS.xml</path>
 		<offsets>
-			<x-m>-12.2019</x-m>
-			<y-m>-0.145</y-m>
-			<z-m>1.95</z-m>
-			<pitch-deg>-60</pitch-deg>
+			<x-m>-5.33238</x-m>
+			<y-m>-0.14</y-m>
+			<z-m>0.102625</z-m>
+			<roll-deg>30</roll-deg>
+			<heading-deg>90</heading-deg>
 		</offsets>
 	</model>
-	<model>
-		<path>Pedestal/Front/CDU/CDU1.xml</path>
-		<offsets>
-			<x-m>-12.2019</x-m>
-			<y-m>0.145</y-m>
-			<z-m>1.95</z-m>
-			<pitch-deg>-60</pitch-deg>
-		</offsets>
-	</model>-->
 
 	<!--Control Yokes-->
 	<model>

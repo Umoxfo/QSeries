@@ -59,69 +59,38 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior1.jpg</path>
+				<path>Splash/Q200/exterior1.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior2.jpg</path>
+				<path>Splash/Q200/exterior2.jpg</path>
 			</preview>
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/exterior3.jpg</path>
-			</preview>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/exterior4.jpg</path>
-			</preview>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/exterior5.jpg</path>
-			</preview>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/exterior6.jpg</path>
-			</preview>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/exterior7.jpg</path>
-			</preview>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/exterior8.jpg</path>
+				<path>Splash/Q200/exterior3.jpg</path>
 			</preview>
 			<preview>
 				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/cockpit1.jpg</path>
+				<path>Splash/Q200/cockpit1.jpg</path>
 			</preview>
 			<preview>
 				<type>cockpit</type>
 				<splash type="bool">true</splash>
-				<path>Splash/cockpit2.jpg</path>
-			</preview>
-			<preview>
-				<type>cockpit</type>
-				<splash type="bool">true</splash>
-				<path>Splash/cockpit3.jpg</path>
+				<path>Splash/Q200/cockpit2.jpg</path>
 			</preview>
 		</previews>
 		<!--Fallback for older FG versions-->
 		<startup>
-			<splash-texture>Aircraft/QSeries/Splash/exterior1.png</splash-texture>
+			<splash-texture>Aircraft/QSeries/Splash/Q200/exterior1.jpg</splash-texture>
 		</startup>
 
 		<model>
 			<path>Aircraft/QSeries/Models/DH8B.xml</path>
 			<livery> 
 				<file type="string"/>
-				<enable-hud type="bool">0</enable-hud>
 			</livery> 
 			<start-idling type="bool">0</start-idling>
 			<variant type="int">1</variant>
@@ -468,6 +437,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 				<model>DH8B</model>
 			</ident>
 		</cdu>
+		<FMS>
+			<onoff type="bool">false</onoff>
+			<startup type="double">0.0</startup>
+		</FMS>
 	</instrumentation>
 	
 	<!--Version-specific part of the key settings-->
@@ -527,6 +500,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		<canvas_vsi>
 			<file>Aircraft/QSeries/Models/Cockpit/Instruments/VSI/VSI.nas</file>
 		</canvas_vsi>
+		<canvas_fms>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/FMS/FMS.nas</file>
+		</canvas_fms>
 		<q200>
 			<file>Nasal/limits.nas</file>
 			<file>Nasal/liveries.nas</file>
@@ -536,6 +512,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/autoflight-helpers.nas</file>
 			<file>Nasal/listeners.nas</file>
 			<file>Nasal/engine-system-200.nas</file>
+			<file>Nasal/anti-ice-200.nas</file>
 		</q200>
 	</nasal>
 </PropertyList>
