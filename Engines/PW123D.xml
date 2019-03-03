@@ -2,7 +2,7 @@
 <!--https://www.easa.europa.eu/sites/default/files/dfu/EASA%20IM.E.041%20TCDS%20Issue%204.pdf-->
 <turboprop_engine name="PW123D">
   
-  <milthrust unit="LBS">       11357.5   </milthrust>
+	<milthrust>  4818.2 </milthrust> <!--calculated with aeromatic-->
   <idlen1>                       24.6   </idlen1>
   <maxn1>                       104.2   </maxn1>
   <idlen2>                       54.3   </idlen2>

@@ -1,0 +1,537 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<fdm_config name="Q200" version="2.0" release="BETA"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+	<fileheader>
+		<author>Joshua Davidson (it0uchpods), Benedikt Wolf (D-ECHO)</author>
+		<version>Pre V1.0</version>
+		<description>Q300 FDE</description>
+	</fileheader>
+	
+	<system file="fuelpayload.xml"/>
+
+	<metrics><!--Source: https://www.easa.europa.eu/sites/default/files/dfu/EASA%20TCDS_DHC-8_Iss%2012.pdf https://www2.bombardier.com/Used_Aircraft/pdf/Q300_EN.pdf-->
+		<wingarea  unit="FT2"> 605.0 </wingarea>
+		<wingspan  unit="FT" >  90 </wingspan>
+		<wing_incidence      >   1.03 </wing_incidence>
+		<chord     unit="FT" >  13.76 </chord>
+		<htailarea unit="FT2">  32.80 </htailarea>
+		<htailarm  unit="FT" >  13.28 </htailarm>
+		<vtailarea unit="FT2">  49.21 </vtailarea>
+		<vtailarm  unit="FT" >  16.07 </vtailarm>
+
+		<location name="AERORP" unit="M">
+			<x> 1.66075 </x>
+			<y> 0 </y>
+			<z> 1.36556 </z>
+		</location>
+
+		<location name="EYEPOINT" unit="M">
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</location>
+
+		<location name="VRP" unit="M">
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</location>
+	</metrics>
+
+	<mass_balance>
+		<ixx unit="SLUG*FT2"> 186839 </ixx>
+		<iyy unit="SLUG*FT2"> 392184 </iyy>
+		<izz unit="SLUG*FT2"> 622455 </izz>
+
+		<ixy unit="SLUG*FT2">       0 </ixy>
+		<ixz unit="SLUG*FT2">       0 </ixz>
+		<iyz unit="SLUG*FT2">       0 </iyz>
+		<emptywt unit="LBS" >   26000 </emptywt>
+
+		<location name="CG" unit="M">
+			<x> 1.65 </x>
+			<y> 0 </y>
+			<z> 1.3769 </z>
+		</location>
+
+		<pointmass name="Cockpit Crew">
+			<weight unit="LBS">400</weight>
+			<location name="POINTMASS" unit="M">
+				<x> -6.3 </x>
+				<y> 0 </y>
+				<z> 0.1 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="PAX Front">
+			<weight unit="LBS">300</weight>
+			<location name="POINTMASS" unit="M">
+				<x> -1.6 </x>
+				<y> 0 </y>
+				<z> -0.1 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="PAX Rear">
+			<weight unit="LBS">300</weight>
+			<location name="POINTMASS" unit="M">
+				<x> 4.0 </x>
+				<y> 0 </y>
+				<z> -0.1 </z>
+			</location>
+		</pointmass>
+
+		<pointmass name="Cargo">
+			<weight unit="LBS">0</weight>
+			<location name="POINTMASS" unit="M">
+				<x> 7.1 </x>
+				<y> 0 </y>
+				<z> 0.0 </z>
+			</location>
+		</pointmass>
+	</mass_balance>
+
+	<ground_reactions>
+		<contact type="BOGEY" name="NOSE_LG">
+			<location unit="M">
+				<x> -7.8 </x>
+				<y> 0 </y>
+				<z> -1.94203 </z> 
+			</location>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 30935.5 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 16978.5 </damping_coeff>
+			<max_steer unit="DEG"> 70 </max_steer>
+			<brake_group> NOSE </brake_group>
+			<retractable>1</retractable>
+		</contact>
+		<contact type="BOGEY" name="LEFT_MLG">
+			<location unit="M">
+				<x> 2.09942 </x>
+				<y> -3.94977 </y>
+				<z> -2.05375 </z> 
+			</location>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> LEFT </brake_group>
+			<retractable>1</retractable>
+		</contact>
+		<contact type="BOGEY" name="RIGHT_MLG">
+			<location unit="M">
+				<x> 2.09942 </x>
+				<y> 3.94977 </y>
+				<z> -2.05375 </z> 
+			</location>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
+			<rolling_friction> 0.02 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 59785 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 23957 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> RIGHT </brake_group>
+			<retractable>1</retractable>
+		</contact>
+
+		<contact type="STRUCTURE" name="NOSE_1">
+			<location unit="M">
+				<x> -9.47507 </x>
+				<y> 0 </y>
+				<z> -0.971121 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="NOSE_2">
+			<location unit="M">
+				<x> -9.60915 </x>
+				<y> 0 </y>
+				<z> -0.77769 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="BOTTOM_1">
+			<location unit="M">
+				<x> -6.38902 </x>
+				<y> 0 </y>
+				<z> -1.25432 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="BOTTOM_2">
+			<location unit="M">
+				<x>6.72724 </x>
+				<y> 0 </y>
+				<z> -1.17587 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="TOP_1">
+			<location unit="M">
+				<x>-6.20165 </x>
+				<y> 0 </y>
+				<z> 1.29702</z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="TOP_2">
+			<location unit="M">
+				<x> 13.7004 </x>
+				<y> 0 </y>
+				<z> 5.77034 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+
+		<contact type="STRUCTURE" name="ENG_1_FAN_BOTTOM">
+			<location unit="M">
+				<x> -1.28868 </x>
+				<y> -3.95874 </y>
+				<z> -0.95139 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_FAN_BOTTOM">
+			<location unit="M">
+				<x> -1.28868 </x>
+				<y> 3.95874 </y>
+				<z> -0.95139 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_1_BOTTOM">
+			<location unit="M">
+				<x> 0.895729 </x>
+				<y> -3.95874 </y>
+				<z> 0.012036 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_BOTTOM">
+			<location unit="M">
+				<x> 0.895729 </x>
+				<y> 3.95874 </y>
+				<z> 0.012036 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="ENG_1_FAN_TOP">
+			<location unit="M">
+				<x> -1.28868 </x>
+				<y>  3.95874 </y>
+				<z>  2.92116 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_FAN_TOP">
+			<location unit="M">
+				<x> -1.28868 </x>
+				<y>  3.95874 </y>
+				<z>  2.92116 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_1_TOP">
+			<location unit="M">
+				<x> -0.083049 </x>
+				<y> -3.95874 </y>
+				<z>  1.48757 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="ENG_2_TOP">
+			<location unit="M">
+				<x> -0.083049 </x>
+				<y>  3.95874 </y>
+				<z>  1.48757 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+
+		<contact type="STRUCTURE" name="TAIL_1">
+			<location unit="M">
+				<x> 16.1608 </x>
+				<y> 0 </y>
+				<z> 5.03635 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="TAIL_2">
+			<location unit="M">
+				<x> 14.7431 </x>
+				<y> 0 </y>
+				<z> 0.579115 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		
+		<contact type="STRUCTURE" name="WING_TIP_1">
+			<location unit="M">
+				<x>1.82051 </x>
+				<y> -13.7066 </y>
+				<z> 1.86517 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 0.4 </dynamic_friction>
+			<rolling_friction> 0.4 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+		<contact type="STRUCTURE" name="WING_TIP_2">
+			<location unit="M">
+				<x>1.82051 </x>
+				<y> 13.7066 </y>
+				<z> 1.86517 </z>
+			</location>
+			<static_friction> 1.0 </static_friction>
+			<dynamic_friction> 1 </dynamic_friction>
+			<rolling_friction> 1 </rolling_friction>
+			<spring_coeff unit="LBS/FT"> 50000 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
+			<max_steer unit="DEG"> 0.0 </max_steer>
+			<brake_group> NONE </brake_group>
+			<retractable>0</retractable>
+		</contact>
+	</ground_reactions>
+
+	<propulsion>
+		<!--Source: http://www.smartcockpit.com/docs/Dash8-200-300-Powerplant.pdf-->
+		<!--Engine: PW123 https://www.easa.europa.eu/sites/default/files/dfu/EASA%20TCDS_DHC-8_Iss%2012.pdf (DHC8-301)-->
+		<engine file="PW123">
+			<location unit="M">
+				<x> 1.51648 </x>
+				<y>-3.9406 </y>
+				<z> 0.762277 </z>
+			</location>
+			<orient unit="DEG">
+				<roll> 0.0 </roll>
+				<pitch> 0.0 </pitch>
+				<yaw> 0.0 </yaw>
+			</orient>
+				<feed>0</feed>
+				<feed>1</feed>
+			<!--Propeller: Hamilton standard 14-SF-23 http://www.smartcockpit.com/docs/Dash8-200-300-Powerplant.pdf-->
+			<thruster file="14SF23">
+				<location unit="M">
+					<x> -1.5175 </x>
+					<y> -3.95466 </y>
+					<z> 0.980337 </z>
+				</location>
+				<orient unit="DEG">
+					<roll> 0.0 </roll>
+					<pitch> 0.0 </pitch>
+					<yaw> 0.0 </yaw>
+				</orient>
+			</thruster>
+		</engine>
+
+		<engine file="PW123">
+			<location unit="M">
+				<x> 1.51648 </x>
+				<y>3.9406 </y>
+				<z> 0.762277 </z>
+			</location>
+			<orient unit="DEG">
+				<roll> 0.0 </roll>
+				<pitch> 0.0 </pitch>
+				<yaw> 0.0 </yaw>
+			</orient>
+				<feed>0</feed>
+				<feed>1</feed>
+			<thruster file="14SF23">
+				<location unit="M">
+					<x> -1.5175 </x>
+					<y> 3.95466 </y>
+					<z> 0.980337 </z>
+				</location>
+				<orient unit="DEG">
+					<roll> 0.0 </roll>
+					<pitch> 0.0 </pitch>
+					<yaw> 0.0 </yaw>
+				</orient>
+			</thruster>
+		</engine>
+		<!--http://www.smartcockpit.com/docs/Dash8-200-300-Fuel.pdf https://www.easa.europa.eu/sites/default/files/dfu/EASA%20TCDS_DHC-8_Iss%2012.pdf-->
+		<tank type="FUEL"> <!-- Left Wing Tank -->
+			<location unit="M">
+				<x> 0.37127 </x>
+				<y> 0 </y>
+				<z> 1.71115 </z>
+			</location>
+			<capacity unit="LBS"> 2882.5 </capacity>
+			<contents unit="LBS"> 1500 </contents>
+			
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+
+		<tank type="FUEL"> <!-- Right Wing Tank -->
+			<location unit="M">
+				<x> 0.37127 </x>
+				<y> 0 </y>
+				<z> 1.71115 </z>
+			</location>
+			<capacity unit="LBS"> 2882.5 </capacity>
+			<contents unit="LBS"> 1500 </contents>
+			
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+	</propulsion>
+
+	<system file="pushback" />
+	<system file="q400-fcs" />
+	<system file="fadec" />
+	<system file="vspeedcalc" />
+
+	<flight_control name="none"/>
+		
+	<aerodynamics file="Systems/q400-aerodynamics.xml" />
+
+	<external_reactions>
+		<force name="pushback" frame="BODY">
+			<location unit="M">
+				<x> -8.02179 </x>
+				<y> 0 </y>
+				<z> -1.4987 </z>
+			</location>
+			<direction>
+				<x> 1 </x>
+				<y> 0 </y>
+				<z> 0 </z>
+			</direction>
+		</force>
+	</external_reactions>
+</fdm_config>

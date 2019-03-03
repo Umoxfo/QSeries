@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--based on https://www.airgreenland.com/media/1324448/dash8_q200_750.jpg and https://www.airgreenland.com/media/1065497/air2air_018_image-size-b.jpg-->
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Air Greenland (OY-GRG)</name>
+            <texture>Liveries/q200-jsb/grl.png</texture>
+        </livery>
+    </model>
+</sim>
+</PropertyList>

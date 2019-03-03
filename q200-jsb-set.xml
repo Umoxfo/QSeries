@@ -39,7 +39,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</mass-and-balance>
 	</limits>
 	<sim>
-		<description>Bombardier Q200 (JSBSim)</description>
+		<description>Bombardier Q200 DHC8-202 (JSB)</description>
 		<status>Alpha development</status>
 		<author>Alex Park (Maverickalex), Florian K, D-ECHO, Joshua Davidson (it0uchpods)</author>
 		<flight-model>jsb</flight-model>

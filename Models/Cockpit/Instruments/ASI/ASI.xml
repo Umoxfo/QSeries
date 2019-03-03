@@ -21,6 +21,10 @@
 		<type>material</type>
 		<object-name>airspeed.face</object-name>
 		<object-name>airspeed.drum</object-name>
+		<object-name>asi.needle</object-name>
+		<object-name>asi.bug1</object-name>
+		<object-name>asi.bug2</object-name>
+		<object-name>asi.vmo</object-name>
 		<condition>
 			<greater-than>
 				<property>systems/electrical/volts</property>
@@ -136,18 +140,72 @@
 		<type>rotate</type>
 		<object-name>asi.vmo</object-name>
 		<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		<condition>
+			<or>
+				<equals>
+					<property>/sim/aero</property>
+					<value>q100-jsb</value>
+				</equals>
+				<equals>
+					<property>/sim/aero</property>
+					<value>q200-jsb</value>
+				</equals>
+			</or>
+		</condition>
 		<interpolation>
 			<entry>
 				<ind>   0.00 </ind>
-				<dep>  198 </dep>
+				<dep>  196.5 </dep> <!--242kts-->
 			</entry>
 			<entry>
-				<ind> 14000.00 </ind>
-				<dep> 198 </dep>
+				<ind>  14000 </ind>
+				<dep>  196.5 </dep> <!--242kts-->
+			</entry>
+			<entry>
+				<ind> 15000 </ind>
+				<dep> 192 </dep> <!--239kts-->
+			</entry>
+			<entry>
+				<ind> 20000 </ind>
+				<dep> 180 </dep> <!--223kts-->
 			</entry>
 			<entry>
 				<ind>  25000.00 </ind>
-				<dep> 170 </dep>
+				<dep> 163 </dep> <!--207kts-->
+			</entry>
+		</interpolation>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>asi.vmo</object-name>
+		<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		<condition>
+			<equals>
+				<property>/sim/aero</property>
+				<value>q300-jsb</value>
+			</equals>
+		</condition>
+		<interpolation>
+			<entry>
+				<ind>   0.00 </ind>
+				<dep>  197 </dep> <!--243kts-->
+			</entry>
+			<entry>
+				<ind>  17000 </ind>
+				<dep>  197 </dep> <!--243kts-->
+			</entry>
+			<entry>
+				<ind> 20000 </ind>
+				<dep> 187 </dep> <!--232kts-->
+			</entry>
+			<entry>
+				<ind>  25000.00 </ind>
+				<dep> 170 </dep> <!--214kts-->
 			</entry>
 		</interpolation>
 		<axis>

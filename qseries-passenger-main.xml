@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+  2019 adapted by Benedikt Wolf (D-ECHO) for QSeries
+  dhc8-400 multiplayer passenger view.Adapted by Alex Park, original
+  Copyright (C) 2009  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<!--
+  Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=dhc8-400-passenger
+-->
+<PropertyList>
+
+	<sim>
+		<author>Benedikt Wolf, Alex Park (original by Anders Gidenstam)</author>
+		<status>alpha</status>
+		<aircraft-version>03/2019</aircraft-version>
+  
+		<flight-model>null</flight-model>
+
+		<presets>
+			<onground type="bool">false</onground>
+			<altitude-agl-ft type="double">30.0</altitude-agl-ft>
+		</presets>
+
+		<!-- 3d model -->
+		<model>
+			<path>Models/Geometry/null.ac</path>
+		</model>
+
+		<chase-distance-m type="double">-18.0</chase-distance-m>
+
+		<sound>
+			<audible>false</audible>
+			<path/>
+		</sound>
+
+		<!-- Aircraft specific help. -->
+		<!-- help include="help.xml"/ -->
+
+		<!-- systems>
+			<electrical>
+				<path/>
+			</electrical>
+		</systems>
+		
+		<instrumentation>
+			<path/>
+		</instrumentation -->
+
+		<menubar>
+			<default>
+				<menu n="100">
+					<item>
+						<label>Select MP-pilot</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								dual_control_tools.
+								copilot_dialog.show(aircraft_dual_control.pilot_type);
+							</script>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+
+	</sim>
+
+	<nasal>
+		<dual_control_tools>
+			<file>Aircraft/QSeries/Nasal/dual-control-tools.nas</file>
+		</dual_control_tools>
+		<aircraft_dual_control>
+			<file>Aircraft/QSeries/Nasal/dhc8-400-dual-control.nas</file>
+		</aircraft_dual_control>
+		<dual_control>
+			<file>Aircraft/QSeries/Nasal/copilot-dual-control.nas</file>
+		</dual_control>
+	</nasal>
+</PropertyList>

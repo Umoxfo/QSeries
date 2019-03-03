@@ -124,7 +124,7 @@
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.066669</x-m>
+			<x-m>-0.086116</x-m>
 			<y-m>-0.163341</y-m>
 		</center>
 		<action>
@@ -150,7 +150,7 @@
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.066669</x-m>
+			<x-m>-0.086116</x-m>
 			<y-m>-0.163341</y-m>
 		</center>
 		<action>
@@ -219,7 +219,7 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-0.091822</x-m>
+			<x-m>-0.111269</x-m>
 			<z-m>0.006409</z-m>
 		</center>
 	</animation>
@@ -230,7 +230,7 @@
 		<property>instrumentation/adf[1]/power-btn</property>
 		<factor>-65</factor>
 		<center>
-			<x-m>-0.064474</x-m>
+			<x-m>-0.086116</x-m>
 			<y-m>0.163476</y-m>
 		</center>
 		<axis>
@@ -254,7 +254,7 @@
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.066669</x-m>
+			<x-m>-0.086116</x-m>
 			<y-m>0.190278</y-m>
 		</center>
 		<action>
@@ -280,7 +280,7 @@
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.066669</x-m>
+			<x-m>-0.086116</x-m>
 			<y-m>0.190278</y-m>
 		</center>
 		<action>
@@ -349,7 +349,7 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-0.091822</x-m>
+			<x-m>-0.111269</x-m>
 			<z-m>0.006409</z-m>
 		</center>
 	</animation>

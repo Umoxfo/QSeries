@@ -61,6 +61,49 @@
     <output>controls/flight/rudder-int</output>
   </filter>
 
+<!-- ROLL SPOILER -->
+  <!--TODO correct hydraulic properties-->
+  <filter>
+    <name>Roll Spoiler Inbd</name>
+    <type>gain</type>
+    <input>
+      <property>/controls/flight/aileron</property>
+    </input>
+    <enable>
+        <condition>
+            <or>
+                <greater-than>
+                    <property>/systems/hydraulic/psi1</property>
+                    <value>2900</value>
+                </greater-than>
+                <greater-than>
+                    <property>/systems/hydraulic/psi2</property>
+                    <value>2900</value>
+                </greater-than>
+            </or>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/flight/spoiler-inbd</output>
+  </filter>
+  <filter>
+    <name>Roll Spoiler Outbd</name>
+    <type>gain</type>
+    <input>
+      <property>/controls/flight/aileron</property>
+    </input>
+    <enable>
+        <condition>
+                <greater-than>
+                    <property>/systems/hydraulic/psi3</property>
+                    <value>2900</value>
+                </greater-than>
+        </condition>
+    </enable>
+    <gain>1</gain>
+    <output>controls/flight/spoiler-outbd</output>
+  </filter>
+
 <!-- NOSE WHEEL STEERING -->
 
   <filter>
@@ -217,8 +260,8 @@
         </condition>
     </enable>
     <gain>1</gain>
-	<output>fcs/throttle-cmd-norm[0]</output>
-	<output>fcs/throttle-pos-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-cmd-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-pos-norm[0]</output>
   </filter>
   <filter>
     <name>Positive Thrust R</name>
@@ -235,8 +278,8 @@
         </condition>
     </enable>
     <gain>1</gain>
-	<output>fcs/throttle-cmd-norm[1]</output>
-	<output>fcs/throttle-pos-norm[1]</output>
+	<output>fdm/jsbsim/fcs/throttle-cmd-norm[1]</output>
+	<output>fdm/jsbsim/fcs/throttle-pos-norm[1]</output>
   </filter>
   
   
@@ -257,8 +300,8 @@
         </condition>
     </enable>
     <gain>1</gain>
-	<output>fcs/throttle-cmd-norm[0]</output>
-	<output>fcs/throttle-pos-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-cmd-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-pos-norm[0]</output>
   </filter>
   
   <filter>
@@ -276,8 +319,8 @@
         </condition>
     </enable>
     <gain>1</gain>
-	<output>fcs/throttle-cmd-norm[0]</output>
-	<output>fcs/throttle-pos-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-cmd-norm[0]</output>
+	<output>fdm/jsbsim/fcs/throttle-pos-norm[0]</output>
   </filter>
   
 

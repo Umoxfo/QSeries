@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--based on https://flyjazz.ca/en/operations/air-canada-express/#fleet-->
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Air Canada express (C-FJXZ)</name>
+            <texture>Liveries/q300-jsb/aca.png</texture>
+        </livery>
+    </model>
+</sim>
+</PropertyList>
+ 

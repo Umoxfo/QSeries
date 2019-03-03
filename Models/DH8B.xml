@@ -35,6 +35,8 @@
 		<object-name>rudder</object-name>
 		<object-name>hstab</object-name>
 		<object-name>elevator</object-name>
+		<object-name>elevator.spring.tab</object-name>
+		<object-name>elevator.trim.tab</object-name>
 		<object-name>Engines</object-name>
 		<object-name>fuselage</object-name>
 		<object-name>wing</object-name>
@@ -44,6 +46,10 @@
 		<object-name>flapLO</object-name>
 		<object-name>vstab2</object-name>
 		<object-name>flapI</object-name>
+		<object-name>spoilerLI</object-name>
+		<object-name>spoilerLO</object-name>
+		<object-name>spoilerRI</object-name>
+		<object-name>spoilerRO</object-name>
 		<object-name>doorF</object-name>
 		<object-name>doorLH</object-name>
 		<object-name>doorRF</object-name>
@@ -93,10 +99,16 @@
 		<object-name>flapRO</object-name>
 		<object-name>flapLO</object-name>
 		<object-name>flapI</object-name>
+		<object-name>spoilerLI</object-name>
+		<object-name>spoilerLO</object-name>
+		<object-name>spoilerRI</object-name>
+		<object-name>spoilerRO</object-name>
 		-->
 		<object-name>Engines</object-name>
 		<object-name>hstab</object-name>
 		<object-name>elevator</object-name>
+		<object-name>elevator.spring.tab</object-name>
+		<object-name>elevator.trim.tab</object-name>
 		<object-name>vstab</object-name>
 		<object-name>vstab2</object-name>
 		<object-name>rudder</object-name>
@@ -104,28 +116,28 @@
 		<object-name>doorLH</object-name>
 		<object-name>doorRF</object-name>
 		<object-name>doorRH</object-name>
-		<object-name>doorC</object-name>
+		<object-name>doorC</object-name><!--
 		<object-name>gearF1</object-name>
 		<object-name>gearF2</object-name>
-		<object-name>gearF3</object-name>
+		<object-name>gearF3</object-name>-->
 		<object-name>geardoorF1</object-name>
 		<object-name>geardoorF2</object-name>
 		<object-name>geardoorF3</object-name>
-		<object-name>geardoorF4</object-name>
+		<object-name>geardoorF4</object-name><!--
 		<object-name>gearL1</object-name>
 		<object-name>gearL2</object-name>
 		<object-name>gearL3</object-name>
-		<object-name>gearL4</object-name>
+		<object-name>gearL4</object-name>-->
 		<object-name>geardoorL1</object-name>
 		<object-name>geardoorL2</object-name>
 		<object-name>geardoorL3</object-name>
 		<object-name>geardoorL4</object-name>
 		<object-name>geardoorL5</object-name>
-		<object-name>geardoorL6</object-name>
+		<object-name>geardoorL6</object-name><!--
 		<object-name>gearR1</object-name>
 		<object-name>gearR2</object-name>
 		<object-name>gearR3</object-name>
-		<object-name>gearR4</object-name>
+		<object-name>gearR4</object-name>-->
 		<object-name>geardoorR1</object-name>
 		<object-name>geardoorR2</object-name>
 		<object-name>geardoorR3</object-name>
@@ -349,7 +361,7 @@
 			<z> 0 </z>
 		</axis>
 	</animation>
-	<!--Flight Surfaces-->
+	<!--Flight Surfaces--><!--
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator</object-name>
@@ -364,7 +376,7 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
-	</animation>
+	</animation>-->
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder</object-name>
@@ -383,8 +395,8 @@
 		<property>surface-positions/flap-pos-norm</property>
 		<factor> 35 </factor>
 		<center>
-			<x-m>2.49338</x-m>
-			<z-m>1.25351</z-m>
+			<x-m>2.32609</x-m>
+			<z-m>0.922109</z-m>
 		</center>
 		<axis>
 			<y>1</y>
@@ -396,12 +408,12 @@
 		<property>surface-positions/flap-pos-norm</property>
 		<factor> 35 </factor>
 		<axis>
-			<x1-m>2.47143</x1-m>
-			<y1-m>5.03312</y1-m>
-			<z1-m>1.2897</z1-m>
-			<x2-m>2.28277 </x2-m>
-			<y2-m>9.66628</y2-m>
-			<z2-m>1.5791</z2-m>
+			<x1-m>2.39383</x1-m>
+			<y1-m>4.36305</y1-m>
+			<z1-m>1.35184</z1-m>
+			<x2-m>2.39515 </x2-m>
+			<y2-m>10.1642</y2-m>
+			<z2-m>1.49638</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -410,12 +422,22 @@
 		<property>surface-positions/flap-pos-norm</property>
 		<factor> -35 </factor>
 		<axis>
-			<x1-m>2.47143</x1-m>
-			<y1-m>-5.03312</y1-m>
-			<z1-m>1.2897</z1-m>
-			<x2-m>2.28277 </x2-m>
-			<y2-m>-9.66628</y2-m>
-			<z2-m>1.5791</z2-m>
+			<x1-m>2.39383</x1-m>
+			<y1-m>-4.36305</y1-m>
+			<z1-m>1.35184</z1-m>
+			<x2-m>2.39515 </x2-m>
+			<y2-m>-10.1642</y2-m>
+			<z2-m>1.49638</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>flapLO</object-name>
+		<object-name>flapRO</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor> 0.29 </factor>
+		<axis>
+			<x>1</x>
 		</axis>
 	</animation>
 	<animation>
@@ -424,12 +446,12 @@
 		<property>sim/multiplay/generic/float[2]</property>
 		<factor> -17 </factor>
 		<axis>
-			<x1-m> 2.24812 </x1-m>
-			<y1-m>-9.66628 </y1-m>
-			<z1-m> 1.62047</z1-m>
-			<x2-m>2.10464</x2-m>
-			<y2-m>-12.5287</y2-m>
-			<z2-m>1.796</z2-m>
+			<x1-m> 2.50546 </x1-m>
+			<y1-m>-10.1719 </y1-m>
+			<z1-m> 1.51707</z1-m>
+			<x2-m>2.46041</x2-m>
+			<y2-m>-12.3963</y2-m>
+			<z2-m>1.59342</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -438,22 +460,50 @@
 		<property>sim/multiplay/generic/float[2]</property>
 		<factor> -17 </factor>
 		<axis>
-			<x1-m> 2.24812 </x1-m>
-			<y1-m>9.66628 </y1-m>
-			<z1-m> 1.62047</z1-m>
-			<x2-m>2.10464</x2-m>
-			<y2-m>12.5287</y2-m>
-			<z2-m>1.796</z2-m>
+			<x1-m> 2.50546 </x1-m>
+			<y1-m>10.1719 </y1-m>
+			<z1-m> 1.51707</z1-m>
+			<x2-m>2.46041</x2-m>
+			<y2-m>12.3963</y2-m>
+			<z2-m>1.59342</z2-m>
 		</axis>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator</object-name>
+		<object-name>elevator.spring.tab</object-name>
+		<object-name>elevator.trim.tab</object-name>
 		<property>sim/multiplay/generic/float[1]</property>
 		<factor> 20 </factor>
 		<center>
-			<x-m>13.5714</x-m>
-			<z-m>5.55357</z-m>
+			<x-m>13.5116</x-m>
+			<z-m>5.5578</z-m>
+		</center>
+		<axis>
+			<y>1</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator.spring.tab</object-name>
+		<property>/controls/flight/elevator</property>
+		<factor> -20 </factor>
+		<center>
+			<x-m>13.9971</x-m>
+			<z-m>5.5578</z-m>
+		</center>
+		<axis>
+			<y>1</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator.trim.tab</object-name>
+		<property>/controls/flight/elevator-trim</property>
+		<factor> -20 </factor>
+		<center>
+			<x-m>13.9971</x-m>
+			<z-m>5.5578</z-m>
 		</center>
 		<axis>
 			<y>1</y>
