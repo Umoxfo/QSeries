@@ -488,7 +488,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/adf[0]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/adf[0]/power-btn</property>
@@ -504,7 +504,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/adf[1]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/adf[1]/power-btn</property>
@@ -938,7 +938,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/comm[0]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/comm[0]/power-btn</property>
@@ -955,7 +955,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/comm[1]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/comm[1]/power-btn</property>

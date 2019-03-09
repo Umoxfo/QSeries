@@ -14,7 +14,7 @@ var page = "only";
 var VS_needle = props.globals.getNode("/instrumentation/vertical-speed-indicator/vsi-needle",1);
 var VS_needle = props.globals.initNode("/instrumentation/vertical-speed-indicator/vsi-needle", 0.0, "DOUBLE");
 
-var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
+var Volts = props.globals.initNode("/systems/electrical/outputs/vertical-speed-indicator", 0.0,  "DOUBLE");
 
 
 var canvas_VSI_base = {

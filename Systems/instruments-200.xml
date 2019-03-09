@@ -72,6 +72,81 @@
 		<output>instrumentation/rmi/needle-deg[1]</output>
 	</filter>
 	
+	<filter>
+		<name>VMO</name>
+		<type>gain</type>
+		<input>	
+			<condition>
+				<or>
+					<equals>
+						<property>/sim/aero</property>
+						<value>q100-jsb</value>
+					</equals>
+					<equals>
+						<property>/sim/aero</property>
+						<value>q200-jsb</value>
+					</equals>
+				</or>
+			</condition>
+			<expression>
+				<table>
+					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<entry><ind>0.0</ind><dep>242</dep></entry>
+					<entry><ind>14000</ind><dep>242</dep></entry>
+					<entry><ind>15000</ind><dep>239</dep></entry>
+					<entry><ind>20000</ind><dep>223</dep></entry>
+					<entry><ind>25000</ind><dep>207</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>	
+			<condition>
+				<equals>
+					<property>/sim/aero</property>
+					<value>q300-jsb</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<entry><ind>0.0</ind><dep>243</dep></entry>
+					<entry><ind>17000</ind><dep>243</dep></entry>
+					<entry><ind>20000</ind><dep>232</dep></entry>
+					<entry><ind>25000</ind><dep>214</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<gain>1</gain>
+		<output>instrumentation/airspeed-indicator/vmo</output>
+	</filter>
+	
+	
+	
+	<filter>
+		<name>OVSPD WARN HORN</name>
+		<type>gain</type>
+		<input>	
+			<condition>
+				<greater-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/airspeed-indicator/vmo</property>
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>	
+			<condition>
+				<less-than-equals>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/airspeed-indicator/vmo</property>
+				</less-than-equals>
+			</condition>
+			<value>0</value>
+		</input>
+		<gain>1</gain>
+		<output>instrumentation/ovspd-horn/active</output>
+	</filter>
+	
 	<!--Engine Instruments-->
 	<!--Torque (PCT)-->
 	<filter>

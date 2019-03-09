@@ -1,65 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <PropertyList>
-	<path>hydraulic_instruments.ac</path><!--
+	<path>hydraulic_instruments.ac</path>
 	<effect>
 		<inherits-from>../../../Effects/panel</inherits-from>
-		<object-name>trq.face</object-name>
-		<object-name>prop.face</object-name>
-		<object-name>itt.face</object-name>
-		<object-name>nh.face</object-name>
-		<object-name>ff.face</object-name>
-		<object-name>nl.face</object-name>
-		<object-name>stbyalt.face</object-name>
-		<object-name>oil.face</object-name>
-		<object-name>fueltemp.face</object-name>
-		<object-name>fuelqty.face</object-name>
-		
-		<object-name>trq1.needle</object-name>
-		<object-name>trq2.needle</object-name>
-		<object-name>prop1.needle</object-name>
-		<object-name>prop2.needle</object-name>
-		<object-name>itt1.needle</object-name>
-		<object-name>itt2.needle</object-name>
-		<object-name>nh1.needle</object-name>
-		<object-name>nh2.needle</object-name>
-		<object-name>ff1.needle</object-name>
-		<object-name>ff2.needle</object-name>
-		<object-name>nl1.needle</object-name>
-		<object-name>nl2.needle</object-name>
-		<object-name>fuel1.needle</object-name>
-		<object-name>fuel2.needle</object-name>
-		
-		<object-name>trq.base</object-name>
-		<object-name>prop.base</object-name>
-		<object-name>itt.base</object-name>
-		<object-name>nh.base</object-name>
-		<object-name>ff.base</object-name>
-		<object-name>nl.base</object-name>
-		<object-name>stbyalt.base</object-name>
-		<object-name>oil.base</object-name>
-		<object-name>fueltemp.base</object-name>
-		<object-name>fuelqty.base</object-name>
-		<object-name>altset.base</object-name>
-		
-		<object-name>base</object-name>
-		<object-name>base2</object-name>
+		<object-name>hyd_panel</object-name>
 	</effect>
-	<effect>
+	<!--<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>eng.glass</object-name>
 	</effect>-->
-	<!--<animation>TODO correct lighting property
+	<animation>TODO correct lighting property
 		<type>material</type>
-		<object-name>trq.face</object-name>
-		<object-name>prop.face</object-name>
-		<object-name>itt.face</object-name>
-		<object-name>nh.face</object-name>
-		<object-name>ff.face</object-name>
-		<object-name>nl.face</object-name>
-		<object-name>stbyalt.face</object-name>
-		<object-name>oil.face</object-name>
-		<object-name>fueltemp.face</object-name>
-		<object-name>fuelqty.face</object-name>
+		<object-name>hyd_panel.lighted</object-name>
 		<condition>
 			<greater-than>
 				<property>systems/electrical/volts</property>
@@ -71,6 +23,265 @@
 		<green> 0.25 </green>
 		<blue>  0.25 </blue>
 		</emission>
-	</animation>-->
+	</animation>
+	
+	<!--Instruments-->
+	<!--Standby HYD Press-->
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_s1.needle</object-name>
+		<property>systems/hydraulic/psi-stby-1</property>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/stby-hyd-press[0]</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<factor>-0.025</factor>
+		<center>
+			<y-m> -0.043565 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_s2.needle</object-name>
+		<property>systems/hydraulic/psi-stby-2</property>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/stby-hyd-press[1]</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<factor>0.025</factor>
+		<center>
+			<y-m> -0.043565 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Main HYD Press-->
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_m1.needle</object-name>
+		<property>systems/hydraulic/psi-main-1</property>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/hyd-press[0]</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<factor>-0.025</factor>
+		<center>
+			<y-m> 0.006317 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_m2.needle</object-name>
+		<property>systems/hydraulic/psi-main-2</property>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/hyd-press[1]</property>
+				<value>15</value>
+			</greater-than>
+		</condition>
+		<factor>0.025</factor>
+		<center>
+			<y-m> 0.006317 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Main HYD Quantity-->
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_qty1.needle</object-name>
+		<property>systems/hydraulic/qty-1</property>
+		<factor>-36</factor>
+		<center>
+			<y-m> 0.058246 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_qty2.needle</object-name>
+		<property>systems/hydraulic/qty-2</property>
+		<factor>19.6</factor>
+		<center>
+			<y-m> 0.058246 </y-m>
+			<z-m> -0.022265 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<!--Parking Brake Pressure-->
+	<animation>
+		<type>rotate</type>
+		<object-name>hyd_pb.needle</object-name>
+		<property>systems/hydraulic/psi-main-2</property>
+		<factor>-0.025</factor>
+		<center>
+			<y-m> 0.058246 </y-m>
+			<z-m> 0.022916 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	
+	<!--STBY HYD PRESS Switches-->
+	<animation>
+		<type>pick</type>
+		<object-name>stbyhydpress1.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/hydraulic/spu1_sw</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>stbyhydpress1.switch</object-name>
+		<property>/controls/hydraulic/spu1_sw</property>
+		<factor>-30</factor>
+		<center>
+			<x-m> 0.001565 </x-m>
+			<z-m> 0.021155 </z-m>
+		</center>
+		<axis>
+			<x> 0 </x>
+			<y> 1 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>stbyhydpress2.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/hydraulic/spu2_sw</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>stbyhydpress2.switch</object-name>
+		<property>/controls/hydraulic/spu2_sw</property>
+		<factor>-30</factor>
+		<center>
+			<x-m> 0.001565 </x-m>
+			<z-m> 0.021155 </z-m>
+		</center>
+		<axis>
+			<x> 0 </x>
+			<y> 1 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	
+	<!--PTU Pushbutton/switchlight-->
+	<animation>
+		<type>pick</type>
+		<object-name>ptu.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/hydraulic/ptu-man</property>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/hydraulic/ptu-button-pressed</property>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/controls/hydraulic/ptu-button-pressed</property>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ptu.switch</object-name>
+		<object-name>ptu.switchlight</object-name>
+		<property>/controls/hydraulic/ptu-button-pressed</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation> 
+	<animation>
+		<type>texmultiple</type>
+		<object-name>ptu.switchlight</object-name>
+		<transform>
+			<subtype>textranslate</subtype>
+			<property>controls/electric/battery-switch</property>
+			<bias>0.0001</bias>
+			<factor>0.1008</factor>
+			<step>1</step>
+			<axis>
+				<x>1</x>
+				<y>0</y>
+			</axis>
+		</transform>
+		<transform>
+			<subtype>textranslate</subtype>
+			<condition>
+				<property>controls/electric/battery-switch</property>
+			</condition>
+			<property>/controls/hydraulic/ptu-man</property>
+			<bias>0.0001</bias>
+			<factor>0.1008</factor>
+			<step>1</step>
+			<axis>
+				<x>1</x>
+				<y>0</y>
+			</axis>
+		</transform>
+	</animation>
 	
 </PropertyList>

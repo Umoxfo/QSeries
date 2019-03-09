@@ -17,7 +17,7 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>asi.glass</object-name>
 	</effect>
-	<animation><!--TODO correct lighting property-->
+	<animation>
 		<type>material</type>
 		<object-name>airspeed.face</object-name>
 		<object-name>airspeed.drum</object-name>
@@ -25,16 +25,11 @@
 		<object-name>asi.bug1</object-name>
 		<object-name>asi.bug2</object-name>
 		<object-name>asi.vmo</object-name>
-		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>		
-		</condition>
 		<emission>
-		<red>   0.50 </red>
-		<green> 0.25 </green>
-		<blue>  0.25 </blue>
+			<red>   0.50 </red>
+			<green> 0.25 </green>
+			<blue>  0.25 </blue>
+			<factor-prop>systems/electrical/outputs/pltflt-norm</factor-prop>
 		</emission>
 	</animation>
 	<animation>
@@ -139,73 +134,19 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>asi.vmo</object-name>
-		<property>instrumentation/altimeter/indicated-altitude-ft</property>
-		<condition>
-			<or>
-				<equals>
-					<property>/sim/aero</property>
-					<value>q100-jsb</value>
-				</equals>
-				<equals>
-					<property>/sim/aero</property>
-					<value>q200-jsb</value>
-				</equals>
-			</or>
-		</condition>
+		<property>instrumentation/airspeed-indicator/vmo</property>
 		<interpolation>
 			<entry>
 				<ind>   0.00 </ind>
-				<dep>  196.5 </dep> <!--242kts-->
+				<dep>   0.0 </dep>
 			</entry>
 			<entry>
-				<ind>  14000 </ind>
-				<dep>  196.5 </dep> <!--242kts-->
+				<ind>  50.00 </ind>
+				<dep>  22.75 </dep>
 			</entry>
 			<entry>
-				<ind> 15000 </ind>
-				<dep> 192 </dep> <!--239kts-->
-			</entry>
-			<entry>
-				<ind> 20000 </ind>
-				<dep> 180 </dep> <!--223kts-->
-			</entry>
-			<entry>
-				<ind>  25000.00 </ind>
-				<dep> 163 </dep> <!--207kts-->
-			</entry>
-		</interpolation>
-		<axis>
-			<x> -1 </x>
-			<y>  0 </y>
-			<z>  0 </z>
-		</axis>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>asi.vmo</object-name>
-		<property>instrumentation/altimeter/indicated-altitude-ft</property>
-		<condition>
-			<equals>
-				<property>/sim/aero</property>
-				<value>q300-jsb</value>
-			</equals>
-		</condition>
-		<interpolation>
-			<entry>
-				<ind>   0.00 </ind>
-				<dep>  197 </dep> <!--243kts-->
-			</entry>
-			<entry>
-				<ind>  17000 </ind>
-				<dep>  197 </dep> <!--243kts-->
-			</entry>
-			<entry>
-				<ind> 20000 </ind>
-				<dep> 187 </dep> <!--232kts-->
-			</entry>
-			<entry>
-				<ind>  25000.00 </ind>
-				<dep> 170 </dep> <!--214kts-->
+				<ind>  400.00 </ind>
+				<dep>  336.75 </dep>
 			</entry>
 		</interpolation>
 		<axis>

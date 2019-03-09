@@ -60,16 +60,11 @@
 		<object-name>oil.face</object-name>
 		<object-name>fueltemp.face</object-name>
 		<object-name>fuelqty.face</object-name>
-		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>		
-		</condition>
 		<emission>
-		<red>   0.50 </red>
-		<green> 0.25 </green>
-		<blue>  0.25 </blue>
+			<red>   0.50 </red>
+			<green> 0.25 </green>
+			<blue>  0.25 </blue>
+			<factor-prop>systems/electrical/outputs/engineinstr-norm</factor-prop>
 		</emission>
 	</animation>
 	<!--Landing Gear Panel-->
@@ -90,10 +85,84 @@
 		<type>rotate</type>
 		<object-name>handle</object-name>
 		<property>controls/gear/gear-down</property>
-		<factor>40</factor>
+		<factor>55</factor>
 		<center>
 			<x-m>-0.006697</x-m>
 			<z-m>0.019667</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>hornmutetest.switch</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<equals>
+						<property>gear/warning-horn</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>gear/warning-horn</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/gear/warn-horn-switch</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/gear/warn-horn-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>gear/warning-horn</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/gear/warn-horn-switch</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>gear/warning-horn</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/gear/warn-horn-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>hornmutetest.switch</object-name>
+		<property>controls/gear/warn-horn-switch</property>
+		<factor>-20</factor>
+		<center>
+			<x-m>0.019435</x-m>
+			<z-m>-0.006502</z-m>
 		</center>
 		<axis>
 			<x>0</x>
@@ -116,10 +185,16 @@
 					<property>/gear/gear[1]/position-norm</property>
 					<value>0.95</value>
 				</less-than>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -141,10 +216,16 @@
 					<property>/gear/gear[0]/position-norm</property>
 					<value>0.95</value>
 				</less-than>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -166,10 +247,16 @@
 					<property>/gear/gear[2]/position-norm</property>
 					<value>0.95</value>
 				</less-than>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -187,10 +274,16 @@
 				<property>/gear/gear[1]/position-norm</property>
 				<value>1</value>
 			</equals>
-			<greater-than>
-				<property>/systems/electrical/volts</property>
-				<value>15</value>
-			</greater-than>
+			<or>
+				<greater-than>
+					<property>systems/electrical/DC/lessential-bus/volts</property>
+					<value>10</value>
+				</greater-than>				
+				<greater-than>
+					<property>systems/electrical/DC/ressential-bus/volts</property>
+					<value>10</value>
+				</greater-than>
+			</or>
 		</condition>
 		<emission>
 			<red>0.4</red>
@@ -206,10 +299,16 @@
 				<property>/gear/gear[0]/position-norm</property>
 				<value>1</value>
 			</equals>
-			<greater-than>
-				<property>/systems/electrical/volts</property>
-				<value>15</value>
-			</greater-than>
+			<or>
+				<greater-than>
+					<property>systems/electrical/DC/lessential-bus/volts</property>
+					<value>10</value>
+				</greater-than>				
+				<greater-than>
+					<property>systems/electrical/DC/ressential-bus/volts</property>
+					<value>10</value>
+				</greater-than>
+			</or>
 		</condition>
 		<emission>
 			<red>0.4</red>
@@ -225,10 +324,16 @@
 				<property>/gear/gear[2]/position-norm</property>
 				<value>1</value>
 			</equals>
-			<greater-than>
-				<property>/systems/electrical/volts</property>
-				<value>15</value>
-			</greater-than>
+			<or>
+				<greater-than>
+					<property>systems/electrical/DC/lessential-bus/volts</property>
+					<value>10</value>
+				</greater-than>				
+				<greater-than>
+					<property>systems/electrical/DC/ressential-bus/volts</property>
+					<value>10</value>
+				</greater-than>
+			</or>
 		</condition>
 		<emission>
 			<red>0.4</red>
@@ -250,10 +355,16 @@
 					<property>/gear/gear[1]/position-norm</property>
 					<value>0</value>
 				</not-equals>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -275,10 +386,16 @@
 					<property>/gear/gear[0]/position-norm</property>
 					<value>0</value>
 				</not-equals>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -300,10 +417,16 @@
 					<property>/gear/gear[2]/position-norm</property>
 					<value>0</value>
 				</not-equals>
-				<greater-than>
-					<property>/systems/electrical/volts</property>
-					<value>15</value>
-				</greater-than>
+				<or>
+					<greater-than>
+						<property>systems/electrical/DC/lessential-bus/volts</property>
+						<value>10</value>
+					</greater-than>				
+					<greater-than>
+						<property>systems/electrical/DC/ressential-bus/volts</property>
+						<value>10</value>
+					</greater-than>
+				</or>
 			</and>
 		</condition>
 		<emission>
@@ -1333,10 +1456,16 @@
 	<animation>
 		<type>select</type>
 		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>
+			<or>
+				<greater-than>
+					<property>systems/electrical/DC/lessential-bus/volts</property>
+					<value>10</value>
+				</greater-than>				
+				<greater-than>
+					<property>systems/electrical/DC/ressential-bus/volts</property>
+					<value>10</value>
+				</greater-than>
+			</or>
 		</condition>
 		<object-name>altset</object-name>
 		<object-name>TRQ1</object-name>

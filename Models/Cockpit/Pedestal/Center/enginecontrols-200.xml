@@ -265,12 +265,6 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>conditionL</object-name>
-		<condition>
-			<equals>
-				<property>controls/engines/engine[0]/condition-lever-state</property>
-				<value>2</value>
-			</equals>
-		</condition>
 		<property>controls/engines/engine[0]/condition-lever-set</property>
 		<factor>-20.62</factor>
 		<axis>
@@ -400,12 +394,6 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>conditionR</object-name>
-		<condition>
-			<equals>
-				<property>controls/engines/engine[1]/condition-lever-state</property>
-				<value>2</value>
-			</equals>
-		</condition>
 		<property>controls/engines/engine[1]/condition-lever-set</property>
 		<factor>-20.62</factor>
 		<axis>

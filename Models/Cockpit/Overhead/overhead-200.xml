@@ -38,7 +38,16 @@
 		<object-name>eng.SELECT.flag</object-name>
 		<object-name>eng.START.flag</object-name>
 		<condition>
-			<property>/controls/electric/battery-switch</property>
+			<or>
+				<greater-than>
+					<property>systems/electrical/DC/lessential-bus/volts</property>
+					<value>10</value>
+				</greater-than>				
+				<greater-than>
+					<property>systems/electrical/DC/ressential-bus/volts</property>
+					<value>10</value>
+				</greater-than>
+			</or>
 		</condition>
 		<emission>
 			<red>1</red>
@@ -54,7 +63,7 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-			<factor-prop>/systems/electrical/outputs/overhead-lights</factor-prop>
+			<factor-prop>/systems/electrical/outputs/overhead-norm</factor-prop>
 		</emission>
 	</animation>
 	<!--ICE PROTECTION-->
@@ -585,18 +594,6 @@
 	<!--WARNING and CAUTION PANEL-->
 	<animation>
 		<type>select</type>
-		<object-name>caut.others</object-name>
-		<object-name>caut.parkingbrake</object-name>
-		<object-name>caut.1dcgen</object-name>
-		<object-name>caut.1acgen</object-name>
-		<object-name>caut.2dcgen</object-name>
-		<object-name>caut.2acgen</object-name>
-		<object-name>caut.pitotheat1</object-name>
-		<object-name>caut.pitotheat2</object-name>
-		<object-name>caut.1tankfuellow</object-name>
-		<object-name>caut.2tankfuellow</object-name>
-		<object-name>caut.elevhornheat</object-name>
-		<object-name>caut.emerltsdisarmed</object-name>
 		<object-name>warn.others</object-name>
 		<object-name>warn.passdoor</object-name>
 		<object-name>warn.baddoor</object-name>
@@ -605,12 +602,16 @@
 		<object-name>warn.1engoilpress</object-name>
 		<object-name>warn.2engoilpress</object-name>
 		<condition>
-			<property>controls/electric/battery-switch</property>
+			<greater-than>
+				<property>systems/electrical/outputs/advsy[0]</property>
+				<value>10</value>
+			</greater-than>
 		</condition>
 	</animation>
 	<animation>
-		<type>material</type>
+		<type>select</type>
 		<object-name>caut.others</object-name>
+		<object-name>caut.fltdatarecorder</object-name>
 		<object-name>caut.parkingbrake</object-name>
 		<object-name>caut.1dcgen</object-name>
 		<object-name>caut.1acgen</object-name>
@@ -622,6 +623,32 @@
 		<object-name>caut.2tankfuellow</object-name>
 		<object-name>caut.elevhornheat</object-name>
 		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>caut.1enghydpump</object-name>
+		<object-name>caut.2enghydpump</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/advsy[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>caut.others</object-name>
+		<object-name>caut.fltdatarecorder</object-name>
+		<object-name>caut.parkingbrake</object-name>
+		<object-name>caut.1dcgen</object-name>
+		<object-name>caut.1acgen</object-name>
+		<object-name>caut.2dcgen</object-name>
+		<object-name>caut.2acgen</object-name>
+		<object-name>caut.pitotheat1</object-name>
+		<object-name>caut.pitotheat2</object-name>
+		<object-name>caut.1tankfuellow</object-name>
+		<object-name>caut.2tankfuellow</object-name>
+		<object-name>caut.elevhornheat</object-name>
+		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>caut.1enghydpump</object-name>
+		<object-name>caut.2enghydpump</object-name>
 		<object-name>warn.others</object-name>
 		<object-name>warn.passdoor</object-name>
 		<object-name>warn.baddoor</object-name>
@@ -649,6 +676,7 @@
 	<animation>
 		<type>material</type>
 		<object-name>caut.others</object-name>
+		<object-name>caut.fltdatarecorder</object-name>
 		<object-name>caut.parkingbrake</object-name>
 		<object-name>caut.1dcgen</object-name>
 		<object-name>caut.1acgen</object-name>
@@ -660,6 +688,8 @@
 		<object-name>caut.2tankfuellow</object-name>
 		<object-name>caut.elevhornheat</object-name>
 		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>caut.1enghydpump</object-name>
+		<object-name>caut.2enghydpump</object-name>
 		<object-name>warn.others</object-name>
 		<object-name>warn.passdoor</object-name>
 		<object-name>warn.baddoor</object-name>
@@ -687,6 +717,7 @@
 	<animation>
 		<type>material</type>
 		<object-name>caut.others</object-name>
+		<object-name>caut.fltdatarecorder</object-name>
 		<object-name>caut.parkingbrake</object-name>
 		<object-name>caut.1dcgen</object-name>
 		<object-name>caut.1acgen</object-name>
@@ -698,6 +729,8 @@
 		<object-name>caut.2tankfuellow</object-name>
 		<object-name>caut.elevhornheat</object-name>
 		<object-name>caut.emerltsdisarmed</object-name>
+		<object-name>caut.1enghydpump</object-name>
+		<object-name>caut.2enghydpump</object-name>
 		<object-name>warn.others</object-name>
 		<object-name>warn.passdoor</object-name>
 		<object-name>warn.baddoor</object-name>
@@ -741,6 +774,27 @@
 					<property>/controls/cabin/emergency-lights</property>
 					<value>-1</value>
 				</equals>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--FLT DATA RECORDER off-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.fltdatarecorder</object-name>
+		<condition>
+			<or>
+				<and>
+					<not>
+						<property>/controls/lighting/beacon</property>
+					</not>
+					<not>
+						<property>/controls/lighting/strobe-lights</property>
+					</not>
+					<not>
+						<property>instrumentation/flightrcdr/gndtest</property>
+					</not>
+				</and>
 				<property>/controls/panel/cautiontest</property>
 			</or>
 		</condition>
@@ -833,6 +887,33 @@
 		<condition>
 			<or>
 				<property>/controls/gear/brake-parking</property>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<!--Hydraulic-->
+	<animation>
+		<type>select</type>
+		<object-name>caut.1enghydpump</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/hydraulic/psi-edp-1</property>
+					<value>2000</value>
+				</less-than>
+				<property>/controls/panel/cautiontest</property>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>caut.2enghydpump</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/hydraulic/psi-edp-2</property>
+					<value>2000</value>
+				</less-than>
 				<property>/controls/panel/cautiontest</property>
 			</or>
 		</condition>
@@ -952,12 +1033,119 @@
 		</emission>
 	</animation>-->
 	<!-- WIP ;)-->
-	<!--DC CONTROL PANEL-->
+	<!--DC SYSTEM-->
+	<animation>
+		<type>knob</type>
+		<object-name>dc_bus_select</object-name>
+		<property>/controls/electric/dc-bus-select</property>
+		<factor>31</factor>
+		<center>
+			<x-m> -0.348555 </x-m>
+			<y-m> 0.279327 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/electric/dc-bus-select</property>
+				<value>0</value> <!--L SEC-->
+				<value>1</value> <!--L MAIN-->
+				<value>2</value> <!--L ESS-->
+				<value>3</value> <!--R ESS-->
+				<value>4</value> <!--R MAIN-->
+				<value>5</value> <!--R SEC-->
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>dc_gen_select</object-name>
+		<property>/controls/electric/dc-gen-select</property>
+		<factor>35.33</factor>
+		<center>
+			<x-m> -0.237897 </x-m>
+			<y-m> 0.281082 </y-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y>  0 </y>
+			<z> -1 </z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/electric/dc-gen-select</property>
+				<value>0</value> <!--L TRU-->
+				<value>1</value> <!--GEN 1-->
+				<value>2</value> <!--GEN 2-->
+				<value>3</value> <!--R TRU-->
+			</binding>
+		</action>
+	</animation>
+	<!--DC CONTROL-->
 	<!--Battery Switches-->
 	<animation>
 		<type>pick</type>
 		<object-name>mainbatt</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/electric/main-battery</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>mainbatt</object-name>
+		<property>/controls/electric/main-battery</property>
+		<factor>30</factor>
+		<center>
+			<y-m> 0.217614 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
 		<object-name>auxbatt</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/electric/aux-battery</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>auxbatt</object-name>
+		<property>/controls/electric/aux-battery</property>
+		<factor>30</factor>
+		<center>
+			<y-m> 0.217614 </y-m>
+			<z-m>  0.013066 </z-m>
+		</center>
+		<axis>
+			<x> 1 </x>
+			<y> 0 </y>
+			<z> 0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
 		<object-name>battmaster</object-name>
 		<visible>true</visible>
 		<action>
@@ -965,16 +1153,14 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/electric/battery-switch</property>
+				<property>/controls/electric/battery-master-switch</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>mainbatt</object-name>
-		<object-name>auxbatt</object-name>
 		<object-name>battmaster</object-name>
-		<property>/controls/electric/battery-switch</property>
+		<property>/controls/electric/battery-master-switch</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.217614 </y-m>
@@ -989,7 +1175,6 @@
 	<!--External Power-->
 	<animation>
 		<type>pick</type>
-		<object-name>extpwr</object-name>
 		<object-name>dcextpwr</object-name>
 		<visible>true</visible>
 		<action>
@@ -997,14 +1182,14 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/electric/epu-switch</property>
+				<property>/controls/electric/dc-external-power</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>dcextpwr</object-name>
-		<property>/controls/electric/epu-switch</property>
+		<property>/controls/electric/dc-external-power</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.177912 </y-m>
@@ -1017,9 +1202,22 @@
 		</axis>
 	</animation>
 	<animation>
+		<type>pick</type>
+		<object-name>extpwr</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/electric/ac-external-power</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>extpwr</object-name>
-		<property>/controls/electric/epu-switch</property>
+		<property>/controls/electric/ac-external-power</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.166266 </y-m>
@@ -1034,7 +1232,6 @@
 	<!--Generator 1-->
 	<animation>
 		<type>pick</type>
-		<object-name>gen1</object-name>
 		<object-name>dcgen1</object-name>
 		<visible>true</visible>
 		<action>
@@ -1042,14 +1239,14 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/electric/engine/generator</property>
+				<property>/controls/electric/engine/dc-generator</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>dcgen1</object-name>
-		<property>/controls/electric/engine/generator</property>
+		<property>/controls/electric/engine/dc-generator</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.177912 </y-m>
@@ -1062,9 +1259,22 @@
 		</axis>
 	</animation>
 	<animation>
+		<type>pick</type>
+		<object-name>gen1</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/electric/engine/ac-generator</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>gen1</object-name>
-		<property>/controls/electric/engine/generator</property>
+		<property>/controls/electric/engine/ac-generator</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.214902 </y-m>
@@ -1079,7 +1289,6 @@
 	<!--Generator 2-->
 	<animation>
 		<type>pick</type>
-		<object-name>gen2</object-name>
 		<object-name>dcgen2</object-name>
 		<visible>true</visible>
 		<action>
@@ -1087,14 +1296,14 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/electric/engine[1]/generator</property>
+				<property>/controls/electric/engine[1]/dc-generator</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>dcgen2</object-name>
-		<property>/controls/electric/engine[1]/generator</property>
+		<property>/controls/electric/engine[1]/dc-generator</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.177912 </y-m>
@@ -1107,9 +1316,22 @@
 		</axis>
 	</animation>
 	<animation>
+		<type>pick</type>
+		<object-name>gen2</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/electric/engine[1]/ac-generator</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>gen2</object-name>
-		<property>/controls/electric/engine[1]/generator</property>
+		<property>/controls/electric/engine[1]/ac-generator</property>
 		<factor>30</factor>
 		<center>
 			<y-m> 0.214902 </y-m>
@@ -1563,7 +1785,7 @@
 		</axis>
 	</animation>
 	<!--PANEL LIGHTS-->
-	<!--Master Switch TODO this is not a master switch, fix!-->
+	<!--Dome Light-->
 	<animation>
 		<type>pick</type>
 		<object-name>domelight</object-name>
@@ -1573,14 +1795,14 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/lighting/panel-lights</property>
+				<property>/controls/lighting/dome-lights</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>domelight</object-name>
-		<property>/controls/lighting/panel-lights</property>
+		<property>/controls/lighting/dome-lights</property>
 		<factor>30</factor>
 		<center>
 			<y-m>0.11769</y-m>
@@ -2412,7 +2634,7 @@
 		<axis-alignment>xy-plane</axis-alignment>
 		<type type="string">number-value</type>
 		<format type="string">%4.1f</format>
-		<property>systems/electrical/volts</property>
+		<property>systems/electrical/DC/indicated-bus-volts</property>
 		<truncate type="bool">false</truncate>
 		<font type="string">led.txf</font>
 		<draw-text type="bool">true</draw-text>
@@ -2453,7 +2675,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>systems/electrical/volts</property>
+				<property>systems/electrical/DC/lessential-bus/volts</property>
 				<value>10</value>
 			</greater-than>
 		</condition>

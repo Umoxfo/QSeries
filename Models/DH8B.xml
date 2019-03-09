@@ -32,7 +32,8 @@
 			</texture>
 		</parameters>
 		<object-name>vstab</object-name>
-		<object-name>rudder</object-name>
+		<object-name>fore.rudder</object-name>
+		<object-name>aft.rudder</object-name>
 		<object-name>hstab</object-name>
 		<object-name>elevator</object-name>
 		<object-name>elevator.spring.tab</object-name>
@@ -111,7 +112,8 @@
 		<object-name>elevator.trim.tab</object-name>
 		<object-name>vstab</object-name>
 		<object-name>vstab2</object-name>
-		<object-name>rudder</object-name>
+		<object-name>fore.rudder</object-name>
+		<object-name>aft.rudder</object-name>
 		<object-name>doorF</object-name>
 		<object-name>doorLH</object-name>
 		<object-name>doorRF</object-name>
@@ -361,32 +363,31 @@
 			<z> 0 </z>
 		</axis>
 	</animation>
-	<!--Flight Surfaces--><!--
+	<!--Flight Surfaces-->
 	<animation>
 		<type>rotate</type>
-		<object-name>elevator</object-name>
-		<property>surface-positions/elevator-pos-norm</property>
-		<factor>15.0</factor>
-		<center>
-			<x-m>13.5714</x-m>
-			<z-m>5.55357</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>-->
-	<animation>
-		<type>rotate</type>
-		<object-name>rudder</object-name>
+		<object-name>fore.rudder</object-name>
+		<object-name>aft.rudder</object-name>
 		<property>sim/multiplay/generic/float[0]</property>
-		<factor>36.0</factor>
+		<factor>20.0</factor>
 		<axis>
 			<x1-m>11.9639</x1-m>
 			<z1-m>1.28162</z1-m>
 			<x2-m>13.6283</x2-m>
 			<z2-m>5.3986</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>aft.rudder</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<offset-deg>1</offset-deg>
+		<factor>20.0</factor>
+		<axis>
+			<x1-m>12.5683</x1-m>
+			<z1-m>1.22769</z1-m>
+			<x2-m>14.1315</x2-m>
+			<z2-m>5.22332</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -468,6 +469,65 @@
 			<z2-m>1.59342</z2-m>
 		</axis>
 	</animation>
+	<!--Outbd Roll Spoilers-->
+	<animation>
+		<type>rotate</type>
+		<object-name>spoilerLO</object-name>
+		<property>sim/multiplay/generic/float[25]</property>
+		<factor> 68 </factor>
+		<axis>
+			<x1-m> 2.17393 </x1-m>
+			<y1-m>-8.37209 </y1-m>
+			<z1-m> 1.59222</z1-m>
+			<x2-m> 2.1754</x2-m>
+			<y2-m>-10.1669</y2-m>
+			<z2-m> 1.63222</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>spoilerRO</object-name>
+		<property>sim/multiplay/generic/float[26]</property>
+		<factor> -68 </factor>
+		<axis>
+			<x1-m> 2.17393 </x1-m>
+			<y1-m> 8.37209 </y1-m>
+			<z1-m> 1.59222</z1-m>
+			<x2-m> 2.1754</x2-m>
+			<y2-m> 10.1669</y2-m>
+			<z2-m> 1.63222</z2-m>
+		</axis>
+	</animation>
+	<!--Inbd Roll Spoilers-->
+	<animation>
+		<type>rotate</type>
+		<object-name>spoilerLI</object-name>
+		<property>sim/multiplay/generic/float[23]</property>
+		<factor> 72 </factor>
+		<axis>
+			<x1-m> 2.17393 </x1-m>
+			<y1-m>-8.37209 </y1-m>
+			<z1-m> 1.59222</z1-m>
+			<x2-m> 2.1754</x2-m>
+			<y2-m>-10.1669</y2-m>
+			<z2-m> 1.63222</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>spoilerRI</object-name>
+		<property>sim/multiplay/generic/float[24]</property>
+		<factor> -72 </factor>
+		<axis>
+			<x1-m> 2.17393 </x1-m>
+			<y1-m> 8.37209 </y1-m>
+			<z1-m> 1.59222</z1-m>
+			<x2-m> 2.1754</x2-m>
+			<y2-m> 10.1669</y2-m>
+			<z2-m> 1.63222</z2-m>
+		</axis>
+	</animation>
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator</object-name>

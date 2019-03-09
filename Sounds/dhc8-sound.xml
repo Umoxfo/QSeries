@@ -152,7 +152,7 @@
 <!-- Engine 1 -->
 
 <crank>
-            <name>engstart0</name>>
+            <name>engstart0</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>once</mode>
@@ -353,7 +353,7 @@
         
 
         <shutdown>
-            <name>engine0 off</name>>
+            <name>engine0 off</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>once</mode>
@@ -378,7 +378,7 @@
 <!-- Engine 2 -->
 
         <crank>
-            <name>engstart1</name>>
+            <name>engstart1</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>once</mode>
@@ -576,7 +576,7 @@
             </position>
         </prop>
         <shutdown>
-            <name>engine1 off</name>>
+            <name>engine1 off</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>once</mode>
@@ -601,7 +601,7 @@
         <!--GEAR-->
         <!--Gear Rumble-->
         <rumble>
-            <name>rumble</name>>
+            <name>rumble</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>looped</mode>
@@ -621,7 +621,7 @@
             </position>
         </rumble>
         <rumble>
-            <name>rumble</name>>
+            <name>rumble</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>looped</mode>
@@ -641,7 +641,7 @@
             </position>
         </rumble>
         <rumble>
-            <name>rumble</name>>
+            <name>rumble</name>
             <reference-dist>20.0</reference-dist>
             <max-dist>50.0</max-dist>
             <mode>looped</mode>
@@ -1202,7 +1202,7 @@
 			<volume>
 				<property>/sim/sound/effects/volume</property>
 			</volume>
-		</detenta>>
+		</detenta>
 		<detentb>
 			<mode>once</mode>
 			<name>detendb</name>
@@ -1236,7 +1236,7 @@
 			<volume>
 				<property>/sim/sound/effects/volume</property>
 			</volume>
-		</detenta>>
+		</detenta>
 		<detentb>
 			<mode>once</mode>
 			<name>detendd</name>

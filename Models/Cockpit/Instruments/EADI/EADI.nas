@@ -34,12 +34,12 @@ var AP_modelat = props.globals.getNode("/it-autoflight/mode/lat", 1);
 var AP_modevert = props.globals.getNode("/it-autoflight/mode/vert", 1);
 
 
-var Volts = props.globals.getNode("/systems/electrical/volts", 1);
+var Volts = props.globals.getNode("/systems/electrical/outputs/eadi[0]", 1);
 var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page", 1);
 
 
 #init
-var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
+var Volts = props.globals.initNode("/systems/electrical/outputs/eadi[0]", 0.0,  "DOUBLE");
 var MainPage = props.globals.initNode("/instrumentation/mfd[0]/inputs/main-page","", "STRING");
 var VREF_diff = props.globals.initNode("/instrumentation/EADI/vref_diff_norm", 0.0, "DOUBLE");
 var NAV0_locdefl = props.globals.initNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 0.0, "DOUBLE");

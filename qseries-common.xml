@@ -52,14 +52,6 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 		</q400>
 		
 		
-		<instrumentation>
-			<path>Aircraft/QSeries/Systems/instrumentation.xml</path>
-		</instrumentation>
-		
-		<sound>
-			<path>Aircraft/QSeries/Sounds/dhc8-sound.xml</path>
-		</sound>
-		
 		<flaps>
 			<setting>0.000</setting>
 			<setting>0.143</setting>
@@ -537,14 +529,6 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 		<itaf>
 			<file>Aircraft/QSeries/Nasal/it-autoflight.nas</file>
 		</itaf>
-		<systems>
-			<file>Nasal/APU.nas</file>
-			<file>Nasal/Electrical.nas</file>
-			<file>Nasal/hydraulics.nas</file>
-			<file>Nasal/fuel.nas</file>
-			<file>Nasal/pneumatics.nas</file><!--
-			<file>Nasal/engines.nas</file>-->
-		</systems>
 		<doors>
 			<file>Nasal/doors.nas</file>
 		</doors><!--

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <PropertyList>
+	
+	<!-- Airspeed Below 130 switch (gear warning horn) -->
+	<logic>
+		<inverted>false</inverted>
+		<input>
+			<less-than>
+				<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<value>130</value>
+			</less-than>
+		</input>
+		<output>instrumentation/airspeed-indicator/speed-below-130</output>
+	</logic>
 
 <!-- ELEVATOR -->
 
@@ -10,27 +22,6 @@
     <input>
       <property>/controls/flight/elevator</property>
     </input>
-    <enable>
-        <condition>
-            <or>
-                <greater-than>
-                    <property>/systems/hydraulic/psi1</property>
-                    <value>2900</value>
-                </greater-than>
-                <greater-than>
-                    <property>/systems/hydraulic/psi2</property>
-                    <value>2900</value>
-                </greater-than>
-                <and>
-                    <greater-than>
-                        <property>/systems/hydraulic/psi3</property>
-                        <value>2900</value>
-                    </greater-than>
-                    <property>/controls/hydraulic/isol-valve3</property>
-                </and>
-            </or>
-        </condition>
-    </enable>
     <gain>1</gain>
     <output>controls/flight/elevator-int</output>
   </filter>
@@ -47,11 +38,11 @@
         <condition>
             <or>
                 <greater-than>
-                    <property>/systems/hydraulic/psi1</property>
+                    <property>/systems/hydraulic/psi-main-1</property>
                     <value>2900</value>
                 </greater-than>
                 <greater-than>
-                    <property>/systems/hydraulic/psi2</property>
+                    <property>/systems/hydraulic/psi-main-2</property>
                     <value>2900</value>
                 </greater-than>
             </or>
@@ -61,48 +52,137 @@
     <output>controls/flight/rudder-int</output>
   </filter>
 
-<!-- ROLL SPOILER -->
-  <!--TODO correct hydraulic properties-->
-  <filter>
-    <name>Roll Spoiler Inbd</name>
-    <type>gain</type>
-    <input>
-      <property>/controls/flight/aileron</property>
-    </input>
-    <enable>
-        <condition>
-            <or>
-                <greater-than>
-                    <property>/systems/hydraulic/psi1</property>
-                    <value>2900</value>
-                </greater-than>
-                <greater-than>
-                    <property>/systems/hydraulic/psi2</property>
-                    <value>2900</value>
-                </greater-than>
-            </or>
-        </condition>
-    </enable>
-    <gain>1</gain>
-    <output>controls/flight/spoiler-inbd</output>
-  </filter>
-  <filter>
-    <name>Roll Spoiler Outbd</name>
-    <type>gain</type>
-    <input>
-      <property>/controls/flight/aileron</property>
-    </input>
-    <enable>
-        <condition>
-                <greater-than>
-                    <property>/systems/hydraulic/psi3</property>
-                    <value>2900</value>
-                </greater-than>
-        </condition>
-    </enable>
-    <gain>1</gain>
-    <output>controls/flight/spoiler-outbd</output>
-  </filter>
+	<!-- ROLL SPOILER -->
+	<filter>
+		<name>Roll Spoiler Left</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/flight/aileron</property>
+					<entry><ind> -1.0</ind><dep> 1.0</dep></entry>
+					<entry><ind>  0.0</ind><dep> 0.0</dep></entry>
+					<entry><ind>  1.0</ind><dep> 0.0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-left</output>
+	</filter>
+	<filter>
+		<name>Roll Spoiler Right</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/flight/aileron</property>
+					<entry><ind> -1.0</ind><dep> 0.0</dep></entry>
+					<entry><ind>  0.0</ind><dep> 0.0</dep></entry>
+					<entry><ind>  1.0</ind><dep> 1.0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-right</output>
+	</filter>
+	<filter>
+		<name>Roll Spoiler Inbd Left</name>
+		<type>gain</type>
+		<input>
+			<property>controls/flight/spoiler-left</property>
+		</input>
+		<enable>
+			<condition>
+				<greater-than>
+				<property>/systems/hydraulic/psi-main-1</property>
+				<value>2900</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-inbd-left</output>
+	</filter>
+	<filter>
+		<name>Roll Spoiler Inbd Right</name>
+		<type>gain</type>
+		<input>
+			<property>controls/flight/spoiler-right</property>
+		</input>
+		<enable>
+			<condition>
+				<greater-than>
+				<property>/systems/hydraulic/psi-main-1</property>
+				<value>2900</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-inbd-right</output>
+	</filter>
+	<filter>
+		<name>Roll Spoiler Outbd Left</name>
+		<type>gain</type>
+		<input>
+			<condition>
+				<less-than-equals>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>140</value>
+				</less-than-equals>
+			</condition>
+			<property>controls/flight/spoiler-left</property>
+		</input>
+		<input>
+			<condition>
+				<greater-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>140</value>
+				</greater-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/systems/hydraulic/psi-main-2</property>
+					<value>2900</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-outbd-left</output>
+	</filter>
+	<filter>
+		<name>Roll Spoiler Outbd Right</name>
+		<type>gain</type>
+		<input>
+			<condition>
+				<less-than-equals>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>140</value>
+				</less-than-equals>
+			</condition>
+			<property>controls/flight/spoiler-right</property>
+		</input>
+		<input>
+			<condition>
+				<greater-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>140</value>
+				</greater-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/systems/hydraulic/psi-main-2</property>
+					<value>2900</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<gain>1</gain>
+		<output>controls/flight/spoiler-outbd-right</output>
+	</filter>
 
 <!-- NOSE WHEEL STEERING -->
 

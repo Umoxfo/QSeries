@@ -54,6 +54,26 @@
 		</offsets>
 	</model>
 	
+	<!--Side Panels-->
+	<model>
+		<path>SidePanel/sidepanel.pilot.xml</path>
+		<offsets>
+			<x-m>-5.0186</x-m>
+			<y-m>-0.822056</y-m>
+			<z-m>0.087381</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>SidePanel/sidepanel.copilot.xml</path>
+		<offsets>
+			<x-m>-5.0186</x-m>
+			<y-m>0.822056</y-m>
+			<z-m>0.087381</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+	</model>
+	
 	<!--FMS-->
 	<model>
 		<path>Pedestal/Front/FMS/FMS.xml</path>

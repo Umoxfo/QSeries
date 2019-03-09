@@ -71,7 +71,7 @@ var canvas_FMS_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10 and getprop("/instrumentation/FMS/onoff") == 1) {
+		if (getprop("/systems/electrical/DC/lmain-bus/volts") >= 10 and getprop("/instrumentation/FMS/onoff") == 1) {
 			if(mainpage.getValue()=="startup"){
 				FMS_main.page.hide();
 				FMS_startup.page.show();

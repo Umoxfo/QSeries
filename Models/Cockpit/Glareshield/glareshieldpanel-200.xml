@@ -107,7 +107,7 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-			<factor-prop>/systems/electrical/outputs/glareshield-lights</factor-prop>
+			<factor-prop>systems/electrical/outputs/glareshield-norm</factor-prop>
 		</emission>
 	</animation>
 	<!-- FD/AP -->
@@ -1054,7 +1054,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/nav[0]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/nav[0]/power-btn</property>
@@ -1071,7 +1071,7 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>/systems/electrical/volts</property>
+				<property>/systems/electrical/outputs/nav[1]</property>
 				<value>12</value>
 			</greater-than>
 			<property>instrumentation/nav[1]/power-btn</property>

@@ -79,7 +79,7 @@ var DecHei = props.globals.getNode("/instrumentation/EHSI/DH", 1);
 var RM_cur_wp = props.globals.getNode("/autopilot/route-manager/current-wp", 1);
 
 
-var Volts = props.globals.getNode("/systems/electrical/volts", 1);
+var Volts = props.globals.getNode("/systems/electrical/outputs/ehsi[0]", 1);
 var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page", 1);
 
 
@@ -98,7 +98,7 @@ var Heading_bugdiff = props.globals.initNode("/instrumentation/pfd/hdg-bug-diff"
 var NAV0_rad = props.globals.initNode("/instrumentation/nav[0]/radials/selected-deg", 0.0, "DOUBLE");
 var NAV1_rad = props.globals.initNode("/instrumentation/nav[1]/radials/selected-deg", 0.0, "DOUBLE");
 
-var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
+var Volts = props.globals.initNode("/systems/electrical/outputs/ehsi[0]", 0.0,  "DOUBLE");
 var MainPage = props.globals.initNode("/instrumentation/mfd[0]/inputs/main-page","", "STRING");
 
 

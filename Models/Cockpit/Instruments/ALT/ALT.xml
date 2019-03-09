@@ -29,7 +29,7 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>alt.glass</object-name>
 	</effect>
-	<animation><!--TODO correct lighting property-->
+	<animation>
 		<type>material</type>
 		<object-name>ALT.face</object-name>
 		<object-name>alt.needle</object-name>
@@ -47,16 +47,11 @@
 		<object-name>mb.100</object-name>
 		<object-name>mb.10</object-name>
 		<object-name>mb.1</object-name>
-		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>		
-		</condition>
 		<emission>
-		<red>   0.50 </red>
-		<green> 0.25 </green>
-		<blue>  0.25 </blue>
+			<red>   0.50 </red>
+			<green> 0.25 </green>
+			<blue>  0.25 </blue>
+			<factor-prop>systems/electrical/outputs/pltflt-norm</factor-prop>
 		</emission>
 	</animation>
 	<animation>

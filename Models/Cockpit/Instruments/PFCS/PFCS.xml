@@ -16,7 +16,7 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>PFCS.glass</object-name>
 	</effect>
-	<animation><!--TODO correct lighting property-->
+	<animation>
 		<type>material</type>
 		<object-name>PFCS.face</object-name>
 		<object-name>spoiler.lo.needle</object-name>
@@ -24,16 +24,11 @@
 		<object-name>spoiler.ro.needle</object-name>
 		<object-name>spoiler.ri.needle</object-name>
 		<object-name>rudder.needle</object-name>
-		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>		
-		</condition>
 		<emission>
-		<red>   0.50 </red>
-		<green> 0.25 </green>
-		<blue>  0.25 </blue>
+			<red>   0.50 </red>
+			<green> 0.25 </green>
+			<blue>  0.25 </blue>
+			<factor-prop>systems/electrical/outputs/pltflt-norm</factor-prop>
 		</emission>
 	</animation>
 	<animation>
@@ -44,6 +39,67 @@
 		<center>
 			<y-m>-0.000647</y-m>
 			<z-m>-0.009634</z-m>
+		</center>
+		<axis>
+			<x>  1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>spoiler.li.needle</object-name>
+		<property>sim/multiplay/generic/float[23]</property>
+		<factor>72</factor>
+		<center>
+			<y-m>-0.008821</y-m>
+			<z-m>0.013211</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>spoiler.ri.needle</object-name>
+		<property>sim/multiplay/generic/float[24]</property>
+		<factor>72</factor>
+		<center>
+			<y-m>0.008012</y-m>
+			<z-m>0.013211</z-m>
+		</center>
+		<axis>
+			<x>  1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>spoiler.lo.needle</object-name>
+		<property>sim/multiplay/generic/float[25]</property>
+		<factor>68</factor>
+		<center>
+			<y-m>-0.016851</y-m>
+			<z-m>-0.00798</z-m>
+		</center>
+		<axis>
+			<x> -1 </x>
+			<y>  0 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>spoiler.ro.needle</object-name>
+		<property>sim/multiplay/generic/float[26]</property>
+		<factor>68</factor>
+		<center>
+			<y-m>0.01557</y-m>
+			<z-m>-0.00798</z-m>
 		</center>
 		<axis>
 			<x>  1 </x>

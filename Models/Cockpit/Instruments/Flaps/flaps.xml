@@ -7,20 +7,15 @@
 		<object-name>flap.face</object-name>
 		<object-name>flap.needle</object-name>
 	</effect>
-	<animation><!--TODO correct lighting property-->
+	<animation>
 		<type>material</type>
 		<object-name>flap.face</object-name>
 		<object-name>flap.needle</object-name>
-		<condition>
-			<greater-than>
-				<property>systems/electrical/volts</property>
-				<value>10</value>
-			</greater-than>		
-		</condition>
 		<emission>
-		<red>   0.50 </red>
-		<green> 0.25 </green>
-		<blue>  0.25 </blue>
+			<red>   0.50 </red>
+			<green> 0.25 </green>
+			<blue>  0.25 </blue>
+			<factor-prop>systems/electrical/outputs/copflt-norm</factor-prop>
 		</emission>
 	</animation>
 	<animation>

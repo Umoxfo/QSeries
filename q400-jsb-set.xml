@@ -40,7 +40,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 	</limits>
 	<sim>
 		<description>Bombardier Q400 DHC8-402 (JSB)</description>
-		<status>Alpha development</status>
 		<author>Alex Park (Maverickalex), Florian K, D-ECHO, Joshua Davidson (it0uchpods)</author>
 		<flight-model>jsb</flight-model>
 		<aero>q400-jsb</aero>
@@ -121,6 +120,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		<startup>
 			<splash-texture>Aircraft/QSeries/Splash/Q400/exterior1.jpg</splash-texture>
 		</startup>
+		
+		<sound>
+			<path>Aircraft/QSeries/Sounds/dhc8-sound.xml</path>
+		</sound>
 
 		<model>
 			<path>Aircraft/QSeries/Models/DH8D.xml</path>
@@ -366,6 +369,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			</generic>
 		</multiplay>
     
+		
+		<instrumentation>
+			<path>Aircraft/QSeries/Systems/instrumentation.xml</path>
+		</instrumentation>
 	</sim>
 	
 	<FADEC>
@@ -559,5 +566,13 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		<cdu>
 			<file>Models/Cockpit/Pedestal/Front//CDU/CDU.nas</file>
 		</cdu>
+		<systems>
+			<file>Nasal/APU.nas</file>
+			<file>Nasal/Electrical.nas</file>
+			<file>Nasal/hydraulics.nas</file>
+			<file>Nasal/fuel.nas</file>
+			<file>Nasal/pneumatics.nas</file><!--
+			<file>Nasal/engines.nas</file>-->
+		</systems>
 	</nasal>
 </PropertyList>
