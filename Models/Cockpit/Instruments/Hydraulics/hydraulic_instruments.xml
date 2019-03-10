@@ -9,12 +9,12 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>eng.glass</object-name>
 	</effect>-->
-	<animation>TODO correct lighting property
+	<animation>
 		<type>material</type>
 		<object-name>hyd_panel.lighted</object-name>
 		<condition>
 			<greater-than>
-				<property>systems/electrical/volts</property>
+				<property>systems/electrical/outputs/stby-hyd-press[0]</property>
 				<value>10</value>
 			</greater-than>		
 		</condition>

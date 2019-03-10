@@ -138,7 +138,7 @@ var canvas_EADI_main = {
 			
 		
 		var vd = VREF_diff.getValue();
-		me["vref.assist"].setTranslation(0,-vd*150);
+		me["vref.assist"].setTranslation(0,vd*150);
 		
 		var radio_alt = ALT_AGL.getValue();
 		if(radio_alt>2500){

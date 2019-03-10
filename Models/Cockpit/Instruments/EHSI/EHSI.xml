@@ -6,6 +6,8 @@
 	<effect>
 		<inherits-from>../../../Effects/panel</inherits-from>
 		<object-name>EHSI.base</object-name>
+		<object-name>EHSI.screen</object-name>
+		<object-name>EHSI.screws</object-name>
 	</effect>
 	
 	<!--Display effect-->

@@ -6,7 +6,25 @@
 	<effect>
 		<inherits-from>../../../Effects/panel</inherits-from>
 		<object-name>EADI.base</object-name>
+		<object-name>EADI.screen</object-name>
+		<object-name>EADI.screws</object-name>
+		<object-name>EADI.ball</object-name>
 	</effect>
+	<animation>
+		<type>material</type>
+		<object-name>EADI.ball</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/eadi[0]</property>
+				<value>10</value>
+			</greater-than>		
+		</condition>
+		<emission>
+		<red>   0.50 </red>
+		<green> 0.25 </green>
+		<blue>  0.25 </blue>
+		</emission>
+	</animation>
 	
 	<!--Display effect-->
 	<!--<effect>
@@ -26,6 +44,26 @@
 				<script>canvas_eadi.showEADI();</script>
 			</binding>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>EADI.ball</object-name>
+		<condition>
+			<greater-than>
+				<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+				<value>-3</value>
+			</greater-than>
+			<less-than>
+				<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+				<value>3</value>
+			</less-than>
+		</condition>
+		<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+		<axis>
+			<x>1</x>
+		</axis>
+		<factor>12.45</factor>
 	</animation>
     
 </PropertyList>

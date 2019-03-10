@@ -7,8 +7,9 @@
 		<object-name>airspeed.base</object-name>
 		<object-name>asi.bug.knob</object-name>
 		<object-name>asi.needle</object-name>
-		<object-name>asi.bug1</object-name>
-		<object-name>asi.bug2</object-name>
+		<object-name>asi.bug.1</object-name>
+		<object-name>asi.bug.2</object-name>
+		<object-name>asi.bug.3</object-name>
 		<object-name>asi.vmo</object-name>
 		<object-name>airspeed.face</object-name>
 		<object-name>airspeed.drum</object-name>
@@ -22,8 +23,9 @@
 		<object-name>airspeed.face</object-name>
 		<object-name>airspeed.drum</object-name>
 		<object-name>asi.needle</object-name>
-		<object-name>asi.bug1</object-name>
-		<object-name>asi.bug2</object-name>
+		<object-name>asi.bug.1</object-name>
+		<object-name>asi.bug.2</object-name>
+		<object-name>asi.bug.3</object-name>
 		<object-name>asi.vmo</object-name>
 		<emission>
 			<red>   0.50 </red>
