@@ -123,7 +123,33 @@
 	
 	
 	<filter>
-		<name>OVSPD WARN HORN</name>
+		<name>XPDR Knob Mode</name>
+		<type>gain</type>
+		<input>	
+			<condition>
+				<equals>
+					<property>instrumentation/collins_xpdr/selection</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>instrumentation/transponder[0]/inputs/knob-mode</property>
+		</input>
+		<input>				
+			<condition>
+				<equals>
+					<property>instrumentation/collins_xpdr/selection</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>instrumentation/transponder[1]/inputs/knob-mode</property>
+		</input>
+		<gain>1</gain>
+		<output>instrumentation/collins_xpdr/knob-mode</output>
+	</filter>
+	
+	
+	<filter>
+		<name>Collins XPDR</name>
 		<type>gain</type>
 		<input>	
 			<condition>
@@ -191,6 +217,51 @@
 		<input>engines/engine[1]/fuel-flow_pph</input>
 		<gain>0.453592</gain>
 		<output>engines/engine[1]/fuel-flow_kgph</output>
+	</filter>
+	
+	
+	<!--AP Lights-->
+
+	<filter>
+		<name>AP Lights</name> 
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<dif>
+					<prod>
+							<property>/systems/electrical/DC/lmain-bus/volts</property>
+							<property>/it-autoflight/output/ap1</property>
+						</prod>
+						<value>25</value>
+					</dif>
+				</expression>
+		</input>
+		<output>/it-autoflight/output/ap1-lights</output>
+		<min>0</min>
+		<max>1</max>
+	</filter>
+
+	<filter>
+		<name>YD Lights</name> 
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<dif>
+					<prod>
+							<property>/systems/electrical/DC/lmain-bus/volts</property>
+							<property>/it-autoflight/input/yd</property>
+						</prod>
+						<value>25</value>
+					</dif>
+				</expression>
+		</input>
+		<output>/it-autoflight/output/yd-lights</output>
+		<min>0</min>
+		<max>1</max>
 	</filter>
 	
 </PropertyList>

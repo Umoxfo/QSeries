@@ -123,7 +123,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 				<default-field-of-view-deg>60</default-field-of-view-deg>
 				<x-offset-m type="double">-0.4577</x-offset-m>
 				<y-offset-m type="double">0.695583</y-offset-m>
-				<z-offset-m type="double">-6.26</z-offset-m>
+				<z-offset-m type="double">-6.36</z-offset-m>
 				<pitch-offset-deg>-14</pitch-offset-deg>
 			</config>
 		</view>
@@ -456,6 +456,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<active type="bool">0</active>
 			<test type="int">0</test>
 		</ovspd-horn>
+		<collins_xpdr>
+			<selection type="int">1</selection>
+			<selection-switch type="int">1</selection-switch>
+		</collins_xpdr>
 	</instrumentation>
 	
 	<!--Version-specific part of the key settings-->

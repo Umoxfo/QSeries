@@ -435,21 +435,6 @@
 			<blue>0.4</blue>
 		</emission>
 	</animation>
-	<!--<animation>
-    <type>material</type>
-    <object-name>face</object-name>
-    <object-name>needle</object-name>
-    <condition>
-      <property>/controls/lighting/instrument-lights</property>
-      <property>/controls/electric/battery-switch</property>
-    </condition>
-    <emission>
-      <factor-prop>/controls/lighting/luminosite-lights</factor-prop>
-      <red>   0.50 </red>
-      <green> 0.25 </green>
-      <blue>  0.25 </blue>
-    </emission>
-  </animation>-->
 	<!---->
 	<!--Main six instruments (center)-->
 	<animation>
@@ -503,6 +488,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>prop1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/np[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine/rpm</property>
 		<interpolation>
 			<entry>
@@ -527,6 +518,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>prop2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/np[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[1]/rpm</property>
 		<interpolation>
 			<entry>
@@ -600,6 +597,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>nh1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nh[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine/n2</property>
 		<interpolation>
 			<entry>
@@ -624,6 +627,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>nh2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nh[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[1]/n2</property>
 		<interpolation>
 			<entry>
@@ -698,6 +707,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>nl1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nl[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine/n1</property>
 		<interpolation>
 			<entry>
@@ -722,6 +737,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>nl2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nl[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[1]/n1</property>
 		<interpolation>
 			<entry>
@@ -747,6 +768,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ot1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ot[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[0]/oil-temperature-degc</property>
 		<interpolation>
 			<entry>
@@ -771,6 +798,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>op1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/op[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[0]/oil-pressure-psi</property>
 		<interpolation>
 			<entry>
@@ -795,6 +828,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ot2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ot[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[1]/oil-temperature-degc</property>
 		<interpolation>
 			<entry>
@@ -819,6 +858,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>op2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/op[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>engines/engine[1]/oil-pressure-psi</property>
 		<interpolation>
 			<entry>
@@ -1043,6 +1088,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>fuel1.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/fq[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>consumables/fuel/tank[0]/level-kg</property>
 		<interpolation>
 			<entry>
@@ -1067,6 +1118,12 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>fuel2.needle</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/fq[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
 		<property>consumables/fuel/tank[1]/level-kg</property>
 		<interpolation>
 			<entry>
@@ -1456,6 +1513,72 @@
 	<animation>
 		<type>select</type>
 		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/np[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>PROP1</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nl[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>NL1</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nh[0]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>NH1</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/np[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>PROP2</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nl[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>NL2</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nh[1]</property>
+				<value>10</value>
+			</greater-than>
+		</condition>
+		<object-name>NH2</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<condition>
 			<or>
 				<greater-than>
 					<property>systems/electrical/DC/lessential-bus/volts</property>
@@ -1470,15 +1593,9 @@
 		<object-name>altset</object-name>
 		<object-name>TRQ1</object-name>
 		<object-name>TRQ2</object-name>
-		<object-name>PROP1</object-name>
-		<object-name>PROP2</object-name>
 		<object-name>ITT1</object-name>
 		<object-name>ITT2</object-name>
-		<object-name>NH1</object-name>
-		<object-name>NH2</object-name>
 		<object-name>FF1</object-name>
 		<object-name>FF2</object-name>
-		<object-name>NL1</object-name>
-		<object-name>NL2</object-name>
 	</animation>
 </PropertyList>

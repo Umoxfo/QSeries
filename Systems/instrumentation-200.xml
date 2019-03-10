@@ -146,6 +146,12 @@ This file selects the instrumentation modules that should be available.
 		<number>0</number>
 		<mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
 	</transponder>
+	
+	<transponder>
+		<name>transponder</name>
+		<number>1</number>
+		<mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
+	</transponder>
 
     <mk-viii>                          <!-- http://wiki.flightgear.org/index.php/GPWS -->
       <serviceable>true</serviceable>  <!-- EGPWS_ENABLE -->

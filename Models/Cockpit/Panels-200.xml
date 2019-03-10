@@ -58,8 +58,8 @@
 	<model>
 		<path>SidePanel/sidepanel.pilot.xml</path>
 		<offsets>
-			<x-m>-5.0186</x-m>
-			<y-m>-0.822056</y-m>
+			<x-m>-5.12</x-m>
+			<y-m>-0.79</y-m>
 			<z-m>0.087381</z-m>
 			<heading-deg>90</heading-deg>
 		</offsets>
@@ -67,10 +67,32 @@
 	<model>
 		<path>SidePanel/sidepanel.copilot.xml</path>
 		<offsets>
-			<x-m>-5.0186</x-m>
+			<x-m>-5.12</x-m>
 			<y-m>0.822056</y-m>
 			<z-m>0.087381</z-m>
 			<heading-deg>90</heading-deg>
+		</offsets>
+	</model>
+	
+	<!--CB Panels-->
+	<model>
+		<path>CBPanels/123/dc-left-panel.xml</path>
+		<offsets>
+			<x-m>-4.34661</x-m>
+			<y-m>-0.965312</y-m>
+			<z-m>0.207778</z-m>
+			<pitch-deg>45</pitch-deg>
+			<heading-deg>180</heading-deg>
+		</offsets>
+	</model>
+	<model>
+		<path>CBPanels/123/avionics-panel.xml</path>
+		<offsets>
+			<x-m>-4.17899</x-m>
+			<y-m>-0.965312</y-m>
+			<z-m>0.53109</z-m>
+			<heading-deg>-90</heading-deg>
+			<roll-deg>90</roll-deg>
 		</offsets>
 	</model>
 	

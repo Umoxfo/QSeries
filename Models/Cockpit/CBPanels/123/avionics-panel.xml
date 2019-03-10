@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	<path>avionics-panel.ac</path>
+	
+	
+	<!--Panel illumination-->
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>avionics.base</object-name>
+		<object-name>cb.bases</object-name>
+		<object-name>cb.a4</object-name>
+		<object-name>cb.a5</object-name>
+		<object-name>cb.a7</object-name>
+		<object-name>cb.a8</object-name>
+		<object-name>cb.b4</object-name>
+		<object-name>cb.b5</object-name>
+		<object-name>cb.b7</object-name>
+		<object-name>cb.b8</object-name>
+		<object-name>cb.other</object-name>
+	</effect>
+	<!--Left Main Bus-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.a4</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/transponder[0]/inputs/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.a4</object-name>
+		<property>instrumentation/transponder[0]/inputs/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.a5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/dme[0]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.a5</object-name>
+		<property>instrumentation/dme[0]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.b5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/adf[0]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.b5</object-name>
+		<property>instrumentation/adf[0]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<!--Right Main Bus-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.a7</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/transponder[1]/inputs/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.a7</object-name>
+		<property>instrumentation/transponder[1]/inputs/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.a8</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/dme[1]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.a8</object-name>
+		<property>instrumentation/dme[1]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.b8</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/adf[1]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.b8</object-name>
+		<property>instrumentation/adf[1]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+</PropertyList>

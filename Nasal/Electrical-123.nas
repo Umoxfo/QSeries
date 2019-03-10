@@ -25,6 +25,10 @@ var lff2bus_volts = props.globals.getNode("/systems/electrical/AC/lff2-bus/volts
 var rff1bus_volts = props.globals.getNode("/systems/electrical/AC/rff1-bus/volts",1);
 var rff2bus_volts = props.globals.getNode("/systems/electrical/AC/rff2-bus/volts",1);
 
+var lessential_lmain = props.globals.getNode(breakers~"lessential-lmain",1);
+var lessential_auxbatt = props.globals.getNode(breakers~"lessential-auxbatt",1);
+
+var lmain_lessential = props.globals.getNode(breakers~"lmain-lessential",1);
 
 var Amps = props.globals.getNode("/systems/electrical/amps",1);
 var EXT  = props.globals.getNode("/controls/electric/dc-external-power",1);
@@ -283,6 +287,11 @@ init_switches = func() {
 	
 	setprop("/controls/electric/dc-bus-select", 0);
 	
+	lessential_lmain.setBoolValue(1);
+	lessential_auxbatt.setBoolValue(1);
+	
+	lmain_lessential.setBoolValue(1);
+	
 	
     var tprop=props.globals.getNode("controls/electric/ammeter-switch",1);
     tprop.setBoolValue(1);
@@ -454,10 +463,34 @@ init_switches = func() {
     append(lessential_servout_list,"advsy[0]");
     append(lessential_serv_list,"instrumentation/hydraulic/hyd-press[0]/serviceable");
     append(lessential_servout_list,"hyd-press[0]");
+    append(lessential_serv_list,breakers~"np-ind[0]");
+    append(lessential_servout_list,"np[0]");
+    append(lessential_serv_list,breakers~"nl-ind[0]");
+    append(lessential_servout_list,"nl[0]");
+    append(lessential_serv_list,breakers~"nh-ind[0]");
+    append(lessential_servout_list,"nh[0]");
+    append(lessential_serv_list,breakers~"op-ind[0]");
+    append(lessential_servout_list,"op[0]");
+    append(lessential_serv_list,breakers~"ot-ind[0]");
+    append(lessential_servout_list,"ot[0]");
+    append(lessential_serv_list,breakers~"fq-ind[0]");
+    append(lessential_servout_list,"fq[0]");
 
     #Instruments running on R ESSENTIAL DC Bus
     append(ressential_serv_list,"instrumentation/hydraulic/hyd-press[1]/serviceable");
     append(ressential_servout_list,"hyd-press[1]");
+    append(ressential_serv_list,breakers~"np-ind[1]");
+    append(ressential_servout_list,"np[1]");
+    append(ressential_serv_list,breakers~"nl-ind[1]");
+    append(ressential_servout_list,"nl[1]");
+    append(ressential_serv_list,breakers~"nh-ind[1]");
+    append(ressential_servout_list,"nh[1]");
+    append(ressential_serv_list,breakers~"op-ind[1]");
+    append(ressential_servout_list,"op[1]");
+    append(ressential_serv_list,breakers~"ot-ind[1]");
+    append(ressential_servout_list,"ot[1]");
+    append(ressential_serv_list,breakers~"fq-ind[1]");
+    append(ressential_servout_list,"fq[1]");
     
     
     #Instruments running on L MAIN DC Bus
@@ -829,7 +862,7 @@ update_rmain_bus = func ( dt ) {
 }	
 
 lessential_bus = func(bv) {
-	var bus_volts = bv;
+	var bus_volts = 0.0;
 	var load = 0.0;
 	var srvc = 0.0;
 	
@@ -839,7 +872,7 @@ lessential_bus = func(bv) {
 		var main_battery_volts = main_battery.get_output_volts();
 		var aux_battery_volts = aux_battery.get_output_volts();
 		if(main_battery_volts > bus_volts){
-			if(aux_battery_volts>main_battery_volts){
+			if(aux_battery_volts>main_battery_volts and lessential_auxbatt.getValue()){
 				bus_volts=aux_battery_volts;
 				power_source = "aux_battery";
 			}else{
@@ -847,9 +880,11 @@ lessential_bus = func(bv) {
 				power_source = "main_battery";
 			}
 		}
-	}else{
+	}else if(lessential_lmain.getValue() and lmain_lessential.getValue()){
 		power_source = "lmain_bus";
+		bus_volts=bv;
 	}
+		
 	
 	bus_volts*=lessential_serviceable.getValue();
 	
@@ -1378,17 +1413,17 @@ general_loop = func{
 	
 	var dc_bus_select = getprop("/controls/electric/dc-bus-select");
 	if(dc_bus_select==0){
-		dcindbv.setValue(lsecondarybus_volts.getValue());
+		dcindbv.setValue(lsecondarybus_volts.getValue() or 0);
 	}else if(dc_bus_select==1){
-		dcindbv.setValue(lmainbus_volts.getValue());
+		dcindbv.setValue(lmainbus_volts.getValue() or 0);
 	}else if(dc_bus_select==2){
-		dcindbv.setValue(lessentialbus_volts.getValue());
+		dcindbv.setValue(lessentialbus_volts.getValue() or 0);
 	}else if(dc_bus_select==3){
-		dcindbv.setValue(ressentialbus_volts.getValue());
+		dcindbv.setValue(ressentialbus_volts.getValue() or 0);
 	}else if(dc_bus_select==4){
-		dcindbv.setValue(rmainbus_volts.getValue());
+		dcindbv.setValue(rmainbus_volts.getValue() or 0);
 	}else if(dc_bus_select==5){
-		dcindbv.setValue(rsecondarybus_volts.getValue());
+		dcindbv.setValue(rsecondarybus_volts.getValue() or 0);
 	}
     
     

@@ -16,75 +16,250 @@
                 <object-name>base.5</object-name>
                 <object-name>screws</object-name>
         </effect>
+        <effect>
+                <inherits-from>../../../Effects/panel</inherits-from>
+                <object-name>ailerontrim</object-name>
+                <object-name>ailerontrimind</object-name>
+                <object-name>ruddertrim</object-name>
+                <object-name>ruddertrimind</object-name>
+                <object-name>trim_base</object-name>
+                <object-name>trim.lighted</object-name>
+        </effect>
+	<!--TODO correct lighting property-->
+	<animation>
+		<type>material</type>
+                <object-name>trim.lighted</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>systems/electrical/outputs/glareshield-norm</factor-prop>
+		</emission>
+	</animation>
         <!--TRIM PANEL-->
         <!--Rudder Trim-->
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.left2.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>-0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>-2</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.left1.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>-0.01</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>-1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>rudtrim.right1.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>0.01</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.right2.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>2</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
         <animation>
-                <type>knob</type>
+                <type>rotate</type>
                 <object-name>ruddertrim</object-name>
-                <property>/controls/flight/rudder-trim</property>
-                <factor>-360</factor>
+		<property>/controls/flight/rudder-trim-knob</property>
+                <factor>-40</factor>
                 <center>
-                        <x-m> -11.68977</x-m>
-                        <y-m>  0.03235 </y-m>
+                        <x-m> -0.072157</x-m>
+                        <y-m>  0.033285 </y-m>
                 </center>
                 <axis>
                         <z>1</z>
                 </axis>
-                <action>
-                        <binding>
-                                <command>property-adjust</command>
-                                <property>/controls/flight/rudder-trim</property>
-                                <factor>0.01</factor>
-                                <min>-0.2</min>
-                                <max>0.2</max>
-                                <wrap>false</wrap>
-                        </binding>
-                </action>
         </animation>
         <animation>
                 <type>rotate</type>
                 <object-name>ruddertrimind</object-name>
                 <property>/controls/flight/rudder-trim</property>
-                <factor>-360</factor>
+                <factor>-65</factor>
                 <center>
-                        <x-m> -11.72675</x-m>
-                        <y-m>  0.03195 </y-m>
+                        <x-m> -0.110528</x-m>
+                        <y-m> 0.033316</y-m>
                 </center>
                 <axis>
                         <z>1</z>
                 </axis>
         </animation>
+	<animation>
+		<type>pick</type>
+                <object-name>ailtrim.left.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/aileron-trim</property>
+				<step>-0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/aileron-trim-switch</property>
+				<value>1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/aileron-trim-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>ailtrim.right.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/aileron-trim</property>
+				<step>0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/aileron-trim-switch</property>
+				<value>-1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/aileron-trim-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
         <animation>
-                <type>knob</type>
+                <type>rotate</type>
                 <object-name>ailerontrim</object-name>
-                <property>/controls/flight/aileron-trim</property>
-                <factor>-360</factor>
+		<property>/controls/flight/aileron-trim-switch</property>
+                <factor>10</factor>
                 <center>
-                        <y-m> -0.03611</y-m>
-                        <z-m>  1.86654 </z-m>
+                        <y-m>-0.03471</y-m>
+                        <z-m>0.004364</z-m>
                 </center>
                 <axis>
                         <x>1</x>
                 </axis>
-                <action>
-                        <binding>
-                                <command>property-adjust</command>
-                                <property>/controls/flight/aileron-trim</property>
-                                <factor>0.01</factor>
-                                <min>-0.2</min>
-                                <max>0.2</max>
-                                <wrap>false</wrap>
-                        </binding>
-                </action>
         </animation>
+	
         <animation>
                 <type>rotate</type>
                 <object-name>ailerontrimind</object-name>
                 <property>/controls/flight/aileron-trim</property>
-                <factor>-360</factor>
+                <factor>40</factor>
                 <center>
-                        <x-m>-11.7277</x-m>
-                        <y-m>  -0.03483</y-m>
+                        <x-m>-0.11044</x-m>
+                        <y-m>-0.030415</y-m>
                 </center>
                 <axis>
                         <z>1</z>
@@ -966,5 +1141,397 @@
 		<object-name>comm1.rmt.flag</object-name>
 		<object-name>comm1.tx.flag</object-name>
 		<object-name>comm1.act.flag</object-name>
+	</animation>
+	
+	
+	
+	
+	<!--Collins ATC (XPDR)-->
+	<animation>
+		<type>knob</type>
+		<object-name>atc.master</object-name>
+		<property>instrumentation/collins_xpdr/knob-mode</property>
+		<interpolation>
+			<entry>
+				<ind>   0 </ind>
+				<dep>   0 </dep>
+			</entry>
+			<entry>
+				<ind>  1 </ind>
+				<dep>  -33</dep>
+			</entry>
+			<entry>
+				<ind>  4 </ind>
+				<dep>  -66</dep>
+			</entry>
+			<entry>
+				<ind>  5 </ind>
+				<dep>  -99</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>0.058442</x-m>
+			<y-m>-0.04683</y-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-cycle</command>
+				<condition>
+					<equals>
+						<property>instrumentation/collins_xpdr/selection</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<property>instrumentation/transponder[0]/inputs/knob-mode</property>
+				<value>0</value>
+				<value>1</value>
+				<value>4</value>
+				<value>5</value>
+			</binding>
+			<binding>
+				<command>property-cycle</command>
+				<condition>
+					<equals>
+						<property>instrumentation/collins_xpdr/selection</property>
+						<value>2</value>
+					</equals>
+				</condition>
+				<property>instrumentation/transponder[1]/inputs/knob-mode</property>
+				<value>0</value>
+				<value>1</value>
+				<value>4</value>
+				<value>5</value>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>atc.bigknob</object-name>
+		<property>instrumentation/transponder/inputs/id-code-100</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>0.056247</x-m>
+			<y-m>-0.020028</y-m>
+		</center>
+		<action>
+                        <binding>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>1</value>
+                                        </equals>
+                                </condition>
+                                <command>property-adjust</command>
+                                <property>instrumentation/transponder/inputs/id-code-100</property>
+                                <factor>1</factor>
+                                <min>0</min>
+                                <max>77</max>
+                                <wrap>true</wrap>
+                        </binding>
+                        <binding>
+                                <command>nasal</command>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>1</value>
+                                        </equals>
+                                </condition>
+                                <script>
+                                        var stbycode1=getprop("/instrumentation/transponder[0]/inputs/id-code-1") or 0;
+                                        var stbycode100=getprop("/instrumentation/transponder[0]/inputs/id-code-100") or 0;
+                                        setprop("/instrumentation/transponder[0]/id-code", (stbycode100*100)+stbycode1);
+                                </script>
+                        </binding>
+		</action>
+		<action>
+                        <binding>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>2</value>
+                                        </equals>
+                                </condition>
+                                <command>property-adjust</command>
+                                <property>instrumentation/transponder[1]/inputs/id-code-100</property>
+                                <factor>1</factor>
+                                <min>0</min>
+                                <max>77</max>
+                                <wrap>true</wrap>
+                        </binding>
+                        <binding>
+                                <command>nasal</command>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>2</value>
+                                        </equals>
+                                </condition>
+                                <script>
+                                        var stbycode1=getprop("/instrumentation/transponder[1]/inputs/id-code-1") or 0;
+                                        var stbycode100=getprop("/instrumentation/transponder[1]/inputs/id-code-100") or 0;
+                                        setprop("/instrumentation/transponder[1]/id-code", (stbycode100*100)+stbycode1);
+                                </script>
+                        </binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>atc.smallknob</object-name>
+		<property>instrumentation/transponder/inputs/id-code-1</property>
+		<factor>-0.25</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>0.056247</x-m>
+			<y-m>-0.020028</y-m>
+		</center>
+		<action>
+                        <binding>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>1</value>
+                                        </equals>
+                                </condition>
+                                <command>property-adjust</command>
+                                <property>instrumentation/transponder/inputs/id-code-1</property>
+                                <factor>1</factor>
+                                <min>0</min>
+                                <max>77</max>
+                                <wrap>true</wrap>
+                        </binding>
+                        <binding>
+                                <command>nasal</command>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>1</value>
+                                        </equals>
+                                </condition>
+                                <script>
+                                        var stbycode1=getprop("/instrumentation/transponder[0]/inputs/id-code-1") or 0;
+                                        var stbycode100=getprop("/instrumentation/transponder[0]/inputs/id-code-100") or 0;
+                                        setprop("/instrumentation/transponder[0]/id-code", (stbycode100*100)+stbycode1);
+                                </script>
+                        </binding>
+                        <binding>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>2</value>
+                                        </equals>
+                                </condition>
+                                <command>property-adjust</command>
+                                <property>instrumentation/transponder[1]/inputs/id-code-1</property>
+                                <factor>1</factor>
+                                <min>0</min>
+                                <max>77</max>
+                                <wrap>true</wrap>
+                        </binding>
+                        <binding>
+                                <command>nasal</command>
+                                <condition>
+                                        <equals>
+                                                <property>instrumentation/collins_xpdr/selection</property>
+                                                <value>2</value>
+                                        </equals>
+                                </condition>
+                                <script>
+                                        var stbycode1=getprop("/instrumentation/transponder[1]/inputs/id-code-1") or 0;
+                                        var stbycode100=getprop("/instrumentation/transponder[1]/inputs/id-code-100") or 0;
+                                        setprop("/instrumentation/transponder[1]/id-code", (stbycode100*100)+stbycode1);
+                                </script>
+                        </binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>atc.sel</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/collins_xpdr/selection</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/transponder[0]/inputs/knob-mode</property>
+				<property>instrumentation/transponder[1]/inputs/knob-mode</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/collins_xpdr/selection-switch</property>
+				<value>1</value>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/collins_xpdr/selection</property>
+				<value>2</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/transponder[1]/inputs/knob-mode</property>
+				<property>instrumentation/transponder[0]/inputs/knob-mode</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/collins_xpdr/selection-switch</property>
+				<value>-1</value>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>atc.sel</object-name>
+		<property>instrumentation/collins_xpdr/selection-switch</property>
+		<factor>-25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0.031094</x-m>
+			<z-m>0.006409</z-m>
+		</center>
+	</animation>
+	<!--text-->
+	<text>
+		<name>atc0</name>
+		<offsets>
+			<x-m>0.02914</x-m>
+			<y-m>-0.037958</y-m>
+			<z-m>0.007249</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%04.0f</format>
+		<property>instrumentation/transponder[0]/id-code</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.009</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>atc1</name>
+		<offsets>
+			<x-m>0.02914</x-m>
+			<y-m>-0.037958</y-m>
+			<z-m>0.007249</z-m>
+			<heading-deg>90</heading-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xy-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<format type="string">%04.0f</format>
+		<property>instrumentation/transponder[1]/id-code</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">led.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.009</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- Z Colors/Effects -->
+	<animation>
+		<type>material</type>
+		<object-name>atc0</object-name>
+		<object-name>atc1</object-name>
+		<diffuse>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</diffuse>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red>0.89</red>
+			<green>0.37</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<equals>
+				<property>instrumentation/collins_xpdr/selection</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<object-name>atc0</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<equals>
+				<property>instrumentation/collins_xpdr/selection</property>
+				<value>2</value>
+			</equals>
+		</condition>
+		<object-name>atc1</object-name>
+	</animation>
+	<!--<animation>
+		<type>select</type>
+		<condition>
+			<property>instrumentation/comm[0]/ptt</property>
+		</condition>
+		<object-name>comm0.tx.flag</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>instrumentation/comm[1]/ptt</property>
+		</condition>
+		<object-name>comm1.tx.flag</object-name>
+	</animation>-->
+	<!--Collins on/off-->
+	<!--Left Unit-->
+	<animation>
+		<type>select</type>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/outputs/transponder[0]</property>
+				<value>12</value>
+			</greater-than>
+		</condition>
+		<object-name>atc0</object-name>
+		<object-name>atc1</object-name>
 	</animation>
 </PropertyList>

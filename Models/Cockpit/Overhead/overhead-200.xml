@@ -989,9 +989,10 @@
 		<object-name>caut.pitotheat1</object-name>
 		<condition>
 			<or>
-				<not>
-					<property>/controls/anti-ice/pitot-heat[0]</property>
-				</not>
+				<less-than>
+					<property>systems/electrical/outputs/pitot-heat[0]</property>
+					<value>15</value>
+				</less-than>
 				<property>/controls/panel/cautiontest</property>
 			</or>
 		</condition>
@@ -1001,9 +1002,10 @@
 		<object-name>caut.pitotheat2</object-name>
 		<condition>
 			<or>
-				<not>
-					<property>/controls/anti-ice/pitot-heat[1]</property>
-				</not>
+				<less-than>
+					<property>systems/electrical/outputs/pitot-heat[1]</property>
+					<value>15</value>
+				</less-than>
 				<property>/controls/panel/cautiontest</property>
 			</or>
 		</condition>

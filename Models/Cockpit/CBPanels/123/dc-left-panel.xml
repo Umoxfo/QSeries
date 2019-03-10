@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	<path>dc-left-panel.ac</path>
+	
+	
+	<!--Panel illumination-->
+	<effect>
+		<inherits-from>../../../Effects/panel</inherits-from>
+		<object-name>dcleft.base</object-name>
+		<object-name>cb.bases</object-name>
+		<object-name>cb.e3</object-name>
+		<object-name>cb.f3</object-name>
+		<object-name>cb.k2</object-name>
+		<object-name>cb.j2</object-name>
+		<object-name>cb.m4</object-name>
+		<object-name>cb.g5</object-name>
+		<object-name>cb.h5</object-name>
+		<object-name>cb.k5</object-name>
+		<object-name>cb.l5</object-name>
+		<object-name>cb.m5</object-name>
+		<object-name>cb.h6</object-name>
+		<object-name>cb.j6</object-name>
+		<object-name>cb.e9</object-name>
+		<object-name>cb.l9</object-name>
+		<object-name>cb.m9</object-name>
+		<object-name>cb.ldc.other</object-name>
+	</effect>
+	<!--Left Main Bus-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.e3</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/advsy[1]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.e3</object-name>
+		<property>instrumentation/advsy[1]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.e9</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/lmain-lessential</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.e9</object-name>
+		<property>controls/electric/circuit-breakers/lmain-lessential</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<!--Left Essential Bus-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.l9</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/lessential-lmain</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.l9</object-name>
+		<property>controls/electric/circuit-breakers/lessential-lmain</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.m9</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/lessential-auxbatt</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.m9</object-name>
+		<property>controls/electric/circuit-breakers/lessential-auxbatt</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.f3</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/advsy[0]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.h6</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/pitot-heat[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.h6</object-name>
+		<property>controls/electric/circuit-breakers/pitot-heat[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<!--Engine Instruments-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.g5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/np-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.g5</object-name>
+		<property>controls/electric/circuit-breakers/np-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.h5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/nh-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.h5</object-name>
+		<property>controls/electric/circuit-breakers/nh-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.k5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/op-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.k5</object-name>
+		<property>controls/electric/circuit-breakers/op-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.l5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/nl-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.l5</object-name>
+		<property>controls/electric/circuit-breakers/nl-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.m5</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/op-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.m5</object-name>
+		<property>controls/electric/circuit-breakers/op-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<!--Fuel-->
+	<animation>
+		<type>pick</type>
+		<object-name>cb.m4</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electric/circuit-breakers/fq-ind[0]</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.m4</object-name>
+		<property>controls/electric/circuit-breakers/fq-ind[0]</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.f3</object-name>
+		<property>instrumentation/advsy[0]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.j2</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/eadi[0]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.j2</object-name>
+		<property>instrumentation/eadi[0]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>cb.k2</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/ehsi[0]/serviceable</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>cb.k2</object-name>
+		<property>instrumentation/ehsi[0]/serviceable</property>
+		<offset-m>0.007</offset-m>
+		<factor>-0.007</factor>
+		<axis>
+			<x> 0 </x>
+			<y> 0 </y>
+			<z> 1 </z>
+		</axis>
+	</animation>
+</PropertyList>
