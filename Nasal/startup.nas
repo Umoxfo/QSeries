@@ -33,10 +33,6 @@ setlistener("/engines/engine[0]/running", func{
     }
 });
 
-setlistener("/sim/signals/fdm-initialized", func {
-	itaf.ap_init();
-});
-
 var aglgears = func {
 	var agl = getprop("/position/altitude-agl-ft") or 0;
 	var aglft = agl - 11.101;  # is the position from the Q400 above ground
