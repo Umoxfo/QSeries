@@ -1047,7 +1047,8 @@ var cdu = func{
 	var display = getprop("/instrumentation/cdu/display");
 
 	### Réinitialisation si extinction CDU ###
-	if (getprop("systems/electrical/volts") < 15 or getprop("controls/lighting/cdu") <= 0.02) {
+	var volts = getprop("systems/electrical/outputs/fms[0]") or 0;
+	if (volts < 15 or getprop("controls/lighting/cdu") <= 0.02) {
 		setprop("autopilot/route-manager/input","@CLEAR");
 		setprop("autopilot/route-manager/destination/airport","");
 		setprop("autopilot/route-manager/departure/airport","");

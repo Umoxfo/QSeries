@@ -474,21 +474,17 @@
         <object-name>S0</object-name>
         <object-name>CDU-screen</object-name>
         <object-name>CDU-lamp</object-name>
-				<condition>
-					<and>				
-            <greater-than>
-                <property>systems/electrical/outputs/efis</property>
-                <value>15</value>
-            </greater-than>
-            <greater-than>
-                <property>controls/lighting/cdu</property>
-                <value>0.02</value>
-            </greater-than>
-            <equals>
-                <property>controls/electric/avionics-switch</property>
-                <value>2</value>
-            </equals>
-					</and>					
+	<condition>
+		<and>				
+			<greater-than>
+				<property>systems/electrical/outputs/fms[0]</property>
+				<value>15</value>
+			</greater-than>
+			<greater-than>
+				<property>controls/lighting/cdu</property>
+				<value>0.02</value>
+			</greater-than>
+		</and>					
         </condition>
     </animation>
 
@@ -550,11 +546,11 @@
         <object-name>btn.r4</object-name>
         <object-name>btn.slash</object-name>
         <object-name>btn.sp</object-name>
-        <condition>
-						<or>
-	           	<property>systems/electrical/left-emer-bus</property>
-	           	<property>systems/electrical/left-bus-norm</property>
-						</or>
+        <condition>	
+			<greater-than>
+				<property>systems/electrical/outputs/fms[0]</property>
+				<value>15</value>
+			</greater-than>
         </condition>
         <emission>
             <red>1</red>

@@ -52,7 +52,7 @@ var canvas_ED_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
+		if ((getprop("/systems/electrical/outputs/esid") or 0) >= 10) {
 				ED_only.page.show();
 		} else {
 			ED_only.page.hide();
@@ -70,7 +70,7 @@ var canvas_ED_only = {
 		return m;
 	},
 	getKeys: func() {
-		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","SATp","thrustdtL","thrustdtR","powerpctL","powerpctR"];
+		return ["TRQL.needle","TRQL.percent","TRQL.target","TRQR.needle","TRQR.percent","TRQR.target","RPML.needle","RPMR.needle","RPML","RPMR","ITTL.needle","ITTL","ITTR.needle","ITTR","oilpressL.needle","OilPressL","oilpressR.needle","OilPressR","OilTempL","oiltempL.needle","OilTempR","oiltempR.needle","FFL","FFR","LeftQuantity","RightQuantity","FuelTempL","FuelTempR","SAT","thrustdtL","thrustdtR","powerpctL","powerpctR","NHL.needle","NHL.percent","NHR.needle","NHR.percent","NLL.percent","NLR.percent"];
 	},
 	update: func() {
 		var thrustmode0=getprop("/FADEC/thrust-mode[0]") or "";
@@ -157,8 +157,22 @@ var canvas_ED_only = {
 		me["ITTR.needle"].setRotation(ittRC*0.002895);
 		me["ITTR"].setText(sprintf("%s", math.round(ittRC)));
 		
+		var nhL = getprop("engines/engine[0]/n2") or 0;
+		var nhR = getprop("engines/engine[1]/n2") or 0;
+		
+		me["NHL.needle"].setRotation(nhL*D2R*1.63);
+		me["NHL.percent"].setText(sprintf("%4.1f",nhL));
+		me["NHR.needle"].setRotation(nhR*D2R*1.63);
+		me["NHR.percent"].setText(sprintf("%4.1f",nhR));
+		
+		var nlL = getprop("engines/engine[0]/n1") or 0;
+		var nlR = getprop("engines/engine[1]/n1") or 0;
+		
+		me["NLL.percent"].setText(sprintf("%3d",nhL));
+		me["NLR.percent"].setText(sprintf("%3d",nhR));
+		
 		var oilPSIL=getprop("/engines/engine[0]/oil-pressure-psi");
-		var oilPSIR=getprop("/engines/engine[0]/oil-pressure-psi");
+		var oilPSIR=getprop("/engines/engine[1]/oil-pressure-psi");
 		var oilPSINL=getprop("/MFD/oil-pressure-needle[0]");
 		var oilPSINR=getprop("/MFD/oil-pressure-needle[1]");
 		
@@ -190,7 +204,7 @@ var canvas_ED_only = {
 		}
 		
 		var oilCL=getprop("/engines/engine[0]/oil-temperature-degc");
-		var oilCR=getprop("/engines/engine[0]/oil-temperature-degc");
+		var oilCR=getprop("/engines/engine[1]/oil-temperature-degc");
 		var oilNL=getprop("/MFD/oil-temperature-needle[0]");
 		var oilNR=getprop("/MFD/oil-temperature-needle[1]");
 		
@@ -252,12 +266,7 @@ var canvas_ED_only = {
 		}
 		
 		var static_air_temp=getprop("/environment/temperature-degc");
-		me["SAT"].setText(sprintf("%s", math.round(static_air_temp)));
-		if(static_air_temp>=0){
-			me["SATp"].show();
-		}else{
-			me["SATp"].hide();
-		}
+		me["SAT"].setText(sprintf("%+3d", math.round(static_air_temp)));
 			
 		
 		settimer(func me.update(), 0.02);

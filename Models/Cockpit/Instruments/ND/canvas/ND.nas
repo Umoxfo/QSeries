@@ -77,7 +77,7 @@ var canvas_nd_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
+		if ((getprop("/systems/electrical/outputs/mfd[0]") or 0) >= 10) {
 			var mainpage=getprop("/instrumentation/mfd[0]/inputs/main-page");
 			if(mainpage=="nd"){
 				ND_1.page.show();

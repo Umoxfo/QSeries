@@ -79,7 +79,7 @@ var DecHei = props.globals.getNode("/instrumentation/PFD/DH", 1);
 var RM_cur_wp = props.globals.getNode("/autopilot/route-manager/current-wp", 1);
 
 
-var Volts = props.globals.getNode("/systems/electrical/volts", 1);
+var Volts = props.globals.getNode("/systems/electrical/outputs/pfd[0]", 1);
 var MainPage = props.globals.getNode("/instrumentation/mfd[0]/inputs/main-page", 1);
 
 
@@ -94,7 +94,7 @@ var ALT_100 = props.globals.initNode("/instrumentation/PFD/alt-100", 0.0, "DOUBL
 var VS_needle = props.globals.initNode("/instrumentation/pfd/vs-needle", 0.0, "DOUBLE");
 var Heading_bugdiff = props.globals.initNode("/instrumentation/pfd/hdg-bug-diff", 0.0, "DOUBLE");
 var DecHei = props.globals.initNode("/instrumentation/PFD/DH", 0.0, "DOUBLE");
-var Volts = props.globals.initNode("/systems/electrical/volts", 0.0,  "DOUBLE");
+var Volts = props.globals.initNode("/systems/electrical/outputs/pfd[0]", 0.0,  "DOUBLE");
 var MainPage = props.globals.initNode("/instrumentation/mfd[0]/inputs/main-page","", "STRING");
 
 
@@ -169,12 +169,7 @@ var canvas_PFD_base = {
 	},
 	update: func() {
 		if (Volts.getValue() >= 10) {
-			var main_page=MainPage.getValue();
-			if(main_page=="pfd"){
-				PFD_main.page.hide();
-			}else{
-				PFD_main.page.show();
-			}
+			PFD_main.page.show();
 		} else {
 			PFD_main.page.hide();
 		}

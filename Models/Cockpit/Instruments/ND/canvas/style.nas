@@ -1171,6 +1171,50 @@ canvas.NDStyles["Airbus"] = {
 				}
 			}  
 		},
+		#Bottom (System) Part
+		{
+			id: "Relev",
+			impl: {
+				init: func(nd,symbol),
+				predicate: ALWAYS,
+				is_true: func(nd) {
+					var elevator=getprop("sim/multiplay/generic/float[1]") or 0;
+					if(elevator>0){
+						nd.symbols.Relev.setRotation(elevator*(0.01744)*30);
+					}else if(elevator<0){
+						nd.symbols.Relev.setRotation(elevator*(0.01744)*43);
+					}
+				},
+				is_false: NOTHING,
+			},
+		},
+		{
+			id: "Lelev",
+			impl: {
+				init: func(nd,symbol),
+				predicate: ALWAYS,
+				is_true: func(nd) {
+					var elevator=getprop("sim/multiplay/generic/float[1]") or 0;
+					if(elevator>0){
+						nd.symbols.Lelev.setRotation(elevator*(-0.01744)*30);
+					}else if(elevator<0){
+						nd.symbols.Lelev.setRotation(elevator*(-0.01744)*43);
+					}
+				},
+				is_false: NOTHING,
+			},
+		},
+		{
+			id: "rudder",
+			impl: {
+				init: func(nd,symbol),
+				predicate: ALWAYS,
+				is_true: func(nd) {
+					nd.symbols.rudder.setRotation((getprop("sim/multiplay/generic/float[0]") or 0)*(-0.01744)*41.4);
+				},
+				is_false: NOTHING,
+			},
+		},
 	], # end of vector with features
 
 };

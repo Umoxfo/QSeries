@@ -56,7 +56,7 @@ var canvas_IESI_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
+		if ((getprop("/systems/electrical/outputs/stby-att") or 0) >= 10) {
 			IESI.page.show();
 			IESI.update();
 		} else {

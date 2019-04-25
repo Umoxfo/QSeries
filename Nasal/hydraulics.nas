@@ -108,10 +108,22 @@ var master_hyd = func {
             setprop("/controls/hydraulic/isol-valve3", 0);
         }
 	
-	if((eng1_pump_sw and !eng1_pump_fail and runningL or spu_act and !spu_fail and getprop("/systems/electrical/volts")>20) and !leak1){
+	if((eng1_pump_sw and !eng1_pump_fail and runningL) and !leak1){
+            interpolate("/systems/hydraulic/psi-edp-1", 3000, 2);
+        }else{
+            interpolate("/systems/hydraulic/psi-edp-1", 0, 2);
+        }
+	
+	if((eng1_pump_sw and !eng1_pump_fail and runningL or spu_act and !spu_fail and (getprop("/systems/electrical/AC/lvarfreq-bus/volts") or 0)>20) and !leak1){
             interpolate("/systems/hydraulic/psi1", 3000, 2);
         }else{
             interpolate("/systems/hydraulic/psi1", 0, 2);
+        }
+        
+	if((eng2_pump_sw and !eng2_pump_fail and runningR) and !leak2){
+            interpolate("/systems/hydraulic/psi-edp-2", 3000, 2);
+        }else{
+            interpolate("/systems/hydraulic/psi-edp-2", 0, 2);
         }
 	
 	if((eng2_pump_sw and !eng2_pump_fail and runningR or psi1>2400 and ptu_active) and !leak2){
@@ -120,7 +132,7 @@ var master_hyd = func {
             interpolate("/systems/hydraulic/psi2", 0, 2);
         }
         
-        if((getprop("/systems/electrical/volts")>20) and !leak3){
+        if(((getprop("/systems/electrical/DC/ressential-bus/volts") or 0)>20) and !leak3){
             interpolate("/systems/hydraulic/psi3", 3000, 2);
         }else{
             interpolate("/systems/hydraulic/psi3", 0, 2);

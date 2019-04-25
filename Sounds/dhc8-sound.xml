@@ -99,6 +99,50 @@
 			</and>
 		</condition>
 	</chime>
+	
+	<chime>
+		<name>master_caution</name>
+		<mode>once</mode>
+		<type>avionics</type>
+		<path>master_caution.wav</path>
+		<condition>
+			<and>
+				<or>
+					<greater-than>
+						<property>/systems/electrical/DC/lessential-bus/volts</property>
+						<value>15</value>
+					</greater-than>
+					<greater-than>
+						<property>/systems/electrical/DC/ressential-bus/volts</property>
+						<value>15</value>
+					</greater-than>
+				</or>
+                            <property>instrumentation/crew-alerting/master-caution</property>
+			</and>
+		</condition>
+	</chime>
+	
+	<chime>
+		<name>master_warning</name>
+		<mode>once</mode>
+		<type>avionics</type>
+		<path>master_warning_400.wav</path>
+		<condition>
+			<and>
+				<or>
+					<greater-than>
+						<property>/systems/electrical/DC/lessential-bus/volts</property>
+						<value>15</value>
+					</greater-than>
+					<greater-than>
+						<property>/systems/electrical/DC/ressential-bus/volts</property>
+						<value>15</value>
+					</greater-than>
+				</or>
+                            <property>instrumentation/crew-alerting/master-warning</property>
+			</and>
+		</condition>
+	</chime>
 <!-- APU, same for inside and outside; APU sound and config from CRJ700-family licensed under GPL -->
 		<apu>
 			<name>APU starting</name>
@@ -1254,6 +1298,44 @@
 				<property>/sim/sound/effects/volume</property>
 			</volume>
 		</detentb>
+		
+		<!--Stick Shaker (from the FGAddon 777 (GPL), thanks!)-->
+		<stickshaker>
+			<name>stickshaker1</name>
+			<reference-dist>2</reference-dist>
+			<max-dist>500</max-dist>
+			<mode>looped</mode>
+			<path>shaker.wav</path>
+			<condition>
+				<property>controls/flight/stick-shaker-signal[0]</property>
+			</condition>
+			<volume>
+				<property>sim/sound/effects/volume</property>
+			</volume>
+			<position>
+				<x>-5.1</x>
+				<y>-0.5</y>
+				<z>-0.4</z>
+			</position>
+		</stickshaker>
+		<stickshaker>
+			<name>stickshaker2</name>
+			<reference-dist>2</reference-dist>
+			<max-dist>500</max-dist>
+			<mode>looped</mode>
+			<path>shaker.wav</path>
+			<condition>
+				<property>controls/flight/stick-shaker-signal[1]</property>
+			</condition>
+			<volume>
+				<property>sim/sound/effects/volume</property>
+			</volume>
+			<position>
+				<x>-5.1</x>
+				<y> 0.5</y>
+				<z>-0.4</z>
+			</position>
+		</stickshaker>
     </fx>
 
 </PropertyList>

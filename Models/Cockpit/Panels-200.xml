@@ -4,7 +4,7 @@
 	
 	<!--Overhead Panel-->
 	<model>
-		<path>Overhead/overhead-200.xml</path> <!--TODO add warning panel-->
+		<path>Overhead/overhead.xml</path>
 		<offsets>
 			<x-m>-4.9</x-m>
 			<y-m>0.0</y-m>
@@ -56,7 +56,7 @@
 	
 	<!--Side Panels-->
 	<model>
-		<path>SidePanel/sidepanel.pilot.xml</path>
+		<path>SidePanel-200/sidepanel.pilot.xml</path>
 		<offsets>
 			<x-m>-5.12</x-m>
 			<y-m>-0.79</y-m>
@@ -65,7 +65,7 @@
 		</offsets>
 	</model>
 	<model>
-		<path>SidePanel/sidepanel.copilot.xml</path>
+		<path>SidePanel-200/sidepanel.copilot.xml</path>
 		<offsets>
 			<x-m>-5.12</x-m>
 			<y-m>0.822056</y-m>

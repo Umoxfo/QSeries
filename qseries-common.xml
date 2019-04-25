@@ -6,6 +6,16 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 -->
 <PropertyList>
 	<sim>
+		<fuel-fraction>0.5</fuel-fraction>
+		
+		<status>beta</status>
+		
+		<rating>
+			<FDM type="int">2</FDM>
+			<systems type="int">4</systems>
+			<cockpit type="int">3</cockpit><!--thanks to FlorianK!!-->
+			<model type="int">4</model><!--thanks to FlorianK!!-->
+		</rating>
 		
 		<tags>
 			<tag>transport</tag>
@@ -111,6 +121,9 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 			</property-rule>
 			<property-rule n="102">
 				<path>Aircraft/QSeries/Systems/model.xml</path>
+			</property-rule>
+			<property-rule n="103">
+				<path>Aircraft/QSeries/Systems/sensors.xml</path>
 			</property-rule>
 		</systems>
 		
@@ -371,6 +384,18 @@ Bombardier QSeries: This file contains stuff used in all variants (Benedikt Wolf
 		<altimeter>
 			<millibars type="double">0</millibars>
 		</altimeter>
+		<aoa n="0">
+			<serviceable type="bool">1</serviceable>
+		</aoa>
+		<aoa n="1">
+			<serviceable type="bool">1</serviceable>
+		</aoa>
+		<ifc n="0">
+			<serviceable type="bool">1</serviceable>
+		</ifc>
+		<ifc n="1">
+			<serviceable type="bool">1</serviceable>
+		</ifc>
 		<adf n="0">
 			<frequencies>
 				<standby-1khz type="float">0</standby-1khz>

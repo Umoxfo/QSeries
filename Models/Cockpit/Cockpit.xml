@@ -65,7 +65,8 @@
 <!--HUD-->
 	<animation>
 		<type>pick</type>
-		<object-name>hud.glass</object-name>
+		<object-name>HUD1.glass</object-name>
+		<object-name>HUD1.screen</object-name>
 		<action>
 			<button>0</button>
 			<binding>
@@ -104,7 +105,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>hud</object-name>
-		<object-name>hud.glass</object-name>
+		<object-name>HUD1.glass</object-name>
+		<object-name>HUD1.screen</object-name>
 		<property>/controls/switches/hud-flip</property>
 		<factor>-65</factor>
 		<center>

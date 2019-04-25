@@ -4,7 +4,7 @@ setlistener("/sim/signals/fdm-initialized", func{
 });
 
 setlistener("/controls/APU/start", func{
-    if(getprop("controls/APU/master")==1 and getprop("/systems/electrical/volts")>20) {
+    if(getprop("controls/APU/master")==1 and getprop("/systems/electrical/DC/rmain-bus/volts")>20) {
         interpolate("/engines/APU/rpm", 62, 5);
     }
 });

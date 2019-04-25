@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+
+	<filter>
+		<name>AOA1</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>instrumentation/aoa[0]/serviceable</property>
+			</condition>
+			<property>orientation/alpha-deg</property>
+		</input>
+		<input>
+			<condition>
+				<not>
+					<property>instrumentation/aoa[0]/serviceable</property>
+				</not>
+			</condition>
+			<value>25</value> <!--TODO more realistic failure simulation-->
+		</input>
+		<output>/instrumentation/aoa[0]/aoa-deg</output>
+	</filter>
+
+	<filter>
+		<name>AOA2</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>instrumentation/aoa[1]/serviceable</property>
+			</condition>
+			<property>orientation/alpha-deg</property>
+		</input>
+		<input>
+			<condition>
+				<not>
+					<property>instrumentation/aoa[1]/serviceable</property>
+				</not>
+			</condition>
+			<value>25</value> <!--TODO more realistic failure simulation-->
+		</input>
+		<output>/instrumentation/aoa[1]/aoa-deg</output>
+	</filter>
+
+	<filter>
+		<name>AOA average 1</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<div>
+					<sum>
+						<property>/instrumentation/aoa[0]/aoa-deg</property>
+						<property>/instrumentation/aoa[1]/aoa-deg</property>
+					</sum>
+					<value>2</value>
+				</div>
+			</expression>
+			<condition>
+				<property>instrumentation/ifc[0]/serviceable</property>
+			</condition>
+		</input>
+		<input>
+			<condition>
+				<not>
+					<property>instrumentation/ifc[0]/serviceable</property>
+				</not>
+			</condition>
+			<value>25</value> <!--TODO more realistic failure simulation-->
+		</input>
+		<output>/instrumentation/ifc[0]/aoa-deg</output>
+	</filter>
+	<filter>
+		<name>AOA average 2</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<div>
+					<sum>
+						<property>/instrumentation/aoa[0]/aoa-deg</property>
+						<property>/instrumentation/aoa[1]/aoa-deg</property>
+					</sum>
+					<value>2</value>
+				</div>
+			</expression>
+			<condition>
+				<property>instrumentation/ifc[1]/serviceable</property>
+			</condition>
+		</input>
+		<input>
+			<condition>
+				<not>
+					<property>instrumentation/ifc[1]/serviceable</property>
+				</not>
+			</condition>
+			<value>25</value> <!--TODO more realistic failure simulation-->
+		</input>
+		<output>/instrumentation/ifc[1]/aoa-deg</output>
+	</filter>
+	
+	<filter>
+		<name>Stick Shaker Signal 1</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>instrumentation/ifc[0]/aoa-deg</property>
+					<value>14</value> <!--TODO calculate dynamically-->
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<less-than-equals>
+						<property>instrumentation/ifc[0]/aoa-deg</property>
+						<value>14</value> <!--TODO calculate dynamically-->
+					</less-than-equals>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<output>/controls/flight/stick-shaker-signal-int[0]</output>
+	</filter>
+	
+	<filter>
+		<name>Stick Shaker Signal 2</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>instrumentation/ifc[1]/aoa-deg</property>
+					<value>14</value> <!--TODO calculate dynamically-->
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<less-than-equals>
+						<property>instrumentation/ifc[1]/aoa-deg</property>
+						<value>14</value> <!--TODO calculate dynamically-->
+					</less-than-equals>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<output>/controls/flight/stick-shaker-signal-int[1]</output>
+	</filter>
+
+	<filter>
+		<name>Stick Pusher Signal</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>instrumentation/ifc[0]/aoa-deg</property>
+					<value>15</value> <!--TODO calculate dynamically-->
+				</greater-than>
+				<greater-than>
+					<property>/position/gear-agl-ft</property> <!--TODO correct property-->
+					<value>200</value>
+				</greater-than>
+				<less-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>215</value>
+				</less-than>
+				<expression>
+					<table>
+						<difference>
+							<property>instrumentation/ifc[0]/aoa-deg</property>
+							<property>instrumentation/ifc[1]/aoa-deg</property>
+						</difference>
+						<entry><ind>-1.1</ind><dep>0</dep></entry>
+						<entry><ind>-1</ind><dep>1</dep></entry>
+						<entry><ind>0</ind><dep>1</dep></entry>
+						<entry><ind>1</ind><dep>1</dep></entry>
+						<entry><ind>1.1</ind><dep>0</dep></entry>
+					</table>
+				</expression>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<less-than-equals>
+						<property>instrumentation/ifc[0]/aoa-deg</property>
+						<value>15</value> <!--TODO calculate dynamically-->
+					</less-than-equals>
+					<less-than-equals>
+						<property>/position/gear-agl-ft</property> <!--TODO correct property-->
+						<value>200</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<value>215</value>
+					</greater-than-equals>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<output>/controls/flight/stick-pusher-signal-int</output>
+	</filter>
+</PropertyList>

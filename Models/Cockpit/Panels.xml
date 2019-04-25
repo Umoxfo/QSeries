@@ -9,31 +9,18 @@
 			<x-m>-11.8</x-m>
 			<y-m>0.0</y-m>
 			<z-m>2.9</z-m>
-			<pitch-deg>158.35</pitch-deg>
+			<heading-deg>90</heading-deg>
+			<roll-deg>158.35</roll-deg>
 		</offsets>
 	</model>
 	
 	
 	<!--Glareshield Panel-->
 	<model>
-	<path>Glareshield/glareshieldpanel.xml</path>
+		<path>Glareshield/glareshieldpanel.xml</path>
 	</model>
 
 
-	<model>
-		<name>HUD</name>
-		<path>HUD/hud.xml</path>
-	</model>
-	<animation>
-		<type>select</type>
-		<object-name>HUD</object-name>
-		<condition>
-			<or>
-				<property>/sim/model/livery/enable-hud</property>
-				<property>/sim/model/always-show-hud</property>
-			</or>
-		</condition>
-	</animation>
 	<model>
 		<path>Instruments/PFD/PFD.pilot.xml</path>
 		<offsets>
@@ -102,11 +89,38 @@
 	<!--Pilot's/Copilot's side panel-->
 	<model>
 		<path>MainPanel/baropanel/baropanel.xml</path>
+		<offsets>
+			<x-m>-12.3166</x-m>
+			<y-m>-0.63894</y-m>
+			<z-m>2.13167</z-m>
+			<pitch-deg>-15.3</pitch-deg>
+		</offsets>
 	</model>
 	<model>
 		<path>MainPanel/baropanel/baropanel.xml</path>
 		<offsets>
-			<y-m>1.27788</y-m>
+			<x-m>-12.3166</x-m>
+			<y-m>0.63894</y-m>
+			<z-m>2.13167</z-m>
+			<pitch-deg>-15.3</pitch-deg>
+		</offsets>
+	</model>
+	
+	<!--Side Panels-->
+	<model>
+		<path>SidePanel/sidepanel.pilot.xml</path>
+		<offsets>
+			<x-m>-11.8145</x-m>
+			<y-m>-0.900217</y-m>
+			<z-m>1.92296</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>SidePanel/sidepanel.copilot.xml</path>
+		<offsets>
+			<x-m>-11.8145</x-m>
+			<y-m>0.900217</y-m>
+			<z-m>1.92296</z-m>
 		</offsets>
 	</model>
 

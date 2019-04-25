@@ -2,7 +2,7 @@
 <PropertyList>
 	<path>sidepanel.pilot.ac</path>
 	<effect>
-		<inherits-from>../../../Effects/panel</inherits-from>
+		<inherits-from>../../Effects/panel</inherits-from>
 		<object-name>pilot.base</object-name>
 		<object-name>pilot.screws</object-name>
 		<object-name>pilot.lighted</object-name>
@@ -28,8 +28,8 @@
 		<property>/controls/lighting/panel/plt-flt</property>
 		<factor>-250</factor>
 		<center>
-			<x-m>-0.002199</x-m>
-			<y-m> 0.077172 </y-m>
+			<x-m>-0.030807</x-m>
+			<y-m>0.039188 </y-m>
 		</center>
 		<axis>
 			<x> 0 </x>
@@ -46,58 +46,5 @@
 				<wrap>false</wrap>
 			</binding>
 		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>ovspdtest.switch</object-name>
-		<visible>true</visible>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/ovspd-horn/test</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>instrumentation/ovspd-horn/test</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/ovspd-horn/test</property>
-				<value>-1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>instrumentation/ovspd-horn/test</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>ovspdtest.switch</object-name>
-		<property>instrumentation/ovspd-horn/test</property>
-		<factor>20</factor>
-		<center>
-			<y-m> -0.058669 </y-m>
-			<z-m>  0.004567 </z-m>
-		</center>
-		<axis>
-			<x> -1 </x>
-			<y>  0 </y>
-			<z>  0 </z>
-		</axis>
 	</animation>
 </PropertyList>

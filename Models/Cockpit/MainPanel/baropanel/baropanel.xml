@@ -10,8 +10,15 @@
         <parameters>
             <implicit-lightmap-intensity><use>/systems/electrical/outputs/glareshield-lights</use></implicit-lightmap-intensity>
         </parameters>
-	<object-name>Circle</object-name>
-	<object-name>Circle.001</object-name>
+	<object-name>baropanel.base</object-name>
+	<object-name>baropanel.base2</object-name>
+	<object-name>baropanel.screws</object-name>
+        <object-name>speedbug</object-name>
+        <object-name>speedbugselect</object-name>
+        <object-name>baroknob</object-name>
+        <object-name>barobase</object-name>
+        <object-name>dhmda_select</object-name>
+        <object-name>dhmda_knob</object-name>
     </effect>
         
 

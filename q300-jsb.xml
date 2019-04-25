@@ -512,7 +512,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</propulsion>
 
 	<system file="pushback" />
-	<system file="q400-fcs" />
+	<system file="q200-fcs" />
 	<system file="fadec" />
 	<system file="vspeedcalc" />
 

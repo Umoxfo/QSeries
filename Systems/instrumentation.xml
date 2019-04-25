@@ -60,6 +60,12 @@ This file selects the instrumentation modules that should be available.
         <number>1</number>
     </comm-radio>
 
+    <!--STBY VHF COMM-->
+    <comm-radio>
+        <name>comm</name>
+        <number>2</number>
+    </comm-radio>
+
     <heading-indicator>
         <name>heading-indicator</name>
         <number>0</number>

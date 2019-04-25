@@ -8,7 +8,7 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 ************************************************************************
 -->
 
-<PropertyList include="qseries-common.xml">
+<PropertyList include="qseries-abc-common.xml">
 	<limits><!--Source: https://www.easa.europa.eu/sites/default/files/dfu/EASA%20TCDS_DHC-8_Iss%2012.pdf-->
 		<max-flap-extension-speed>
 			<flaps>0.142</flaps>
@@ -44,17 +44,9 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		<author>Alex Park (Maverickalex), Florian K, D-ECHO, Joshua Davidson (it0uchpods)</author>
 		<flight-model>jsb</flight-model>
 		<aero>q100-jsb</aero>
-		<fuel-fraction>0.5</fuel-fraction>
 		<startup>
 			<splash-texture>Aircraft/QSeries/Splash.png</splash-texture>
 		</startup>
-		<status>early production</status>
-		<rating>
-			<FDM type="int">3</FDM>
-			<systems type="int">4</systems>
-			<cockpit type="int">5</cockpit><!--thanks to FlorianK!!-->
-			<model type="int">5</model><!--thanks to FlorianK!!-->
-		</rating>
 		<previews>
 			<preview>
 				<type>exterior</type>
@@ -100,21 +92,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<variant type="int">1</variant>
 			<always-show-hud type="bool">0</always-show-hud>
 		</model>
-		
-		<systems>
-			<autopilot n="2">
-				<path>Aircraft/QSeries/Systems/flight-controls-200.xml</path>
-			</autopilot>
-			<property-rule n="103">
-				<path>Aircraft/QSeries/Systems/vsi.xml</path>
-			</property-rule>
-			<property-rule n="104">
-				<path>Aircraft/QSeries/Systems/instruments-200.xml</path>
-			</property-rule>
-			<property-rule n="105">
-				<path>Aircraft/QSeries/Systems/hydraulics-123.xml</path>
-			</property-rule>
-		</systems>
 		
 		<view n="0">
 			<name>Cockpit</name>
@@ -325,21 +302,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 							<dialog-name>checklists</dialog-name>
 						</binding>
 					</item>
-					<item>
-						<label>Put aircraft on jacks</label>
-						<binding>
-							<command>property-toggle</command>
-							<property>controls/gear/jacks</property>
-						</binding>
-					</item>
 				</menu>
 			</default>
 		</menubar>
 		
-		<checklists include="Dialogs/checklists.xml"/><!--TODO check for changes 400 - 200 -->
-		
-		
-<!--		<tutorials include="Tutorials/tutorials.xml"/> TODO add liveries for the older variants-->
 		<multiplay>
 			<generic>
 				<string n="0" alias="/sim/aero"/>
@@ -379,24 +345,8 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			</generic>
 		</multiplay>
     
-		
-		<instrumentation>
-			<path>Aircraft/QSeries/Systems/instrumentation-200.xml</path>
-		</instrumentation>
 	</sim>
 	
-	
-	
-	<controls>
-		<engines>
-			<engine n="0">
-				<condition-lever-set type="double">0.0</condition-lever-set>
-			</engine>
-			<engine n="1">
-				<condition-lever-set type="double">0.0</condition-lever-set>
-			</engine>
-		</engines>
-	</controls>
 	
 	<payload>
 		<weight n="0">
@@ -425,105 +375,10 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 		</weight>
 	</payload>
 	
-	<instrumentation>
-		<altimeter n="1">
-			<serviceable type="bool">1</serviceable>
-		</altimeter>
-		<elt>
-			<on type="bool">0</on>
-			<armed type="bool">1</armed>
-			<test type="bool">0</test>
-		</elt>
-		<rmi>
-			<selector n="0" type="float">0</selector>
-			<selector n="1" type="float">0</selector>
-		</rmi>
-		<flightrcdr>
-			<gndtest type="bool">0</gndtest>
-		</flightrcdr>
-		<cdu>
-			<input type="string"/>
-			<serviceable type="bool">1</serviceable>
-			<display>NAVIDENT[0]</display>
-			<ident>
-				<model>DH8B</model>
-			</ident>
-		</cdu>
-		<FMS>
-			<onoff type="bool">false</onoff>
-			<startup type="double">0.0</startup>
-		</FMS>
-		<ovspd-horn>
-			<active type="bool">0</active>
-			<test type="int">0</test>
-		</ovspd-horn>
-		<collins_xpdr>
-			<selection type="int">1</selection>
-			<selection-switch type="int">1</selection-switch>
-		</collins_xpdr>
-	</instrumentation>
 	
-	<!--Version-specific part of the key settings-->
-	<input>
-		<keyboard>
-			<key n="77">
-				<name>M</name>
-				<desc>Condition Lever Backward</desc>
-				<repeatable type="bool">true</repeatable>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[0]/condition-lever-state</property>
-					<value>0</value><!--FUEL OFF-->
-					<value>2</value><!--NORM (900-1200)-->
-					<value>1</value><!--START&FEATHER-->
-				</binding>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[1]/condition-lever-state</property>
-					<value>0</value><!--FUEL OFF-->
-					<value>2</value><!--NORM (900-1200)-->
-					<value>1</value><!--START&FEATHER-->
-				</binding>
-			</key>
-			<key n="109">
-				<name>m</name>
-				<desc>Condition Lever Forward</desc>
-				<repeatable type="bool">true</repeatable>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[0]/condition-lever-state</property>
-					<value>1</value><!--START&FEATHER-->
-					<value>2</value><!--NORM (900-1200)-->
-					<value>0</value><!--FUEL OFF-->
-				</binding>
-				<binding>
-					<command>property-cycle</command>
-					<property>controls/engines/engine[1]/condition-lever-state</property>
-					<value>1</value><!--START&FEATHER-->
-					<value>2</value><!--NORM (900-1200)-->
-					<value>0</value><!--FUEL OFF-->
-				</binding>
-			</key>
-		</keyboard>
-	</input>
 
 	<nasal>  
-		<!--<canvas_nd>
-			<file>Aircraft/QSeries/Models/Cockpit/Instruments/ND/canvas/ND.nas</file>
-		</canvas_nd>-->
-		<canvas_eadi>
-			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EADI/EADI.nas</file>
-		</canvas_eadi>
-		<canvas_ehsi>
-			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EHSI/EHSI.nas</file>
-		</canvas_ehsi>
-		<canvas_vsi>
-			<file>Aircraft/QSeries/Models/Cockpit/Instruments/VSI/VSI.nas</file>
-		</canvas_vsi>
-		<canvas_fms>
-			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/FMS/FMS.nas</file>
-		</canvas_fms>
-		<q200>
+		<q100>
 			<file>Nasal/limits.nas</file>
 			<file>Nasal/liveries.nas</file>
 			<file>Nasal/startup.nas</file>
@@ -533,14 +388,6 @@ new version with up-to-date systems, JSBSim FDM, a complete new ex- and interior
 			<file>Nasal/listeners-123.nas</file>
 			<file>Nasal/engine-system-200.nas</file>
 			<file>Nasal/anti-ice-200.nas</file>
-		</q200>
-		<systems>
-			<file>Nasal/APU-123.nas</file>
-			<file>Nasal/Electrical-123.nas</file>
-			<file>Nasal/hydraulics-123.nas</file>
-			<file>Nasal/fuel.nas</file>
-			<file>Nasal/pneumatics.nas</file><!--
-			<file>Nasal/engines.nas</file>-->
-		</systems>
+		</q100>
 	</nasal>
 </PropertyList>

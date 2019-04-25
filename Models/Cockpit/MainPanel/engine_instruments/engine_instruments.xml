@@ -43,6 +43,7 @@
 		
 		<object-name>base</object-name>
 		<object-name>base2</object-name>
+		<object-name>screws</object-name>
 	</effect>
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>

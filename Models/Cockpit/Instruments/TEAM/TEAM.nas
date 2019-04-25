@@ -9,29 +9,9 @@ var TEAM_selftest = nil;
 var TEAM_display = nil;
 var page = "first";
 
-setprop("/engines/engine[0]/thruster/torque", 0);
-setprop("/engines/engine[1]/thruster/torque", 0);
-setprop("/engines/engine[0]/thruster/rpm", 0);
-setprop("/engines/engine[1]/thruster/rpm", 0);
-setprop("/engines/engine[0]/itt_degc", 0);
-setprop("/engines/engine[1]/itt_degc", 0);
-setprop("/engines/engine[0]/oil-pressure-psi", 0);
-setprop("/MFD/oil-pressure-needle[0]", 0);
-setprop("/engines/engine[1]/oil-pressure-psi", 0);
-setprop("/MFD/oil-pressure-needle[1]", 0);
-setprop("/engines/engine[0]/oil-temperature-degc", 0);
-setprop("/MFD/oil-temperature-needle[0]", 0);
-setprop("/engines/engine[1]/oil-temperature-degc", 0);
-setprop("/MFD/oil-temperature-needle[1]", 0);
-setprop("/engines/engine[0]/fuel-flow-pph", 0);
-setprop("/engines/engine[1]/fuel-flow-pph", 0);
-setprop("/consumables/fuel/tank[0]/temperature-degc", 0);
-setprop("/consumables/fuel/tank[1]/temperature-degc", 0);
-setprop("/controls/engines/engine[0]/condition-lever-state", 0);
-setprop("/controls/engines/engine[1]/condition-lever-state", 0);
-setprop("/controls/engines/engine[0]/throttle-int", 0);
-setprop("/controls/engines/engine[1]/throttle-int", 0);
-setprop("/countdown-value", 0);
+#TODO find out correct electrical property
+var volts_prop = "/systems/electrical/outputs/comm[0]";
+
 
 var canvas_TEAM_base = {
 	init: func(canvas_group, file) {
@@ -72,10 +52,11 @@ var canvas_TEAM_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10 and getprop("/instrumentation/TEAM/selftest")==0) {
+		var volts = getprop(volts_prop) or 0;
+		if (volts >= 10 and getprop("/instrumentation/TEAM/selftest")==0) {
 			TEAM_first.page.show();
 			TEAM_selftest.page.hide();
-		}else if(getprop("/systems/electrical/volts") >=10 and getprop("/instrumentation/TEAM/selftest")==1){
+		}else if(volts >=10 and getprop("/instrumentation/TEAM/selftest")==1){
 			TEAM_selftest.page.show();
 			TEAM_first.page.hide();
 		} else {
@@ -261,8 +242,6 @@ var canvas_TEAM_first = {
 			me["atc1.prst"].setColor(0,1,1);
 		}
 			
-		#me["thrustdtR"].setText(thrustmode1 or "");
-		
 		#VHF1
 		var vhf1_act_freq=getprop("/instrumentation/comm[0]/frequencies/selected-mhz-fmt") or 0;
 		var vhf1_prst_freq=getprop("/instrumentation/comm[0]/frequencies/standby-mhz-fmt") or 0;
@@ -374,8 +353,8 @@ var showTEAM = func {
 	dlg.setCanvas(TEAM_display);
 }
 
-setlistener("/systems/electrical/volts", func{
-	var volts=getprop("/systems/electrical/volts");
+setlistener(volts_prop, func (i){
+	var volts=i.getValue() or 0;
 	if(volts==0 and getprop("/instrumentation/TEAM/was_0")!=1){
 		setprop("/instrumentation/TEAM/was_0", 1);
 	}

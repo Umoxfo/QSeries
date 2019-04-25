@@ -93,7 +93,7 @@ var canvas_MFDpilot_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
+		if ((getprop("/systems/electrical/outputs/mfd[0]") or 0) >= 10) {
 			var mainpage=getprop("/instrumentation/mfd[0]/inputs/main-page");
 			if(mainpage=="sys"){
 				var syspage=getprop("/instrumentation/mfd[0]/inputs/sys-page");
@@ -144,8 +144,8 @@ var canvas_MFDpilot_base = {
 		settimer(func me.update(), 0.02);
 	},
 	updateBottomStatus: func() {
-		me["rudder"].setRotation((getprop("/surface-positions/rudder-pos-norm") or 0)*(-0.01744)*41.4);
-		var elevator=getprop("/surface-positions/elevator-pos-norm") or 0;
+		me["rudder"].setRotation((getprop("sim/multiplay/generic/float[0]") or 0)*(-0.01744)*41.4);
+		var elevator=getprop("sim/multiplay/generic/float[1]") or 0;
 		if(elevator>0){
 			me["Lelev"].setRotation(elevator*(-0.01744)*30);
 			me["Relev"].setRotation(elevator*(0.01744)*30);

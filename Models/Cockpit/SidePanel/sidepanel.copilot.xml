@@ -2,7 +2,7 @@
 <PropertyList>
 	<path>sidepanel.copilot.ac</path>
 	<effect>
-		<inherits-from>../../../Effects/panel</inherits-from>
+		<inherits-from>../../Effects/panel</inherits-from>
 		<object-name>copilot.base</object-name>
 		<object-name>copilot.screws</object-name>
 		<object-name>copilot.lighted</object-name>
@@ -28,8 +28,8 @@
 		<property>/controls/lighting/panel/cop-flt</property>
 		<factor>-250</factor>
 		<center>
-			<x-m>0.010353</x-m>
-			<y-m>0.028218 </y-m>
+			<x-m>-0.030633</x-m>
+			<y-m>-0.007847</y-m>
 		</center>
 		<axis>
 			<x> 0 </x>

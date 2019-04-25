@@ -23,6 +23,26 @@
             <z>0</z>
         </axis>
     </animation>
+<animation>
+        <type>rotate</type>
+        <object-name>YokeL_Elevator</object-name>
+        <object-name>YokeL_Aileron</object-name>
+        <object-name>YokeL_PTT</object-name>	
+        <object-name>YokeL_apdisc</object-name>		
+        <property>controls/flight/stick-pusher</property>
+        <factor>7.5</factor>
+        <center>
+            <x-m>-0.041177</x-m>
+            <y-m>-0.499998</y-m>
+            <z-m>-0.043739</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
 
     <animation>
         <type>rotate</type>
@@ -109,6 +129,24 @@
             <z>0</z>
         </axis>
     </animation>
+<animation>
+        <type>rotate</type>
+        <object-name>YokeR_Elevator</object-name>
+        <object-name>YokeR_Aileron</object-name>		
+        <property>controls/flight/stick-pusher</property>
+        <factor>7.5</factor>
+        <center>
+            <x-m>-0.041177</x-m>
+            <y-m>0.499998</y-m>
+            <z-m>-0.043739</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
 
     <animation>
         <type>rotate</type>

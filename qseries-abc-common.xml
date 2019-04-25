@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!--
+*********************************************************************************************
+Bombardier QSeries: This file contains stuff used in all older variants (DH8A/B/C) (Benedikt Wolf/D-ECHO 2019)
+*********************************************************************************************
+-->
+<PropertyList include="qseries-common.xml">
+	
+	<sim>
+		<checklists include="Dialogs/checklists.xml"/><!--TODO check for differences to Q400 -->
+		
+		<systems>
+			<autopilot n="2">
+				<path>Aircraft/QSeries/Systems/flight-controls-200.xml</path>
+			</autopilot>
+			<property-rule n="103">
+				<path>Aircraft/QSeries/Systems/vsi.xml</path>
+			</property-rule>
+			<property-rule n="104">
+				<path>Aircraft/QSeries/Systems/instruments-200.xml</path>
+			</property-rule>
+			<property-rule n="105">
+				<path>Aircraft/QSeries/Systems/hydraulics-123.xml</path>
+			</property-rule>
+		</systems>
+		
+		<instrumentation>
+			<path>Aircraft/QSeries/Systems/instrumentation-200.xml</path>
+		</instrumentation>
+	</sim>
+	
+	<controls>
+		<flight>
+			<stick-pusher-signal type="double">0</stick-pusher-signal>
+		</flight>
+		<engines>
+			<engine n="0">
+				<condition-lever-set type="double">0.0</condition-lever-set>
+			</engine>
+			<engine n="1">
+				<condition-lever-set type="double">0.0</condition-lever-set>
+			</engine>
+		</engines>
+	</controls>
+	
+	<instrumentation>
+		<altimeter n="1">
+			<serviceable type="bool">1</serviceable>
+		</altimeter>
+		<elt>
+			<on type="bool">0</on>
+			<armed type="bool">1</armed>
+			<test type="bool">0</test>
+		</elt>
+		<rmi>
+			<selector n="0" type="float">0</selector>
+			<selector n="1" type="float">0</selector>
+		</rmi>
+		<flightrcdr>
+			<gndtest type="bool">0</gndtest>
+		</flightrcdr>
+		<cdu>
+			<input type="string"/>
+			<serviceable type="bool">1</serviceable>
+			<display>NAVIDENT[0]</display>
+			<ident>
+				<model>DH8B</model>
+			</ident>
+		</cdu>
+		<FMS>
+			<onoff type="bool">false</onoff>
+			<startup type="double">0.0</startup>
+		</FMS>
+		<ovspd-horn>
+			<active type="bool">0</active>
+			<test type="int">0</test>
+		</ovspd-horn>
+		<collins_xpdr>
+			<selection type="int">1</selection>
+			<selection-switch type="int">1</selection-switch>
+		</collins_xpdr>
+	</instrumentation>
+	
+	
+	<!--Version-specific part of the key settings-->
+	<input>
+		<keyboard>
+			<key n="77">
+				<name>M</name>
+				<desc>Condition Lever Backward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>0</value><!--FUEL OFF-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>1</value><!--START&FEATHER-->
+				</binding>
+			</key>
+			<key n="109">
+				<name>m</name>
+				<desc>Condition Lever Forward</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[0]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/engines/engine[1]/condition-lever-state</property>
+					<value>1</value><!--START&FEATHER-->
+					<value>2</value><!--NORM (900-1200)-->
+					<value>0</value><!--FUEL OFF-->
+				</binding>
+			</key>
+		</keyboard>
+	</input>
+	
+	<nasal>  
+		<canvas_eadi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EADI/EADI.nas</file>
+		</canvas_eadi>
+		<canvas_ehsi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/EHSI/EHSI.nas</file>
+		</canvas_ehsi>
+		<canvas_vsi>
+			<file>Aircraft/QSeries/Models/Cockpit/Instruments/VSI/VSI.nas</file>
+		</canvas_vsi>
+		<canvas_fms>
+			<file>Aircraft/QSeries/Models/Cockpit/Pedestal/Front/FMS/FMS.nas</file>
+		</canvas_fms>
+		<systems>
+			<file>Nasal/APU-123.nas</file>
+			<file>Nasal/Electrical-123.nas</file>
+			<file>Nasal/hydraulics-123.nas</file>
+			<file>Nasal/fuel.nas</file>
+			<file>Nasal/pneumatics.nas</file><!--
+			<file>Nasal/engines.nas</file>-->
+		</systems>
+	</nasal>
+</PropertyList>

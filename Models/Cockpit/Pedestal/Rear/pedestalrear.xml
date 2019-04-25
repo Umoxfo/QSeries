@@ -12,79 +12,288 @@
                 <object-name>base.1</object-name>
                 <object-name>base.2</object-name>
                 <object-name>base.3</object-name>
-                <object-name>base.4</object-name>
                 <object-name>base.5</object-name>
                 <object-name>screws</object-name>
         </effect>
+        <effect>
+                <inherits-from>../../../Effects/panel</inherits-from>
+                <object-name>leftteam.base</object-name>
+                <object-name>leftteam.buttons</object-name>
+                <object-name>leftteam.tune.mhz</object-name>
+                <object-name>leftteam.tune.khz</object-name>
+                <object-name>leftteam.button1</object-name>
+                <object-name>leftteam.button2</object-name>
+                <object-name>leftteam.button3</object-name>
+                <object-name>leftteam.button4</object-name>
+                <object-name>leftteam.button5</object-name>
+                <object-name>leftteam.button6</object-name>
+                <object-name>leftteam.button7</object-name>
+                <object-name>leftteam.button8</object-name>
+                <object-name>ailerontrim</object-name>
+                <object-name>ailerontrimind</object-name>
+                <object-name>ruddertrim</object-name>
+                <object-name>ruddertrimind</object-name>
+                <object-name>trim_base</object-name>
+                <object-name>trim.lighted</object-name>
+        </effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+                <object-name>leftteam.lighted</object-name>
+                <object-name>leftteam.button.lighted1</object-name>
+                <object-name>leftteam.button.lighted2</object-name>
+                <object-name>leftteam.button.lighted3</object-name>
+                <object-name>leftteam.button.lighted4</object-name>
+                <object-name>leftteam.button.lighted5</object-name>
+                <object-name>leftteam.button.lighted6</object-name>
+                <object-name>leftteam.button.lighted7</object-name>
+                <object-name>leftteam.button.lighted8</object-name>
+	</effect>
+	<!--TODO correct lighting property-->
+	<animation>
+		<type>material</type>
+                <object-name>trim.lighted</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>systems/electrical/outputs/glareshield-norm</factor-prop>
+		</emission>
+	</animation>
+	<!--TODO correct lighting property-->
+	<animation>
+		<type>material</type>
+                <object-name>leftteam.lighted</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>systems/electrical/outputs/glareshield-norm</factor-prop>
+		</emission>
+	</animation>
         <!--TRIM PANEL-->
         <!--Rudder Trim-->
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.left2.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>-0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>-2</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.left1.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>-0.01</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>-1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>rudtrim.right1.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>0.01</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>rudtrim.right2.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/rudder-trim</property>
+				<step>0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/rudder-trim-knob</property>
+				<value>2</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/rudder-trim-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
         <animation>
-                <type>knob</type>
+                <type>rotate</type>
                 <object-name>ruddertrim</object-name>
-                <property>/controls/flight/rudder-trim</property>
-                <factor>-360</factor>
+		<property>/controls/flight/rudder-trim-knob</property>
+                <factor>-40</factor>
                 <center>
-                        <x-m> -11.68977</x-m>
-                        <y-m>  0.03235 </y-m>
+                        <x-m> -11.6884</x-m>
+                        <y-m>  0.031442 </y-m>
                 </center>
                 <axis>
                         <z>1</z>
                 </axis>
-                <action>
-                        <binding>
-                                <command>property-adjust</command>
-                                <property>/controls/flight/rudder-trim</property>
-                                <factor>0.01</factor>
-                                <min>-0.2</min>
-                                <max>0.2</max>
-                                <wrap>false</wrap>
-                        </binding>
-                </action>
         </animation>
         <animation>
                 <type>rotate</type>
                 <object-name>ruddertrimind</object-name>
                 <property>/controls/flight/rudder-trim</property>
-                <factor>-360</factor>
+                <factor>-65</factor>
                 <center>
-                        <x-m> -11.72675</x-m>
-                        <y-m>  0.03195 </y-m>
+                        <x-m>-11.7245</x-m>
+                        <y-m>0.031471</y-m>
                 </center>
                 <axis>
                         <z>1</z>
                 </axis>
         </animation>
+	<animation>
+		<type>pick</type>
+                <object-name>ailtrim.left.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/aileron-trim</property>
+				<step>-0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/aileron-trim-switch</property>
+				<value>1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/aileron-trim-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+                <object-name>ailtrim.right.press</object-name>
+		<visible>0</visible>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>/controls/flight/aileron-trim</property>
+				<step>0.02</step>
+                                <min>-1</min>
+                                <max>1</max>
+                                <wrap>false</wrap>
+                        </binding>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/flight/aileron-trim-switch</property>
+				<value>-1</value>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/aileron-trim-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
         <animation>
-                <type>knob</type>
+                <type>rotate</type>
                 <object-name>ailerontrim</object-name>
-                <property>/controls/flight/aileron-trim</property>
-                <factor>-360</factor>
+		<property>/controls/flight/aileron-trim-switch</property>
+                <factor>10</factor>
                 <center>
-                        <y-m> -0.03611</y-m>
-                        <z-m>  1.86654 </z-m>
+                        <y-m>-0.032573</y-m>
+                        <z-m>1.87307</z-m>
                 </center>
                 <axis>
                         <x>1</x>
                 </axis>
-                <action>
-                        <binding>
-                                <command>property-adjust</command>
-                                <property>/controls/flight/aileron-trim</property>
-                                <factor>0.01</factor>
-                                <min>-0.2</min>
-                                <max>0.2</max>
-                                <wrap>false</wrap>
-                        </binding>
-                </action>
         </animation>
+	
         <animation>
                 <type>rotate</type>
                 <object-name>ailerontrimind</object-name>
                 <property>/controls/flight/aileron-trim</property>
-                <factor>-360</factor>
+                <factor>40</factor>
                 <center>
-                        <x-m>-11.7277</x-m>
-                        <y-m>  -0.03483</y-m>
+                        <x-m>-11.7244</x-m>
+                        <y-m>-0.028529</y-m>
                 </center>
                 <axis>
                         <z>1</z>
@@ -256,6 +465,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/comm[0]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button1</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button1</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -290,6 +509,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/comm[1]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button2</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button2</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -324,6 +553,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/nav[0]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button3</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button3</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -358,6 +597,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/nav[1]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button4</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button4</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -392,6 +641,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/adf[0]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button5</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button5</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -426,6 +685,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/adf[1]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button6</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button6</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -449,6 +718,16 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/TEAM/int-activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button7</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button7</property>
+				</binding>
+			</mod-up>
                 </action>
         </animation>
         <animation>
@@ -497,7 +776,97 @@
                                 <command>property-toggle</command>
                                 <property>/instrumentation/transponder[0]/activity</property>
                         </binding>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>/instrumentation/TEAM/lh-button8</property>
+                        </binding>
+			<mod-up>
+				<binding>
+					<command>property-toggle</command>
+					<property>/instrumentation/TEAM/lh-button8</property>
+				</binding>
+			</mod-up>
                 </action>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button1</object-name>
+                <object-name>leftteam.button.lighted1</object-name>
+		<property>/instrumentation/TEAM/lh-button1</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button2</object-name>
+                <object-name>leftteam.button.lighted2</object-name>
+		<property>/instrumentation/TEAM/lh-button2</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button3</object-name>
+                <object-name>leftteam.button.lighted3</object-name>
+		<property>/instrumentation/TEAM/lh-button3</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button4</object-name>
+                <object-name>leftteam.button.lighted4</object-name>
+		<property>/instrumentation/TEAM/lh-button4</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button5</object-name>
+                <object-name>leftteam.button.lighted5</object-name>
+		<property>/instrumentation/TEAM/lh-button5</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button6</object-name>
+                <object-name>leftteam.button.lighted6</object-name>
+		<property>/instrumentation/TEAM/lh-button6</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button7</object-name>
+                <object-name>leftteam.button.lighted7</object-name>
+		<property>/instrumentation/TEAM/lh-button7</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
+        </animation>
+        <animation>
+                <type>translate</type>
+                <object-name>leftteam.button8</object-name>
+                <object-name>leftteam.button.lighted8</object-name>
+		<property>/instrumentation/TEAM/lh-button8</property>
+		<axis>
+			<z>1</z>
+		</axis>
+		<factor>-0.001</factor>
         </animation>
         <animation>
                 <type>knob</type>

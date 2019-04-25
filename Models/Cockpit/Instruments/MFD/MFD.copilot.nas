@@ -43,14 +43,18 @@ setprop("/engines/engine[0]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[0]", 0);
 setprop("/engines/engine[1]/oil-temperature-degc", 0);
 setprop("/MFD/oil-temperature-needle[1]", 0);
-setprop("/engines/engine[0]/fuel-flow-pph", 0);
-setprop("/engines/engine[1]/fuel-flow-pph", 0);
+setprop("/engines/engine[0]/fuel-flow_pph", 0);
+setprop("/engines/engine[1]/fuel-flow_pph", 0);
 setprop("/consumables/fuel/tank[0]/temperature-degc", 0);
 setprop("/consumables/fuel/tank[1]/temperature-degc", 0);
 setprop("/controls/engines/engine[0]/condition-lever-state", 0);
 setprop("/controls/engines/engine[1]/condition-lever-state", 0);
 setprop("/controls/engines/engine[0]/throttle-int", 0);
 setprop("/controls/engines/engine[1]/throttle-int", 0);
+
+
+var dc_ext_flag = props.globals.getNode("/systems/electrical/DC/external-power",1);
+var ac_ext_flag = props.globals.getNode("/systems/electrical/AC/external-power",1);
 
 var canvas_MFDcopilot_base = {
 	init: func(canvas_group, file) {
@@ -94,7 +98,7 @@ var canvas_MFDcopilot_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/volts") >= 10) {
+		if ((getprop("/systems/electrical/outputs/mfd[1]") or 0) >= 10) {
 			var mainpage=getprop("/instrumentation/mfd[1]/inputs/main-page");
 			if(mainpage=="sys"){
 				var syspage=getprop("/instrumentation/mfd[1]/inputs/sys-page");
@@ -164,26 +168,53 @@ var canvas_MFDcopilot_elec = {
 		return m;
 	},
 	getKeys: func() {
-		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","APUload","gen1load","gen2load","DCext1","ACext1","DCext2","ACext2"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","APUload","gen1load","gen2load","DCext","ACext","dcbus.essL","dcbus.essR","dcbus.mainL","dcbus.mainR","dcbus.secL","dcbus.secR","mainbatt.load","auxbatt.load","stbybatt.load","acgen1.a.volt","acgen2.a.volt","acgen1.a.load","acgen2.a.load","acgen1.b.volt","acgen2.b.volt","acgen1.b.load","acgen2.b.load","acgen1.c.volt","acgen2.c.volt","acgen1.c.load","acgen2.c.load"];
 	},
 	update: func() {
-	
-	
-		if(getprop("/systems/electrical/power-source")!="external"){
-			me["DCext1"].hide();
-			me["ACext1"].hide();
-			me["DCext2"].hide();
-			me["ACext2"].hide();
+		
+		if(dc_ext_flag.getValue()==1){
+			me["DCext"].show();
 		}else{
-			me["DCext1"].show();
-			me["ACext1"].show();
-			me["DCext2"].show();
-			me["ACext2"].show();
+			me["DCext"].hide();
+		}
+		if(ac_ext_flag.getValue()==1){
+			me["ACext"].show();
+		}else{
+			me["ACext"].hide();
 		}
 		
 		me["gen1load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[0]") or 0)));
 		me["gen2load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[1]") or 0)));
-		me["APUload"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[2]") or 0)));
+		me["APUload"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[4]") or 0)));
+		
+		me["acgen1.a.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[2]") or 0)));
+		me["acgen1.b.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[2]") or 0)));
+		me["acgen1.c.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[2]") or 0)));
+		
+		me["acgen2.a.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[3]") or 0)));
+		me["acgen2.b.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[3]") or 0)));
+		me["acgen2.c.load"].setText(sprintf("%.2f", (getprop("/systems/electrical/gen-load[3]") or 0)));
+		
+		me["acgen1.a.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[2]") or 0)));
+		me["acgen1.b.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[2]") or 0)));
+		me["acgen1.c.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[2]") or 0)));
+		
+		me["acgen2.a.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[3]") or 0)));
+		me["acgen2.b.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[3]") or 0)));
+		me["acgen2.c.volt"].setText(sprintf("%3d", (getprop("/systems/electrical/gen-volts[3]") or 0)));
+		
+		me["mainbatt.load"].setText(sprintf("%+.2f", (getprop("/systems/electrical/main-battery-load") or 0)));
+		me["auxbatt.load"].setText(sprintf("%+.2f", (getprop("/systems/electrical/aux-battery-load") or 0)));
+		me["stbybatt.load"].setText(sprintf("%+.2f", (getprop("/systems/electrical/stby-battery-load") or 0)));
+		
+		me["dcbus.essL"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/lessential-bus/volts") or 0)));
+		me["dcbus.essR"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/ressential-bus/volts") or 0)));
+		
+		me["dcbus.mainL"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/lmain-bus/volts") or 0)));
+		me["dcbus.mainR"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/rmain-bus/volts") or 0)));
+		
+		me["dcbus.secL"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/lsecondary-bus/volts") or 0)));
+		me["dcbus.secR"].setText(sprintf("%.1f", (getprop("/systems/electrical/DC/rsecondary-bus/volts") or 0)));
 			
 		
 		me.updateBottomStatus();
@@ -199,9 +230,13 @@ var canvas_MFDcopilot_eng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","TRQL","TRQR","PROPRPML","PROPRPMR","ITTL","ITTR","fuelquantityL","fuelquantityR","fueltempL","fueltempR","SAT","FFL","FFR","OilPressL","OilPressR","OilTempL","OilTempR","NLL","NLR","NHL","NHR","NHL.decimal","NHR.decimal"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","TRQL","TRQR","PROPRPML","PROPRPMR","ITTL","ITTR","fuelquantityL","fuelquantityR","fueltempL","fueltempR","SAT","FFL","FFR","OilPressL","OilPressR","OilTempL","OilTempR","NLL","NLR","NHL","NHR","NHL.decimal","NHR.decimal","thrustdtL","thrustdtR"];
 	},
 	update: func() {
+		var thrustmode0=getprop("/FADEC/thrust-mode[0]") or "";
+		var thrustmode1=getprop("/FADEC/thrust-mode[1]") or "";
+		me["thrustdtL"].setText(thrustmode0 or "");
+		me["thrustdtR"].setText(thrustmode1 or "");
 			
 		var TRQLpercent=(getprop("/engines/engine[0]/thruster/torque")/(-15000))*100;
 		var TRQRpercent=(getprop("/engines/engine[1]/thruster/torque")/(-15000))*100;
@@ -233,8 +268,8 @@ var canvas_MFDcopilot_eng = {
 		me["SAT"].setText(sprintf("%+s", math.round(static_air_temp)));
 		
 		
-		var fuelflowL=getprop("/engines/engine[0]/fuel-flow-pph");
-		var fuelflowR=getprop("/engines/engine[1]/fuel-flow-pph");
+		var fuelflowL=getprop("/engines/engine[0]/fuel-flow_pph");
+		var fuelflowR=getprop("/engines/engine[1]/fuel-flow_pph");
 		me["FFL"].setText(sprintf("%s", math.round(fuelflowL)));
 		me["FFR"].setText(sprintf("%s", math.round(fuelflowR)));
 		
@@ -274,7 +309,7 @@ var canvas_MFDcopilot_fuel = {
 		return m;
 	},
 	getKeys: func() {
-		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","transferL","transferR","transferOFF","leftquantity","rightquantity","totalquantity","tank1booston1","tank1booston2","tank2booston1","tank2booston2","tank1boostoff1","tank1boostoff2","tank2boostoff1","tank2boostoff2"];
+		return ["flaps.pointer","pkbrk.pointer","stby.pointer","one.pointer","two.pointer","three.pointer","transferL","transferR","transferOFF","leftquantity","rightquantity","totalquantity","tank1booston1","tank1booston2","tank2booston1","tank2booston2","tank1boostoff1","tank1boostoff2","tank2boostoff1","tank2boostoff2","auxpumppressL","auxpumppressR","tanktemp"];
 	},
 	update: func() {
 	
@@ -306,23 +341,30 @@ var canvas_MFDcopilot_fuel = {
 			me["tank1booston2"].show();
 			me["tank1boostoff1"].hide();
 			me["tank1boostoff2"].hide();
+			me["auxpumppressL"].show();
 		}else{
 			me["tank1booston1"].hide();
 			me["tank1booston2"].hide();
 			me["tank1boostoff1"].show();
 			me["tank1boostoff2"].show();
+			me["auxpumppressL"].hide();
 		}
 		if((getprop("/controls/fuel/tank[1]/boost-pump") or 0)==1){
 			me["tank2booston1"].show();
 			me["tank2booston2"].show();
 			me["tank2boostoff1"].hide();
 			me["tank2boostoff2"].hide();
+			me["auxpumppressR"].show();
 		}else{
 			me["tank2booston1"].hide();
 			me["tank2booston2"].hide();
 			me["tank2boostoff1"].show();
 			me["tank2boostoff2"].show();
+			me["auxpumppressR"].hide();
 		}	
+		
+		var fuelCL=getprop("/consumables/fuel/tank[0]/temperature-degc");
+		me["tanktemp"].setText(sprintf("%s", math.round(fuelCL)));
 		
 		me.updateBottomStatus();
 		settimer(func me.update(), 0.02);
