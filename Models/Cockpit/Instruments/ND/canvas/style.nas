@@ -689,7 +689,7 @@ canvas.NDStyles["Airbus"] = {
 				init: func(nd,symbol),
 				predicate: func(nd) nd.aircraft_source.get_spd() > 100,
 				is_true: func(nd) {
-					nd.symbols.tas.setText(sprintf("%3.0f",getprop("/velocities/TAS") ));
+					nd.symbols.tas.setText(sprintf("%3.0f",getprop("/instrumentation/airspeed-indicator/true-speed-kt") ));
 					nd.symbols.tas.show();
 				},
 				is_false: func(nd) nd.symbols.tas.hide(),
@@ -859,7 +859,7 @@ canvas.NDStyles["Airbus"] = {
 			impl: {
 				init:func(nd,symbol),
 				common: func(nd) {
-						var navsource=getprop("/it-autoflight/settings/nav-source") or 0;
+						var navsource=getprop("/it-autoflight/settings/nav-source") or "";
 						if(navsource=="FMS"){
 							nd.symbols.freqname.setText(getprop("/autopilot/route-manager/wp/id") or "XXX");
 						}else if(navsource=="NAV1"){
@@ -877,9 +877,9 @@ canvas.NDStyles["Airbus"] = {
 			impl: {
 				init:func(nd,symbol),
 				common: func(nd) {
-						var navsource=getprop("/it-autoflight/settings/nav-source") or 0;
+						var navsource=getprop("/it-autoflight/settings/nav-source") or "";
 						if(navsource=="FMS"){
-							nd.symbols.dist.setText(getprop("/autopilot/route-manager/wp/dst") or "XXX");
+							nd.symbols.dist.setText(getprop("/autopilot/route-manager/wp/dist") or "XXX");
 						}else if(navsource=="NAV1"){
 							var dist=getprop("/instrumentation/nav[0]/nav-distance");
 							if(dist!=nil){
@@ -1178,7 +1178,7 @@ canvas.NDStyles["Airbus"] = {
 				init: func(nd,symbol),
 				predicate: ALWAYS,
 				is_true: func(nd) {
-					var elevator=getprop("sim/multiplay/generic/float[1]") or 0;
+					var elevator=getprop("fdm/jsbsim/hydraulics/elevators/final") or 0;
 					if(elevator>0){
 						nd.symbols.Relev.setRotation(elevator*(0.01744)*30);
 					}else if(elevator<0){
@@ -1194,7 +1194,7 @@ canvas.NDStyles["Airbus"] = {
 				init: func(nd,symbol),
 				predicate: ALWAYS,
 				is_true: func(nd) {
-					var elevator=getprop("sim/multiplay/generic/float[1]") or 0;
+					var elevator=getprop("fdm/jsbsim/hydraulics/elevators/final") or 0;
 					if(elevator>0){
 						nd.symbols.Lelev.setRotation(elevator*(-0.01744)*30);
 					}else if(elevator<0){
@@ -1210,7 +1210,7 @@ canvas.NDStyles["Airbus"] = {
 				init: func(nd,symbol),
 				predicate: ALWAYS,
 				is_true: func(nd) {
-					nd.symbols.rudder.setRotation((getprop("sim/multiplay/generic/float[0]") or 0)*(-0.01744)*41.4);
+					nd.symbols.rudder.setRotation((getprop("fdm/jsbsim/fcs/yaw-sum-lag") or 0)*(-0.01744)*41.4);
 				},
 				is_false: NOTHING,
 			},

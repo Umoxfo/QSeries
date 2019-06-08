@@ -481,6 +481,8 @@ init_switches = func() {
     append(lmain_servout_list,"comm[0]");
     append(lmain_serv_list,"instrumentation/gps[0]/serviceable");
     append(lmain_servout_list,"gps[0]");
+    append(rmain_serv_list,"instrumentation/nav[0]/serviceable");
+    append(rmain_servout_list,"nav[0]");
     append(lmain_serv_list,"instrumentation/elt/serviceable");
     append(lmain_servout_list,"elt");
     append(lmain_serv_list,"instrumentation/transponder[0]/inputs/serviceable");

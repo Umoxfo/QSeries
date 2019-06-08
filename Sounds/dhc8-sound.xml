@@ -26,7 +26,7 @@
 		<condition>
 			<and>
                             <greater-than>
-                                <property>/systems/electrical/volts</property>
+                                <property>/systems/electrical/DC/lmain-bus/volts</property>
                                 <value>15</value>
                             </greater-than>
                             <property>controls/cabin/nosmoking</property>
@@ -41,7 +41,7 @@
 		<condition>
 			<and>
                             <greater-than>
-                                <property>/systems/electrical/volts</property>
+                                <property>/systems/electrical/DC/lmain-bus/volts</property>
                                 <value>15</value>
                             </greater-than>
                             <not>
@@ -59,7 +59,7 @@
 		<condition>
                         <and>
                             <greater-than>
-                                <property>/systems/electrical/volts</property>
+                                <property>/systems/electrical/DC/lmain-bus/volts</property>
                                 <value>15</value>
                             </greater-than>
                             <property>controls/cabin/seatbelts</property>
@@ -74,7 +74,7 @@
 		<condition>
                         <and>
                             <greater-than>
-                                <property>/systems/electrical/volts</property>
+                                <property>/systems/electrical/DC/lmain-bus/volts</property>
                                 <value>15</value>
                             </greater-than>
                             <not>
@@ -90,12 +90,15 @@
 		<type>avionics</type>
 		<path>cabincall.wav</path>
 		<condition>
-			<and>
-		            <property>/controls/electric/battery-switch</property>
-					<equals>
-    	    	        <property>controls/cabin/cabincall</property>
-						<value>1</value>
-					</equals>
+                        <and>
+                            <greater-than>
+                                <property>/systems/electrical/DC/lmain-bus/volts</property>
+                                <value>15</value>
+                            </greater-than>
+                            <equals>
+				<property>controls/cabin/cabincall</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</condition>
 	</chime>
@@ -162,7 +165,7 @@
 		<apu>
 			<name>APU running</name>
 			<mode>looped</mode>
-			<path>/apu_run.wav</path>
+			<path>apu_run.wav</path>
 			<condition>
 					<property>controls/APU/running</property>
 			</condition>
@@ -223,7 +226,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Sounds/turboprop1.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                 <not>
@@ -233,20 +236,21 @@
                     <property>controls/engines/engine[0]/condition</property>
                     <value>0.15</value>
                 </greater-than>
+				<greater-than>
+					<property>engines/engine[0]/rpm</property>
+                    <value>732</value>
+				</greater-than>
             </condition>
             <volume>
-                <property>engines/engine[0]/n2</property>
-                <factor>0.01</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
             </volume>
             <pitch>
-                <property>engines/engine[0]/n2</property>
-                <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <property>engines/engine[0]/rpm</property>
+				<offset>0</offset>
+                <factor>0.00105</factor>
+                <min>0.4</min>
+                <max>1.0</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -259,7 +263,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Sounds/turboprop1.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
@@ -267,20 +271,21 @@
                     <property>controls/engines/engine[0]/condition</property>
                     <value>0.15</value>
                 </greater-than>
+				<greater-than>
+					<property>engines/engine[0]/rpm</property>
+                    <value>732</value>
+				</greater-than>
             </condition>
             <volume>
-                <property>engines/engine[0]/n2</property>
-                <factor>0.004</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
             </volume>
             <pitch>
-                <property>engines/engine[0]/n2</property>
-                <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <property>engines/engine[0]/rpm</property>
+				<offset>0</offset>
+                <factor>0.00105</factor>
+                <min>0.4</min>
+                <max>1.0</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -294,7 +299,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/out.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                 <not>
@@ -302,23 +307,23 @@
                 </not>
                 <greater-than>
                     <property>controls/engines/engine[0]/condition</property>
-                    <value>0.15</value>
+                    <value>0.51</value>
                 </greater-than>
+	            <less-than>
+                    <property>controls/engines/engine[0]/throttle</property>
+                    <value>0.01</value>
+                </less-than>
             </condition>
             <volume>
-                <property>engines/engine[0]/n2</property>
-                <factor>0.5</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
-                <factor>10</factor>
+				<factor>2</factor>
             </volume>
             <pitch>
                 <property>engines/engine[0]/n2</property>
                 <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <factor>0.0153</factor>
+                <min>0.0</min>
+                <max>0.66</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -331,29 +336,29 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/intern.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[0]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
                 <greater-than>
                     <property>controls/engines/engine[0]/condition</property>
-                    <value>0.15</value>
+                    <value>0.51</value>
                 </greater-than>
+	            <less-than>
+                    <property>controls/engines/engine[0]/throttle</property>
+                    <value>0.01</value>
+                </less-than>
             </condition>
             <volume>
-                <property>engines/engine[0]/n2</property>
-                <factor>0.5</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
-                <factor>10</factor>
+				<factor>2</factor>
             </volume>
             <pitch>
                 <property>engines/engine[0]/n2</property>
                 <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <factor>0.0153</factor>
+                <min>0.0</min>
+                <max>0.66</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -361,12 +366,86 @@
                 <z>3</z>
             </position>
         </turbine0>
+		
+        <throttle0>
+            <name>throttle0</name>
+            <reference-dist>50.0</reference-dist>
+            <max-dist>1000.0</max-dist>
+            <mode>looped</mode>
+            <path>prop_flight1020.wav</path>
+            <property>engines/engine[0]/n2</property>
+            <condition>
+                <not>
+                    <property>sim/current-view/internal</property>
+                </not>
+                <greater-than>
+                    <property>controls/engines/engine[0]/throttle</property>
+                    <value>0.00</value>
+                </greater-than>
+	            <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>733</value>
+                </less-than>
+            </condition>
+            <volume>
+                <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
+            </volume>
+            <pitch>
+                <property>controls/engines/engine[0]/throttle</property>
+                <offset>0.66</offset>
+                <factor>0.22</factor>
+                <min>0.0</min>
+                <max>0.77</max>
+            </pitch>
+            <position>
+                <x>-2.1677</x>
+                <y>-4.3739</y>
+                <z>3</z>
+            </position>
+        </throttle0>       
+        <throttle0>
+            <name>throttle0int</name>
+            <reference-dist>50.0</reference-dist>
+            <max-dist>1000.0</max-dist>
+            <mode>looped</mode>
+            <path>prop_flight1020.wav</path>
+            <property>engines/engine[0]/n2</property>
+            <condition>
+                    <property>sim/current-view/internal</property>
+                <greater-than>
+                    <property>controls/engines/engine[0]/throttle</property>
+                    <value>0.00</value>
+                </greater-than>
+	            <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>733</value>
+                </less-than>
+            </condition>
+            <volume>
+                <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
+            </volume>
+            <pitch>
+                <property>controls/engines/engine[0]/throttle</property>
+                <offset>0.66</offset>
+                <factor>0.22</factor>
+                <min>0.0</min>
+                <max>0.77</max>
+            </pitch>
+            <position>
+                <x>-2.1677</x>
+                <y>-4.3739</y>
+                <z>3</z>
+            </position>
+        </throttle0>
+		
 	<prop>
             <name>reverser1</name>
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/reverse.wav</path>
+            <path>reverse.wav</path>
             <property>engines/engine[0]/reverse</property>
             <condition>               
                 <greater-than>
@@ -450,27 +529,28 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Sounds/turboprop1.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition>
                 <greater-than>
                     <property>controls/engines/engine[1]/condition</property>
                     <value>0.15</value>
                 </greater-than>
+				<greater-than>
+					<property>engines/engine[1]/rpm</property>
+                    <value>732</value>
+				</greater-than>
             </condition>
             <volume>
-                <property>engines/engine[1]/n2</property>
-                <factor>0.01</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
             </volume>
             <pitch>
-                <property>engines/engine[1]/n2</property>
-                <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <property>engines/engine[1]/rpm</property>
+				<offset>0</offset>
+                <factor>0.00105</factor>
+                <min>0.4</min>
+                <max>1.0</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -483,7 +563,7 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Sounds/turboprop1.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
@@ -491,20 +571,21 @@
                     <property>controls/engines/engine[1]/condition</property>
                     <value>0.15</value>
                 </greater-than>
+				<greater-than>
+					<property>engines/engine[1]/rpm</property>
+                    <value>732</value>
+				</greater-than>
             </condition>
             <volume>
-                <property>engines/engine[1]/n2</property>
-                <factor>0.004</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
             </volume>
             <pitch>
-                <property>engines/engine[1]/n2</property>
-                <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <property>engines/engine[1]/rpm</property>
+				<offset>0</offset>
+                <factor>0.00105</factor>
+                <min>0.4</min>
+                <max>1.0</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -520,29 +601,29 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/out.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition><not>
                     <property>sim/current-view/internal</property></not>
                 <greater-than>
                     <property>controls/engines/engine[1]/condition</property>
-                    <value>0.15</value>
+                    <value>0.51</value>
                 </greater-than>
+	            <less-than>
+                    <property>controls/engines/engine[1]/throttle</property>
+                    <value>0.01</value>
+                </less-than>
             </condition>
             <volume>
-                <property>engines/engine[1]/n2</property>
-                <factor>0.5</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
-                <factor>10</factor>
+				<factor>2</factor>
             </volume>
             <pitch>
                 <property>engines/engine[1]/n2</property>
                 <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <factor>0.0153</factor>
+                <min>0.0</min>
+                <max>0.66</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -555,29 +636,29 @@
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/intern.wav</path>
+            <path>prop_flight1020.wav</path>
             <property>engines/engine[1]/n2</property>
             <condition>
                     <property>sim/current-view/internal</property>
                 <greater-than>
                     <property>controls/engines/engine[1]/condition</property>
-                    <value>0.15</value>
+                    <value>0.51</value>
                 </greater-than>
+	            <less-than>
+                    <property>controls/engines/engine[1]/throttle</property>
+                    <value>0.01</value>
+                </less-than>
             </condition>
             <volume>
-                <property>engines/engine[1]/n2</property>
-                <factor>0.5</factor>
-            </volume>
-            <volume>
                 <property>sim/sound/effects/volume</property>
-                <factor>10</factor>
+				<factor>2</factor>
             </volume>
             <pitch>
                 <property>engines/engine[1]/n2</property>
                 <offset>0.0</offset>
-                <factor>0.015</factor>
-                <min>0.2</min>
-                <max>1.2</max>
+                <factor>0.0153</factor>
+                <min>0.0</min>
+                <max>0.66</max>
             </pitch>
             <position>
                 <x>-2.1677</x>
@@ -585,13 +666,86 @@
                 <z>3</z>
             </position>
         </turbine1>
+		
+        <throttle1>
+            <name>throttle2</name>
+            <reference-dist>50.0</reference-dist>
+            <max-dist>1000.0</max-dist>
+            <mode>looped</mode>
+            <path>prop_flight1020.wav</path>
+            <property>engines/engine[1]/n2</property>
+            <condition>
+                <not>
+                    <property>sim/current-view/internal</property>
+                </not>
+                <greater-than>
+                    <property>controls/engines/engine[1]/throttle</property>
+                    <value>0.00</value>
+                </greater-than>
+	            <less-than>
+                    <property>engines/engine[1]/rpm</property>
+                    <value>733</value>
+                </less-than>
+            </condition>
+            <volume>
+                <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
+            </volume>
+            <pitch>
+                <property>controls/engines/engine[1]/throttle</property>
+                <offset>0.66</offset>
+                <factor>0.22</factor>
+                <min>0.0</min>
+                <max>0.77</max>
+            </pitch>
+            <position>
+                <x>-2.1677</x>
+                <y>4.3739</y>
+                <z>3</z>
+            </position>
+        </throttle1>       
+        <throttle1>
+            <name>throttle2int</name>
+            <reference-dist>50.0</reference-dist>
+            <max-dist>1000.0</max-dist>
+            <mode>looped</mode>
+            <path>prop_flight1020.wav</path>
+            <property>engines/engine[1]/n2</property>
+            <condition>
+                    <property>sim/current-view/internal</property>
+                <greater-than>
+                    <property>controls/engines/engine[1]/throttle</property>
+                    <value>0.00</value>
+                </greater-than>
+	            <less-than>
+                    <property>engines/engine[1]/rpm</property>
+                    <value>733</value>
+                </less-than>
+            </condition>
+            <volume>
+                <property>sim/sound/effects/volume</property>
+				<factor>2</factor>
+            </volume>
+            <pitch>
+                <property>controls/engines/engine[1]/throttle</property>
+                <offset>0.66</offset>
+                <factor>0.22</factor>
+                <min>0.0</min>
+                <max>0.77</max>
+            </pitch>
+            <position>
+                <x>-2.1677</x>
+                <y>4.3739</y>
+                <z>3</z>
+            </position>
+        </throttle1>
 
 	<prop>
             <name>reverser2</name>
             <reference-dist>50.0</reference-dist>
             <max-dist>1000.0</max-dist>
             <mode>looped</mode>
-            <path>Aircraft/QSeries/Sounds/reverse.wav</path>
+            <path>reverse.wav</path>
             <property>engines/engine[1]/reverse</property>
             <condition>               
                 <greater-than>
